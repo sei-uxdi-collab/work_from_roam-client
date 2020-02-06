@@ -10,19 +10,12 @@ class GoogleMap extends React.Component {
             selectedMarker: null
         }
     }
-
-    // componentDidMount() {
-    //     console.log(this.props)
-    // }
-
-    // set Marker data to state and show InfoWindow
-    // InfoWindow will display data from Marker state
+    // onClick handler to set marker to state and show corresponding info window
     onMarkerClick = (props, marker, event) => {
-        this.setState({ selectedMarker: marker })
-        this.setState({ showWindow: true })
+        this.setState({ selectedMarker: marker, showWindow: true })
     }
     
-    // close InfoWindow
+    // onClose handler for InfoWindow
     onInfoWindowClose = () => {
         this.setState({ showWindow: false })
     }
@@ -35,12 +28,16 @@ class GoogleMap extends React.Component {
              zoom={14}
              clickableIcons={true}
             >
-
+            
+            {/* Marker needs a position prop to render, initially undefined 
+                User search sets the coordinates and passed down as props.coordinates
+            */}
             <Marker onClick={this.onMarkerClick}
                   position={this.props.coordinates}
                   name={'Current location'}
             />
 
+            {/* InfoWindow becomes visible when this.state.showWindow === true */}
             <InfoWindow marker={this.state.selectedMarker}
                       position={this.props.coordinates}
                       visible={this.state.showWindow}
