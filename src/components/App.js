@@ -21,21 +21,6 @@ constructor() {
   }
 }
 
-// set query to find Place data
-setQuery = query => {
-  this.setState({ query })
-}
-
-// send query to find Place data
-  // use Place data to get coordinates
-  // update state with coordinates and Place data
-handleAutocompleteSelect = async query => {
-  const results = await geocodeByAddress(query)
-  const coordinates = await getLatLng(results[0])
-  this.setState({ coordinates })
-  this.setState({ placeData: results[0] })
-}
-
 // set Marker data to state and show InfoWindow
   // InfoWindow will display data from Marker state
 onMarkerClick = (props, marker, event) => {
