@@ -3,6 +3,7 @@ import '../App.css';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import TestComponent from './TestComponent'
+import Search from './Search'
 
 class App extends React.Component {
 constructor() {
@@ -13,7 +14,6 @@ constructor() {
       lat: null,
       lng: null
     },
-    query: '',
     selectedMarker: null,
     placeData: '',
     showWindow: false,
@@ -51,45 +51,7 @@ onInfoWindowClose = () => {
 render() {
   return (
     <div className="App">
-        <PlacesAutocomplete
-          value={this.state.query}
-          onChange={this.setQuery}
-          onSelect={this.handleAutocompleteSelect}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              style={{ height: '40px', width: '100%', fontSize: '16px' }}
-              {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'location-search-input',
-              })}
-            />
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
-              {suggestions.map(suggestion => {
-                const className = suggestion.active
-                  ? 'suggestion-item--active'
-                  : 'suggestion-item';
-                // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      className,
-                      style,
-                    })}
-                  >
-                    <span>{suggestion.description}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-        </PlacesAutocomplete>
+        <Search setApp={this.setState.bind(this)}/>
 
         <Map google={this.props.google}
              center={this.state.coordinates}
