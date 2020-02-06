@@ -1,13 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 In order to run on local host, you need a valid google maps [api key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 You must create a .env.local file inside ./src to save your key in the following format:
 ### `REACT_APP_GOOGLE_API_KEY={enter_valid_api_key}`
-
-
 ### `npm install`
 ### `npm start`
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
