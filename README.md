@@ -6,8 +6,8 @@ You must create a .env.local file inside ./src to save your key in the following
 ### `REACT_APP_GOOGLE_API_KEY={enter_valid_api_key}`
 
 
-Run npm install
-Run npm start
+### `npm install`
+### `npm start`
 
 ## Available Scripts
 
