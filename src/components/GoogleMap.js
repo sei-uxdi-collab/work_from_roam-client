@@ -30,8 +30,7 @@ class GoogleMap extends React.Component {
             >
             
             {/* Marker needs a position prop to render, initially undefined 
-                User search sets the coordinates and passed down as props.coordinates
-            */}
+                User search sets the coordinates and passed down as props.coordinates */}
             <Marker onClick={this.onMarkerClick}
                   position={this.props.coordinates}
                   name={'Current location'}
@@ -43,7 +42,7 @@ class GoogleMap extends React.Component {
                       visible={this.state.showWindow}
                       onClose={this.onInfoWindowClose}
             >
-
+                {/* Display placeData information inside InfoWindow */}
                 <TestComponent placeData={this.props.placeData} />
 
             </InfoWindow>
