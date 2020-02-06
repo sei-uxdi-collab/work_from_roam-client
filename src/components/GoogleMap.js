@@ -30,26 +30,26 @@ class GoogleMap extends React.Component {
     render() {
         return (
             <Map google={this.props.google}
-             center={this.props.center}
+             center={this.props.coordinates}
              initialCenter={this.props.initialCenter}
              zoom={14}
              clickableIcons={true}
-        >
+            >
 
-          <Marker onClick={this.onMarkerClick}
+            <Marker onClick={this.onMarkerClick}
                   position={this.props.coordinates}
                   name={'Current location'}
-          />
+            />
 
-          <InfoWindow marker={this.state.selectedMarker}
+            <InfoWindow marker={this.state.selectedMarker}
                       position={this.props.coordinates}
                       visible={this.state.showWindow}
                       onClose={this.onInfoWindowClose}
-          >
-              <div>
+            >
+
                 <TestComponent placeData={this.props.placeData} />
-              </div>
-          </InfoWindow>
+
+            </InfoWindow>
         </Map>
         )
     }
