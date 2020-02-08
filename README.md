@@ -7,6 +7,75 @@ You must create a .env.local file inside ./src to save your key in the following
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Map Component `cheat sheet`
+
+```
+<Map />    
+```
+
+### event handlers:
+
+onClick
+
+also see: onDblclick, onRightclick
+```
+    onClick={this.handleClick}
+```
+```
+    // handleClick is a method 
+    handleClick = (props, map, event) => {
+        // gives you access to all map props
+        // gives you access to the map object
+        // event object
+    }
+```
+onDragend
+
+also see onDragstart
+```
+    onDragend={this.handleDrag}
+```
+```
+    handleDrag = (props, map) => {
+        // gives you access to all map props
+        // gives you access to the map object
+    }
+```
+onZoom_changed
+```
+    onZoom_changed={this.handleZoom}
+```
+```
+    handleZoom = (props, map) => {
+        // gives you access to all map props
+        // gives you access to the map object
+    }
+```
+onCenter_changed
+```
+    onCenter_changed={this.handleCenter_change}
+```
+```
+    handleClick = (props, map) => {
+        // gives you access to all map props
+        // gives you access to the map object
+    }
+```
+onBounds_changed
+```
+    onBound_changed={this.handleBounds_change}
+```
+```
+    handleBounds_change = (props, map) => {
+        // gives you access to all map props
+        // gives you access to the map object
+    }
+```
+
+
+
+In the project directory, you can run:
+
 ## Available Scripts
 
 In the project directory, you can run:
