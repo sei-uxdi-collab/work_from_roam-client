@@ -2,6 +2,7 @@ import React from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import TestComponent from './TestComponent'
 import PlacesDetail from './PlacesDetail'
+import TestButton from './TestButton'
 
 
 class GoogleMap extends React.Component {
@@ -16,7 +17,12 @@ class GoogleMap extends React.Component {
             placeData: null,
             showMarker: false,
             selectedMarker: null,
-            userLocation: ''
+            userLocation: '',
+            showPoiWindow: true,
+            clickLocation: null,
+            poiPlaceId: '',
+            placeData: null,
+            placeImage: ''
         }
     }
     componentDidMount = () => {
