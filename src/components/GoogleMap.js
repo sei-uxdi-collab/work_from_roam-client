@@ -1,7 +1,7 @@
 import React from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import TestComponent from './TestComponent'
-import TestButton from './TestButton'
+import PlacesDetail from './PlacesDetail'
 
 
 class GoogleMap extends React.Component {
@@ -11,10 +11,8 @@ class GoogleMap extends React.Component {
             showWindow: false,
             selectedMarker: null,
             showPoiWindow: true,
-            clickLocation: null,
-            poiPlaceId: '',
+            poiLocation: null,
             placeData: null,
-            placeImage: ''
         }
     }
 
@@ -38,28 +36,14 @@ class GoogleMap extends React.Component {
             console.log(data)
             // save data from places details to state.placeData
             this.setState({placeData: data})
-            // if data includes photos, set photo[0] to state, otherwise set 'image not found' image to state
-            if (data.photos) {
-                this.setState({ placeImage: data.photos[0].getUrl() })                    
-            } else {
-                this.setState({
-                    placeImage: this.imageNotFound
-                })
-            }
         }
 
-        // save the click location and placeID to state. Reset image and place data
-        // this will display the info window with no image or place data
-        const lat = event.latLng.lat()
-        const lng = event.latLng.lng()
-        this.setState({
-            poiPlaceId: event.placeId,
-            clickLocation: { lat, lng },
-            placeImage: '',
-            placeData: null
-        })
+        // save the click location and reset place data
 
-                
+        this.setState({
+            poiLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
+            placeData: null
+        })      
         // create new instance of class PlacesService to access google places api
         const service = new this.props.google.maps.places.PlacesService(map)
         console.log('service is:', service)
@@ -74,9 +58,7 @@ class GoogleMap extends React.Component {
         )
     }
 
-
     handleClick = (props, map, event) => {
-        
         // if click event has a place id, get details on place and save data to state
         if(event.placeId) {
             // first save the location and place id to state. Clear data for place image and place data
@@ -84,10 +66,8 @@ class GoogleMap extends React.Component {
         }
     }
 
-    imageNotFound = 'https://1m19tt3pztls474q6z46fnk9-wpengine.netdna-ssl.com/wp-content/themes/unbound/images/No-Image-Found-400x264.png'
-
     render() {
-        const attribution = this.state.htmlAttribution
+      
         return (
             <Map google={this.props.google}
              center={this.props.coordinates}
@@ -96,7 +76,15 @@ class GoogleMap extends React.Component {
              clickableIcons={true}
 
              onClick={this.handleClick}
-            >            
+            >    
+                {/* info window for poi locations */}
+                <InfoWindow
+                    position={this.state.poiLocation}
+                    visible={true}
+                >
+                    <PlacesDetail placeData={this.state.placeData} />    
+                </InfoWindow>                
+
                 {/* Marker needs a position prop to render, initially undefined 
                     User search sets the coordinates and passed down as props.coordinates */}
                 <Marker onClick={this.onMarkerClick}
@@ -114,18 +102,7 @@ class GoogleMap extends React.Component {
                     <TestComponent placeData={this.props.placeData} />
 
                 </InfoWindow>
-                <InfoWindow
-                        position={this.state.clickLocation}
-                        visible={true}
-                        onClose={this.onInfoWindowClose}
-                >
-                    <img height={'200px'} src={this.state.placeImage} />
-                    
-                    {this.state.placeData && <h1>{this.state.placeData.name}</h1>}
-                    <p><strong>google place_id: </strong>{this.state.poiPlaceId}</p>
-
-                    <TestButton placeId={this.state.poiPlaceId}/>
-                </InfoWindow>
+                
             </Map>
         )
     }
