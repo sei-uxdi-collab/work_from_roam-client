@@ -39,7 +39,6 @@ class GoogleMap extends React.Component {
     onMarkerClick = (props, marker, event) => {
         this.setState({ selectedMarker: marker, showWindow: true })
     }
-
     // onClose handler for InfoWindow
     onInfoWindowClose = () => {
         this.setState({ showWindow: false })
