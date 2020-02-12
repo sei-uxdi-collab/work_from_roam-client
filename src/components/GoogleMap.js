@@ -15,23 +15,20 @@ class GoogleMap extends React.Component {
             placeData: null,
         }
     }
-
     componentDidMount() {
         console.log(this.props.google)
     }
-
     // onClick handler to set marker to state and show corresponding info window
     onMarkerClick = (props, marker, event) => {
         this.setState({ selectedMarker: marker, showWindow: true })
     }
-    
     // onClose handler for InfoWindow
     onInfoWindowClose = () => {
         this.setState({ showWindow: false })
     }
 
     showPOI = (map, event) => {
-        // declare function to handle data returned from service.getDetails()  
+        // declare function to handle data returned from service.getDetails()
         const handleData = (data, status) => {
             console.log(data)
             // save data from places details to state.placeData
@@ -43,7 +40,7 @@ class GoogleMap extends React.Component {
         this.setState({
             poiLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
             placeData: null
-        })      
+        })
         // create new instance of class PlacesService to access google places api
         const service = new this.props.google.maps.places.PlacesService(map)
         console.log('service is:', service)
@@ -67,7 +64,7 @@ class GoogleMap extends React.Component {
     }
 
     render() {
-      
+
         return (
             <Map google={this.props.google}
              center={this.props.coordinates}
@@ -76,16 +73,16 @@ class GoogleMap extends React.Component {
              clickableIcons={true}
 
              onClick={this.handleClick}
-            >    
+            >
                 {/* info window for poi locations */}
                 <InfoWindow
                     position={this.state.poiLocation}
                     visible={true}
                 >
-                    <PlacesDetail placeData={this.state.placeData} />    
-                </InfoWindow>                
+                    <PlacesDetail placeData={this.state.placeData} />
+                </InfoWindow>
 
-                {/* Marker needs a position prop to render, initially undefined 
+                {/* Marker needs a position prop to render, initially undefined
                     User search sets the coordinates and passed down as props.coordinates */}
                 <Marker onClick={this.onMarkerClick}
                     position={this.props.coordinates}
@@ -102,7 +99,7 @@ class GoogleMap extends React.Component {
                     <TestComponent placeData={this.props.placeData} />
 
                 </InfoWindow>
-                
+
             </Map>
         )
     }

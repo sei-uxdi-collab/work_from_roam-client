@@ -10,7 +10,7 @@ class PlacesDetail extends React.Component {
             test: true
         }
     }
-    
+
     render() {
         let placeImage = ''
         // if data does not have any photos, display 'no image found' image
@@ -26,10 +26,10 @@ class PlacesDetail extends React.Component {
             jsx = (
                 <div>
 
-                    <img height={'200px'} src={placeImage} />
+                    <img referrerPolicy="no-referrer" height={'200px'} src={placeImage} />
                     <h1>{this.props.placeData.name}</h1>
                     <p><strong>google place_id: </strong>{this.props.placeData.reference || 'unknown'}</p>
-                    
+
                     <TestButton placeId={this.props.placeData.reference}/>
                 </div>
             )
