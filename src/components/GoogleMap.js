@@ -19,10 +19,8 @@ class GoogleMap extends React.Component {
             selectedMarker: null,
             userLocation: '',
             showPoiWindow: true,
-            clickLocation: null,
-            poiPlaceId: '',
+            poiLocation: null,
             placeData: null,
-            placeImage: ''
         }
     }
     componentDidMount = () => {
