@@ -13,7 +13,7 @@ class App extends React.Component {
       },
       placeData: '',
       userLocation: { lat: 42.3601, lng: -71.0589}
-    }
+    } 
   }
 
   render() {
@@ -21,12 +21,12 @@ class App extends React.Component {
       <div className="App">
           <Search setApp={this.setState.bind(this)}/>
 
-          <GoogleMap 
+          <GoogleMap
             initialCenter={this.state.userLocation}
             coordinates={this.state.coordinates}
             placeData={this.state.placeData}
           />
-          
+
       </div>
     )
   }

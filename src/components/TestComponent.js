@@ -7,7 +7,6 @@ class TestComponent extends React.Component {
             test: true
         }
     }
-
     // render information inside an infoWindow for POI
     render() {
         return (

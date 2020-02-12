@@ -5,23 +5,37 @@ import PlacesDetail from './PlacesDetail'
 
 
 class GoogleMap extends React.Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             showWindow: false,
+
             selectedMarker: null,
             showPoiWindow: true,
             poiLocation: null,
             placeData: null,
+            showMarker: false,
+            selectedMarker: null,
+            userLocation: ''
         }
     }
-    componentDidMount() {
-        console.log(this.props.google)
+    componentDidMount = () => {
+      if(navigator && navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+        console.log('found user location')
+        const coords = pos.coords
+        const lat = coords.latitude
+        const lng = coords.longitude
+        this.setState({ userLocation: { lat, lng },
+                        showMarker: true })
+                      })
+      }
     }
-    // onClick handler to set marker to state and show corresponding info window
+      // onClick handler to set marker to state and show corresponding info window
     onMarkerClick = (props, marker, event) => {
         this.setState({ selectedMarker: marker, showWindow: true })
     }
+
     // onClose handler for InfoWindow
     onInfoWindowClose = () => {
         this.setState({ showWindow: false })
@@ -85,7 +99,7 @@ class GoogleMap extends React.Component {
                 {/* Marker needs a position prop to render, initially undefined
                     User search sets the coordinates and passed down as props.coordinates */}
                 <Marker onClick={this.onMarkerClick}
-                    position={this.props.coordinates}
+                    position={this.state.userLocation}
                     name={'Current location'}
                 />
 
