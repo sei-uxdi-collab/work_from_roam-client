@@ -2,6 +2,7 @@ import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import {GoogleApiWrapper} from 'google-maps-react'
 
+
 class Search extends React.Component {
     constructor(props) {
         super(props)

@@ -1,15 +1,22 @@
 import React from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import TestComponent from './TestComponent'
+import PlacesDetail from './PlacesDetail'
+import TestButton from './TestButton'
+
 
 class GoogleMap extends React.Component {
     constructor() {
         super()
         this.state = {
-            showWindow: false,
-            showMarker: false,
+            placeData: null,
+            poiLocation: null,
             selectedMarker: null,
-            userLocation: ''
+            showPoiWindow: true,
+            showMarker: false,
+            showWindow: false,
+            userLocation: '',
+            
         }
     }
 
@@ -27,7 +34,7 @@ class GoogleMap extends React.Component {
       }
     }
 
-    // onClick handler to set marker to state and show corresponding info window
+      // onClick handler to set marker to state and show corresponding info window
     onMarkerClick = (props, marker, event) => {
         this.setState({ selectedMarker: marker, showWindow: true })
     }
@@ -37,33 +44,81 @@ class GoogleMap extends React.Component {
         this.setState({ showWindow: false })
     }
 
+    showPOI = (map, event) => {
+        // declare function to handle data returned from service.getDetails()
+        const handleData = (data, status) => {
+            console.log(data)
+            // save data from places details to state.placeData
+            this.setState({placeData: data})
+        }
+
+        // save the click location and reset place data
+
+        this.setState({
+            poiLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
+            placeData: null
+        })
+        // create new instance of class PlacesService to access google places api
+        const service = new this.props.google.maps.places.PlacesService(map)
+        console.log('service is:', service)
+
+        // call getDetails from google places api, passing placeId, fields to get data for, and above callback function to handle the response
+        service.getDetails(
+            {
+                placeId: event.placeId,
+                fields: ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews']
+            },
+            handleData
+        )
+    }
+
+    handleClick = (props, map, event) => {
+        // if click event has a place id, get details on place and save data to state
+        if(event.placeId) {
+            // first save the location and place id to state. Clear data for place image and place data
+            this.showPOI(map, event)
+        }
+    }
+
     render() {
+
         return (
             <Map google={this.props.google}
              center={this.props.coordinates}
              initialCenter={this.props.initialCenter}
              zoom={14}
              clickableIcons={true}
+
+             onClick={this.handleClick}
             >
 
-            {/* Marker needs a position prop to render, initially undefined
-                User search sets the coordinates and passed down as props.coordinates */}
-            <Marker onClick={this.onMarkerClick}
-                  position={this.state.userLocation}
-                  name={'Current location'}
-            />
+                {/* info window for poi locations */}
+                <InfoWindow
+                    position={this.state.poiLocation}
+                    visible={true}
+                >
+                    <PlacesDetail placeData={this.state.placeData} />
+                </InfoWindow>
 
-            {/* InfoWindow becomes visible when this.state.showWindow === true */}
-            <InfoWindow marker={this.state.selectedMarker}
-                      position={this.props.coordinates}
-                      visible={this.state.showWindow}
-                      onClose={this.onInfoWindowClose}
-            >
-                {/* Display placeData information inside InfoWindow */}
-                <TestComponent placeData={this.props.placeData} />
+                {/* Marker needs a position prop to render, initially undefined
+                    User search sets the coordinates and passed down as props.coordinates */}
+                <Marker onClick={this.onMarkerClick}
+                    position={this.state.userLocation}
+                    name={'Current location'}
+                />
 
-            </InfoWindow>
-        </Map>
+                {/* InfoWindow becomes visible when this.state.showWindow === true */}
+                <InfoWindow marker={this.state.selectedMarker}
+                        position={this.props.coordinates}
+                        visible={this.state.showWindow}
+                        onClose={this.onInfoWindowClose}
+                >
+                    {/* Display placeData information inside InfoWindow */}
+                    <TestComponent placeData={this.props.placeData} />
+
+                </InfoWindow>
+
+            </Map>
         )
     }
 }
