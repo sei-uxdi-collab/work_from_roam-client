@@ -9,20 +9,18 @@ class GoogleMap extends React.Component {
     constructor() {
         super()
         this.state = {
-            showWindow: false,
-
+            placeData: null,
+            poiLocation: null,
             selectedMarker: null,
             showPoiWindow: true,
-            poiLocation: null,
-            placeData: null,
             showMarker: false,
-            selectedMarker: null,
+            showWindow: false,
             userLocation: '',
-            showPoiWindow: true,
-            poiLocation: null,
-            placeData: null,
+            
         }
     }
+
+    // Using geolocation from browser to location user location
     componentDidMount = () => {
       if(navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
@@ -35,10 +33,12 @@ class GoogleMap extends React.Component {
                       })
       }
     }
+
       // onClick handler to set marker to state and show corresponding info window
     onMarkerClick = (props, marker, event) => {
         this.setState({ selectedMarker: marker, showWindow: true })
     }
+
     // onClose handler for InfoWindow
     onInfoWindowClose = () => {
         this.setState({ showWindow: false })
@@ -91,6 +91,7 @@ class GoogleMap extends React.Component {
 
              onClick={this.handleClick}
             >
+
                 {/* info window for poi locations */}
                 <InfoWindow
                     position={this.state.poiLocation}
