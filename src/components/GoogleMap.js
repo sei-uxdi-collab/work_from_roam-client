@@ -66,7 +66,7 @@ class GoogleMap extends React.Component {
         service.getDetails(
             {
                 placeId: event.placeId,
-                fields: ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference']
+                fields: ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews']
             },
             handleData
         )
