@@ -84,7 +84,7 @@ class GoogleMap extends React.Component {
 
         return (
             <Map google={this.props.google}
-             center={this.props.coordinates}
+             center={this.state.userLocation}
              initialCenter={this.props.initialCenter}
              zoom={14}
              clickableIcons={true}
