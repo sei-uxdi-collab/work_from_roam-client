@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import Search from './Search'
 import GoogleMap from './GoogleMap';
+import ReviewForm from './ReviewForm';
 
 class App extends React.Component {
   constructor() {
@@ -13,12 +14,13 @@ class App extends React.Component {
       },
       placeData: '',
       userLocation: { lat: 42.3601, lng: -71.0589}
-    } 
+    }
   }
 
   render() {
     return (
       <div className="App">
+          <ReviewForm />
           <Search setApp={this.setState.bind(this)}/>
 
           <GoogleMap
