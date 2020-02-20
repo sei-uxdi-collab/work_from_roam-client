@@ -3,6 +3,7 @@ import '../App.css';
 import Search from './Search'
 import GoogleMap from './GoogleMap';
 import ReviewForm from './ReviewForm';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends React.Component {
   constructor() {
@@ -19,17 +20,29 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      
+      <Router>
+        
+        <Route path='/new/:placeId'>
           <ReviewForm />
-          <Search setApp={this.setState.bind(this)}/>
+        </Route>
 
-          <GoogleMap
-            initialCenter={this.state.userLocation}
-            coordinates={this.state.coordinates}
-            placeData={this.state.placeData}
-          />
+        <Route path='/'>
+          <div className="App">
+            
+            <Search setApp={this.setState.bind(this)}/>
 
-      </div>
+            <GoogleMap
+              initialCenter={this.state.userLocation}
+              coordinates={this.state.coordinates}
+              placeData={this.state.placeData}
+            />
+
+          </div>
+        </Route>
+      </Router>
+      
+      
     )
   }
 }

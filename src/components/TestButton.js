@@ -1,5 +1,7 @@
 import React from 'react'
 import { geocodeByPlaceId, getLatLng } from 'react-places-autocomplete'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
+
 
 class TestButton extends React.Component {
     constructor(props) {
@@ -21,11 +23,15 @@ class TestButton extends React.Component {
     }
 
     // render information inside an infoWindow for POI
+
     render() {
         return (
-            <a href={`${this.url}/new/${this.props.placeId}`}>
-                <button>Add a Review</button>
-            </a>
+            <Router>
+                <Link to={`/new/${this.props.placeId}`}>
+                    <button>Add a Review</button>
+                </Link>
+            </Router>
+            
             
         )
     }

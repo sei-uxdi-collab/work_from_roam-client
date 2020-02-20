@@ -1,0 +1,11 @@
+.review-form {
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 300px;
+    margin-top: -150px;
+    margin-left: -200px
+}
