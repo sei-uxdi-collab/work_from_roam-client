@@ -1,4 +1,4 @@
-import React, { Component }from 'react';
+import React from 'react';
 import './ReviewForm.css'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 
@@ -36,9 +36,9 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
           </Link>
 
           <h1> Review </h1>
-                   
+
             <form>
-              
+
               <label> Rating: </label>
               <input name="rating" type="range" min="0" max="5" value={this.state.rating} onChange={this.handleChange}/>
               <p>{this.state.rating}</p>

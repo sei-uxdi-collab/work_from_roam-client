@@ -2,7 +2,7 @@ import React from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import TestComponent from './TestComponent'
 import PlacesDetail from './PlacesDetail'
-import TestButton from './TestButton'
+// import TestButton from './TestButton'
 
 
 class GoogleMap extends React.Component {
@@ -16,7 +16,7 @@ class GoogleMap extends React.Component {
             showMarker: false,
             showWindow: false,
             userLocation: '',
-            
+
         }
     }
 
