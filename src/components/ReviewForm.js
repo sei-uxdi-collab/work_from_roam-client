@@ -1,6 +1,6 @@
 import React from 'react';
 import './ReviewForm.css'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
   class ReviewForm extends React.Component {
     constructor(props) {
@@ -28,7 +28,6 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
           show = 'none'
         }
       return (
-        <Router>
           <div className='review-form' style={{display: show}}>
 
           <Link to='/'>
@@ -49,7 +48,6 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 
             </form>
           </div>
-        </Router>
       )
     }
   }

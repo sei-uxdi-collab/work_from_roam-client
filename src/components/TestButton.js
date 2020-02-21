@@ -1,6 +1,6 @@
 import React from 'react'
 import { geocodeByPlaceId } from 'react-places-autocomplete'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { HashRouter, Link } from 'react-router-dom'
 
 
 class TestButton extends React.Component {
@@ -26,12 +26,11 @@ class TestButton extends React.Component {
 
     render() {
         return (
-            <Router>
+            <HashRouter>
                 <Link to={`/new/${this.props.placeId}`}>
                     <button>Add a Review</button>
                 </Link>
-            </Router>
-
+            </HashRouter>
 
         )
     }
