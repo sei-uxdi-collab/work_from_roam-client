@@ -10,4 +10,8 @@ if (window.location.hostname === 'localhost') {
   apiUrl = apiUrls.production
 }
 
+// hack to access production api from localhost
+// commment out or remove this line to access development api
+apiUrl = apiUrls.production
+
 export default apiUrl
