@@ -3,6 +3,7 @@ import '../App.css';
 import Search from './Search'
 import GoogleMap from './GoogleMap';
 import ReviewForm from './ReviewForm';
+import SignUp from './SignUp/SignUp'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends React.Component {
@@ -20,16 +21,20 @@ class App extends React.Component {
 
   render() {
     return (
-      
+
       <Router>
-        
+
         <Route path='/new/:placeId'>
           <ReviewForm />
         </Route>
 
+        <Route path='/sign-up' render={() => (
+           <SignUp setUser={this.setUser} />
+         )} />
+
         <Route path='/'>
           <div className="App">
-            
+
             <Search setApp={this.setState.bind(this)}/>
 
             <GoogleMap
@@ -41,8 +46,8 @@ class App extends React.Component {
           </div>
         </Route>
       </Router>
-      
-      
+
+
     )
   }
 }
