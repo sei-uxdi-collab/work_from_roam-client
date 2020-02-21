@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { signUp, signIn } from '../../api/auth'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+
+import './SignUp.css'
 
 class SignUp extends Component {
   constructor () {
@@ -41,8 +43,11 @@ class SignUp extends Component {
     const { email, password, passwordConfirmation } = this.state
 
     return (
-      <div className="row body">
+      <div className="row body sign-up">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
+          <Link to='/'>
+            <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
+          </Link>
           <h3>Sign Up</h3>
           <Form onSubmit={this.onSignUp}>
             <Form.Group controlId="email">
