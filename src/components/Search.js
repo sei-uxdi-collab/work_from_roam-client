@@ -1,6 +1,7 @@
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import {GoogleApiWrapper} from 'google-maps-react'
+import './Search.css'
 
 
 class Search extends React.Component {
@@ -34,7 +35,7 @@ render() {
         onSelect={this.handleAutocompleteSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-        <div>
+        <div className='search-bar'>
           <input
             style={{ height: '40px', width: '100%', fontSize: '16px' }}
             {...getInputProps({

@@ -1,0 +1,10 @@
+.search-bar {
+    position: absolute;
+    z-index: 10;
+    
+}
+
+.search-bar input {
+    height: 45px !important;
+    width: 100vw !important
+}
