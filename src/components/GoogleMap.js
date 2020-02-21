@@ -56,6 +56,7 @@ class GoogleMap extends React.Component {
 
         this.setState({
             poiLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
+            userLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
             placeData: null
         })
         // create new instance of class PlacesService to access google places api
