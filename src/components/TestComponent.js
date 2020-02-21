@@ -13,7 +13,7 @@ class TestComponent extends React.Component {
             <div>
                 <h1>test component</h1>
                 <p>{this.props.placeData.formatted_address}</p>
-                <a href={'https://developers.google.com/maps/documentation/javascript/tutorial'} target={'_blank'}>
+                <a rel="noopener noreferrer" href={'https://developers.google.com/maps/documentation/javascript/tutorial'} target={'_blank'}>
                   <button>display link to create a review</button>
                 </a>
                 <p>{this.props.placeData.place_id}</p>
