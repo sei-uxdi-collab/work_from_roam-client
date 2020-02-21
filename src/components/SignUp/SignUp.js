@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { signUp, signIn } from '../../api/auth'
 
@@ -45,6 +45,9 @@ class SignUp extends Component {
     return (
       <div className="row body sign-up">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
+          <Link to='/'>
+            <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
+          </Link>
           <h3>Sign Up</h3>
           <Form onSubmit={this.onSignUp}>
             <Form.Group controlId="email">
