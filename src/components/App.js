@@ -38,7 +38,7 @@ class App extends React.Component {
 <Header user={user} />
 
         <Route path='/new/:placeId'>
-          <ReviewForm />
+          <ReviewForm user={user}/>
         </Route>
 
         <Route path='/sign-up' render={() => (
