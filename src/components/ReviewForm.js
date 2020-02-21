@@ -30,11 +30,13 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
       return (
         <Router>
           <div className='review-form' style={{display: show}}>
-          <h1> Review </h1>
+
           <Link to='/'>
-            <button onClick={this.closeWindow}>Close</button>
+            <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
           </Link>
-          
+
+          <h1> Review </h1>
+                   
             <form>
               
               <label> Rating: </label>
