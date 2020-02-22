@@ -27,7 +27,7 @@ class TestButton extends React.Component {
     render() {
         return (
             <HashRouter>
-                <Link to={`/new/${this.props.placeId}`}>
+                <Link to='/new'>
                     <button>Add a Review</button>
                 </Link>
             </HashRouter>
