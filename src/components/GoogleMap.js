@@ -11,7 +11,8 @@ class GoogleMap extends React.Component {
         super()
         this.state = {
             selectedMarker: null,
-            showWindow: false
+            showWindow: false,
+            allData: []
         }
     }
 
@@ -27,7 +28,10 @@ class GoogleMap extends React.Component {
         })
       }
       axios(apiUrl + '/work_spaces')
-        .then(console.log)
+        .then(data => {
+            console.log(data)
+            this.setState({ allData: data.data.work_spaces })
+        })
     }
 
       // onClick handler to set marker to state and show corresponding info window
@@ -98,16 +102,18 @@ class GoogleMap extends React.Component {
                     <PlacesDetail placeData={this.props.placeData} />
                 </InfoWindow>
 
-                {/* Marker needs a position prop to render, initially undefined
-                    User search sets the coordinates and passed down as props.coordinates */}
-                <Marker onClick={this.onMarkerClick}
-                    position={this.state.userLocation}
-                    name={'Current location'}
-                />
+                {this.state.allData.map(workSpace => (
+                    <Marker onClick={this.onMarkerClick}
+                        position={{ lat: workSpace.lat, lng: workSpace.lng}}
+                        placeId={workSpace.placeId}
+                        data={workSpace}
+                        name={'Current location'}
+                    />
+                ))}
+                
 
                 {/* InfoWindow becomes visible when this.state.showWindow === true */}
                 <InfoWindow marker={this.state.selectedMarker}
-                        position={this.props.poiLocation}
                         visible={this.state.showWindow}
                         onClose={this.onInfoWindowClose}
                 >

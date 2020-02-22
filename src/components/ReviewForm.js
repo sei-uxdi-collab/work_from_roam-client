@@ -29,7 +29,7 @@ import apiUrl from '../apiConfig'
         url: apiUrl + '/work_spaces',
         data: {
           work_space: {
-            place_id: this.props.place_id,
+            place_id: this.props.placeId,
             lat: this.props.location.lat,
             lng: this.props.location.lng
           }
