@@ -2,21 +2,16 @@ import React from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import TestComponent from './TestComponent'
 import PlacesDetail from './PlacesDetail'
-// import TestButton from './TestButton'
+import axios from 'axios'
+import apiUrl from '../apiConfig'
 
 
 class GoogleMap extends React.Component {
     constructor() {
         super()
         this.state = {
-            placeData: null,
-            poiLocation: null,
             selectedMarker: null,
-            showPoiWindow: true,
-            showMarker: false,
-            showWindow: false,
-            userLocation: '',
-
+            showWindow: false
         }
     }
 
@@ -28,10 +23,11 @@ class GoogleMap extends React.Component {
         const coords = pos.coords
         const lat = coords.latitude
         const lng = coords.longitude
-        this.setState({ userLocation: { lat, lng },
-                        showMarker: true })
-                      })
+        this.props.setApp({ mapCenter: { lat, lng }})
+        })
       }
+      axios(apiUrl + '/work_spaces')
+        .then(console.log)
     }
 
       // onClick handler to set marker to state and show corresponding info window
@@ -49,15 +45,16 @@ class GoogleMap extends React.Component {
         const handleData = (data, status) => {
             console.log(data)
             // save data from places details to state.placeData
-            this.setState({placeData: data})
+            this.props.setApp({placeData: data})
         }
 
         // save the click location and reset place data
 
-        this.setState({
+        this.props.setApp({
             poiLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
-            userLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
-            placeData: null
+            mapCenter: { lat: event.latLng.lat(), lng: event.latLng.lng() },
+            placeData: null,
+            placeId: event.placeId
         })
         // create new instance of class PlacesService to access google places api
         const service = new this.props.google.maps.places.PlacesService(map)
@@ -85,8 +82,8 @@ class GoogleMap extends React.Component {
 
         return (
             <Map google={this.props.google}
-             center={this.state.userLocation}
-             initialCenter={this.props.initialCenter}
+             center={this.props.center}
+             initialCenter={this.props.center}
              zoom={14}
              clickableIcons={true}
 
@@ -95,10 +92,10 @@ class GoogleMap extends React.Component {
 
                 {/* info window for poi locations */}
                 <InfoWindow
-                    position={this.state.poiLocation}
+                    position={this.props.poiLocation}
                     visible={true}
                 >
-                    <PlacesDetail placeData={this.state.placeData} />
+                    <PlacesDetail placeData={this.props.placeData} />
                 </InfoWindow>
 
                 {/* Marker needs a position prop to render, initially undefined
@@ -110,7 +107,7 @@ class GoogleMap extends React.Component {
 
                 {/* InfoWindow becomes visible when this.state.showWindow === true */}
                 <InfoWindow marker={this.state.selectedMarker}
-                        position={this.props.coordinates}
+                        position={this.props.poiLocation}
                         visible={this.state.showWindow}
                         onClose={this.onInfoWindowClose}
                 >

@@ -1,6 +1,8 @@
 import React from 'react';
 import './ReviewForm.css'
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
+import apiUrl from '../apiConfig'
 
   class ReviewForm extends React.Component {
     constructor(props) {
@@ -8,7 +10,7 @@ import { Link, Redirect } from 'react-router-dom'
       this.state = {
         rating: 3,
         review: '',
-        show: true,
+        display: 'block',
         redirect: false
       }
     }
@@ -21,26 +23,62 @@ import { Link, Redirect } from 'react-router-dom'
 
     handleSubmit = (event) => {
       event.preventDefault()
-      if (!this.props.user) {
-        this.setState({redirect: true})
-      }
+      // 1. create a workspace
+      axios({
+        method: 'post',
+        url: apiUrl + '/work_spaces',
+        data: {
+          work_space: {
+            place_id: this.props.place_id,
+            lat: this.props.location.lat,
+            lng: this.props.location.lng
+          }
+        },
+        headers: {
+          Authorization: `Token token=${this.props.user.token}`
+        }
+
+      })
+      // 2. create a review associated with the new workspace
+      .then(data => {
+        console.log(data)
+        axios({
+          method: 'post',
+          url: apiUrl + '/reviews',
+          data: {
+            review: {
+              rating: this.state.rating,
+              note: this.state.review,
+              work_space_id: data.data.work_space.id
+            }
+          },
+          headers: {
+            Authorization: `Token token=${this.props.user.token}`
+          }
+        })
+        .then(data => {
+          console.log(data)
+          this.setState({ display: 'none' })
+        })
+      })
+      // 3. redirect to '/' and close the review form
       
+      .catch(() => alert('create review failed'))
     }
 
     closeWindow = () => {
-      this.setState({ show: false })
+      // update state which updates component's style to diplay: none
+      this.setState({ display: 'none' })
     }
 
     render () {
+      // if user is not signed in, redirect to '/sign-in'
       if (!this.props.user) {
         return (<Redirect to='/sign-in'/>)
       }
-      let show = 'block'
-        if (!this.state.show) {
-          show = 'none'
-        }
+
       return (
-          <div className='review-form' style={{display: show}}>
+          <div className='review-form' style={{display: this.state.display}}>
 
           <Link to='/'>
             <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>

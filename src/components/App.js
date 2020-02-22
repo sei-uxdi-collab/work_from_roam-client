@@ -13,13 +13,14 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      coordinates: {
-        lat: null,
-        lng: null
-      },
+      poiLocation: null,
+      mapCenter: { lat: 42.3601, lng: -71.0589},
+      bounds: null,
+      placeId: null,
+      placeData: null,
+      //
+      
       user: null,
-      placeData: '',
-      userLocation: { lat: 42.3601, lng: -71.0589}
     }
   }
 
@@ -37,8 +38,13 @@ class App extends React.Component {
 <Fragment>
 <Header user={user} />
 
-        <Route path='/new/:placeId'>
-          <ReviewForm user={user}/>
+        <Route path='/new'>
+          <ReviewForm 
+            user={user}
+            placeId={this.state.placeId}
+            placeData={this.state.placeData}
+            location={this.state.poiLocation}
+          />
         </Route>
 
         <Route path='/sign-up' render={() => (
@@ -55,9 +61,12 @@ class App extends React.Component {
             <Search setApp={this.setState.bind(this)}/>
 
             <GoogleMap
-              initialCenter={this.state.userLocation}
+              center={this.state.mapCenter}
               coordinates={this.state.coordinates}
               placeData={this.state.placeData}
+              //
+              setApp={this.setState.bind(this)}
+              poiLocation={this.state.poiLocation}
             />
 
           </div>
