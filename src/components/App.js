@@ -6,6 +6,7 @@ import ReviewForm from './ReviewForm';
 import SignUp from './SignUp/SignUp'
 import SignIn from './SignIn/SignIn'
 import ChangePassword from './ChangePassword/ChangePassword'
+import SignOut from './SignOut/SignOut'
 import Header from './Header/Header'
 import { Route } from 'react-router-dom'
 
@@ -59,6 +60,11 @@ class App extends React.Component {
           <Route user={user} path='/change-password' render={() => (
               <ChangePassword user={user} />
             )} />
+
+          <Route user={user} path='/sign-out' render={() => (
+              <SignOut clearUser={this.clearUser} user={user} />
+            )} />
+
 
         <Route path='/'>
           <div className="App">
