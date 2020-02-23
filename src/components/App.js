@@ -5,6 +5,7 @@ import GoogleMap from './GoogleMap';
 import ReviewForm from './ReviewForm';
 import SignUp from './SignUp/SignUp'
 import SignIn from './SignIn/SignIn'
+import ChangePassword from './ChangePassword/ChangePassword'
 import Header from './Header/Header'
 import { Route } from 'react-router-dom'
 
@@ -19,7 +20,7 @@ class App extends React.Component {
       placeId: null,
       placeData: null,
       //
-      
+
       user: null,
     }
   }
@@ -39,7 +40,7 @@ class App extends React.Component {
 <Header user={user} />
 
         <Route path='/new'>
-          <ReviewForm 
+          <ReviewForm
             user={user}
             placeId={this.state.placeId}
             placeData={this.state.placeData}
@@ -54,6 +55,10 @@ class App extends React.Component {
          <Route path='/sign-in' render={() => (
             <SignIn user={user} setUser={this.setUser} />
           )} />
+
+          <Route user={user} path='/change-password' render={() => (
+              <ChangePassword user={user} />
+            )} />
 
         <Route path='/'>
           <div className="App">
