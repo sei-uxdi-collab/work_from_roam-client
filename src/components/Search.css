@@ -1,6 +1,5 @@
 .search-bar {
     position: absolute;
-    display: flex;
     z-index: 10;
 }
 .search-bar input {
