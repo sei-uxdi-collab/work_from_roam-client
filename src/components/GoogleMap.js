@@ -24,12 +24,12 @@ class GoogleMap extends React.Component {
         const coords = pos.coords
         const lat = coords.latitude
         const lng = coords.longitude
-        this.props.setApp({ mapCenter: { lat, lng }})
+        this.props.setApp({ userLocation: { lat, lng }})
         })
       }
       axios(apiUrl + '/work_spaces')
         .then(data => {
-            console.log(data)
+            // console.log(data)
             this.setState({ allData: data.data.work_spaces })
         })
     }
@@ -37,6 +37,7 @@ class GoogleMap extends React.Component {
       // onClick handler to set marker to state and show corresponding info window
     onMarkerClick = (props, marker, event) => {
         this.setState({ selectedMarker: marker, showWindow: true })
+        console.log(marker.data)
     }
 
     // onClose handler for InfoWindow
@@ -93,6 +94,16 @@ class GoogleMap extends React.Component {
 
              onClick={this.handleClick}
             >
+            <Marker
+              name={'user location'}
+              position={this.userLocation}
+              icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
+            />
+
+            <Marker name={'search result'}
+                    position={this.props.searchLocation}
+                    icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
+                    />
 
                 {/* info window for poi locations */}
                 <InfoWindow
@@ -110,7 +121,7 @@ class GoogleMap extends React.Component {
                         name={'Current location'}
                     />
                 ))}
-                
+
 
                 {/* InfoWindow becomes visible when this.state.showWindow === true */}
                 <InfoWindow marker={this.state.selectedMarker}

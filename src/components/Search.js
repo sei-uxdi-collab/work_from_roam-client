@@ -22,8 +22,8 @@ setQuery = query => {
 // update state with coordinates and Place data
 handleAutocompleteSelect = async query => {
     const results = await geocodeByAddress(query)
-    const coordinates = await getLatLng(results[0])
-    this.props.setApp({ coordinates })
+    const searchLocation = await getLatLng(results[0])
+    this.props.setApp({ searchLocation })
     this.props.setApp({ placeData: results[0] })
 }
 
@@ -70,8 +70,8 @@ render() {
       </PlacesAutocomplete>
     )
 }
-    
 }
+
 
 
 export default GoogleApiWrapper({
