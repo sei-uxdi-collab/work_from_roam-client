@@ -1,0 +1,8 @@
+.nav-bar {
+    position: absolute;
+    display: flex;
+    z-index: 11;
+    height: 50px !important;
+    width: 60px;
+    background-color: black;
+}
