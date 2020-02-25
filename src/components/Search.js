@@ -25,6 +25,7 @@ handleAutocompleteSelect = async query => {
     const searchLocation = await getLatLng(results[0])
     this.props.setApp({ searchLocation })
     this.props.setApp({ placeData: results[0] })
+    this.setState({ query: '' })
 }
 
 render() {
