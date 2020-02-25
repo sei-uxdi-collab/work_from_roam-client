@@ -76,6 +76,7 @@ class App extends React.Component {
           <div className="App">
             <NavBar />
             <Search setApp={this.setState.bind(this)}
+                    mapCenter={this.state.mapCenter}
             />
             <GoogleMap
               center={this.state.mapCenter}
@@ -83,6 +84,7 @@ class App extends React.Component {
               placeData={this.state.placeData}
               //
               setApp={this.setState.bind(this)}
+              mapCenter={this.state.mapCenter}
               poiLocation={this.state.poiLocation}
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}
