@@ -2,6 +2,8 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 
+import './Header.css'
+
 const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
@@ -23,7 +25,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar collapseOnSelect fixed="top" bg="secondary" variant="dark" expand="md">
+  <Navbar className="header" collapseOnSelect fixed="top" bg="secondary" variant="dark" expand="md">
     <Navbar.Brand href="#">
       WorkFromRoam
     </Navbar.Brand>

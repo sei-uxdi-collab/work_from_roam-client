@@ -9,6 +9,7 @@ import ChangePassword from './ChangePassword/ChangePassword'
 import SignOut from './SignOut/SignOut'
 import Header from './Header/Header'
 import { Route } from 'react-router-dom'
+import NavBar from './NavBar/NavBar'
 
 
 class App extends React.Component {
@@ -38,7 +39,6 @@ class App extends React.Component {
     return (
 <div>
 <Fragment>
-<Header user={user} />
 
         <Route path='/new'>
           <ReviewForm
@@ -65,10 +65,14 @@ class App extends React.Component {
               <SignOut clearUser={this.clearUser} user={user} />
             )} />
 
+          <Route user={user} path='/nav' render={() => (
+              <Header clearUser={this.clearUser} user={user} />
+            )} />
+
 
         <Route path='/'>
           <div className="App">
-
+            <NavBar />
             <Search setApp={this.setState.bind(this)}/>
 
             <GoogleMap

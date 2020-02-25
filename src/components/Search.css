@@ -1,10 +1,10 @@
 .search-bar {
     position: absolute;
+    display: flex;
     z-index: 10;
-    
 }
-
 .search-bar input {
     height: 45px !important;
-    width: 100vw !important
+    width: calc(100vw - 60px) !important;
+    margin-left: 60px
 }
