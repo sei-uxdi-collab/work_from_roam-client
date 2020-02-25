@@ -24,7 +24,8 @@ class GoogleMap extends React.Component {
         const coords = pos.coords
         const lat = coords.latitude
         const lng = coords.longitude
-        this.props.setApp({ userLocation: { lat, lng }})
+        this.props.setApp({ userLocation: { lat, lng },
+                            mapCenter: { lat, lng } })
         })
       }
       axios(apiUrl + '/work_spaces')
