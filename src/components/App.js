@@ -21,9 +21,11 @@ class App extends React.Component {
       bounds: null,
       placeId: null,
       placeData: null,
+      searchLocation: null,
       //
 
       user: null,
+      userLocation: null
     }
   }
 
@@ -72,8 +74,14 @@ class App extends React.Component {
 
         <Route path='/'>
           <div className="App">
+<<<<<<< HEAD
             <NavBar />
             <Search setApp={this.setState.bind(this)}/>
+=======
+
+            <Search setApp={this.setState.bind(this)}
+            />
+>>>>>>> Added three different markers
 
             <GoogleMap
               center={this.state.mapCenter}
@@ -82,6 +90,8 @@ class App extends React.Component {
               //
               setApp={this.setState.bind(this)}
               poiLocation={this.state.poiLocation}
+              searchLocation={this.state.searchLocation}
+              userLocation={this.state.userLocation}
             />
 
           </div>
