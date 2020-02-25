@@ -3,6 +3,7 @@ import './ReviewForm.css'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../apiConfig'
+import TestButton from './TestButton'
 
   class ReviewForm extends React.Component {
     constructor(props) {
@@ -13,6 +14,11 @@ import apiUrl from '../apiConfig'
         display: 'block',
         redirect: false
       }
+    }
+
+    componentDidMount() {
+      console.log('reviewform data', this.props.placeData)
+      console.log('hello')
     }
 
     handleChange = (event) => {
@@ -62,7 +68,7 @@ import apiUrl from '../apiConfig'
         })
       })
       // 3. redirect to '/' and close the review form
-      
+
       .catch(() => alert('create review failed'))
     }
 
@@ -72,19 +78,36 @@ import apiUrl from '../apiConfig'
     }
 
     render () {
+      let placeName = ''
       // if user is not signed in, redirect to '/sign-in'
-      if (!this.props.user) {
-        return (<Redirect to='/sign-in'/>)
+
+      if (this.props.placeData && this.props.placeData.name) {
+        placeName =
+        this.props.placeData.name
+
       }
 
+      let placeImage = ''
+
+      if (this.props.placeData && !this.props.placeData.photos) {
+        placeImage = this.props.placeData.photos[0].getUrl()
+
+}
+
+
+        if (!this.props.user) {
+          return (<Redirect to='/sign-in'/>)
+        }
+
       return (
+
           <div className='review-form' style={{display: this.state.display}}>
 
           <Link to='/'>
             <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
           </Link>
 
-          <h1> Review </h1>
+          <h1> Review {placeName} {placeImage} </h1>
 
             <form onSubmit={this.handleSubmit}>
 
