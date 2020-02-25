@@ -87,6 +87,14 @@ import TestButton from './TestButton'
 
       }
 
+      let placeImage = ''
+
+      if (this.props.placeData && !this.props.placeData.photos) {
+        placeImage = this.props.placeData.photos[0].getUrl()
+
+}
+
+
         if (!this.props.user) {
           return (<Redirect to='/sign-in'/>)
         }
@@ -99,7 +107,7 @@ import TestButton from './TestButton'
             <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
           </Link>
 
-          <h1> Review {placeName} </h1>
+          <h1> Review {placeName} {placeImage} </h1>
 
             <form onSubmit={this.handleSubmit}>
 
