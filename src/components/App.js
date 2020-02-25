@@ -74,15 +74,9 @@ class App extends React.Component {
 
         <Route path='/'>
           <div className="App">
-<<<<<<< HEAD
             <NavBar />
-            <Search setApp={this.setState.bind(this)}/>
-=======
-
             <Search setApp={this.setState.bind(this)}
             />
->>>>>>> Added three different markers
-
             <GoogleMap
               center={this.state.mapCenter}
               coordinates={this.state.coordinates}
