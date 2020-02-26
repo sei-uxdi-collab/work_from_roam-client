@@ -7,6 +7,7 @@ import './Header.css'
 const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
+    <br /><br />
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
   </Fragment>
 )
@@ -14,13 +15,14 @@ const authenticatedOptions = (
 const unauthenticatedOptions = (
   <Fragment>
     <Nav.Link href="#sign-up">Sign Up</Nav.Link>
+    <br /><br />
     <Nav.Link href="#sign-in">Sign In</Nav.Link>
   </Fragment>
 )
 
 const alwaysOptions = (
   <Fragment>
-    <Nav.Link href="#/">Home</Nav.Link>
+    <Nav.Link href="#/">Home</Nav.Link><br /><br />
   </Fragment>
 )
 
@@ -32,7 +34,7 @@ const Header = ({ user }) => (
     <Nav>
       { user && <span style={{ color: 'black' }} className="navbar-text mr-2">Welcome, {user.email}</span>}
     </Nav>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <br />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
         { alwaysOptions }
