@@ -77,6 +77,17 @@ class GoogleMap extends React.Component {
         )
     }
 
+    navigateHome = () => {
+        // unless already '/' navigate to '/'
+        if (this.props.location.pathname !== '/') {
+            this.props.history.push('/')
+        }
+        // close infowindow (if open)
+        if (this.state.showWindow) {
+            this.setState({ showWindow: false })
+        }
+    }
+
     handleClick = (props, map, event) => {
         // if click event has a place id, get details on place and save data to state
         if(event.placeId) {
@@ -84,12 +95,13 @@ class GoogleMap extends React.Component {
             this.showPOI(map, event)
         }
         console.log(this.props)
-        this.props.history.push('/')
+        this.navigateHome()
+        
         
     }
 
     handleDragend = (props, map, event) => {
-        this.props.history.push('/')
+        this.navigateHome()
     }
 
     render() {
