@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect, withRouter } from 'react-router-dom'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import TestComponent from './TestComponent'
 import PlacesDetail from './PlacesDetail'
@@ -82,10 +83,16 @@ class GoogleMap extends React.Component {
             // first save the location and place id to state. Clear data for place image and place data
             this.showPOI(map, event)
         }
+        console.log(this.props)
+        this.props.history.push('/')
+        
+    }
+
+    handleDragend = (props, map, event) => {
+        this.props.history.push('/')
     }
 
     render() {
-
         return (
             <Map google={this.props.google}
              center={this.props.center}
@@ -94,6 +101,7 @@ class GoogleMap extends React.Component {
              clickableIcons={true}
 
              onClick={this.handleClick}
+             onDragend={this.handleDragend}
             >
             <Marker
               name={'user location'}
@@ -141,4 +149,4 @@ class GoogleMap extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: (process.env.REACT_APP_GOOGLE_API_KEY)
-  })(GoogleMap)
+  })(withRouter(GoogleMap))
