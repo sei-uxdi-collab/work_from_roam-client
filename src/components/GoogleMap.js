@@ -93,7 +93,6 @@ class GoogleMap extends React.Component {
     }
 
     handleClick = (props, map, event) => {
-        this.navigateHome()
         // if click event has a place id, get details on place and save data to state
         if(event.placeId) {
             // first save the location and place id to state. Clear data for place image and place data
@@ -105,10 +104,6 @@ class GoogleMap extends React.Component {
      
     }
 
-    handleDragend = (props, map, event) => {
-        this.navigateHome()
-    }
-
     render() {
         return (
             <Map google={this.props.google}
@@ -118,7 +113,6 @@ class GoogleMap extends React.Component {
              clickableIcons={true}
 
              onClick={this.handleClick}
-             onDragend={this.handleDragend}
             >
             <Marker
               name={'user location'}
