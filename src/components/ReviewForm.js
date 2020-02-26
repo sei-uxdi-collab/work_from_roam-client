@@ -1,5 +1,5 @@
 import React from 'react';
-import './ReviewForm.css'
+import './popUp.css'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../apiConfig'
@@ -101,7 +101,7 @@ import TestButton from './TestButton'
 
       return (
 
-          <div className='review-form' style={{display: this.state.display}}>
+          <div className='popup' style={{display: this.state.display}}>
 
           <Link to='/'>
             <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
