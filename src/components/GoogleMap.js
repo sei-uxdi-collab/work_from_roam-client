@@ -13,7 +13,8 @@ class GoogleMap extends React.Component {
         this.state = {
             selectedMarker: null,
             showWindow: false,
-            allData: []
+            allData: [],
+            showPOI: false
         }
     }
 
@@ -86,18 +87,22 @@ class GoogleMap extends React.Component {
         if (this.state.showWindow) {
             this.setState({ showWindow: false })
         }
+        if (this.state.showPOI) {
+            this.setState({ showPOI: false })
+        }
     }
 
     handleClick = (props, map, event) => {
+        this.navigateHome()
         // if click event has a place id, get details on place and save data to state
         if(event.placeId) {
             // first save the location and place id to state. Clear data for place image and place data
             this.showPOI(map, event)
+            this.setState({ showPOI: true })
+        } else {
+            this.navigateHome()                        
         }
-        console.log(this.props)
-        this.navigateHome()
-        
-        
+     
     }
 
     handleDragend = (props, map, event) => {
@@ -129,7 +134,7 @@ class GoogleMap extends React.Component {
                 {/* info window for poi locations */}
                 <InfoWindow
                     position={this.props.poiLocation}
-                    visible={true}
+                    visible={this.state.showPOI}
                 >
                     <PlacesDetail placeData={this.props.placeData} />
                 </InfoWindow>
