@@ -6,7 +6,7 @@ import { changePassword } from '../../api/auth'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-import './ChangePassword.css'
+import '../popUp.css'
 
 class ChangePassword extends Component {
   constructor () {
@@ -39,7 +39,7 @@ class ChangePassword extends Component {
     const { oldPassword, newPassword } = this.state
 
     return (
-      <div className="row change-password">
+      <div className="row popup">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>Change Password</h3>
           <Form onSubmit={this.onChangePassword}>

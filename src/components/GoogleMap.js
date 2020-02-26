@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect, withRouter } from 'react-router-dom'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import TestComponent from './TestComponent'
 import PlacesDetail from './PlacesDetail'
@@ -12,7 +13,8 @@ class GoogleMap extends React.Component {
         this.state = {
             selectedMarker: null,
             showWindow: false,
-            allData: []
+            allData: [],
+            showPOI: false
         }
     }
 
@@ -76,16 +78,33 @@ class GoogleMap extends React.Component {
         )
     }
 
+    navigateHome = () => {
+        // unless already '/' navigate to '/'
+        if (this.props.location.pathname !== '/') {
+            this.props.history.push('/')
+        }
+        // close infowindow (if open)
+        if (this.state.showWindow) {
+            this.setState({ showWindow: false })
+        }
+        if (this.state.showPOI) {
+            this.setState({ showPOI: false })
+        }
+    }
+
     handleClick = (props, map, event) => {
         // if click event has a place id, get details on place and save data to state
         if(event.placeId) {
             // first save the location and place id to state. Clear data for place image and place data
             this.showPOI(map, event)
+            this.setState({ showPOI: true })
+        } else {
+            this.navigateHome()                        
         }
+     
     }
 
     render() {
-
         return (
             <Map google={this.props.google}
              center={this.props.center}
@@ -109,7 +128,7 @@ class GoogleMap extends React.Component {
                 {/* info window for poi locations */}
                 <InfoWindow
                     position={this.props.poiLocation}
-                    visible={true}
+                    visible={this.state.showPOI}
                 >
                     <PlacesDetail placeData={this.props.placeData} />
                 </InfoWindow>
@@ -141,4 +160,4 @@ class GoogleMap extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: (process.env.REACT_APP_GOOGLE_API_KEY)
-  })(GoogleMap)
+  })(withRouter(GoogleMap))
