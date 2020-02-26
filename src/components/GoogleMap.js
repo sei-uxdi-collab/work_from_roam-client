@@ -37,10 +37,39 @@ class GoogleMap extends React.Component {
         })
     }
 
+    placeDetails = ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews']
+
+    setPlaceData = placeData => {
+        console.log(placeData)
+        this.props.setApp({ placeData })
+    }
+
+    getPlaceDetails = (map, placeId) => {
+        const fields = this.placeDetails
+        const service = new this.props.google.maps.places.PlacesService(map)
+        service.getDetails({ placeId, fields }, this.setPlaceData)
+    }
+
+    setNewLocation = (location, placeId) => {
+        this.props.setApp({
+            poiLocation: location,
+            mapCenter: location,
+            placeData: null,
+            placeId
+        })
+    }
+
       // onClick handler to set marker to state and show corresponding info window
     onMarkerClick = (props, marker, event) => {
+        const lat = props.data.lat
+        const lng = props.data.lng
+        const placeId = marker.data.place_id
         this.setState({ selectedMarker: marker, showWindow: true })
         console.log(marker.data)
+        this.props.setApp({ currentWorkspace: marker.data, placeData: null })
+        this.setNewLocation({ lat, lng }, placeId)
+        this.getPlaceDetails(props.map, placeId)
+        this.props.history.push('/workspace')
     }
 
     // onClose handler for InfoWindow
@@ -96,12 +125,13 @@ class GoogleMap extends React.Component {
         // if click event has a place id, get details on place and save data to state
         if(event.placeId) {
             // first save the location and place id to state. Clear data for place image and place data
-            this.showPOI(map, event)
             this.setState({ showPOI: true })
+            this.showPOI(map, event)
+
         } else {
-            this.navigateHome()                        
+            this.navigateHome()
         }
-     
+
     }
 
     render() {

@@ -10,6 +10,7 @@ import SignOut from './SignOut/SignOut'
 import Header from './Header/Header'
 import { Route } from 'react-router-dom'
 import NavBar from './NavBar/NavBar'
+import WorkSpace from './WorkSpace/WorkSpace'
 
 
 class App extends React.Component {
@@ -25,7 +26,8 @@ class App extends React.Component {
       //
 
       user: null,
-      userLocation: null
+      userLocation: null,
+
     }
   }
 
@@ -51,6 +53,13 @@ class App extends React.Component {
           />
         </Route>
 
+        <Route path='/workspace' render={() => (
+           <WorkSpace
+              data={this.state.currentWorkspace}
+              placeData={this.state.placeData}
+        />
+         )} />
+
         <Route path='/sign-up' render={() => (
            <SignUp setUser={this.setUser} />
          )} />
@@ -70,6 +79,7 @@ class App extends React.Component {
           <Route user={user} path='/nav' render={() => (
               <Header clearUser={this.clearUser} user={user} />
             )} />
+
 
 
         <Route path='/'>
