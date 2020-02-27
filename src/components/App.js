@@ -11,12 +11,14 @@ import Header from './Header/Header'
 import { Route } from 'react-router-dom'
 import NavBar from './NavBar/NavBar'
 import WorkSpace from './WorkSpace/WorkSpace'
+import SuggestionsList from './SuggestionsList/SuggestionsList.js'
 
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
+      allData: [],
       poiLocation: null,
       mapCenter: { lat: 42.3601, lng: -71.0589},
       bounds: null,
@@ -80,7 +82,9 @@ class App extends React.Component {
               <Header clearUser={this.clearUser} user={user} />
             )} />
 
-
+          <Route user={user} exact path='/suggestions' render={() => (
+              <SuggestionsList data={this.state.allData} />
+            )} />
 
         <Route path='/'>
           <div className="App">
@@ -94,6 +98,7 @@ class App extends React.Component {
               placeData={this.state.placeData}
               //
               setApp={this.setState.bind(this)}
+              allData={this.state.allData}
               mapCenter={this.state.mapCenter}
               poiLocation={this.state.poiLocation}
               searchLocation={this.state.searchLocation}

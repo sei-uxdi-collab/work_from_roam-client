@@ -5,6 +5,7 @@ import TestComponent from './TestComponent'
 import PlacesDetail from './PlacesDetail'
 import axios from 'axios'
 import apiUrl from '../apiConfig'
+import SuggestionsList from './SuggestionsList/SuggestionsList.js'
 
 
 class GoogleMap extends React.Component {
@@ -33,7 +34,7 @@ class GoogleMap extends React.Component {
       axios(apiUrl + '/work_spaces')
         .then(data => {
             // console.log(data)
-            this.setState({ allData: data.data.work_spaces })
+            this.props.setApp({ allData: data.data.work_spaces })
         })
     }
 
@@ -134,6 +135,10 @@ class GoogleMap extends React.Component {
 
     }
 
+    showSuggestions = () => {
+      this.props.history.push('/suggestions')
+    }
+
     render() {
         return (
             <Map google={this.props.google}
@@ -153,6 +158,7 @@ class GoogleMap extends React.Component {
             <Marker name={'search result'}
                     position={this.props.searchLocation}
                     icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
+                    onClick={this.showSuggestions}
                     />
 
                 {/* info window for poi locations */}
@@ -163,7 +169,7 @@ class GoogleMap extends React.Component {
                     <PlacesDetail placeData={this.props.placeData} />
                 </InfoWindow>
 
-                {this.state.allData.map(workSpace => (
+                {this.props.allData.map(workSpace => (
                     <Marker onClick={this.onMarkerClick}
                         position={{ lat: workSpace.lat, lng: workSpace.lng}}
                         placeId={workSpace.placeId}
