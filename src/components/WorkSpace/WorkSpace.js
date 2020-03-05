@@ -29,7 +29,17 @@ class WorkSpace extends React.Component {
               <br />
               <a href={this.props.placeData && this.props.placeData.website} target='_blank'>visit website</a>
               {this.props.data.reviews.map(review => (
-                <Review rating={review.rating} wifi={review.wifi} noise={review.noise} bathroom={review.bathroom} note={review.note} />
+                <Review
+                  rating={review.rating}
+                  wifi={review.wifi}
+                  noise={review.noise}
+                  bathroom={review.bathroom}
+                  seating={review.seating}
+                  outlet={review.outlet}
+                  food={review.food}
+                  coffee={review.coffee}
+                  note={review.note}
+                />
               ))}
             </div>
         )

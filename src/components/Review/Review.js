@@ -19,6 +19,10 @@ class Review extends React.Component {
               <p>Bathroom: {this.props.bathroom}</p>
               <p>Wifi: {this.props.wifi}</p>
               <p>Note: {this.props.note}</p>
+              <p>Food: {this.props.food}</p>
+              <p>Coffee: {this.props.coffee}</p>
+              <p>Seating: {this.props.seating}</p>
+              <p>Outlets: {this.props.outlet}</p>
             </div>
         )
     }
