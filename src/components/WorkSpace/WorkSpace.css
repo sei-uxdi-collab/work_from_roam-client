@@ -5,7 +5,7 @@
   left: 50%;
   top: 50%;
   width: 360px;
-  height: 600px;
+  /* height: 600px; */
   transform: translate(-50%, -45%);
   padding: 1rem
 }

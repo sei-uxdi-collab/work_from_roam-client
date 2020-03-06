@@ -3,7 +3,11 @@ import './popUp.css'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../apiConfig'
+
 import TestButton from './TestButton'
+
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
   class ReviewForm extends React.Component {
     constructor(props) {
@@ -11,6 +15,13 @@ import TestButton from './TestButton'
       this.state = {
         rating: 3,
         review: '',
+        wifi: '',
+        noise: 3,
+        bathroom: 3,
+        coffee: '',
+        food: '',
+        outlet: '',
+        seating: '',
         display: 'block',
         redirect: false
       }
@@ -54,6 +65,13 @@ import TestButton from './TestButton'
           data: {
             review: {
               rating: this.state.rating,
+              noise: this.state.noise,
+              bathroom: this.state.bathroom,
+              seating: this.state.seating,
+              coffee: this.state.coffee,
+              outlet: this.state.outlet,
+              food: this.state.food,
+              wifi: this.state.wifi,
               note: this.state.review,
               work_space_id: data.data.work_space.id
             }
@@ -114,18 +132,177 @@ import TestButton from './TestButton'
           <a href={this.props.placeData.website}target="_blank">
             <img height={'100px'} alt={'pic'} src={placeImage} />
           </a>
-          <form onSubmit={this.handleSubmit}>
 
-              <label> Rating: </label>
-              <input name="rating" type="range" min="0" max="5" value={this.state.rating} onChange={this.handleChange}/>
-              <p>{this.state.rating}</p>
-
-              <label> Review: </label>
-              <textarea name="review" value={this.state.review} onChange={this.handleChange} required/>
-              <button> Submit </button>
-
-            </form>
-          </div>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Group>
+          <Form.Label htmlFor="name">Rating:</Form.Label>
+          <Form.Control
+            type="range"
+            min="0"
+            max="5"
+            value={this.state.rating}
+            name="rating"
+            onChange={this.handleChange}
+          />
+          <span>{this.state.rating}</span>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="name">Noise Level:</Form.Label>
+          <Form.Control
+            type="range"
+            min="0"
+            max="5"
+            value={this.state.noise}
+            name="noise"
+            onChange={this.handleChange}
+          />
+          <span>{this.state.noise}</span>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="name">Bathroom:</Form.Label>
+          <Form.Control
+            type="range"
+            min="0"
+            max="5"
+            value={this.state.bathroom}
+            name="bathroom"
+            onChange={this.handleChange}
+          />
+          <span>{this.state.bathroom}</span>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="wifi">Wifi</Form.Label>
+          <Form.Check
+            type="radio"
+            label="NONE"
+            value="NONE"
+            checked={this.state.wifi === 'NONE'}
+            name="wifi"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="MODERATE"
+            value="MODERATE"
+            checked={this.state.wifi === 'MODERATE'}
+            name="wifi"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="AMPLE"
+            value="AMPLE"
+            checked={this.state.wifi === 'AMPLE'}
+            name="wifi"
+            onChange={this.handleChange}
+          />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label htmlFor="seating">Seating</Form.Label>
+            <Form.Check
+              type="radio"
+              label="NONE"
+              value="NONE"
+              checked={this.state.seating === 'NONE'}
+              name="seating"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              type="radio"
+              label="MODERATE"
+              value="MODERATE"
+              checked={this.state.seating === 'MODERATE'}
+              name="seating"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              type="radio"
+              label="AMPLE"
+              value="AMPLE"
+              checked={this.state.seating === 'AMPLE'}
+              name="seating"
+              onChange={this.handleChange}
+            />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label htmlFor="outlet">OUTLETS</Form.Label>
+              <Form.Check
+                type="radio"
+                label="NONE"
+                value="NONE"
+                checked={this.state.outlet === 'NONE'}
+                name="outlet"
+                onChange={this.handleChange}
+              />
+              <Form.Check
+                type="radio"
+                label="MODERATE"
+                value="MODERATE"
+                checked={this.state.outlet === 'MODERATE'}
+                name="outlet"
+                onChange={this.handleChange}
+              />
+              <Form.Check
+                type="radio"
+                label="AMPLE"
+                value="AMPLE"
+                checked={this.state.outlet === 'AMPLE'}
+                name="outlet"
+                onChange={this.handleChange}
+              />
+              </Form.Group>
+            <Form.Group>
+              <Form.Label htmlFor="coffee">COFFEE</Form.Label>
+              <Form.Check
+                type="radio"
+                label="YES"
+                value="YES"
+                checked={this.state.coffee === 'YES'}
+                name="coffee"
+                onChange={this.handleChange}
+              />
+              <Form.Check
+                type="radio"
+                label="NO"
+                value="NO"
+                checked={this.state.coffee === 'NO'}
+                name="coffee"
+                onChange={this.handleChange}
+              />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="food">FOOD</Form.Label>
+                <Form.Check
+                  type="radio"
+                  label="YES"
+                  value="YES"
+                  checked={this.state.food === 'YES'}
+                  name="food"
+                  onChange={this.handleChange}
+                />
+                <Form.Check
+                  type="radio"
+                  label="NO"
+                  value="NO"
+                  checked={this.state.food === 'NO'}
+                  name="food"
+                  onChange={this.handleChange}
+                />
+                </Form.Group>
+          <Form.Group>
+          <Form.Label htmlFor="name">Review</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Enter Review..."
+            value={this.state.review}
+            name="review"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Button type="submit"> Submit </Button>
+        </Form>
+      </div>
       )
     }
   }
