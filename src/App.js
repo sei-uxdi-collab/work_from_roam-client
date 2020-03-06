@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import './App.css';
+import './App.scss';
 import Search from './components/Search/Search'
 import GoogleMap from './components/GoogleMap/GoogleMap';
 import ReviewForm from './components/ReviewForm/ReviewForm';

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './WorkSpace.css'
+import './WorkSpace.scss'
 import Review from '../Review/Review'
 
 
