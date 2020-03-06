@@ -1,11 +1,11 @@
 import React from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
-import TestComponent from './TestComponent'
-import PlacesDetail from './PlacesDetail'
+import TestComponent from '../TestComponent/TestComponent'
+import PlacesDetail from '../PlacesDetail/PlacesDetail'
 import axios from 'axios'
-import apiUrl from '../apiConfig'
-import SuggestionsList from './SuggestionsList/SuggestionsList.js'
+import apiUrl from '../../apiConfig'
+import SuggestionsList from '../SuggestionsList/SuggestionsList.js'
 
 
 class GoogleMap extends React.Component {

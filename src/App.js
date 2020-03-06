@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react';
-import '../App.css';
-import Search from './Search'
-import GoogleMap from './GoogleMap';
-import ReviewForm from './ReviewForm';
-import SignUp from './SignUp/SignUp'
-import SignIn from './SignIn/SignIn'
-import ChangePassword from './ChangePassword/ChangePassword'
-import SignOut from './SignOut/SignOut'
-import Header from './Header/Header'
+import './App.css';
+import Search from './components/Search/Search'
+import GoogleMap from './components/GoogleMap/GoogleMap';
+import ReviewForm from './components/ReviewForm/ReviewForm';
+import SignUp from './components/SignUp/SignUp'
+import SignIn from './components/SignIn/SignIn'
+import ChangePassword from './components/ChangePassword/ChangePassword'
+import SignOut from './components/SignOut/SignOut'
+import Header from './components/Header/Header'
 import { Route } from 'react-router-dom'
-import NavBar from './NavBar/NavBar'
-import WorkSpace from './WorkSpace/WorkSpace'
-import SuggestionsList from './SuggestionsList/SuggestionsList.js'
+import NavBar from './components/NavBar/NavBar'
+import WorkSpace from './components/WorkSpace/WorkSpace'
+import SuggestionsList from './components/SuggestionsList/SuggestionsList.js'
 
 
 class App extends React.Component {

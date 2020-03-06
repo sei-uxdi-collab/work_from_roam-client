@@ -1,5 +1,5 @@
 import React from 'react'
-import TestButton from './TestButton'
+import TestButton from '../TestButton/TestButton'
 import PropTypes from 'prop-types'
 
 class PlacesDetail extends React.Component {

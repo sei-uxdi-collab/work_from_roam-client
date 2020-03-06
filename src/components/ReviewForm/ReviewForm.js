@@ -1,9 +1,9 @@
 import React from 'react';
-import './popUp.css'
+import '../popUp.css'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
-import apiUrl from '../apiConfig'
-import TestButton from './TestButton'
+import apiUrl from '../../apiConfig'
+import TestButton from '../TestButton/TestButton'
 
   class ReviewForm extends React.Component {
     constructor(props) {
