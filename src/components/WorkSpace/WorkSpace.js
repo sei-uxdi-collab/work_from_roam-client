@@ -1,12 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './WorkSpace.css'
+// import './WorkSpace.css'
 import Review from '../Review/Review'
+
+import Button from 'react-bootstrap/Button'
+
+// import TestButton from './TestButton'
 
 
 class WorkSpace extends React.Component {
     constructor(props) {
         super(props)
+        console.log(props.data.id)
         this.state = {
             test: true
         }
@@ -27,6 +32,7 @@ class WorkSpace extends React.Component {
               <h1>{this.props.placeData && this.props.placeData.name}</h1>
               <img accept="*/*" height='200px' src={photo} />
               <br />
+              <p>WorkSpace ID: {this.props.data.id}</p>
               <a href={this.props.placeData && this.props.placeData.website} target='_blank'>visit website</a>
               {this.props.data.reviews.map(review => (
                 <Review
@@ -41,6 +47,7 @@ class WorkSpace extends React.Component {
                   note={review.note}
                 />
               ))}
+              <Button  data={this.props.data.id} href={`#work_spaces/${this.props.data.id}/create-review`}>Add a Review</Button>
             </div>
         )
     }

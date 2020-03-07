@@ -12,7 +12,9 @@ import Button from 'react-bootstrap/Button'
   class ReviewForm extends React.Component {
     constructor(props) {
       super(props)
+      console.log(props.currentWorkspace.id)
       this.state = {
+        work_space_id: props.currentWorkspace.id,
         rating: 3,
         review: '',
         wifi: '',
@@ -27,7 +29,7 @@ import Button from 'react-bootstrap/Button'
       }
     }
 
-    componentDidMount() {
+    componentDidMount(props) {
       console.log('reviewform data', this.props.placeData)
       console.log('hello')
     }
@@ -41,29 +43,30 @@ import Button from 'react-bootstrap/Button'
     handleSubmit = (event) => {
       event.preventDefault()
       // 1. create a workspace
-      axios({
-        method: 'post',
-        url: apiUrl + '/work_spaces',
-        data: {
-          work_space: {
-            place_id: this.props.placeId,
-            lat: this.props.location.lat,
-            lng: this.props.location.lng
-          }
-        },
-        headers: {
-          Authorization: `Token token=${this.props.user.token}`
-        }
-
-      })
-      // 2. create a review associated with the new workspace
-      .then(data => {
-        console.log(data)
+      // axios({
+      //   method: 'post',
+      //   url: apiUrl + '/work_spaces',
+      //   data: {
+      //     work_space: {
+      //       place_id: this.props.placeId,
+      //       lat: this.props.location.lat,
+      //       lng: this.props.location.lng
+      //     }
+      //   },
+      //   headers: {
+      //     Authorization: `Token token=${this.props.user.token}`
+      //   }
+      //
+      // })
+      // // 2. create a review associated with the new workspace
+      // .then(data => {
+        console.log(event)
         axios({
           method: 'post',
           url: apiUrl + '/reviews',
           data: {
             review: {
+              work_space_id: this.state.work_space_id,
               rating: this.state.rating,
               noise: this.state.noise,
               bathroom: this.state.bathroom,
@@ -72,8 +75,7 @@ import Button from 'react-bootstrap/Button'
               outlet: this.state.outlet,
               food: this.state.food,
               wifi: this.state.wifi,
-              note: this.state.review,
-              work_space_id: data.data.work_space.id
+              note: this.state.review
             }
           },
           headers: {
@@ -84,7 +86,7 @@ import Button from 'react-bootstrap/Button'
           console.log(data)
           this.setState({ display: 'none' })
         })
-      })
+      // })
       // 3. redirect to '/' and close the review form
 
       .catch(() => alert('create review failed'))

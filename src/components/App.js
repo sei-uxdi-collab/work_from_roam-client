@@ -3,6 +3,7 @@ import '../App.css';
 import Search from './Search'
 import GoogleMap from './GoogleMap';
 import ReviewForm from './ReviewForm';
+import Reviews from './Review/Reviews'
 import SignUp from './SignUp/SignUp'
 import SignIn from './SignIn/SignIn'
 import ChangePassword from './ChangePassword/ChangePassword'
@@ -12,6 +13,7 @@ import { Route } from 'react-router-dom'
 import NavBar from './NavBar/NavBar'
 import WorkSpace from './WorkSpace/WorkSpace'
 import SuggestionsList from './SuggestionsList/SuggestionsList.js'
+import WorkSpaceCreate from './WorkSpace/WorkSpaceCreate.js'
 
 
 class App extends React.Component {
@@ -25,8 +27,8 @@ class App extends React.Component {
       placeId: null,
       placeData: null,
       searchLocation: null,
-      //
-
+      workSpaceId: null,
+      currentWorkspace: null,
       user: null,
       userLocation: null,
 
@@ -46,12 +48,14 @@ class App extends React.Component {
 <div>
 <Fragment>
 
-        <Route path='/new'>
+        <Route path='/work_spaces/:id/create-review'>
           <ReviewForm
             user={user}
             placeId={this.state.placeId}
             placeData={this.state.placeData}
             location={this.state.poiLocation}
+            data={this.state.allData}
+            currentWorkspace={this.state.currentWorkspace}
           />
         </Route>
 
@@ -59,7 +63,7 @@ class App extends React.Component {
            <WorkSpace
               data={this.state.currentWorkspace}
               placeData={this.state.placeData}
-        />
+            />
          )} />
 
         <Route path='/sign-up' render={() => (
@@ -82,9 +86,22 @@ class App extends React.Component {
               <Header clearUser={this.clearUser} user={user} />
             )} />
 
+            <Route user={user} path='/create-workspace' render={() => (
+            <WorkSpaceCreate
+              user={user}
+              placeId={this.state.placeId}
+              placeData={this.state.placeData}
+              location={this.state.poiLocation}
+            />
+          )} />
+
           <Route user={user} exact path='/suggestions' render={() => (
               <SuggestionsList data={this.state.allData} />
             )} />
+
+            <Route user={user} exact path='/reviews' render={() => (
+                <Reviews />
+              )} />
 
         <Route path='/'>
           <div className="App">

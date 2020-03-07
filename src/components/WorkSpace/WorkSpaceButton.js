@@ -3,7 +3,7 @@ import { geocodeByPlaceId } from 'react-places-autocomplete'
 import { HashRouter, Link } from 'react-router-dom'
 
 
-class TestButton extends React.Component {
+class WorkSpaceButton extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,7 +19,7 @@ class TestButton extends React.Component {
     url = 'http://localhost:3000'
 
     executeTest = () => {
-        console.log('test button')
+        console.log('WorkSpace Button')
     }
 
     // render information inside an infoWindow for POI
@@ -36,4 +36,4 @@ class TestButton extends React.Component {
     }
 }
 
-export default TestButton
+export default WorkSpaceButton
