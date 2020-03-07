@@ -9,15 +9,18 @@ class Review extends React.Component {
         }
     }
 
+    // overall = props => {
+    //   let holder = []
+    //   holder.push(this.props.rating)
+    //   console.log(holder)
+    // }
+
     // render information inside an infoWindow for POI
     //
     render() {
 
         return (
             <div>
-              <p>Rating: {this.props.rating}</p>
-              <p>Noise: {this.props.noise}</p>
-              <p>Bathroom: {this.props.bathroom}</p>
               <p>Wifi: {this.props.wifi}</p>
               <p>Food: {this.props.food}</p>
               <p>Coffee: {this.props.coffee}</p>

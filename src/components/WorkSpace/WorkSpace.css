@@ -1,5 +1,5 @@
 .workspace {
-  position: fixed;
+  position: absolute;
   z-index: 10;
   background-color: white;
   left: 50%;
@@ -8,4 +8,11 @@
   /* height: 600px; */
   transform: translate(-50%, -45%);
   padding: 1rem
+}
+
+.scroll {
+  height: 100px;
+  overflow-x: hidden;
+overflow-y: auto;
+padding: 10px;
 }
