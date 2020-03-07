@@ -2,8 +2,7 @@ import React, { Fragment } from 'react';
 import '../App.css';
 import Search from './Search'
 import GoogleMap from './GoogleMap';
-import ReviewForm from './ReviewForm';
-import Reviews from './Review/Reviews'
+import ReviewCreate from './Review/ReviewCreate';
 import SignUp from './SignUp/SignUp'
 import SignIn from './SignIn/SignIn'
 import ChangePassword from './ChangePassword/ChangePassword'
@@ -49,7 +48,7 @@ class App extends React.Component {
 <Fragment>
 
         <Route path='/work_spaces/:id/create-review'>
-          <ReviewForm
+          <ReviewCreate
             user={user}
             placeId={this.state.placeId}
             placeData={this.state.placeData}
@@ -99,9 +98,6 @@ class App extends React.Component {
               <SuggestionsList data={this.state.allData} />
             )} />
 
-            <Route user={user} exact path='/reviews' render={() => (
-                <Reviews />
-              )} />
 
         <Route path='/'>
           <div className="App">

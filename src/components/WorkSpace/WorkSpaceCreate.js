@@ -34,8 +34,6 @@ import Button from 'react-bootstrap/Button'
     }
 
     handleChange = (event) => {
-      console.log(event.target.value)
-      console.log(event.target.name)
       this.setState({ [event.target.name]: event.target.value })
     }
 
@@ -57,38 +55,7 @@ import Button from 'react-bootstrap/Button'
         }
 
       })
-      // 2. create a review associated with the new workspace
-      // .then(data => {
-      //   console.log(data)
-      //   axios({
-      //     method: 'post',
-      //     url: apiUrl + '/reviews',
-      //     data: {
-      //       review: {
-      //         rating: this.state.rating,
-      //         noise: this.state.noise,
-      //         bathroom: this.state.bathroom,
-      //         seating: this.state.seating,
-      //         coffee: this.state.coffee,
-      //         outlet: this.state.outlet,
-      //         food: this.state.food,
-      //         wifi: this.state.wifi,
-      //         note: this.state.review,
-      //         work_space_id: data.data.work_space.id
-      //       }
-      //     },
-      //     headers: {
-      //       Authorization: `Token token=${this.props.user.token}`
-      //     }
-      //   })
-      //   .then(data => {
-      //     console.log(data)
-      //     this.setState({ display: 'none' })
-      //   })
-      // })
-      // // 3. redirect to '/' and close the review form
-      //
-      // .catch(() => alert('create review failed'))
+      this.closeWindow()
     }
 
     closeWindow = () => {
@@ -116,6 +83,10 @@ import Button from 'react-bootstrap/Button'
 
         if (!this.props.user) {
           return (<Redirect to='/sign-in'/>)
+        }
+
+        if (this.state.display === 'none') {
+          return (<Redirect to='/'/>)
         }
 
       return (

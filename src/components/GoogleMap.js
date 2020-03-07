@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
-import TestComponent from './TestComponent'
+// import TestComponent from './TestComponent'
 import PlacesDetail from './PlacesDetail'
 import axios from 'axios'
 import apiUrl from '../apiConfig'
@@ -180,14 +180,15 @@ class GoogleMap extends React.Component {
 
 
                 {/* InfoWindow becomes visible when this.state.showWindow === true */}
-                <InfoWindow marker={this.state.selectedMarker}
-                        visible={this.state.showWindow}
-                        onClose={this.onInfoWindowClose}
-                >
-                    {/* Display placeData information inside InfoWindow */}
-                    <TestComponent placeData={this.props.placeData} />
-
-                </InfoWindow>
+                {// <InfoWindow marker={this.state.selectedMarker}
+                //         visible={this.state.showWindow}
+                //         onClose={this.onInfoWindowClose}
+                // >
+                //     {/* Display placeData information inside InfoWindow */}
+                //     <TestComponent placeData={this.props.placeData} />
+                //
+                // </InfoWindow>
+              }
 
             </Map>
         )
