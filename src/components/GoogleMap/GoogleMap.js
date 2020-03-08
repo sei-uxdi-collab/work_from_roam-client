@@ -1,11 +1,12 @@
 import React from 'react'
-import { Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
-// import TestComponent from './TestComponent'
-import PlacesDetail from './PlacesDetail'
+
 import axios from 'axios'
-import apiUrl from '../apiConfig'
-import SuggestionsList from './SuggestionsList/SuggestionsList.js'
+import apiUrl from '../../apiConfig'
+
+import PlacesDetail from '../PlacesDetail/PlacesDetail'
+// import SuggestionsList from './SuggestionsList/SuggestionsList.js'
 
 
 class GoogleMap extends React.Component {
@@ -23,7 +24,7 @@ class GoogleMap extends React.Component {
     componentDidMount = () => {
       if(navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
-        console.log('found user location')
+        // console.log('found user location')
         const coords = pos.coords
         const lat = coords.latitude
         const lng = coords.longitude
@@ -41,7 +42,6 @@ class GoogleMap extends React.Component {
     placeDetails = ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews']
 
     setPlaceData = placeData => {
-        console.log(placeData)
         this.props.setApp({ placeData })
     }
 
@@ -66,7 +66,7 @@ class GoogleMap extends React.Component {
         const lng = props.data.lng
         const placeId = marker.data.place_id
         this.setState({ selectedMarker: marker, showWindow: true })
-        console.log(marker.data)
+        // console.log(marker.data)
         this.props.setApp({ currentWorkspace: marker.data, placeData: null })
         this.setNewLocation({ lat, lng }, placeId)
         this.getPlaceDetails(props.map, placeId)
@@ -81,7 +81,6 @@ class GoogleMap extends React.Component {
     showPOI = (map, event) => {
         // declare function to handle data returned from service.getDetails()
         const handleData = (data, status) => {
-            console.log(data)
             // save data from places details to state.placeData
             this.props.setApp({placeData: data})
         }
@@ -170,7 +169,9 @@ class GoogleMap extends React.Component {
                 </InfoWindow>
 
                 {this.props.allData.map(workSpace => (
-                    <Marker onClick={this.onMarkerClick}
+                    <Marker
+                        key={workSpace.id}
+                        onClick={this.onMarkerClick}
                         position={{ lat: workSpace.lat, lng: workSpace.lng}}
                         placeId={workSpace.placeId}
                         data={workSpace}

@@ -11,7 +11,6 @@ import Button from 'react-bootstrap/Button'
 class WorkSpace extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props.data.reviews)
         this.state = {
             test: true
         }
@@ -46,16 +45,17 @@ class WorkSpace extends React.Component {
                 <button style={{float: 'right'}}>Close</button>
               </Link>
               <h1>{this.props.placeData && this.props.placeData.name}</h1>
-              <img accept="*/*" height='200px' src={photo} />
+              <img accept="*/*" height='200px' alt="work_space_pic" src={photo} />
               <br />
               <p>WorkSpace ID: {this.props.data.id}</p>
-              <a href={this.props.placeData && this.props.placeData.website} target='_blank'>visit website</a>
+              <a href={this.props.placeData && this.props.placeData.website} target='_blank' rel="noopener noreferrer">visit website</a>
               <p>Overall Rating: {overall}</p>
               <p>Bathroom Rating: {bath}</p>
               <p>Noise Level: {noise}</p>
               <div className="scroll" style={{ color: 'red', textAlign: 'center' }}>
               {this.props.data.reviews.map(review => (
                 <Review
+                  key={review.id}
                   // rating={review.rating}
                   wifi={review.wifi}
                   // noise={review.noise}
