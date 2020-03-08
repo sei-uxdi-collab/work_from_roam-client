@@ -1,9 +1,12 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
-import TestComponent from './TestComponent'
-import PlacesDetail from './PlacesDetail'
+
 import axios from 'axios'
-import apiUrl from '../apiConfig'
+import apiUrl from '../../apiConfig'
+
+import PlacesDetail from '../PlacesDetail/PlacesDetail'
+// import SuggestionsList from './SuggestionsList/SuggestionsList.js'
 
 
 class GoogleMap extends React.Component {
@@ -12,7 +15,8 @@ class GoogleMap extends React.Component {
         this.state = {
             selectedMarker: null,
             showWindow: false,
-            allData: []
+            allData: [],
+            showPOI: false
         }
     }
 
@@ -20,7 +24,7 @@ class GoogleMap extends React.Component {
     componentDidMount = () => {
       if(navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
-        console.log('found user location')
+        // console.log('found user location')
         const coords = pos.coords
         const lat = coords.latitude
         const lng = coords.longitude
@@ -31,14 +35,42 @@ class GoogleMap extends React.Component {
       axios(apiUrl + '/work_spaces')
         .then(data => {
             // console.log(data)
-            this.setState({ allData: data.data.work_spaces })
+            this.props.setApp({ allData: data.data.work_spaces })
+        })
+    }
+
+    placeDetails = ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews']
+
+    setPlaceData = placeData => {
+        this.props.setApp({ placeData })
+    }
+
+    getPlaceDetails = (map, placeId) => {
+        const fields = this.placeDetails
+        const service = new this.props.google.maps.places.PlacesService(map)
+        service.getDetails({ placeId, fields }, this.setPlaceData)
+    }
+
+    setNewLocation = (location, placeId) => {
+        this.props.setApp({
+            poiLocation: location,
+            mapCenter: location,
+            placeData: null,
+            placeId
         })
     }
 
       // onClick handler to set marker to state and show corresponding info window
     onMarkerClick = (props, marker, event) => {
+        const lat = props.data.lat
+        const lng = props.data.lng
+        const placeId = marker.data.place_id
         this.setState({ selectedMarker: marker, showWindow: true })
-        console.log(marker.data)
+        // console.log(marker.data)
+        this.props.setApp({ currentWorkspace: marker.data, placeData: null })
+        this.setNewLocation({ lat, lng }, placeId)
+        this.getPlaceDetails(props.map, placeId)
+        this.props.history.push('/workspace')
     }
 
     // onClose handler for InfoWindow
@@ -49,7 +81,6 @@ class GoogleMap extends React.Component {
     showPOI = (map, event) => {
         // declare function to handle data returned from service.getDetails()
         const handleData = (data, status) => {
-            console.log(data)
             // save data from places details to state.placeData
             this.props.setApp({placeData: data})
         }
@@ -76,16 +107,38 @@ class GoogleMap extends React.Component {
         )
     }
 
+    navigateHome = () => {
+        // unless already '/' navigate to '/'
+        if (this.props.location.pathname !== '/') {
+            this.props.history.push('/')
+        }
+        // close infowindow (if open)
+        if (this.state.showWindow) {
+            this.setState({ showWindow: false })
+        }
+        if (this.state.showPOI) {
+            this.setState({ showPOI: false })
+        }
+    }
+
     handleClick = (props, map, event) => {
         // if click event has a place id, get details on place and save data to state
         if(event.placeId) {
             // first save the location and place id to state. Clear data for place image and place data
+            this.setState({ showPOI: true })
             this.showPOI(map, event)
+
+        } else {
+            this.navigateHome()
         }
+
+    }
+
+    showSuggestions = () => {
+      this.props.history.push('/suggestions')
     }
 
     render() {
-
         return (
             <Map google={this.props.google}
              center={this.props.center}
@@ -104,18 +157,21 @@ class GoogleMap extends React.Component {
             <Marker name={'search result'}
                     position={this.props.searchLocation}
                     icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
+                    onClick={this.showSuggestions}
                     />
 
                 {/* info window for poi locations */}
                 <InfoWindow
                     position={this.props.poiLocation}
-                    visible={true}
+                    visible={this.state.showPOI}
                 >
                     <PlacesDetail placeData={this.props.placeData} />
                 </InfoWindow>
 
-                {this.state.allData.map(workSpace => (
-                    <Marker onClick={this.onMarkerClick}
+                {this.props.allData.map(workSpace => (
+                    <Marker
+                        key={workSpace.id}
+                        onClick={this.onMarkerClick}
                         position={{ lat: workSpace.lat, lng: workSpace.lng}}
                         placeId={workSpace.placeId}
                         data={workSpace}
@@ -125,14 +181,15 @@ class GoogleMap extends React.Component {
 
 
                 {/* InfoWindow becomes visible when this.state.showWindow === true */}
-                <InfoWindow marker={this.state.selectedMarker}
-                        visible={this.state.showWindow}
-                        onClose={this.onInfoWindowClose}
-                >
-                    {/* Display placeData information inside InfoWindow */}
-                    <TestComponent placeData={this.props.placeData} />
-
-                </InfoWindow>
+                {// <InfoWindow marker={this.state.selectedMarker}
+                //         visible={this.state.showWindow}
+                //         onClose={this.onInfoWindowClose}
+                // >
+                //     {/* Display placeData information inside InfoWindow */}
+                //     <TestComponent placeData={this.props.placeData} />
+                //
+                // </InfoWindow>
+              }
 
             </Map>
         )
@@ -141,4 +198,4 @@ class GoogleMap extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: (process.env.REACT_APP_GOOGLE_API_KEY)
-  })(GoogleMap)
+  })(withRouter(GoogleMap))

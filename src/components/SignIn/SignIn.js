@@ -6,7 +6,7 @@ import { signIn } from '../../api/auth'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-import './SignIn.css'
+import '../popUp.css'
 
 class SignIn extends Component {
   constructor () {
@@ -28,6 +28,7 @@ class SignIn extends Component {
     signIn(this.state)
       .then(res => setUser(res.data.user))
       .then(() => history.push('/'))
+      .then(() => alert('You have Signed In'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '' })
@@ -39,7 +40,7 @@ class SignIn extends Component {
     const { email, password } = this.state
 
     return (
-      <div className="row sign-in">
+      <div className="row popup">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <Link to='/'>
             <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>

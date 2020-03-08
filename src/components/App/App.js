@@ -1,31 +1,38 @@
-import React, { Fragment } from 'react';
-import '../App.css';
-import Search from './Search'
-import GoogleMap from './GoogleMap';
-import ReviewForm from './ReviewForm';
-import SignUp from './SignUp/SignUp'
-import SignIn from './SignIn/SignIn'
-import ChangePassword from './ChangePassword/ChangePassword'
-import SignOut from './SignOut/SignOut'
-import Header from './Header/Header'
+import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom'
-import NavBar from './NavBar/NavBar'
+
+import Search from '../Search/Search'
+import GoogleMap from '../GoogleMap/GoogleMap'
+import ReviewCreate from '../Review/ReviewCreate'
+import SignUp from '../SignUp/SignUp'
+import SignIn from '../SignIn/SignIn'
+import ChangePassword from '../ChangePassword/ChangePassword'
+import SignOut from '../SignOut/SignOut'
+import Header from '../Header/Header'
+import NavBar from '../NavBar/NavBar'
+import WorkSpace from '../WorkSpace/WorkSpace'
+import SuggestionsList from '../SuggestionsList/SuggestionsList.js'
+import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
+
+import './App.css'
 
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
+      allData: [],
       poiLocation: null,
       mapCenter: { lat: 42.3601, lng: -71.0589},
       bounds: null,
       placeId: null,
       placeData: null,
       searchLocation: null,
-      //
-
+      workSpaceId: null,
+      currentWorkspace: null,
       user: null,
-      userLocation: null
+      userLocation: null,
+
     }
   }
 
@@ -42,14 +49,23 @@ class App extends React.Component {
 <div>
 <Fragment>
 
-        <Route path='/new'>
-          <ReviewForm
+        <Route path='/work_spaces/:id/create-review'>
+          <ReviewCreate
             user={user}
             placeId={this.state.placeId}
             placeData={this.state.placeData}
             location={this.state.poiLocation}
+            data={this.state.allData}
+            currentWorkspace={this.state.currentWorkspace}
           />
         </Route>
+
+        <Route path='/workspace' render={() => (
+           <WorkSpace
+              data={this.state.currentWorkspace}
+              placeData={this.state.placeData}
+            />
+         )} />
 
         <Route path='/sign-up' render={() => (
            <SignUp setUser={this.setUser} />
@@ -71,6 +87,19 @@ class App extends React.Component {
               <Header clearUser={this.clearUser} user={user} />
             )} />
 
+            <Route user={user} path='/create-workspace' render={() => (
+            <WorkSpaceCreate
+              user={user}
+              placeId={this.state.placeId}
+              placeData={this.state.placeData}
+              location={this.state.poiLocation}
+            />
+          )} />
+
+          <Route user={user} exact path='/suggestions' render={() => (
+              <SuggestionsList data={this.state.allData} />
+            )} />
+
 
         <Route path='/'>
           <div className="App">
@@ -84,6 +113,7 @@ class App extends React.Component {
               placeData={this.state.placeData}
               //
               setApp={this.setState.bind(this)}
+              allData={this.state.allData}
               mapCenter={this.state.mapCenter}
               poiLocation={this.state.poiLocation}
               searchLocation={this.state.searchLocation}

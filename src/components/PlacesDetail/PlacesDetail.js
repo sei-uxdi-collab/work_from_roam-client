@@ -1,5 +1,5 @@
 import React from 'react'
-import TestButton from './TestButton'
+import WorkSpaceButton from '../WorkSpace/WorkSpaceButton'
 import PropTypes from 'prop-types'
 
 class PlacesDetail extends React.Component {
@@ -29,7 +29,7 @@ class PlacesDetail extends React.Component {
                     <h1>{this.props.placeData.name}</h1>
                     <p><strong>google place_id: </strong>{this.props.placeData.reference || 'unknown'}</p>
 
-                    <TestButton placeId={this.props.placeData.reference}/>
+                    <WorkSpaceButton placeId={this.props.placeData.reference}/>
                 </div>
             )
         } else {

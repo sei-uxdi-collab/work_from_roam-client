@@ -1,0 +1,38 @@
+.workspace {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  left: 50%;
+  top: 50%;
+  width: 340px;
+  /* height: 600px; */
+  transform: translate(-50%, -45%);
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.scroll {
+  height: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+img {
+  max-width: 250px;
+  display: block;
+  margin: 0 auto;
+}
+
+.link {
+  color: 'black';
+}
+.link:hover {
+  color: blue;
+}
+
+.work-space-div {
+  width: 250px;
+  display: block;
+  margin: 0 auto;
+}
