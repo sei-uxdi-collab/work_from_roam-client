@@ -1,18 +1,20 @@
-import React, { Fragment } from 'react';
-import '../App.css';
-import Search from './Search'
-import GoogleMap from './GoogleMap';
-import ReviewCreate from './Review/ReviewCreate';
-import SignUp from './SignUp/SignUp'
-import SignIn from './SignIn/SignIn'
-import ChangePassword from './ChangePassword/ChangePassword'
-import SignOut from './SignOut/SignOut'
-import Header from './Header/Header'
+import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom'
-import NavBar from './NavBar/NavBar'
-import WorkSpace from './WorkSpace/WorkSpace'
-import SuggestionsList from './SuggestionsList/SuggestionsList.js'
-import WorkSpaceCreate from './WorkSpace/WorkSpaceCreate.js'
+
+import Search from '../Search/Search'
+import GoogleMap from '../GoogleMap/GoogleMap'
+import ReviewCreate from '../Review/ReviewCreate'
+import SignUp from '../SignUp/SignUp'
+import SignIn from '../SignIn/SignIn'
+import ChangePassword from '../ChangePassword/ChangePassword'
+import SignOut from '../SignOut/SignOut'
+import Header from '../Header/Header'
+import NavBar from '../NavBar/NavBar'
+import WorkSpace from '../WorkSpace/WorkSpace'
+import SuggestionsList from '../SuggestionsList/SuggestionsList.js'
+import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
+
+import './App.css'
 
 
 class App extends React.Component {

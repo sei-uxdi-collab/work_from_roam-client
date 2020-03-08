@@ -12,7 +12,6 @@ import Button from 'react-bootstrap/Button'
   class ReviewCreate extends React.Component {
     constructor(props) {
       super(props)
-      console.log(props.currentWorkspace.id)
       this.state = {
         work_space_id: props.currentWorkspace.id,
         rating: 3,
@@ -30,8 +29,7 @@ import Button from 'react-bootstrap/Button'
     }
 
     componentDidMount(props) {
-      console.log('reviewform data', this.props.placeData)
-      console.log('hello')
+      console.log('reviewform data: ' + this.props.placeData)
     }
 
     handleChange = (event) => {
@@ -63,12 +61,9 @@ import Button from 'react-bootstrap/Button'
           }
         })
         .then(data => {
-          console.log(data)
-
+          // console.log(data)
           this.setState({ display: 'none' })
-          // history.push('/work_spaces/')
         })
-        // .then(() => history.push('/work_spaces/'))
       // 3. redirect to '/' and close the review form
       .catch(() => alert('create review failed'))
     }
@@ -114,7 +109,7 @@ import Button from 'react-bootstrap/Button'
 
           <h1> Review {placeName}</h1>
 
-          <a href={this.props.placeData.website} target="_blank">
+          <a href={this.props.placeData.website} target="_blank" rel="noopener noreferrer">
             <img height={'100px'} alt={'pic'} src={placeImage} />
           </a>
 

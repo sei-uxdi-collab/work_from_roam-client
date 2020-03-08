@@ -13,14 +13,14 @@ class WorkSpaceButton extends React.Component {
 
     componentDidMount() {
         geocodeByPlaceId(this.props.placeId)
-            .then(console.log)
+            // .then(console.log)
     }
 
     url = 'http://localhost:3000'
 
-    executeTest = () => {
-        console.log('WorkSpace Button')
-    }
+    // executeTest = () => {
+    //     console.log('WorkSpace Button')
+    // }
 
     // render information inside an infoWindow for POI
 

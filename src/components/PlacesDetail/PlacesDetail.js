@@ -1,11 +1,10 @@
 import React from 'react'
-import WorkSpaceButton from './TestButton'
+import WorkSpaceButton from '../WorkSpace/WorkSpaceButton'
 import PropTypes from 'prop-types'
 
 class PlacesDetail extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
         this.state = {
             test: true
         }

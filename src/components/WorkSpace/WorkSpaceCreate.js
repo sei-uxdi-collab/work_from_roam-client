@@ -1,12 +1,13 @@
 import React from 'react';
-import '../popUp.css'
+// import '../popUp.css'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
-import WorkSpaceButton from './WorkSpaceButton'
+// import WorkSpaceButton from './WorkSpaceButton'
+import './WorkSpace.css'
 
-import Form from 'react-bootstrap/Form'
+// import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
   class WorkSpaceCreate extends React.Component {
@@ -29,8 +30,7 @@ import Button from 'react-bootstrap/Button'
     }
 
     componentDidMount(props) {
-      console.log('reviewform data', this.props.placeData)
-      console.log('hello')
+      console.log('reviewform data' + this.props.placeData)
     }
 
     handleChange = (event) => {
@@ -98,7 +98,7 @@ import Button from 'react-bootstrap/Button'
           </Link>
 
           <h1> Review {placeName}</h1>
-          <Button type="submit" onClick={this.handleSubmit}> Submit </Button>
+          <Button type="submit" onClick={this.handleSubmit}> Create New WorkSpace </Button>
       </div>
       )
     }
