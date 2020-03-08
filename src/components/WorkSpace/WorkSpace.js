@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './WorkSpace.css'
+import Button from 'react-bootstrap/Button'
+
 import Review from '../Review/Review'
 
-import Button from 'react-bootstrap/Button'
+import './WorkSpace.css'
 
 // import TestButton from './TestButton'
 
@@ -42,16 +43,45 @@ class WorkSpace extends React.Component {
         return (
             <div className='workspace' style={this.state.display}>
               <Link to='/'>
-                <button style={{float: 'right'}}>Close</button>
+                <h5 style={{ float: 'right' }}>X</h5>
               </Link>
-              <h1>{this.props.placeData && this.props.placeData.name}</h1>
-              <img accept="*/*" height='200px' alt="work_space_pic" src={photo} />
               <br />
-              <p>WorkSpace ID: {this.props.data.id}</p>
-              <a href={this.props.placeData && this.props.placeData.website} target='_blank' rel="noopener noreferrer">visit website</a>
-              <p>Overall Rating: {overall}</p>
-              <p>Bathroom Rating: {bath}</p>
-              <p>Noise Level: {noise}</p>
+              <br />
+              <br />
+              <div>
+                <img accept="*/*" height='150px' alt="work_space_pic" src={photo} />
+              </div>
+              <br />
+              <div className="work-space-div">
+                <div>
+                  <h4 style={{ textAlign: 'center', color: 'black' }}><a
+                    className="link"
+                    style={{ textDecoration: 'none' }}
+                    href={this.props.placeData && this.props.placeData.website}
+                    target='_blank'
+                    rel="noopener noreferrer"
+                    >
+                    {this.props.placeData && this.props.placeData.name}
+                    </a></h4>
+                </div>
+                <div>
+                  <p>Overall Rating: {overall}</p>
+                  <p>Bathroom Rating: {bath}</p>
+                  <p>Noise Level: {noise}</p>
+                </div>
+              <hr />
+                <div>
+                  <h3 >Reviews</h3>
+                    <Button
+                      className=""
+
+                      data={this.props.data.id}
+                      href={`#work_spaces/${this.props.data.id}/create-review`}
+                    >
+                      Add a Review
+                    </Button>
+                </div>
+              </div>
               <div className="scroll" style={{ color: 'red', textAlign: 'center' }}>
               {this.props.data.reviews.map(review => (
                 <Review
@@ -68,7 +98,7 @@ class WorkSpace extends React.Component {
                 />
               ))}
               </div>
-              <Button  data={this.props.data.id} href={`#work_spaces/${this.props.data.id}/create-review`}>Add a Review</Button>
+
             </div>
         )
     }
