@@ -1,10 +1,11 @@
 import React from 'react'
-import TestButton from './TestButton'
+import WorkSpaceButton from './TestButton'
 import PropTypes from 'prop-types'
 
 class PlacesDetail extends React.Component {
     constructor(props) {
         super(props)
+        console.log(props)
         this.state = {
             test: true
         }
@@ -29,7 +30,7 @@ class PlacesDetail extends React.Component {
                     <h1>{this.props.placeData.name}</h1>
                     <p><strong>google place_id: </strong>{this.props.placeData.reference || 'unknown'}</p>
 
-                    <TestButton placeId={this.props.placeData.reference}/>
+                    <WorkSpaceButton placeId={this.props.placeData.reference}/>
                 </div>
             )
         } else {
