@@ -13,6 +13,7 @@ class Review extends React.Component {
 
         return (
             <div>
+            <p>Rating: {this.props.rating}</p>
               <p>Note: {this.props.note}</p>
             </div>
         )
