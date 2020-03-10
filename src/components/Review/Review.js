@@ -12,7 +12,7 @@ class Review extends React.Component {
     render() {
         return (
             <div style={{ borderStyle: 'double'}}>
-            <p>User:  Rating: {this.props.rating}</p>
+            <p>User Rating: {this.props.rating}</p>
               <p>Note: {this.props.note}</p>
             </div>
         )
