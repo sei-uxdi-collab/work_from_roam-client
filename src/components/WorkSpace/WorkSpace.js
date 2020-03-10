@@ -49,7 +49,7 @@ class WorkSpace extends React.Component {
         for(let i = 0; i < array.length; i++) {
           answer += array[i]
         }
-        return answer/length
+        return Math.round(answer/length)
       }
       // Overall average rating for workSpace
       let overall = average(this.props.data.reviews.map(review => review.rating))
