@@ -11,6 +11,7 @@ import './WorkSpace.css'
 
 class WorkSpace extends React.Component {
     constructor(props) {
+      console.log(props)
         super(props)
         this.state = {
             test: true
@@ -27,18 +28,18 @@ class WorkSpace extends React.Component {
       if(this.props.data.reviews.length < 1) {
         return (
             <div className='workspace'>
-            <Link to='/'>
-              <h5 style={{ float: 'right' }}>X</h5>
-            </Link>
-            <h3>Be the first to write a   <Button
-            className=""
-
-            data={this.props.data.id}
-            href={`#work_spaces/${this.props.data.id}/create-review`}
-          >
-            Review
-          </Button> for</h3>
-            <h3>{this.props.placeData && this.props.placeData.name}</h3>
+              <Link to='/'>
+                <h5 style={{ float: 'right' }}>X</h5>
+              </Link>
+              <div style={{ textAlign: 'center' }}>
+                <h3>Be the first to write a  <Button
+                data={this.props.data.id}
+                href={`#work_spaces/${this.props.data.id}/create-review`}
+              >
+                Review
+              </Button> for</h3>
+                <h3>{this.props.placeData && this.props.placeData.name}</h3>
+              </div>
             </div>)
       }
 
@@ -63,13 +64,13 @@ class WorkSpace extends React.Component {
               <Link to='/'>
                 <h5 style={{ float: 'right' }}>X</h5>
               </Link>
-              <br />
-              <br />
-              <br />
+                <br />
+                <br />
+                <br />
               <div>
                 <img accept="*/*" height='150px' alt="work_space_pic" src={photo} />
               </div>
-              <br />
+                <br />
               <div className="work-space-div">
                 <div>
                   <h4 style={{ textAlign: 'center', color: 'black' }}><a

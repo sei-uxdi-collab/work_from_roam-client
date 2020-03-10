@@ -10,10 +10,10 @@ class Review extends React.Component {
 
     // render information inside an infoWindow for POI
     render() {
-
+console.log(this.props)
         return (
-            <div>
-            <p>Rating: {this.props.rating}</p>
+            <div style={{ borderStyle: 'double'}}>
+            <p>User:  Rating: {this.props.rating}</p>
               <p>Note: {this.props.note}</p>
             </div>
         )
