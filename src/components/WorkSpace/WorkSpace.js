@@ -11,7 +11,6 @@ import './WorkSpace.css'
 
 class WorkSpace extends React.Component {
     constructor(props) {
-      console.log(props)
         super(props)
         this.state = {
             test: true
