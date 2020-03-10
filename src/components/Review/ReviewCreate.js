@@ -89,7 +89,7 @@ import Button from 'react-bootstrap/Button'
 }
 
 
-      console.log(placeImage)
+      // console.log(placeImage)
 
         if (!this.props.user) {
           return (<Redirect to='/sign-in'/>)
