@@ -72,11 +72,28 @@ class WorkSpace extends React.Component {
       let wifi = average(this.props.data.reviews.map(review => parseInt(review.wifi)))
       // Seating average Rating
       let seating = average(this.props.data.reviews.map(review => parseInt(review.seating)))
-      // Outlets average rasting
+      // Outlets average rating
       let outlet = average(this.props.data.reviews.map(review => parseInt(review.outlet)))
-      // If outlets average above zero, outlets will show present
+      // Coffee average Rating
+      let coffee = average(this.props.data.reviews.map(review => parseInt(review.coffee)))
+      // Food average rating
+      let food = average(this.props.data.reviews.map(review => parseInt(review.food)))
+
+      // Style booleans for showing filter options as being available or not
+      let outletStyle = false
+      let coffeeStyle = false
+      let foodStyle = false
+
+      // Conditionals for showing if filters are available
       if(outlet > 0) {
         console.log(outlet)
+        outletStyle = true
+      }
+      if(coffee > 0) {
+        coffeeStyle = true
+      }
+      if(food > 0) {
+        foodStyle = true
       }
 
         return (
@@ -125,9 +142,9 @@ class WorkSpace extends React.Component {
                       <br />
                       <br />
                       <div style={{ display: 'flex' }}>
-                        <button id="outlets" style={{ margin: '10px' }}>outlets</button>
-                        <button id="coffee" style={{ margin: '10px' }}>coffee</button>
-                        <button id="food" style={{ margin: '10px' }}>food</button>
+                        <button id="outlets" style={{ margin: '10px', color: outletStyle ? 'red' : 'blue' }}>outlets</button>
+                        <button id="coffee" style={{ margin: '10px', color: coffeeStyle ? 'red' : 'blue' }}>coffee</button>
+                        <button id="food" style={{ margin: '10px', color: foodStyle ? 'red' : 'blue' }}>food</button>
                       </div>
                     </div>}
                 </div>
