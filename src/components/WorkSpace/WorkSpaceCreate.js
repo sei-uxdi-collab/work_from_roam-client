@@ -1,11 +1,11 @@
 import React from 'react';
-// import '../popUp.css'
+// import '../popUp.scss'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 // import WorkSpaceButton from './WorkSpaceButton'
-import './WorkSpace.css'
+import './WorkSpace.scss'
 
 // import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'

@@ -1,7 +1,7 @@
 import React from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Modal from 'react-bootstrap/Modal'
-import './SuggestionsList.css'
+import './SuggestionsList.scss'
 class SuggestionsList extends React.Component {
   constructor(props) {
     super(props)

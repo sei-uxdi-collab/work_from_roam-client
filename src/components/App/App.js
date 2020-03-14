@@ -14,7 +14,7 @@ import WorkSpace from '../WorkSpace/WorkSpace'
 import SuggestionsList from '../SuggestionsList/SuggestionsList.js'
 import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
 
-import './App.css'
+import './App.scss'
 
 
 class App extends React.Component {

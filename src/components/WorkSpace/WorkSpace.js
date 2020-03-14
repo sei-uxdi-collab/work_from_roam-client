@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 
 import Review from '../Review/Review'
 
-import './WorkSpace.css'
+import './WorkSpace.scss'
 
 // import TestButton from './TestButton'
 

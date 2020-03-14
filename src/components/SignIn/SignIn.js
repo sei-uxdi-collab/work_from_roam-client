@@ -6,7 +6,7 @@ import { signIn } from '../../api/auth'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-import '../popUp.css'
+import '../popUp.scss'
 
 class SignIn extends Component {
   constructor () {

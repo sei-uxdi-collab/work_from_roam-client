@@ -1,5 +1,5 @@
 import React from 'react';
-import './ReviewForm.css'
+import './ReviewForm.scss'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
