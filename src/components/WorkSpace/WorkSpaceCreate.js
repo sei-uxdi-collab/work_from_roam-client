@@ -55,7 +55,17 @@ import Button from 'react-bootstrap/Button'
         }
 
       })
-      this.closeWindow()
+      .then(data => {
+        // console.log(data)
+        axios(apiUrl + '/work_spaces')
+          .then(data => {
+              console.log(data)
+              this.props.setApp({ allData: data.data.work_spaces })
+              this.closeWindow()
+          })
+        
+      })
+      
     }
 
     closeWindow = () => {
