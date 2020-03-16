@@ -63,6 +63,11 @@ import Button from 'react-bootstrap/Button'
         })
         .then(data => {
           // console.log(data)
+          axios(apiUrl + '/work_spaces')
+            .then(data => {
+                // console.log(data)
+                this.props.setApp({ allData: data.data.work_spaces })
+            })
           this.setState({ display: 'none' })
         })
       // 3. redirect to '/' and close the review form

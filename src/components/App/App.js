@@ -57,6 +57,7 @@ class App extends React.Component {
             location={this.state.poiLocation}
             data={this.state.allData}
             currentWorkspace={this.state.currentWorkspace}
+            setApp={this.setState.bind(this)}
           />
         </Route>
 
@@ -93,6 +94,7 @@ class App extends React.Component {
               placeId={this.state.placeId}
               placeData={this.state.placeData}
               location={this.state.poiLocation}
+              setApp={this.setState.bind(this)}
             />
           )} />
 
