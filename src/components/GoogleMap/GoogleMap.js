@@ -148,8 +148,6 @@ class GoogleMap extends React.Component {
             clickableIcons={true}
 
             onClick={this.handleClick}
-            className='google-map'
-            height={'300px'}
             >
             <Marker
             name={'user location'}
