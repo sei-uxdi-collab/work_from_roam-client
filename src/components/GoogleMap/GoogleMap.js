@@ -141,62 +141,60 @@ class GoogleMap extends React.Component {
 
     render() {
         return (
-            <div className='map-container'>
-                <Map google={this.props.google}
-                center={this.props.center}
-                initialCenter={this.props.center}
-                zoom={14}
-                clickableIcons={true}
+            <Map google={this.props.google}
+            center={this.props.center}
+            initialCenter={this.props.center}
+            zoom={14}
+            clickableIcons={true}
 
-                onClick={this.handleClick}
-                className='google-map'
-                height={'300px'}
+            onClick={this.handleClick}
+            className='google-map'
+            height={'300px'}
+            >
+            <Marker
+            name={'user location'}
+            position={this.userLocation}
+            icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
+            />
+
+            <Marker name={'search result'}
+                    position={this.props.searchLocation}
+                    icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
+                    onClick={this.showSuggestions}
+                    />
+
+                {/* info window for poi locations */}
+                <InfoWindow
+                    position={this.props.poiLocation}
+                    visible={this.state.showPOI}
                 >
-                <Marker
-                name={'user location'}
-                position={this.userLocation}
-                icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
-                />
+                    <PlacesDetail placeData={this.props.placeData} />
+                </InfoWindow>
 
-                <Marker name={'search result'}
-                        position={this.props.searchLocation}
-                        icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
-                        onClick={this.showSuggestions}
-                        />
-
-                    {/* info window for poi locations */}
-                    <InfoWindow
-                        position={this.props.poiLocation}
-                        visible={this.state.showPOI}
-                    >
-                        <PlacesDetail placeData={this.props.placeData} />
-                    </InfoWindow>
-
-                    {this.props.allData.map(workSpace => (
-                        <Marker
-                            key={workSpace.id}
-                            onClick={this.onMarkerClick}
-                            position={{ lat: workSpace.lat, lng: workSpace.lng}}
-                            placeId={workSpace.placeId}
-                            data={workSpace}
-                            name={'Current location'}
-                        />
-                    ))}
+                {this.props.allData.map(workSpace => (
+                    <Marker
+                        key={workSpace.id}
+                        onClick={this.onMarkerClick}
+                        position={{ lat: workSpace.lat, lng: workSpace.lng}}
+                        placeId={workSpace.placeId}
+                        data={workSpace}
+                        name={'Current location'}
+                    />
+                ))}
 
 
-                    {/* InfoWindow becomes visible when this.state.showWindow === true */}
-                    {// <InfoWindow marker={this.state.selectedMarker}
-                    //         visible={this.state.showWindow}
-                    //         onClose={this.onInfoWindowClose}
-                    // >
-                    //     {/* Display placeData information inside InfoWindow */}
-                    //     <TestComponent placeData={this.props.placeData} />
-                    //
-                    // </InfoWindow>
-                }
+                {/* InfoWindow becomes visible when this.state.showWindow === true */}
+                {// <InfoWindow marker={this.state.selectedMarker}
+                //         visible={this.state.showWindow}
+                //         onClose={this.onInfoWindowClose}
+                // >
+                //     {/* Display placeData information inside InfoWindow */}
+                //     <TestComponent placeData={this.props.placeData} />
+                //
+                // </InfoWindow>
+            }
 
-                </Map>
-            </div>
+            </Map>
         )
     }
 }
