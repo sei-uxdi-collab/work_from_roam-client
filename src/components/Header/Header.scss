@@ -2,8 +2,10 @@
     position: absolute;
     z-index: 10;
     background-color: white;
-    top: 60px;
-    left: 10px;
-    width: calc(100% - 20px);
+    top: 75px;
+    left: 20px;
+    width: calc(100% - 60px);
     height: 300px;
+    border-radius: 12px;
+    padding: 10px;
 }
