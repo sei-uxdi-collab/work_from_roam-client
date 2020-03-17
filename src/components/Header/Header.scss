@@ -2,7 +2,8 @@
     position: absolute;
     z-index: 10;
     background-color: white;
-    top: 50px;
-    width: 400px;
+    top: 60px;
+    left: 10px;
+    width: calc(100% - 20px);
     height: 300px;
 }

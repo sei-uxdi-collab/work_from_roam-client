@@ -1,9 +1,22 @@
 .search-bar {
     position: absolute;
     z-index: 10;
+
 }
 .search-bar input {
+    position: absolute;
     height: 45px !important;
-    width: calc(100vw - 60px) !important;
-    margin-left: 60px
+    width: calc(100vw - 90px) !important;
+    // margin-left: 80px;
+    // margin-top: 10px;
+    top: 10px;
+    left: 80px;
+
+}
+
+.autocomplete-dropdown-container {
+    position: relative;
+    width: calc(100vw - 90px);
+    top: 55px;
+    left: 80px;
 }

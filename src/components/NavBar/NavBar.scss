@@ -1,8 +1,14 @@
 .nav-bar {
     position: absolute;
-    display: flex;
     z-index: 11;
     height: 50px !important;
     width: 60px;
     background-color: black;
+    top: 10px;
+    left: 10px;
+    img {
+
+        height: 100%;
+        width: 100%;
+    }
 }
