@@ -7,6 +7,7 @@ import apiUrl from '../../apiConfig'
 
 import PlacesDetail from '../PlacesDetail/PlacesDetail'
 // import SuggestionsList from './SuggestionsList/SuggestionsList.js'
+import './GoogleMap.scss'
 
 
 class GoogleMap extends React.Component {
@@ -141,17 +142,18 @@ class GoogleMap extends React.Component {
     render() {
         return (
             <Map google={this.props.google}
-             center={this.props.center}
-             initialCenter={this.props.center}
-             zoom={14}
-             clickableIcons={true}
+            center={this.props.center}
+            initialCenter={this.props.center}
+            zoom={14}
+            clickableIcons={true}
 
-             onClick={this.handleClick}
+            onClick={this.handleClick}
+            className='google-map'
             >
             <Marker
-              name={'user location'}
-              position={this.userLocation}
-              icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
+            name={'user location'}
+            position={this.userLocation}
+            icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
             />
 
             <Marker name={'search result'}
@@ -189,7 +191,7 @@ class GoogleMap extends React.Component {
                 //     <TestComponent placeData={this.props.placeData} />
                 //
                 // </InfoWindow>
-              }
+            }
 
             </Map>
         )
