@@ -123,16 +123,24 @@ class GoogleMap extends React.Component {
     }
 
     handleClick = (props, map, event) => {
-        // if click event has a place id, get details on place and save data to state
+        // if user clicks on a point of interest (poi)
         if(event.placeId) {
-            // first save the location and place id to state. Clear data for place image and place data
+            // turn infoWindow on and immediately off
             this.setState({ showPOI: true })
-            this.showPOI(map, event)
+            this.setState({ showPOI: false})
+            
+            // first center the map using setApp and event coordinates
+            this.props.setApp({ mapCenter: { lat: event.latLng.lat(), lng: event.latLng.lng() }})
+            
+            // trigger get places detail from google places api
+            this.getPlaceDetails(map, event.placeId)
+
+            // navigate to '/create-workspace'
+            this.props.history.push('/create-workspace')
 
         } else {
             this.navigateHome()
         }
-
     }
 
     showSuggestions = () => {
