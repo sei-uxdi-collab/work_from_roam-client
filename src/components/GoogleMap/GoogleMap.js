@@ -52,60 +52,26 @@ class GoogleMap extends React.Component {
         service.getDetails({ placeId, fields }, this.setPlaceData)
     }
 
-    setNewLocation = (location, placeId) => {
-        this.props.setApp({
+    onMarkerClick = (props, marker, event) => {
+        const location = { lat: props.data.lat, lng: props.data.lng }
+        const placeId = marker.data.place_id
+        // set App state with workspace data and location
+        this.props.setApp({ 
+            currentWorkspace: marker.data, 
+            placeData: null,
             poiLocation: location,
             mapCenter: location,
-            placeData: null,
             placeId
         })
-    }
-
-      // onClick handler to set marker to state and show corresponding info window
-    onMarkerClick = (props, marker, event) => {
-        const lat = props.data.lat
-        const lng = props.data.lng
-        const placeId = marker.data.place_id
-        this.setState({ selectedMarker: marker, showWindow: true })
-        // console.log(marker.data)
-        this.props.setApp({ currentWorkspace: marker.data, placeData: null })
-        this.setNewLocation({ lat, lng }, placeId)
+        // get and set google place data 
         this.getPlaceDetails(props.map, placeId)
+        // navigate to '/workspace' to render the component
         this.props.history.push('/workspace')
     }
 
     // onClose handler for InfoWindow
     onInfoWindowClose = () => {
         this.setState({ showWindow: false })
-    }
-
-    showPOI = (map, event) => {
-        // declare function to handle data returned from service.getDetails()
-        const handleData = (data, status) => {
-            // save data from places details to state.placeData
-            this.props.setApp({placeData: data})
-        }
-
-        // save the click location and reset place data
-
-        this.props.setApp({
-            poiLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
-            mapCenter: { lat: event.latLng.lat(), lng: event.latLng.lng() },
-            placeData: null,
-            placeId: event.placeId
-        })
-        // create new instance of class PlacesService to access google places api
-        const service = new this.props.google.maps.places.PlacesService(map)
-        console.log('service is:', service)
-
-        // call getDetails from google places api, passing placeId, fields to get data for, and above callback function to handle the response
-        service.getDetails(
-            {
-                placeId: event.placeId,
-                fields: ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews']
-            },
-            handleData
-        )
     }
 
     navigateHome = () => {
@@ -127,16 +93,21 @@ class GoogleMap extends React.Component {
         if(event.placeId) {
             // turn infoWindow on and immediately off
             this.setState({ showPOI: true })
-            this.setState({ showPOI: false})
             
             // first center the map using setApp and event coordinates
-            this.props.setApp({ mapCenter: { lat: event.latLng.lat(), lng: event.latLng.lng() }})
+            this.props.setApp({ 
+                mapCenter: { lat: event.latLng.lat(), lng: event.latLng.lng() },
+                poiLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
+                placeId: event.placeId
+            })
             
             // trigger get places detail from google places api
             this.getPlaceDetails(map, event.placeId)
+            
 
             // navigate to '/create-workspace'
             this.props.history.push('/create-workspace')
+            
 
         } else {
             this.navigateHome()
@@ -150,56 +121,44 @@ class GoogleMap extends React.Component {
     render() {
         return (
             <Map google={this.props.google}
-            center={this.props.center}
-            initialCenter={this.props.center}
-            zoom={14}
-            clickableIcons={true}
-
-            onClick={this.handleClick}
-            className='google-map'
+                center={this.props.center}
+                initialCenter={this.props.center}
+                zoom={14}
+                clickableIcons={true}
+                onClick={this.handleClick}
+                className='google-map'
             >
-            <Marker
-            name={'user location'}
-            position={this.userLocation}
-            icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
+                
+            {/* info window to overwrite default poi locations */}
+            <InfoWindow
+                position={this.props.poiLocation}
+                visible={this.state.showPOI}
             />
 
-            <Marker name={'search result'}
-                    position={this.props.searchLocation}
-                    icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
-                    onClick={this.showSuggestions}
-                    />
+            <Marker
+                name={'user location'}
+                position={this.userLocation}
+                icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
+            />
 
-                {/* info window for poi locations */}
-                <InfoWindow
-                    position={this.props.poiLocation}
-                    visible={this.state.showPOI}
-                >
-                    <PlacesDetail placeData={this.props.placeData} />
-                </InfoWindow>
+            <Marker 
+                name={'search result'}
+                position={this.props.searchLocation}
+                icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
+                onClick={this.showSuggestions}
+            />
 
-                {this.props.allData.map(workSpace => (
-                    <Marker
-                        key={workSpace.id}
-                        onClick={this.onMarkerClick}
-                        position={{ lat: workSpace.lat, lng: workSpace.lng}}
-                        placeId={workSpace.placeId}
-                        data={workSpace}
-                        name={'Current location'}
-                    />
-                ))}
-
-
-                {/* InfoWindow becomes visible when this.state.showWindow === true */}
-                {// <InfoWindow marker={this.state.selectedMarker}
-                //         visible={this.state.showWindow}
-                //         onClose={this.onInfoWindowClose}
-                // >
-                //     {/* Display placeData information inside InfoWindow */}
-                //     <TestComponent placeData={this.props.placeData} />
-                //
-                // </InfoWindow>
-            }
+            {/* create a marker on the map for each workspace */}
+            {this.props.allData.map(workSpace => (
+                <Marker
+                    key={workSpace.id}
+                    onClick={this.onMarkerClick}
+                    position={{ lat: workSpace.lat, lng: workSpace.lng}}
+                    placeId={workSpace.placeId}
+                    data={workSpace}
+                    name={'Current location'}
+                />
+            ))}         
 
             </Map>
         )
