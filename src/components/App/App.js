@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom'
 
+import AutoAlert from '../AutoAlert/AutoAlert.js'
 import Search from '../Search/Search'
 import GoogleMap from '../GoogleMap/GoogleMap'
 import ReviewCreate from '../Review/ReviewCreate'
@@ -32,7 +33,7 @@ class App extends React.Component {
       currentWorkspace: null,
       user: null,
       userLocation: null,
-
+      alerts: []
     }
   }
 
@@ -40,18 +41,33 @@ class App extends React.Component {
 
   clearUser = () => this.setState({ user: null })
 
+  alert = ({ heading, message, variant }) => {
+    this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
+  }
+
+
 
   render() {
 
-    const { user } = this.state
+    const { alerts, user } = this.state
 
     return (
 <div>
 <Fragment>
 
+        {alerts.map((alert, index) => (
+            <AutoAlert
+              key={index}
+              heading={alert.heading}
+              variant={alert.variant}
+              message={alert.message}
+            />
+          ))}
+
         <Route path='/work_spaces/:id/create-review'>
           <ReviewCreate
             user={user}
+            alert={this.alert}
             placeId={this.state.placeId}
             placeData={this.state.placeData}
             location={this.state.poiLocation}

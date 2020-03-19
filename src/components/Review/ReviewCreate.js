@@ -5,6 +5,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 // import TestButton from '../TestButton'
+import messages from '../AutoAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -40,6 +41,8 @@ import Button from 'react-bootstrap/Button'
     handleSubmit = (event) => {
       event.preventDefault()
 
+      const { alert } = this.props
+
         axios({
           method: 'post',
           url: apiUrl + '/reviews',
@@ -70,6 +73,11 @@ import Button from 'react-bootstrap/Button'
             })
           this.setState({ display: 'none' })
         })
+        .then(() => alert({
+        heading: 'Thanks for your review!',
+        message: messages.reviewCreateSuccess,
+        variant: 'success'
+      }))
       // 3. redirect to '/' and close the review form
       .catch(() => alert('create review failed'))
     }
