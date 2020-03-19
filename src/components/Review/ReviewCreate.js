@@ -120,16 +120,21 @@ import Button from 'react-bootstrap/Button'
           <div className='review-form' style={{display: this.state.display}}>
 
           <Link to='/'>
-            <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
+            <button className="close-window" style={{float: 'right'}} onClick={this.closeWindow}>X</button>
           </Link>
 
-          <h1> Review {placeName}</h1>
 
-          <a href={this.props.placeData.website} target="_blank" rel="noopener noreferrer">
-            <img height={'100px'} alt={'pic'} src={placeImage} />
-          </a>
+          {/* This is the tag for the place image, commented out (for now)
+            <a href={this.props.placeData.website} target="_blank" rel="noopener noreferrer">
+              <img height={'100px'} alt={'pic'} src={placeImage} />
+            </a>
+             */}
       <div className="review-scroll">
+      <h1 className="main-header">Give {placeName} a review!</h1>
       <Form onSubmit={this.handleSubmit}>
+      {/* This is where the star rating will go
+        < StarComponent />
+        */}
         <Form.Group>
           <Form.Label htmlFor="name">Overall Rating:</Form.Label>
           <StarRating
@@ -140,11 +145,10 @@ import Button from 'react-bootstrap/Button'
 
           <span>{this.state.rating}</span>
         </Form.Group>
-        <h3 style={{ marginBottom: '0px' }}>Did it have...</h3>
-        <div style={{ display: 'flex' }}>
-        <div style={{ padding: '0px 15px 0px 15px' }}>
+
+        <h2 className="question-header">General Information</h2>
         <Form.Group>
-          <Form.Label htmlFor="outlet"><h5>Outlets</h5></Form.Label>
+          <Form.Label htmlFor="outlet">Outlets</Form.Label>
           <Form.Check
             type="radio"
             label="YES"
@@ -161,11 +165,10 @@ import Button from 'react-bootstrap/Button'
             name="outlet"
             onChange={this.handleChange}
           />
-          </Form.Group>
-          </div>
-          <div style={{ padding: '0px 15px 0px 15px' }}>
+        </Form.Group>
+
         <Form.Group>
-          <Form.Label htmlFor="coffee"><h5>Coffee</h5></Form.Label>
+          <Form.Label htmlFor="coffee">Coffee</Form.Label>
           <Form.Check
             type="radio"
             label="YES"
@@ -182,35 +185,33 @@ import Button from 'react-bootstrap/Button'
             name="coffee"
             onChange={this.handleChange}
           />
-          </Form.Group>
-          </div>
-          <div style={{ padding: '0px 15px 0px 15px' }}>
-          <Form.Group>
-            <Form.Label htmlFor="food"><h5>Food</h5></Form.Label>
-            <Form.Check
-              type="radio"
-              label="YES"
-              value="5"
-              checked={this.state.food === '5'}
-              name="food"
-              onChange={this.handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="NO"
-              value="0"
-              checked={this.state.food === '0'}
-              name="food"
-              onChange={this.handleChange}
-            />
-            </Form.Group>
-            </div>
-            </div>
+        </Form.Group>
+
         <Form.Group>
-          <Form.Label htmlFor="wifi"><h3>How was the Wifi??</h3></Form.Label>
+          <Form.Label htmlFor="food">Food</Form.Label>
           <Form.Check
             type="radio"
-            label="NONE"
+            label="YES"
+            value="5"
+            checked={this.state.food === '5'}
+            name="food"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="NO"
+            value="0"
+            checked={this.state.food === '0'}
+            name="food"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="question">
+          <Form.Label className="question-header" htmlFor="wifi">How was the Wifi?*</Form.Label>
+          <Form.Check
+            type="radio"
+            label="None"
             value="0"
             checked={this.state.wifi === '0'}
             name="wifi"
@@ -218,7 +219,7 @@ import Button from 'react-bootstrap/Button'
           />
           <Form.Check
             type="radio"
-            label="POOR"
+            label="Slow"
             value="1"
             checked={this.state.wifi === '1'}
             name="wifi"
@@ -226,7 +227,7 @@ import Button from 'react-bootstrap/Button'
           />
           <Form.Check
             type="radio"
-            label="MODERATE"
+            label="Spotty"
             value="2.5"
             checked={this.state.wifi === '2.5'}
             name="wifi"
@@ -234,123 +235,128 @@ import Button from 'react-bootstrap/Button'
           />
           <Form.Check
             type="radio"
-            label="AMPLE"
+            label="Fast!"
             value="5"
             checked={this.state.wifi === '5'}
             name="wifi"
             onChange={this.handleChange}
           />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="name"><h3>How noisy was it?</h3></Form.Label>
-            <Form.Check
-              type="radio"
-              label="QUIET"
-              value="1"
-              checked={this.state.noise === '1'}
-              name="noise"
-              onChange={this.handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="MODERATE"
-              value="2.5"
-              checked={this.state.noise === '2.5'}
-              name="noise"
-              onChange={this.handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="LOUD"
-              value="5"
-              checked={this.state.noise === '5'}
-              name="noise"
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="name"><h4>How were the bathrooms?</h4></Form.Label>
-            <Form.Check
-              type="radio"
-              label="There were none!"
-              value="0"
-              checked={this.state.bathroom === '0'}
-              name="bathroom"
-              onChange={this.handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="Don't Squat here!"
-              value="1"
-              checked={this.state.bathroom === '1'}
-              name="bathroom"
-              onChange={this.handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="USABLE"
-              value="2.5"
-              checked={this.state.bathroom === '2.5'}
-              name="bathroom"
-              onChange={this.handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="PRISTINE"
-              value="5"
-              checked={this.state.bathroom === '5'}
-              name="bathroom"
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="seating"><h5>What was the seating like?</h5></Form.Label>
-            <Form.Check
-              type="radio"
-              label="NONE"
-              value="0"
-              checked={this.state.seating === '0'}
-              name="seating"
-              onChange={this.handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="Very Little"
-              value="1"
-              checked={this.state.seating === '1'}
-              name="seating"
-              onChange={this.handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="Not Bad"
-              value="2.5"
-              checked={this.state.seating === '2.5'}
-              name="seating"
-              onChange={this.handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="PLENTY OF SPACE"
-              value="5"
-              checked={this.state.seating === '5'}
-              name="seating"
-              onChange={this.handleChange}
-            />
-            </Form.Group>
-          <Form.Group>
-          <Form.Label htmlFor="name"><h5>Write a review (optional)</h5></Form.Label>
+        </Form.Group>
+
+        <Form.Group className="question">
+          <Form.Label className="question-header" htmlFor="name">How noisy was it?*</Form.Label>
+          <Form.Check
+            type="radio"
+            label="Quiet"
+            value="1"
+            checked={this.state.noise === '1'}
+            name="noise"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="Moderate"
+            value="2.5"
+            checked={this.state.noise === '2.5'}
+            name="noise"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="Loud"
+            value="5"
+            checked={this.state.noise === '5'}
+            name="noise"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="question">
+          <Form.Label className="question-header" htmlFor="name">How were the bathrooms?*</Form.Label>
+          <Form.Check
+            type="radio"
+            label="None"
+            value="0"
+            checked={this.state.bathroom === '0'}
+            name="bathroom"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="Messy"
+            value="1"
+            checked={this.state.bathroom === '1'}
+            name="bathroom"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="Usable"
+            value="2.5"
+            checked={this.state.bathroom === '2.5'}
+            name="bathroom"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="Great!"
+            value="5"
+            checked={this.state.bathroom === '5'}
+            name="bathroom"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="question">
+          <Form.Label className="question-header" htmlFor="seating">What was the seating like?*</Form.Label>
+          <Form.Check
+            type="radio"
+            label="None"
+            value="0"
+            checked={this.state.seating === '0'}
+            name="seating"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="Very Little"
+            value="1"
+            checked={this.state.seating === '1'}
+            name="seating"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="Adequate"
+            value="2.5"
+            checked={this.state.seating === '2.5'}
+            name="seating"
+            onChange={this.handleChange}
+          />
+          <Form.Check
+            type="radio"
+            label="Lots!"
+            value="5"
+            checked={this.state.seating === '5'}
+            name="seating"
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="question">
+          <Form.Label className="question-header" htmlFor="name">Write a review (optional)</Form.Label>
           <Form.Control
             style={{ height: '50px', width: '250px' }}
             type="text"
             as="textarea"
-            placeholder="Enter Review..."
+            placeholder="Enter Your Review..."
             value={this.state.review}
             name="review"
             onChange={this.handleChange}
           />
         </Form.Group>
-        <Button type="submit"> Submit </Button>
+
+        <Button type="submit" className="submit-button"> Submit </Button>
         </Form>
         </div>
       </div>
