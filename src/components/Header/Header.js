@@ -1,47 +1,48 @@
 import React, { Fragment } from 'react'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
+// import Nav from 'react-bootstrap/Nav'
+// import Navbar from 'react-bootstrap/Navbar'
+
 
 import './Header.scss'
 
 const authenticatedOptions = (
   <Fragment>
-    <Nav.Link href="#change-password">Change Password</Nav.Link>
+    <a href="#change-password">Change Password</a>
     <br /><br />
-    <Nav.Link href="#sign-out">Sign Out</Nav.Link>
+    <a href="#sign-out">Sign Out</a>
   </Fragment>
 )
 
 const unauthenticatedOptions = (
   <Fragment>
-    <Nav.Link href="#sign-up">Sign Up</Nav.Link>
+    <a href="#sign-up">Sign Up</a>
     <br /><br />
-    <Nav.Link href="#sign-in">Sign In</Nav.Link>
+    <a href="#sign-in">Sign In</a>
   </Fragment>
 )
 
 const alwaysOptions = (
   <Fragment>
-    <Nav.Link href="#/">Home</Nav.Link><br /><br />
+    <a href="#/">Home</a><br /><br />
   </Fragment>
 )
 
 const Header = ({ user }) => (
-  <Navbar className="header" collapseOnSelect fixed="top" bg="secondary" variant="dark" expand="md">
-    <Navbar.Brand href="#">
+  <div className="header" collapseOnSelect fixed="top">
+    <div href="#">
       WorkFromRoam
-    </Navbar.Brand>
-    <Nav>
-      { user && <span style={{ color: 'black' }} className="navbar-text mr-2">Welcome, {user.email}</span>}
-    </Nav>
+    </div>
+    <div>
+      { user && <span style={{ color: 'black' }} className="">Welcome, {user.email}</span>}
+    </div>
     <br />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto">
+    <div id="">
+      <div className="">
         { alwaysOptions }
         { user ? authenticatedOptions : unauthenticatedOptions }
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+      </div>
+    </div>
+  </div>
 )
 
 export default Header
