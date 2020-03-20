@@ -6,7 +6,8 @@ import { signIn } from '../../api/auth'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-import '../popUp.scss'
+import './SignIn.scss'
+import messages from '../AutoAlert/messages'
 
 class SignIn extends Component {
   constructor () {
@@ -24,16 +25,27 @@ class SignIn extends Component {
 
   onSignIn = event => {
     event.preventDefault()
-    const { history, setUser } = this.props
+
+    const { alert, history, setUser } = this.props
+
     signIn(this.state)
       .then(res => setUser(res.data.user))
+      .then(() => alert({
+        heading: 'You are now signed In!',
+        message: messages.signInSuccess,
+        variant: 'success',
+        image: 'Roman.png'
+      }))
       .then(() => history.push('/'))
-      .then(() => alert('You have Signed In'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '' })
+        alert({
+         heading: 'Sign In Failed',
+         message: messages.signInFailure,
+         variant: 'danger'
+       })
       })
-      console.log('SignIn: ' + this.state.email)
   }
 
   render () {

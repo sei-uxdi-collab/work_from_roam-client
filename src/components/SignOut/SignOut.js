@@ -2,12 +2,19 @@ import { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { signOut } from '../../api/auth'
+import messages from '../AutoAlert/messages'
 
 class SignOut extends Component {
   componentDidMount () {
-    const { history, clearUser, user } = this.props
+    const { alert, history, clearUser, user } = this.props
 
     signOut(user)
+    .finally(() => alert({
+      heading: 'Signed Out Successfully',
+      message: messages.signOutSuccess,
+      variant: 'success',
+      image: 'wavingroman.jpg'
+    }))
       .finally(() => history.push('/'))
       .finally(() => clearUser())
       console.log('Signout worked!!')

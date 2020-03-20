@@ -41,8 +41,8 @@ class App extends React.Component {
 
   clearUser = () => this.setState({ user: null })
 
-  alert = ({ heading, message, variant }) => {
-    this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
+  alert = ({ heading, message, variant, image }) => {
+    this.setState({ alerts: [...this.state.alerts, { heading, message, variant, image }] })
   }
 
 
@@ -61,6 +61,7 @@ class App extends React.Component {
               heading={alert.heading}
               variant={alert.variant}
               message={alert.message}
+              image={alert.image}
             />
           ))}
 
@@ -85,11 +86,11 @@ class App extends React.Component {
          )} />
 
         <Route path='/sign-up' render={() => (
-           <SignUp setUser={this.setUser} />
+           <SignUp alert={this.alert} setUser={this.setUser} />
          )} />
 
          <Route path='/sign-in' render={() => (
-            <SignIn user={user} setUser={this.setUser} />
+            <SignIn user={user} alert={this.alert} setUser={this.setUser} />
           )} />
 
           <Route user={user} path='/change-password' render={() => (
@@ -97,7 +98,7 @@ class App extends React.Component {
             )} />
 
           <Route user={user} path='/sign-out' render={() => (
-              <SignOut clearUser={this.clearUser} user={user} />
+              <SignOut clearUser={this.clearUser} alert={this.alert} user={user} />
             )} />
 
           <Route user={user} path='/nav' render={() => (
