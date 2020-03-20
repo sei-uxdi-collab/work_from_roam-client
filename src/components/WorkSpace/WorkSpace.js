@@ -33,6 +33,8 @@ class WorkSpace extends React.Component {
       let photo = '../../loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
+      } else {
+        photo = '../../image_not_found.png'
       }
 
       if(this.props.data.reviews.length < 1) {
@@ -101,14 +103,8 @@ class WorkSpace extends React.Component {
               <Link to='/'>
                 <h5 style={{ float: 'right' }}>X</h5>
               </Link>
-                <br />
-                <br />
-                <br />
-              <div>
                 <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
-              </div>
-                <br />
-              <div className='work-space-div'>
+                <div className='work-space-div'>
                 <div>
                   <a
                     className='link'
@@ -118,49 +114,43 @@ class WorkSpace extends React.Component {
                     rel="noopener noreferrer"
                     >
                     {this.props.placeData && this.props.placeData.name}
-                    </a> - Stars here ({overall})<br />
-                    {this.props.placeData && this.props.placeData.formatted_address}<br />
-                    {this.props.placeData && this.props.placeData.opening_hours}
+                    </a> - Stars go here ({overall})<br />
+                    <p>{this.props.placeData && this.props.placeData.formatted_address}<br/>
+                    {this.props.placeData && this.props.placeData.name}</p>
 
                 </div>
                 <div>
-                  <p>WIFI: {wifi}</p>
-                  <p>Noise: {noise}</p>
-                  <p>Seating: {seating}</p>
-                  <p>Bathroom: {bath}</p>
-                  <Button
-                    className='reviewButton'
-                    data={this.props.data.id}
-                    href={`#work_spaces/${this.props.data.id}/create-review`}
-                  >
-                    Leave a Review
-                  </Button>
-                  {!this.state.filters && <button
-                    style={{ float: 'right', border: 'none' }}
-                    onClick={this.show}
-                  >
-                  more
-                  </button>}
+                  <p>Wifi Quality {wifi}</p>
+                  <p>Noise {noise}</p>
+                  <p>Seating {seating}</p>
+                  <p>Bathroom {bath}</p>
+                  {!this.state.filters && <p
+                    style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer' }}
+                    onClick={this.show}>more</p>}
                   {this.state.filters &&
                     <div>
-                      <button
-                        onClick={this.notshow}
-                        style={{ float: 'right', border: 'none' }}>
-                      less
-                      </button>
-                      <br />
-                      <br />
                       <div style={{ display: 'flex' }}>
-                        <button id="outlets" style={{ margin: '10px', color: outletStyle ? 'red' : 'blue' }}>outlets</button>
-                        <button id="coffee" style={{ margin: '10px', color: coffeeStyle ? 'red' : 'blue' }}>coffee</button>
-                        <button id="food" style={{ margin: '10px', color: foodStyle ? 'red' : 'blue' }}>food</button>
+                        <p id="outlets" style={{ margin: '10px', display: outletStyle ? 'visible' : 'none' }}>outlets</p>
+                        <p id="coffee" style={{ margin: '10px', display: coffeeStyle ? 'visible' : 'none' }}>coffee</p>
+                        <p id="food" style={{ margin: '10px', display: foodStyle ? 'visible' : 'none' }}>food</p>
                       </div>
+                      <p
+                        onClick={this.notshow}
+                        style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer' }}>
+                      less</p>
                     </div>}
+                    <Button
+                      className='reviewButton'
+                      data={this.props.data.id}
+                      href={`#work_spaces/${this.props.data.id}/create-review`}
+                    >
+                      Leave a Review
+                    </Button>
                 </div>
                 <br />
               <hr />
                 <div style={{ display: 'flex' }}>
-                  <div><h3 style={{ margin: '0px' }}>Reviews</h3></div>
+                  <div><p style={{ margin: '0px', fontSize: '16px' }}>Reviews({this.props.data.reviews.length})</p></div>
                 </div>
                 <br />
 
