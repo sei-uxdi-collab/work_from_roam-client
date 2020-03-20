@@ -52,36 +52,20 @@ class GoogleMap extends React.Component {
     }
 
     onMarkerClick = (props, marker, event) => {
-        const location = { lat: props.data.lat, lng: props.data.lng }
-        const placeId = marker.data.place_id
-        // set App state with workspace data and location
-        this.props.setApp({
-            currentWorkspace: marker.data,
-            placeData: null,
-            poiLocation: location,
-            mapCenter: location,
-            placeId
-        })
-    }
-
-      // onClick handler to set marker to state and show corresponding info window
-    onMarkerClick = (props, marker, event) => {
         const currentWorkspace = marker.data
         const poiLocation = { lat: props.data.lat, lng: props.data.lng }
         const mapCenter = poiLocation
         const placeId = marker.data.place_id
-        this.setState({ selectedMarker: marker, showWindow: true })
-        this.props.setApp({ currentWorkspace: marker.data, placeData: null })
-        this.setNewLocation({ lat, lng }, placeId)
+        // set App state with workspace data and location
+        this.props.setApp({ placeData: null, currentWorkspace, poiLocation, mapCenter, placeId })
+        // get and set google place data
         this.getPlaceDetails(props.map, placeId)
         // navigate to '/workspace' to render the component
         this.props.history.push('/workspace')
     }
 
     // onClose handler for InfoWindow
-    onInfoWindowClose = () => {
-        this.setState({ showWindow: false })
-    }
+    onInfoWindowClose = () => this.setState({ showWindow: false })
 
     navigateHome = () => {
         // unless already '/' navigate to '/'
@@ -113,25 +97,8 @@ class GoogleMap extends React.Component {
 
     handleClick = (props, map, event) => {
         // if user clicks on a point of interest (poi)
-        if(event.placeId) {
-            // turn infoWindow on and immediately off
-            this.setState({ showPOI: true })
-
-            // first center the map using setApp and event coordinates
-            this.props.setApp({
-                mapCenter: { lat: event.latLng.lat(), lng: event.latLng.lng() },
-                poiLocation: { lat: event.latLng.lat(), lng: event.latLng.lng() },
-                placeId: event.placeId
-            })
-
-            // trigger get places detail from google places api
-            this.getPlaceDetails(map, event.placeId)
-
-
-            // navigate to '/create-workspace'
-            this.props.history.push('/create-workspace')
-
-
+        if (event.placeId) {
+            this.handlePOI(map, event)
         } else {
             this.navigateHome()
         }
