@@ -105,27 +105,36 @@ class WorkSpace extends React.Component {
                 <br />
                 <br />
               <div>
-                <img accept="*/*" height='150px' alt="work_space_pic" src={photo} />
+                <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
               </div>
                 <br />
-              <div className="work-space-div">
+              <div className='work-space-div'>
                 <div>
-                  <h4 style={{ color: 'black' }}><a
-                    className="link"
-                    style={{ textDecoration: 'none' }}
+                  <a
+                    className='link'
+                    style={{ textDecoration: 'none', color: 'white', fontSize: '15px', fontWeight: '500' }}
                     href={this.props.placeData && this.props.placeData.website}
                     target='_blank'
                     rel="noopener noreferrer"
                     >
                     {this.props.placeData && this.props.placeData.name}
-                    </a> - Rating: {overall}<br />Address here<br />Hours here</h4>
+                    </a> - Stars here ({overall})<br />
+                    {this.props.placeData && this.props.placeData.formatted_address}<br />
+                    {this.props.placeData && this.props.placeData.opening_hours}
 
                 </div>
                 <div>
-                  <h5>WIFI: {wifi}</h5>
-                  <h5>Noise: {noise}</h5>
-                  <h5>Seating: {seating}</h5>
-                  <h5>Bathroom: {bath}</h5>
+                  <p>WIFI: {wifi}</p>
+                  <p>Noise: {noise}</p>
+                  <p>Seating: {seating}</p>
+                  <p>Bathroom: {bath}</p>
+                  <Button
+                    className='reviewButton'
+                    data={this.props.data.id}
+                    href={`#work_spaces/${this.props.data.id}/create-review`}
+                  >
+                    Leave a Review
+                  </Button>
                   {!this.state.filters && <button
                     style={{ float: 'right', border: 'none' }}
                     onClick={this.show}
@@ -152,15 +161,6 @@ class WorkSpace extends React.Component {
               <hr />
                 <div style={{ display: 'flex' }}>
                   <div><h3 style={{ margin: '0px' }}>Reviews</h3></div>
-                  <div>
-                    <h4><Button
-                      style={{ float: 'right' }}
-                      data={this.props.data.id}
-                      href={`#work_spaces/${this.props.data.id}/create-review`}
-                    >
-                      Write a Review
-                    </Button></h4>
-                  </div>
                 </div>
                 <br />
 
