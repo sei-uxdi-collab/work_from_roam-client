@@ -25,7 +25,7 @@ class AutoAlert extends React.Component {
   handleClose = () => this.setState({ show: false })
 
   render () {
-    const { variant, heading, message } = this.props
+    const { variant, heading, message, image } = this.props
     return (
       <Alert
         dismissible
@@ -38,7 +38,7 @@ class AutoAlert extends React.Component {
             {heading}
           </Alert.Heading>
           <p className="alert-body" style={{ textAlign: 'center', color: 'grey' }}>{message}</p>
-          <img src='Roman.png' alt='Roman Face' style={{ width: '40vw'}}/>
+            <img src={image} alt="alert" />
         </div>
       </Alert>
     )

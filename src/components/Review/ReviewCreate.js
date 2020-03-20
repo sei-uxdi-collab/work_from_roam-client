@@ -1,11 +1,11 @@
 import React from 'react';
-import './ReviewForm.scss'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 // import TestButton from '../TestButton'
 import messages from '../AutoAlert/messages'
+import './ReviewForm.scss'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -76,7 +76,8 @@ import Button from 'react-bootstrap/Button'
         .then(() => alert({
         heading: 'Thanks for your review!',
         message: messages.reviewCreateSuccess,
-        variant: 'success'
+        variant: 'success',
+        image: 'Roman.png'
       }))
       // 3. redirect to '/' and close the review form
       .catch(() => alert('create review failed'))
