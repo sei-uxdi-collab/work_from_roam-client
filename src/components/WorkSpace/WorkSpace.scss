@@ -1,14 +1,16 @@
 .workspace {
   background-color: #4775FF;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 10px 10px;
   box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.15);
   color: #FFFFFF;
+  height: 590px;
   left: 20%;
   transform: translate(-50%, -45%);
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 1rem;
   position: absolute;
-  top: 70%;
+  top: 50%;
   width: 340px;
   // height: 700px;
   z-index: 12;
@@ -69,3 +71,35 @@ h5 {
 //   display: block;
 //   margin: 0 auto;
 // }
+
+@media only screen and (max-width: 1024px) {
+  .workspace {
+    left: 20%;
+    top: 52%;
+    height: 482px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .workspace {
+    height: 475px;
+    left: 25%;
+    top: 52%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .workspace {
+    position: absolute;
+    width: 375px;
+    height: 480px;
+    left: 50%;
+    top: 53%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .workspace {
+    width: 318px;
+  }
+}
