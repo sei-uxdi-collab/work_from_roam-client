@@ -3,6 +3,7 @@ import './ReviewForm.scss'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import { StarRating } from './StarsRating'
 
 // import TestButton from '../TestButton'
 
@@ -122,14 +123,12 @@ import Button from 'react-bootstrap/Button'
       <Form onSubmit={this.handleSubmit}>
         <Form.Group>
           <Form.Label htmlFor="name">Overall Rating:</Form.Label>
-          <Form.Control
-            type="range"
-            min="0"
-            max="5"
+          <StarRating
             value={this.state.rating}
-            name="rating"
-            onChange={this.handleChange}
-          />
+            onStarClick= {(val) => this.setState({ rating: val })}
+
+        />
+
           <span>{this.state.rating}</span>
         </Form.Group>
         <h3 style={{ marginBottom: '0px' }}>Did it have...</h3>
