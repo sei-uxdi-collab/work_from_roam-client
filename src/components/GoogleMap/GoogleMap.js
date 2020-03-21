@@ -83,6 +83,7 @@ class GoogleMap extends React.Component {
     }
 
     handlePOI = (map, event) => {
+        this.props.setApp({ placeData: null })
         const placeId = event.placeId
         const poiLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
         const mapCenter = poiLocation
