@@ -12,7 +12,7 @@ import SignOut from '../SignOut/SignOut'
 import Header from '../Header/Header'
 import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
-import SuggestionsList from '../SuggestionsList/SuggestionsList.js'
+import ListView from '../ListView/ListView.js'
 import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
 
 import './App.scss'
@@ -48,50 +48,48 @@ class App extends React.Component {
 
 
   render() {
-
     const { alerts, user } = this.state
 
     return (
-<div>
-<Fragment>
+      <div>
+        <Fragment>
+          {alerts.map((alert, index) => (
+              <AutoAlert
+                key={index}
+                heading={alert.heading}
+                variant={alert.variant}
+                message={alert.message}
+                image={alert.image}
+              />
+            ))}
 
-        {alerts.map((alert, index) => (
-            <AutoAlert
-              key={index}
-              heading={alert.heading}
-              variant={alert.variant}
-              message={alert.message}
-              image={alert.image}
-            />
-          ))}
-
-        <Route path='/work_spaces/:id/create-review'>
-          <ReviewCreate
-            user={user}
-            alert={this.alert}
-            placeId={this.state.placeId}
-            placeData={this.state.placeData}
-            location={this.state.poiLocation}
-            data={this.state.allData}
-            currentWorkspace={this.state.currentWorkspace}
-            setApp={this.setState.bind(this)}
-          />
-        </Route>
-
-        <Route path='/workspace' render={() => (
-           <WorkSpace
-              data={this.state.currentWorkspace}
+          <Route path='/work_spaces/:id/create-review'>
+            <ReviewCreate
+              user={user}
+              alert={this.alert}
+              placeId={this.state.placeId}
               placeData={this.state.placeData}
+              location={this.state.poiLocation}
+              data={this.state.allData}
+              currentWorkspace={this.state.currentWorkspace}
+              setApp={this.setState.bind(this)}
             />
-         )} />
+          </Route>
 
-        <Route path='/sign-up' render={() => (
-           <SignUp alert={this.alert} setUser={this.setUser} />
-         )} />
+          <Route path='/workspace' render={() => (
+             <WorkSpace
+                data={this.state.currentWorkspace}
+                placeData={this.state.placeData}
+              />
+            )} />
 
-         <Route path='/sign-in' render={() => (
-            <SignIn user={user} alert={this.alert} setUser={this.setUser} />
-          )} />
+          <Route path='/sign-up' render={() => (
+             <SignUp alert={this.alert} setUser={this.setUser} />
+            )} />
+
+          <Route path='/sign-in' render={() => (
+              <SignIn user={user} alert={this.alert} setUser={this.setUser} />
+            )} />
 
           <Route user={user} path='/change-password' render={() => (
               <ChangePassword user={user} />
@@ -105,7 +103,7 @@ class App extends React.Component {
               <Header clearUser={this.clearUser} user={user} />
             )} />
 
-            <Route user={user} path='/create-workspace' render={() => (
+          <Route user={user} path='/create-workspace' render={() => (
             <WorkSpaceCreate
               user={user}
               placeId={this.state.placeId}
@@ -115,8 +113,8 @@ class App extends React.Component {
             />
           )} />
 
-          <Route user={user} exact path='/suggestions' render={() => (
-              <SuggestionsList data={this.state.allData} />
+        <Route user={user} path='/' render={() => (
+              <ListView />
             )} />
 
 
@@ -138,10 +136,9 @@ class App extends React.Component {
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}
             />
-
           </div>
-        </Route>
-      </Fragment>
+          </Route>
+        </Fragment>
       </div>
 
 

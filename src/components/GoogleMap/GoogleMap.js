@@ -67,7 +67,6 @@ class GoogleMap extends React.Component {
         const lng = props.data.lng
         const placeId = marker.data.place_id
         this.setState({ selectedMarker: marker, showWindow: true })
-        // console.log(marker.data)
         this.props.setApp({ currentWorkspace: marker.data, placeData: null })
         this.setNewLocation({ lat, lng }, placeId)
         this.getPlaceDetails(props.map, placeId)
