@@ -18,6 +18,7 @@
     "react-places-autocomplete": "^7.2.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.1",
+    "react-star-rating-component": "^1.4.1",
     "sass": "^1.26.3"
   },
   "scripts": {
