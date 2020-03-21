@@ -209,138 +209,161 @@ import Button from 'react-bootstrap/Button'
 
         <Form.Group className="question">
           <Form.Label className="question-header" htmlFor="wifi">How was the Wifi?*</Form.Label>
-          <Form.Check
-            type="radio"
-            label="None"
-            value="0"
-            checked={this.state.wifi === '0'}
-            name="wifi"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Slow"
-            value="1"
-            checked={this.state.wifi === '1'}
-            name="wifi"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Spotty"
-            value="2.5"
-            checked={this.state.wifi === '2.5'}
-            name="wifi"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Fast!"
-            value="5"
-            checked={this.state.wifi === '5'}
-            name="wifi"
-            onChange={this.handleChange}
-          />
+          <div className="d-flex">
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="None"
+              value="0"
+              checked={this.state.wifi === '0'}
+              name="wifi"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Slow"
+              value="1"
+              checked={this.state.wifi === '1'}
+              name="wifi"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Spotty"
+              value="2.5"
+              checked={this.state.wifi === '2.5'}
+              name="wifi"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Fast!"
+              value="5"
+              checked={this.state.wifi === '5'}
+              name="wifi"
+              onChange={this.handleChange}
+            />
+          </div>
         </Form.Group>
 
         <Form.Group className="question">
           <Form.Label className="question-header" htmlFor="name">How noisy was it?*</Form.Label>
-          <Form.Check
-            type="radio"
-            label="Quiet"
-            value="1"
-            checked={this.state.noise === '1'}
-            name="noise"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Moderate"
-            value="2.5"
-            checked={this.state.noise === '2.5'}
-            name="noise"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Loud"
-            value="5"
-            checked={this.state.noise === '5'}
-            name="noise"
-            onChange={this.handleChange}
-          />
+          <div className="d-flex">
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Quiet"
+              value="1"
+              checked={this.state.noise === '1'}
+              name="noise"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Moderate"
+              value="2.5"
+              checked={this.state.noise === '2.5'}
+              name="noise"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Loud"
+              value="5"
+              checked={this.state.noise === '5'}
+              name="noise"
+              onChange={this.handleChange}
+            />
+          </div>
         </Form.Group>
 
         <Form.Group className="question">
           <Form.Label className="question-header" htmlFor="name">How were the bathrooms?*</Form.Label>
-          <Form.Check
-            type="radio"
-            label="None"
-            value="0"
-            checked={this.state.bathroom === '0'}
-            name="bathroom"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Messy"
-            value="1"
-            checked={this.state.bathroom === '1'}
-            name="bathroom"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Usable"
-            value="2.5"
-            checked={this.state.bathroom === '2.5'}
-            name="bathroom"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Great!"
-            value="5"
-            checked={this.state.bathroom === '5'}
-            name="bathroom"
-            onChange={this.handleChange}
-          />
+          <div className="d-flex">
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="None"
+              value="0"
+              checked={this.state.bathroom === '0'}
+              name="bathroom"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Messy"
+              value="1"
+              checked={this.state.bathroom === '1'}
+              name="bathroom"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Usable"
+              value="2.5"
+              checked={this.state.bathroom === '2.5'}
+              name="bathroom"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Great!"
+              value="5"
+              checked={this.state.bathroom === '5'}
+              name="bathroom"
+              onChange={this.handleChange}
+            />
+          </div>
         </Form.Group>
 
         <Form.Group className="question">
           <Form.Label className="question-header" htmlFor="seating">What was the seating like?*</Form.Label>
-          <Form.Check
-            type="radio"
-            label="None"
-            value="0"
-            checked={this.state.seating === '0'}
-            name="seating"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Very Little"
-            value="1"
-            checked={this.state.seating === '1'}
-            name="seating"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Adequate"
-            value="2.5"
-            checked={this.state.seating === '2.5'}
-            name="seating"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Lots!"
-            value="5"
-            checked={this.state.seating === '5'}
-            name="seating"
-            onChange={this.handleChange}
-          />
+          <div className="d-flex">
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="None"
+              value="0"
+              checked={this.state.seating === '0'}
+              name="seating"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Very Little"
+              value="1"
+              checked={this.state.seating === '1'}
+              name="seating"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Adequate"
+              value="2.5"
+              checked={this.state.seating === '2.5'}
+              name="seating"
+              onChange={this.handleChange}
+            />
+            <Form.Check
+              className="radio-toolbar"
+              type="radio"
+              label="Lots!"
+              value="5"
+              checked={this.state.seating === '5'}
+              name="seating"
+              onChange={this.handleChange}
+            />
+          </div>
         </Form.Group>
 
         <Form.Group className="question">
