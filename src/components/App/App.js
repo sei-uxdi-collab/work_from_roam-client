@@ -113,6 +113,8 @@ class App extends React.Component {
             />
           )} />
 
+
+
         <Route path='/'>
           <div className="App">
             <NavBar />

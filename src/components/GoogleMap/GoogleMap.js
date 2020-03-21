@@ -56,9 +56,9 @@ class GoogleMap extends React.Component {
         const poiLocation = { lat: props.data.lat, lng: props.data.lng }
         const mapCenter = poiLocation
         const placeId = marker.data.place_id
-        // set App state with workspace data and location
-        this.props.setApp({ placeData: null, currentWorkspace, poiLocation, mapCenter, placeId })
-        // get and set google place data
+        this.setState({ selectedMarker: marker, showWindow: true })
+        this.props.setApp({ currentWorkspace: marker.data, placeData: null })
+        this.setNewLocation({ lat, lng }, placeId)
         this.getPlaceDetails(props.map, placeId)
         // navigate to '/workspace' to render the component
         this.props.history.push('/workspace')

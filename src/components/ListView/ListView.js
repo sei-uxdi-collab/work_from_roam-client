@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react';
 <<<<<<< HEAD
 import './ListView.scss'
@@ -45,10 +46,20 @@ class ListView extends Component {
   headerText() {
     if (this.state.isPaneOpen == true) {
       return <p>List View</p>
+=======
+import React from 'react';
+
+class ListView extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      worskspaceList: ''
+>>>>>>> Addded initial code for ListView functionality. Need to figure out how to get it to display on the application, on all views.
     }
   }
 
   render () {
+<<<<<<< HEAD
 
     return (
 <<<<<<< HEAD
@@ -80,6 +91,11 @@ class ListView extends Component {
           </div>
         </SlidingPane>
 >>>>>>> Incorporated scrolling pane to ListView. Still need to figure out how to add populated carousel inside, and a few sytling details.
+=======
+    return (
+      <div className='list-view'>
+        <h3>List View</h3>
+>>>>>>> Addded initial code for ListView functionality. Need to figure out how to get it to display on the application, on all views.
       </div>
     )
   }
