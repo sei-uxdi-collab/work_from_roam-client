@@ -29,6 +29,11 @@ import Button from 'react-bootstrap/Button'
       }
     }
 
+    // reset placeData and poiLocation if component unmounts
+    componentWillUnmount = () => {
+      this.props.setApp({ placeData: null, poiLocation: null, placeId: null })
+    }
+
     componentDidMount(props) {
       console.log('reviewform data' + this.props.placeData)
     }
@@ -85,11 +90,7 @@ import Button from 'react-bootstrap/Button'
 
       if (this.props.placeData && this.props.placeData.photos) {
         placeImage =  this.props.placeData.photos[0].getUrl()
-
-}
-
-
-      console.log(placeImage)
+      }
 
         if (!this.props.user) {
           return (<Redirect to='/sign-in'/>)
@@ -107,7 +108,9 @@ import Button from 'react-bootstrap/Button'
             <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
           </Link>
 
-          <h1> Review {placeName}</h1>
+          <h1>{placeName}</h1>
+
+          <img width={'90%'} alt={'pic'} src={placeImage || '../../loading-cat.gif'} />
           <Button type="submit" onClick={this.handleSubmit}> Create New WorkSpace </Button>
       </div>
       )
