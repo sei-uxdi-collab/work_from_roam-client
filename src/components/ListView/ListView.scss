@@ -1,11 +1,21 @@
+$white: #ffffff;
+$wfrBlue: #4775ff;
+
 .list-view {
-  height: 100px;
-  position: absolute;
-  // left: 0%;
-  // right: 0%;
-  // top: 0%;
-  // bottom: 0%;
-  background: #4775FF;
+  justify-content: center;
+  display: block;
+  height: 2rem;
+  background-color: $wfrBlue;
   border-radius: 10px 10px 0px 0px;
-  z-index: 11;
+  z-index: 12;
+  width: 80%;
+  position: absolute;
+  // wonky bit of css needed to center the element with position: absolute
+  bottom: 0;
+  left: 50%;
+  margin-left: -40%;
+
+  p {
+    color: $white;
+  }
 }

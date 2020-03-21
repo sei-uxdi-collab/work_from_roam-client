@@ -111,12 +111,7 @@ class App extends React.Component {
               location={this.state.poiLocation}
               setApp={this.setState.bind(this)}
             />
-          )} />
-
-        <Route user={user} path='/' render={() => (
-              <ListView />
-            )} />
-
+        )} />
 
         <Route path='/'>
           <div className="App">
@@ -136,6 +131,7 @@ class App extends React.Component {
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}
             />
+            <ListView />
           </div>
           </Route>
         </Fragment>

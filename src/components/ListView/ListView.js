@@ -1,17 +1,19 @@
 import React from 'react';
+import './ListView.scss'
 
 class ListView extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      worskspaceList: ''
+      worskspaceList: '',
+      expanded: false
     }
   }
 
   render () {
     return (
       <div className='list-view'>
-        <h3>List View</h3>
+        <p>List View</p>
       </div>
     )
   }
