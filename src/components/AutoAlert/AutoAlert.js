@@ -32,6 +32,7 @@ class AutoAlert extends React.Component {
         show={this.state.show}
         variant={variant}
         onClose={this.handleClose}
+        onClick={this.handleClose}
       >
         <div className="container">
           <Alert.Heading style={{ textAlign: 'center', color: 'grey' }}>
