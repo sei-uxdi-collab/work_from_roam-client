@@ -40,7 +40,7 @@ class GoogleMap extends React.Component {
         })
     }
 
-    placeDetails = ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews']
+    placeDetails = ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews', 'opening_hours']
 
     setPlaceData = placeData => {
         this.props.setApp({ placeData })
@@ -59,7 +59,7 @@ class GoogleMap extends React.Component {
         const placeId = marker.data.place_id
         // set App state with workspace data and location
         this.props.setApp({ placeData: null, currentWorkspace, poiLocation, mapCenter, placeId })
-        // get and set google place data 
+        // get and set google place data
         this.getPlaceDetails(props.map, placeId)
         // navigate to '/workspace' to render the component
         this.props.history.push('/workspace')
@@ -89,7 +89,7 @@ class GoogleMap extends React.Component {
         const mapCenter = poiLocation
         // turn infoWindow on and immediately off
         this.setState({ showPOI: true })
-        this.setState({ showPOI: false })    
+        this.setState({ showPOI: false })
         // center the map, set poiLocation and poi placeId
         this.props.setApp({ mapCenter, poiLocation, placeId })
 
@@ -100,7 +100,7 @@ class GoogleMap extends React.Component {
     handleClick = (props, map, event) => {
         // if user clicks on a point of interest (poi)
         if (event.placeId) {
-            this.handlePOI(map, event)           
+            this.handlePOI(map, event)
         } else {
             this.navigateHome()
         }
@@ -120,7 +120,7 @@ class GoogleMap extends React.Component {
                 onClick={this.handleClick}
                 className='google-map'
             >
-                
+
             {/* info window to overwrite default poi locations */}
             <InfoWindow
                 position={this.props.poiLocation}
@@ -133,7 +133,7 @@ class GoogleMap extends React.Component {
                 icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
             />
 
-            <Marker 
+            <Marker
                 name={'search result'}
                 position={this.props.searchLocation}
                 icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
@@ -150,7 +150,7 @@ class GoogleMap extends React.Component {
                     data={workSpace}
                     name={'Current location'}
                 />
-            ))}         
+            ))}
 
             </Map>
         )
