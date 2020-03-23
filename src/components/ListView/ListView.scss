@@ -18,6 +18,7 @@ $wfrBlue: #4775ff;
 
   p {
     color: $white;
+    margin-top: .25rem;
   }
 =======
 .list-view {
@@ -31,4 +32,9 @@ $wfrBlue: #4775ff;
   border-radius: 10px 10px 0px 0px;
   z-index: 11;
 >>>>>>> Addded initial code for ListView functionality. Need to figure out how to get it to display on the application, on all views.
+}
+
+.list-view-expand {
+  background-color: $wfrBlue;
+  height: 5rem;
 }

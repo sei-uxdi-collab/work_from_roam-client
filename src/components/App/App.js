@@ -111,7 +111,7 @@ class App extends React.Component {
               location={this.state.poiLocation}
               setApp={this.setState.bind(this)}
             />
-        )} />
+          )} />
 
         <Route path='/'>
           <div className="App">
