@@ -21,17 +21,29 @@
   }
 }
 
+// .workspaceCover {
+//   width: 328px;
+//   height: 219px;
+//   left: 24px;
+//   top: 159px;
+// }
+
 .workspaceImage {
   width: 328px;
-  height: 219px;
+  height: 152px;
   left: 24px;
-  top: 159px;
+  top: 193px;
+  // margin-top: 5%;
+  // margin-bottom: 10%;
+  // margin-left: 8%;
+  // border-radius: 10px;
 }
 
 .reviewButton {
   // display: flex;
   // flex-direction: row;
   float: left;
+  font-weight: 300;
   // padding: 8px 32px;
 
   // position: absolute;
@@ -45,12 +57,12 @@
   color: #000000;
 }
 
-.scroll {
-  height: 200px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 10px;
-}
+// .scroll {
+//   height: 200px;
+//   overflow-x: hidden;
+//   overflow-y: auto;
+//   padding: 10px;
+// }
 
 img {
   max-width: 250px;

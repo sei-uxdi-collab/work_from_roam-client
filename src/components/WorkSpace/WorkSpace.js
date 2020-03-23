@@ -103,7 +103,9 @@ class WorkSpace extends React.Component {
               <Link to='/'>
                 <h5 style={{ float: 'right' }}>X</h5>
               </Link>
+                <div className='workspaceCover'>
                 <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
+                </div>
                 <div className='work-space-div'>
                 <div>
                   <a
@@ -114,9 +116,11 @@ class WorkSpace extends React.Component {
                     rel="noopener noreferrer"
                     >
                     {this.props.placeData && this.props.placeData.name}
-                    </a> - Stars go here ({overall})<br />
-                    <p>{this.props.placeData && this.props.placeData.formatted_address}<br/>
-                    {this.props.placeData && this.props.placeData.name}</p>
+                    </a> - Stars go here ({overall})
+                    <br/>
+                    <p>{this.props.placeData && this.props.placeData.formatted_address}
+                    <br/>
+                    {this.props.placeData && this.props.placeData.opening_hours/weekday_text}</p>
 
                 </div>
                 <div>
@@ -154,7 +158,7 @@ class WorkSpace extends React.Component {
                 </div>
                 <br />
 
-                <div className="scroll" style={{ color: 'red', textAlign: 'center' }}>
+                <div>
                 {this.props.data.reviews.map(review => (
                   <Review
                     key={review.id}
