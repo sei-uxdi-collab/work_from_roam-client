@@ -40,7 +40,7 @@ class GoogleMap extends React.Component {
         })
     }
 
-    placeDetails = ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews']
+    placeDetails = ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews', 'opening_hours']
 
     setPlaceData = placeData => {
         this.props.setApp({ placeData })
