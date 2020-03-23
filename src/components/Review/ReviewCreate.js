@@ -21,13 +21,15 @@ import Button from 'react-bootstrap/Button'
         wifi: '',
         noise: 3,
         bathroom: 3,
-        coffee: '',
-        food: '',
-        outlet: '',
+        coffee: false,
+        food: false,
+        outlet: false,
         seating: '',
         display: 'block',
-        redirect: false
+        redirect: false,
+        isChecked: props.isChecked || false
       }
+      this.toggleChange = this.toggleChange.bind(this);
     }
 
     componentDidMount(props) {
@@ -37,6 +39,10 @@ import Button from 'react-bootstrap/Button'
     handleChange = (event) => {
       this.setState({ [event.target.name]: event.target.value })
       // console.log(event.target.value)
+    }
+
+    toggleChange = (event) => {
+      this.setState({ [event.target.name]: !this.state[event.target.name] })
     }
 
     handleSubmit = (event) => {
@@ -54,9 +60,9 @@ import Button from 'react-bootstrap/Button'
               noise: this.state.noise,
               bathroom: this.state.bathroom,
               seating: this.state.seating,
-              coffee: this.state.coffee,
-              outlet: this.state.outlet,
-              food: this.state.food,
+              coffee: this.state.coffee ? "5" : "0",
+              outlet: this.state.outlet ? "5" : "0",
+              food: this.state.food ? "5" : "0",
               wifi: this.state.wifi,
               note: this.state.review
             }
@@ -147,69 +153,47 @@ import Button from 'react-bootstrap/Button'
         </Form.Group>
 
         <h2 className="question-header">General Information</h2>
-        <Form.Group>
-          <Form.Label htmlFor="outlet">Outlets</Form.Label>
-          <Form.Check
-            type="radio"
-            label="YES"
-            value="5"
-            checked={this.state.outlet === '5'}
-            name="outlet"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="NO"
-            value="0"
-            checked={this.state.outlet === '0'}
-            name="outlet"
-            onChange={this.handleChange}
-          />
-        </Form.Group>
+        <Form.Row>
+          <Form.Group>
+            <Form.Check
+              inline
+              className="checkbox-toolbar"
+              type="checkbox"
+              label="Outlets"
+              onChange={this.toggleChange}
+              name="outlet"
+              id="outlet"
+            />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label htmlFor="coffee">Coffee</Form.Label>
-          <Form.Check
-            type="radio"
-            label="YES"
-            value="5"
-            checked={this.state.coffee === '5'}
-            name="coffee"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="NO"
-            value="0"
-            checked={this.state.coffee === '0'}
-            name="coffee"
-            onChange={this.handleChange}
-          />
-        </Form.Group>
+          <Form.Group>
+            <Form.Check
+              inline
+              className="checkbox-toolbar"
+              type="checkbox"
+              label="Coffee"
+              onChange={this.toggleChange}
+              name="coffee"
+              id="coffee"
+            />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label htmlFor="food">Food</Form.Label>
-          <Form.Check
-            type="radio"
-            label="YES"
-            value="5"
-            checked={this.state.food === '5'}
-            name="food"
-            onChange={this.handleChange}
-          />
-          <Form.Check
-            type="radio"
-            label="NO"
-            value="0"
-            checked={this.state.food === '0'}
-            name="food"
-            onChange={this.handleChange}
-          />
-        </Form.Group>
+          <Form.Group>
+            <Form.Check
+              inline
+              className="checkbox-toolbar"
+              type="checkbox"
+              label="Food"
+              onChange={this.toggleChange}
+              name="food"
+              id="food"
+            />
+          </Form.Group>
+        </Form.Row>
 
         <Form.Group className="question">
           <Form.Label className="question-header" htmlFor="wifi">How was the Wifi?*</Form.Label>
-          <div className="d-flex">
+          <Form.Row>
             <Form.Check
               className="radio-toolbar"
               type="radio"
@@ -218,6 +202,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.wifi === '0'}
               name="wifi"
               onChange={this.handleChange}
+              id="wifi1"
             />
             <Form.Check
               className="radio-toolbar"
@@ -227,6 +212,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.wifi === '1'}
               name="wifi"
               onChange={this.handleChange}
+              id="wifi2"
             />
             <Form.Check
               className="radio-toolbar"
@@ -236,6 +222,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.wifi === '2.5'}
               name="wifi"
               onChange={this.handleChange}
+              id="wifi3"
             />
             <Form.Check
               className="radio-toolbar"
@@ -245,13 +232,14 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.wifi === '5'}
               name="wifi"
               onChange={this.handleChange}
+              id="wifi4"
             />
-          </div>
+          </Form.Row>
         </Form.Group>
 
         <Form.Group className="question">
           <Form.Label className="question-header" htmlFor="name">How noisy was it?*</Form.Label>
-          <div className="d-flex">
+          <Form.Row>
             <Form.Check
               className="radio-toolbar"
               type="radio"
@@ -260,6 +248,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.noise === '1'}
               name="noise"
               onChange={this.handleChange}
+              id="noise1"
             />
             <Form.Check
               className="radio-toolbar"
@@ -269,6 +258,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.noise === '2.5'}
               name="noise"
               onChange={this.handleChange}
+              id="noise2"
             />
             <Form.Check
               className="radio-toolbar"
@@ -278,13 +268,14 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.noise === '5'}
               name="noise"
               onChange={this.handleChange}
+              id="noise3"
             />
-          </div>
+          </Form.Row>
         </Form.Group>
 
         <Form.Group className="question">
           <Form.Label className="question-header" htmlFor="name">How were the bathrooms?*</Form.Label>
-          <div className="d-flex">
+          <Form.Row>
             <Form.Check
               className="radio-toolbar"
               type="radio"
@@ -293,6 +284,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.bathroom === '0'}
               name="bathroom"
               onChange={this.handleChange}
+              id="bathroom1"
             />
             <Form.Check
               className="radio-toolbar"
@@ -302,6 +294,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.bathroom === '1'}
               name="bathroom"
               onChange={this.handleChange}
+              id="bathroom2"
             />
             <Form.Check
               className="radio-toolbar"
@@ -311,6 +304,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.bathroom === '2.5'}
               name="bathroom"
               onChange={this.handleChange}
+              id="bathroom3"
             />
             <Form.Check
               className="radio-toolbar"
@@ -320,13 +314,14 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.bathroom === '5'}
               name="bathroom"
               onChange={this.handleChange}
+              id="bathroom4"
             />
-          </div>
+          </Form.Row>
         </Form.Group>
 
         <Form.Group className="question">
           <Form.Label className="question-header" htmlFor="seating">What was the seating like?*</Form.Label>
-          <div className="d-flex">
+          <Form.Row>
             <Form.Check
               className="radio-toolbar"
               type="radio"
@@ -335,6 +330,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.seating === '0'}
               name="seating"
               onChange={this.handleChange}
+              id="seating1"
             />
             <Form.Check
               className="radio-toolbar"
@@ -344,6 +340,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.seating === '1'}
               name="seating"
               onChange={this.handleChange}
+              id="seating2"
             />
             <Form.Check
               className="radio-toolbar"
@@ -353,6 +350,7 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.seating === '2.5'}
               name="seating"
               onChange={this.handleChange}
+              id="seating3"
             />
             <Form.Check
               className="radio-toolbar"
@@ -362,8 +360,9 @@ import Button from 'react-bootstrap/Button'
               checked={this.state.seating === '5'}
               name="seating"
               onChange={this.handleChange}
+              id="seating4"
             />
-          </div>
+          </Form.Row>
         </Form.Group>
 
         <Form.Group className="question">
@@ -376,10 +375,11 @@ import Button from 'react-bootstrap/Button'
             value={this.state.review}
             name="review"
             onChange={this.handleChange}
+            id="review"
           />
         </Form.Group>
 
-        <Button type="submit" className="submit-button"> Submit </Button>
+        <Button className="submit-button" type="submit"> Submit </Button>
         </Form>
         </div>
       </div>
