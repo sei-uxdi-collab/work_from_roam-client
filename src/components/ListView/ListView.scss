@@ -34,7 +34,13 @@ $wfrBlue: #4775ff;
 >>>>>>> Addded initial code for ListView functionality. Need to figure out how to get it to display on the application, on all views.
 }
 
-.list-view-expand {
+.list-pane {
   background-color: $wfrBlue;
-  height: 5rem;
+  height: 35%;
+  width: 80%;
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -40%;
 }

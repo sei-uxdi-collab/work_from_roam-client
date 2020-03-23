@@ -5,8 +5,7 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
-import PlacesDetail from '../PlacesDetail/PlacesDetail'
-// import SuggestionsList from './SuggestionsList/SuggestionsList.js'
+// import PlacesDetail from '../PlacesDetail/PlacesDetail'
 import './GoogleMap.scss'
 
 
