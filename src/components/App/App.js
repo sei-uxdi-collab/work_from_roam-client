@@ -12,8 +12,8 @@ import SignOut from '../SignOut/SignOut'
 import Header from '../Header/Header'
 import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
-import SuggestionsList from '../SuggestionsList/SuggestionsList.js'
 import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
+import ListView from '../ListView/ListView.js'
 
 import './App.scss'
 
@@ -115,9 +115,6 @@ class App extends React.Component {
             />
           )} />
 
-          <Route user={user} exact path='/suggestions' render={() => (
-              <SuggestionsList data={this.state.allData} />
-            )} />
 
 
         <Route path='/'>
@@ -138,7 +135,7 @@ class App extends React.Component {
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}
             />
-
+            <ListView />
           </div>
         </Route>
       </Fragment>
