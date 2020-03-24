@@ -120,7 +120,7 @@ class WorkSpace extends React.Component {
                     <br/>
                     <p>{this.props.placeData && this.props.placeData.formatted_address}
                     <br/>
-                    {this.props.placeData && this.props.placeData.opening_hours/weekday_text}</p>
+                    {this.props.placeData && this.props.placeData.opening_hours.weekday_text}</p>
 
                 </div>
                 <div>
@@ -161,6 +161,7 @@ class WorkSpace extends React.Component {
                 <div>
                 {this.props.data.reviews.map(review => (
                   <Review
+                    user={this.props.data.user.email}
                     key={review.id}
                     rating={review.rating}
                     wifi={review.wifi}

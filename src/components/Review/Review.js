@@ -12,8 +12,8 @@ class Review extends React.Component {
     render() {
         return (
             <div style={{ borderStyle: 'double'}}>
-            <p>User Rating: {this.props.rating}</p>
-              <p>Note: {this.props.note}</p>
+            <p>{this.props.user}: Stars here{this.props.rating}</p>
+              <p>{this.props.note}</p>
             </div>
         )
     }
