@@ -72,7 +72,7 @@ import Button from 'react-bootstrap/Button'
           }
         })
         .then(data => {
-          console.log(data)
+          // console.log(data)
           axios(apiUrl + '/work_spaces')
             .then(data => {
                 // console.log(data)
