@@ -99,6 +99,25 @@ class WorkSpace extends React.Component {
         foodStyle = true
       }
 
+      let openingHrsToday
+      let today = new Date()
+      let day = today.getDay()
+      if (day === 0) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[6]
+      } else if (day === 1) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[0]
+      } else if (day === 2) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[1]
+      } else if (day === 3) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[2]
+      } else if (day === 4) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[3]
+      } else if (day === 5) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[4]
+      } else if (day === 6) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[5]
+      }
+
         return (
             <div className='workspace' style={this.state.display}>
               <Link to='/'>
@@ -124,8 +143,9 @@ class WorkSpace extends React.Component {
                      emptyStarColor='#4775FF'
                     />
                     </div>
-                    <p>{this.props.placeData && this.props.placeData.formatted_address}
-                    {this.props.placeData && this.props.placeData.opening_hours.weekday_text}</p>
+                    <p>{this.props.placeData && this.props.placeData.formatted_address}</p>
+                    <p>{openingHrsToday}</p>
+
 
                 </div>
                 <div>
