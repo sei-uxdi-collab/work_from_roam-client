@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'react-bootstrap'
+// Component imports
+import WorkspaceCarousel from './WorkspaceCarousel'
+
+// Styling imports
 import './ListView.scss'
 
 class ListView extends Component {
@@ -25,14 +30,18 @@ class ListView extends Component {
     }
 
     return (
-      <div className='list-view' id={visible} isListOpen={this.state.isListOpen}>
-        <div className='list-header' onClick={this.toggleListView}>
-          <p>List View</p>
-        </div>
-        <div className='list-content'>
-          <h4>List of Workspaces</h4>
-        </div>
-      </div>
+      <Container className='list-container' fluid id={visible}  isListOpen={this.state.isListOpen}>
+        <Row>
+          <Col className='list-view' sm={6} md={5} lg={4}>
+            <div className='list-header' onClick={this.toggleListView}>
+              <p>List View</p>
+            </div>
+            <div className='list-content'>
+              <WorkspaceCarousel />
+            </div>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 
