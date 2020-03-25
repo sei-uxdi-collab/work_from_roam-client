@@ -1,4 +1,29 @@
 // this should be actually be a vector for an X, for now it's just a letter X
+
+.checkbox-toolbar label {
+    background-color: #FFF;
+    padding: 4px 16px;
+    font-family: Roboto;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 150%;
+    border-radius: 33px;
+    margin-left: .6vw;
+}
+
+.checkbox-toolbar input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.checkbox-toolbar input[type="checkbox"]:checked+ label {
+    background-color:#FFCC47;
+    color: #FFF;
+    font-weight: bold;
+}
+
 .close-window {
   background-color: #4775FF;
   border: none;
@@ -18,11 +43,12 @@
   align-items: center;
   color: #FFF;
   font-family: Roboto;
-  font-size: 1.6vw;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 300;
   justify-content: center;
   line-height: 150%;
+  margin-top: 20px;
   position: inherit;
   text-align: center;
   top: 2rem;
@@ -37,7 +63,7 @@
   align-items: center;
   color: #FFF;
   font-family: Roboto;
-  font-size: 1.5vw;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: 300;
   justify-content: center;
@@ -45,36 +71,6 @@
   position: inherit;
   text-align: left;
   top: 2rem;
-}
-
-.checkbox-toolbar input[type="checkbox"] {
-  opacity: 0;
-  position: absolute;
-  width: 0;
-}
-
-.checkbox-toolbar label {
-    background-color: #FFF;
-    padding: 4px 16px;
-    font-family: Roboto;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 150%;
-    border-radius: 33px;
-    margin-left: .6vw;
-}
-
-.checkbox-toolbar input[type="checkbox"]:checked+ label {
-    background-color:#FFCC47;
-    color: #FFF;
-    font-weight: bold;
-}
-
-.radio-toolbar input[type="radio"] {
-  opacity: 0;
-  position: absolute;
-  width: 0;
 }
 
 .radio-toolbar label {
@@ -89,6 +85,12 @@
     border-radius: 33px;
 }
 
+.radio-toolbar input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
 .radio-toolbar input[type="radio"]:checked+ label {
     background-color:#FFCC47;
     color: #FFF;
@@ -97,7 +99,7 @@
 
 .review-form {
   background: #4775FF;
-  border-radius: 33px;
+  border-radius: 12px;
   box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.15);
   height: 80vh;
   justify-content: center;
@@ -106,7 +108,8 @@
   position: fixed;
   top: 50%;
   transform: translate(-50%, -45%);
-  width: 360px;
+  min-width: 360px;
+  width: 33%;
   z-index: 1;
 }
 
@@ -124,6 +127,7 @@
   float: right;
   font-weight: 300;
   font-size: 13px;
+  margin-right: 15px;
 }
 
 // Stars CSS
@@ -141,3 +145,25 @@
     // color: #FFCC47 !important;
   }
 }
+
+// @media only screen
+//   and (min-device-width: 320px)
+//   and (max-device-width: 568px)
+//   and (-webkit-min-device-pixel-ratio: 2) {
+//
+//   .checkbox-toolbar label {
+//     font-size: 13px;
+//   }
+//
+//   .main-header {
+//     font-size: 12px;
+//   }
+//
+//   .radio-toolbar label {
+//     font-size: 13px;
+//   }
+//
+//   .review-form {
+//     width: 320px;
+//   }
+// }
