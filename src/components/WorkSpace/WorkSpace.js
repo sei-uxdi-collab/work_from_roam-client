@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
 import Review from '../Review/Review'
+import { StarRating } from '../Review/StarsRating'
 
 import './WorkSpace.scss'
 
@@ -116,10 +117,14 @@ class WorkSpace extends React.Component {
                     rel="noopener noreferrer"
                     >
                     {this.props.placeData && this.props.placeData.name}
-                    </a> - Stars go here ({overall})
-                    <br/>
+                    </a>
+                    <div className='starRating' style={{ cursor: 'none'}}>
+                    <StarRating
+                     value={overall}
+                     emptyStarColor='#4775FF'
+                    />
+                    </div>
                     <p>{this.props.placeData && this.props.placeData.formatted_address}
-                    <br/>
                     {this.props.placeData && this.props.placeData.opening_hours.weekday_text}</p>
 
                 </div>
