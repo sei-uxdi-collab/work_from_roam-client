@@ -72,7 +72,7 @@ import Button from 'react-bootstrap/Button'
           }
         })
         .then(data => {
-          // console.log(data)
+          console.log(data)
           axios(apiUrl + '/work_spaces')
             .then(data => {
                 // console.log(data)
@@ -138,25 +138,17 @@ import Button from 'react-bootstrap/Button'
       <div className="review-scroll">
       <h1 className="main-header">Give {placeName} a review!</h1>
       <Form onSubmit={this.handleSubmit}>
-      {/* This is where the star rating will go
-        < StarComponent />
-        */}
-        <Form.Group>
-          <Form.Label htmlFor="name">Overall Rating:</Form.Label>
+        <Form.Group className="stars">
           <StarRating
             value={this.state.rating}
             onStarClick= {(val) => this.setState({ rating: val })}
-
         />
-
-          <span>{this.state.rating}</span>
         </Form.Group>
 
         <h2 className="question-header">General Information</h2>
-        <Form.Row>
+        <Form.Row className="gen-info-options">
           <Form.Group>
             <Form.Check
-              inline
               className="checkbox-toolbar"
               type="checkbox"
               label="Outlets"
@@ -168,7 +160,6 @@ import Button from 'react-bootstrap/Button'
 
           <Form.Group>
             <Form.Check
-              inline
               className="checkbox-toolbar"
               type="checkbox"
               label="Coffee"
@@ -180,7 +171,6 @@ import Button from 'react-bootstrap/Button'
 
           <Form.Group>
             <Form.Check
-              inline
               className="checkbox-toolbar"
               type="checkbox"
               label="Food"
@@ -191,7 +181,7 @@ import Button from 'react-bootstrap/Button'
           </Form.Group>
         </Form.Row>
 
-        <Form.Group className="question">
+        <Form.Group className="question mt-0">
           <Form.Label className="question-header" htmlFor="wifi">How was the Wifi?*</Form.Label>
           <Form.Row>
             <Form.Check
