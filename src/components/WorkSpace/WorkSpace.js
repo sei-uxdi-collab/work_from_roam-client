@@ -136,22 +136,23 @@ class WorkSpace extends React.Component {
                 </div>
                 <div className='work-space-div'>
                 <div>
+                <div className='starRating'>
+                <StarRating
+                 value={overall}
+                 emptyStarColor='#4775FF'
+                 editing={false}
+                />
+                </div>
                   <a
                     className='link'
-                    style={{ textDecoration: 'none', color: 'white', fontSize: '18px', fontWeight: '500', lineHeight: '150%' }}
+                    style={{ textDecoration: 'none', color: 'white', fontSize: '17px', fontWeight: '500', lineHeight: '150%' }}
                     href={this.props.placeData && this.props.placeData.website}
                     target='_blank'
                     rel="noopener noreferrer"
                     >
                     {this.props.placeData && this.props.placeData.name}
                     </a>
-                    <div className='starRating'>
-                    <StarRating
-                     value={overall}
-                     emptyStarColor='#4775FF'
-                     editing={false}
-                    />
-                    </div>
+
                     <p>{this.props.placeData && this.props.placeData.formatted_address}</p>
                     <div>
                     {!this.state.hours && <p
