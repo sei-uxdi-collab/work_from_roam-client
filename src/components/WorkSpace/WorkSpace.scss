@@ -15,10 +15,8 @@
   // height: 700px;
   z-index: 12;
 
-  p {
-    font-size: 15px;
-    font-weight: 300;
-  }
+  font-size: 15px;
+  font-weight: 300;
 }
 
 // .workspaceCover {
@@ -40,15 +38,21 @@
 }
 
 .starRating {
-  cursor: none;
-  float: right
+  float: right;
+}
+
+.vecStyle {
+  float: right;
+  margin: 6px;
 }
 
 .reviewButton {
   // display: flex;
   // flex-direction: row;
   float: left;
+  font-size: 16px;
   font-weight: 300;
+  line-height: 150%;
   // padding: 8px 32px;
 
   // position: absolute;
