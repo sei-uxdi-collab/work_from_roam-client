@@ -3,18 +3,17 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
 import Review from '../Review/Review'
+import { StarRating } from '../Review/StarsRating'
 
 import './WorkSpace.scss'
-
-// import TestButton from './TestButton'
-
 
 class WorkSpace extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             test: true,
-            filters: false
+            filters: false,
+            hours: false
         }
     }
 
@@ -27,12 +26,21 @@ class WorkSpace extends React.Component {
        this.setState({ filters: false })
      }
 
+    showHrs = () => {
+      this.setState({ hours: true })
+    }
+
+    notShowHrs = () => {
+      this.setState({ hours: false })
+    }
 
     // render information inside an infoWindow for POI
     render() {
       let photo = '../../loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
+      } else {
+        photo = '../../image_not_found.png'
       }
 
       if(this.props.data.reviews.length < 1) {
@@ -96,77 +104,114 @@ class WorkSpace extends React.Component {
         foodStyle = true
       }
 
+      // Conditionals for determining today's day and showing corresponding opening hours
+      let openingHrsToday
+      let today = new Date()
+      let day = today.getDay()
+      if (day === 0) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[6]
+      } else if (day === 1) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[0]
+      } else if (day === 2) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[1]
+      } else if (day === 3) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[2]
+      } else if (day === 4) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[3]
+      } else if (day === 5) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[4]
+      } else if (day === 6) {
+        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[5]
+      }
+
         return (
             <div className='workspace' style={this.state.display}>
               <Link to='/'>
                 <h5 style={{ float: 'right' }}>X</h5>
               </Link>
-                <br />
-                <br />
-                <br />
-              <div>
-                <img accept="*/*" height='150px' alt="work_space_pic" src={photo} />
-              </div>
-                <br />
-              <div className="work-space-div">
+
+                <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
+
+                <div className='work-space-div'>
                 <div>
-                  <h4 style={{ color: 'black' }}><a
-                    className="link"
-                    style={{ textDecoration: 'none' }}
+                <div className='starRating'>
+                <StarRating
+                 value={overall}
+                 emptyStarColor='#4775FF'
+                 editing={false}
+                />
+                </div>
+                  <a
+                    className='link'
+                    style={{ textDecoration: 'none', color: 'white', fontSize: '17px', fontWeight: '500', lineHeight: '150%' }}
                     href={this.props.placeData && this.props.placeData.website}
                     target='_blank'
                     rel="noopener noreferrer"
                     >
                     {this.props.placeData && this.props.placeData.name}
-                    </a> - Rating: {overall}<br />Address here<br />Hours here</h4>
+                    </a>
 
+                    <p>{this.props.placeData && this.props.placeData.formatted_address}</p>
+                    <div>
+                    {!this.state.hours && <p
+                      style={{ cursor: 'pointer' }}
+                      onClick={this.showHrs}>{openingHrsToday}<img alt='Click arrow for more hours' src={'../../arrowDwnVec.png'} className='vecStyle'/></p>}
+                    </div>
+                    {this.state.hours &&
+                      <div>
+                      <p onClick={this.notShowHrs}
+                         style={{ cursor: 'pointer' }}><img alt='Click arrow for less hours' src={'../../arrowUpVec.png'} className='vecStyle'/></p>
+                        <div>
+                          <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[0]}</p>
+                          <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[1]}</p>
+                          <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[2]}</p>
+                          <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[3]}</p>
+                          <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[4]}</p>
+                          <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[5]}</p>
+                          <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[6]}</p>
+                        </div>
+                      </div>}
                 </div>
+
                 <div>
-                  <h5>WIFI: {wifi}</h5>
-                  <h5>Noise: {noise}</h5>
-                  <h5>Seating: {seating}</h5>
-                  <h5>Bathroom: {bath}</h5>
-                  {!this.state.filters && <button
-                    style={{ float: 'right', border: 'none' }}
-                    onClick={this.show}
-                  >
-                  more
-                  </button>}
+                  <p>Wifi Quality {wifi}</p>
+                  <p>Noise {noise}</p>
+                  <p>Seating {seating}</p>
+                  <p>Bathroom {bath}</p>
+                  {!this.state.filters && <p
+                    style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Roboto' }}
+                    onClick={this.show}>more<img alt='Click arrow for more details' src={'../../arrowDwnVec.png'} className='vecStyle' style={{ paddingTop: '3px'}}/></p>}
                   {this.state.filters &&
                     <div>
-                      <button
-                        onClick={this.notshow}
-                        style={{ float: 'right', border: 'none' }}>
-                      less
-                      </button>
-                      <br />
-                      <br />
                       <div style={{ display: 'flex' }}>
-                        <button id="outlets" style={{ margin: '10px', color: outletStyle ? 'red' : 'blue' }}>outlets</button>
-                        <button id="coffee" style={{ margin: '10px', color: coffeeStyle ? 'red' : 'blue' }}>coffee</button>
-                        <button id="food" style={{ margin: '10px', color: foodStyle ? 'red' : 'blue' }}>food</button>
+                        <p id="outlets" style={{ margin: '10px', display: outletStyle ? 'visible' : 'none' }}>outlets</p>
+                        <p id="coffee" style={{ margin: '10px', display: coffeeStyle ? 'visible' : 'none' }}>coffee</p>
+                        <p id="food" style={{ margin: '10px', display: foodStyle ? 'visible' : 'none' }}>food</p>
                       </div>
+                      <p
+                        onClick={this.notshow}
+                        style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Roboto' }}>
+                      less<img alt='Click arrow for less details' src={'../../arrowUpVec.png'} className='vecStyle' style={{ paddingTop: '3px'}}/></p>
                     </div>}
-                </div>
-                <br />
-              <hr />
-                <div style={{ display: 'flex' }}>
-                  <div><h3 style={{ margin: '0px' }}>Reviews</h3></div>
-                  <div>
-                    <h4><Button
-                      style={{ float: 'right' }}
+                    <Button
+                      className='reviewButton'
                       data={this.props.data.id}
                       href={`#work_spaces/${this.props.data.id}/create-review`}
                     >
-                      Write a Review
-                    </Button></h4>
-                  </div>
+                      Leave a Review
+                    </Button>
+                </div>
+                <br />
+              <hr style={{ visibility: 'hidden', margin: '30px' }} />
+                <div style={{ display: 'flex' }}>
+                  <div><p style={{ margin: '0px', fontFamily: 'Roboto', fontSize: '16px', fontWeight: 'normal' }}>Reviews({this.props.data.reviews.length})</p></div>
                 </div>
                 <br />
 
-                <div className="scroll" style={{ color: 'red', textAlign: 'center' }}>
+                <div>
                 {this.props.data.reviews.map(review => (
                   <Review
+                    user={this.props.data.user.email}
                     key={review.id}
                     rating={review.rating}
                     wifi={review.wifi}

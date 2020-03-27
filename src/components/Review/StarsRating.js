@@ -3,7 +3,7 @@ import StarRatingComponent from "react-star-rating-component";
 
 export class StarRating extends Component {
   render() {
-    const { value, onStarClick, name } = this.props;
+    const { value, onStarClick, name, starColor, emptyStarColor, editing } = this.props;
 
     return (
       <StarRatingComponent
@@ -11,6 +11,9 @@ export class StarRating extends Component {
         starCount={5}
         value={value}
         onStarClick={onStarClick}
+        starColor={starColor}
+        emptyStarColor={emptyStarColor}
+        editing={editing}
       />
     );
   }
