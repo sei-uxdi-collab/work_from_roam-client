@@ -13,7 +13,8 @@ import Header from '../Header/Header'
 import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
 import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
-import ListView from '../ListView/ListView.js'
+import ListView from '../ListView/ListView'
+import WorkspaceFilter from '../WorkspaceFilter/WorkspaceFilter'
 
 import './App.scss'
 
@@ -119,10 +120,15 @@ class App extends React.Component {
 
         <Route path='/'>
           <div className="App">
-            <NavBar />
-            <Search setApp={this.setState.bind(this)}
-                    mapCenter={this.state.mapCenter}
-            />
+            <div className='search-group'>
+              <NavBar />
+              <div>
+                <Search setApp={this.setState.bind(this)}
+                        mapCenter={this.state.mapCenter}
+                />
+            </div>
+              <WorkspaceFilter />
+            </div>
             <GoogleMap
               center={this.state.mapCenter}
               coordinates={this.state.coordinates}
