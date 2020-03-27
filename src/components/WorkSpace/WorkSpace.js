@@ -7,9 +7,6 @@ import { StarRating } from '../Review/StarsRating'
 
 import './WorkSpace.scss'
 
-// import TestButton from './TestButton'
-
-
 class WorkSpace extends React.Component {
     constructor(props) {
         super(props)
@@ -107,6 +104,7 @@ class WorkSpace extends React.Component {
         foodStyle = true
       }
 
+      // Conditionals for determining today's day and showing corresponding opening hours
       let openingHrsToday
       let today = new Date()
       let day = today.getDay()
@@ -131,9 +129,9 @@ class WorkSpace extends React.Component {
               <Link to='/'>
                 <h5 style={{ float: 'right' }}>X</h5>
               </Link>
-                <div className='workspaceCover'>
+
                 <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
-                </div>
+
                 <div className='work-space-div'>
                 <div>
                 <div className='starRating'>
@@ -181,7 +179,7 @@ class WorkSpace extends React.Component {
                   <p>Seating {seating}</p>
                   <p>Bathroom {bath}</p>
                   {!this.state.filters && <p
-                    style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer' }}
+                    style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Roboto' }}
                     onClick={this.show}>more<img alt='Click arrow for more details' src={'../../arrowDwnVec.png'} className='vecStyle' style={{ paddingTop: '3px'}}/></p>}
                   {this.state.filters &&
                     <div>
@@ -192,7 +190,7 @@ class WorkSpace extends React.Component {
                       </div>
                       <p
                         onClick={this.notshow}
-                        style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer' }}>
+                        style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Roboto' }}>
                       less<img alt='Click arrow for less details' src={'../../arrowUpVec.png'} className='vecStyle' style={{ paddingTop: '3px'}}/></p>
                     </div>}
                     <Button
@@ -204,9 +202,9 @@ class WorkSpace extends React.Component {
                     </Button>
                 </div>
                 <br />
-              <hr />
+              <hr style={{ visibility: 'hidden', margin: '30px' }} />
                 <div style={{ display: 'flex' }}>
-                  <div><p style={{ margin: '0px', fontSize: '16px' }}>Reviews({this.props.data.reviews.length})</p></div>
+                  <div><p style={{ margin: '0px', fontFamily: 'Roboto', fontSize: '16px', fontWeight: 'normal' }}>Reviews({this.props.data.reviews.length})</p></div>
                 </div>
                 <br />
 
