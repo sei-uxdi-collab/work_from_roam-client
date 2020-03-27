@@ -25,18 +25,12 @@ class ListView extends Component {
     document.removeEventListener('mousedown', this.handleClick, false)
   }
 
-  handleClickOutside = event => {
-    this.setState({
-      isListOpen: false
-    })
-  }
-
   handleClick = event => {
-    if (this.list.contains(event.target)) {
+    if (this.node.contains(event.target)) {
       return
     }
 
-    this.handleClickOutside(e => this.setState({ isListOpen: false}))
+    this.setState({ isListOpen: false })
   }
   // --------------------
 
@@ -58,7 +52,7 @@ class ListView extends Component {
     return (
         <Container className='list-container' fluid id={visible} >
           <Row>
-            <Col className='list-view' sm={6} md={5} lg={4} ref={list => this.list = list}>
+            <Col className='list-view' sm={6} md={5} lg={4} ref={node => this.node = node}>
               <div className='list-header' onClick={this.toggleListView}>
                 <p>List View</p>
               </div>
