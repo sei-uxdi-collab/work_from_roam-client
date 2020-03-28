@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "bootstrap-switch-button-react": "^1.2.0",
     "gh-pages": "^2.2.0",
     "google-maps-react": "^2.0.2",
     "prop-types": "^15.7.2",

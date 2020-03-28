@@ -120,15 +120,17 @@ class App extends React.Component {
 
         <Route path='/'>
           <div className="App">
+          {/* Group makes up the search functions at the top of the page */}
             <div className='search-group'>
               <NavBar />
               <div>
                 <Search setApp={this.setState.bind(this)}
                         mapCenter={this.state.mapCenter}
                 />
-            </div>
+              </div>
               <WorkspaceFilter />
             </div>
+          {/* ~~~~~~~~~~~~~~~~~~~~ */}
             <GoogleMap
               center={this.state.mapCenter}
               coordinates={this.state.coordinates}
