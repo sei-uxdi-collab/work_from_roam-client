@@ -10,13 +10,51 @@
 //     margin-left: -180px
 // }
 .sign-in {
-    position: fixed;
-    z-index: 10;
-    background-color: white;
-    left: 50%;
-    top: 50%;
-    width: 360px;
-    /* height: 300px; */
-    transform: translate(-50%, -45%);
-    padding: 1rem
+  position: fixed;
+  z-index: 10;
+  background-color: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -45%);
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 1.3rem;
+  font-family: Roboto;
+  font-weight: 300;
+  text-align: center;
+}
+
+h2 {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.account-info {
+  background-color: #94AFFF;
+  border: none;
+  border-radius: 24px;
+  color: #222222;
+  font-family: Roboto;
+  font-weight: 300;
+}
+
+.close-window {
+  float: right;
+  border: none;
+}
+
+.submit-button {
+  background-color: #4775FF;
+  border-radius: 22px;
+  color: #FFF;
+  float: right;
+  font-family: Roboto;
+  margin-bottom: 2rem;
+  :hover {
+    background-color: #3c63d6;
+  }
 }
