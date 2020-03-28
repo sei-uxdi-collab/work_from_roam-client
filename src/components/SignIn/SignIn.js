@@ -56,13 +56,13 @@ class SignIn extends Component {
 
         <div className="row" style={{ float: "right"}}>
         <Link to='/'>
-          <button className="close-window m-2" onClick={this.closeWindow}> <img src="close-x.png" alt="close"/> </button>
+          <button className="close-window m-3" onClick={this.closeWindow}> <img src="close-x.png" alt="close"/> </button>
         </Link>
         </div>
 
         <div className="mt-3 p-4">
           <h1>Log in to post a review!</h1>
-          <h2 className="mt-3">Don't have an account? <a href="#sign-up">Sign Up</a></h2>
+          <h2 className="mt-3">Don't have an account? <a href="#sign-up" className="link">Sign Up</a></h2>
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId="email" className="mt-4">
               <Form.Control
@@ -71,7 +71,7 @@ class SignIn extends Component {
                 type="email"
                 name="email"
                 value={email}
-                placeholder="Enter email"
+                placeholder="Email"
                 onChange={this.handleChange}
               />
             </Form.Group>
