@@ -87,10 +87,9 @@ class GoogleMap extends React.Component {
         const placeId = event.placeId
         const poiLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
         const mapCenter = poiLocation
-        // turn infoWindow on and immediately off
+        // turn infoWindow on to overwrite default poi window
         this.setState({ showPOI: true })
-        this.setState({ showPOI: false })    
-        // center the map, set poiLocation and poi placeId
+  
         this.props.setApp({ mapCenter, poiLocation, placeId })
 
         this.getPlaceDetails(map, placeId)
@@ -117,6 +116,7 @@ class GoogleMap extends React.Component {
                 initialCenter={this.props.center}
                 zoom={14}
                 clickableIcons={true}
+                options={{gesturHandling: 'greedy'}}
                 onClick={this.handleClick}
                 className='google-map'
             >
