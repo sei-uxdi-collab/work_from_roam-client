@@ -5,9 +5,13 @@ import { signIn } from '../../api/auth'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import TextField from '@material-ui/core/TextField'
+
 
 import './SignIn.scss'
 import messages from '../AutoAlert/messages'
+
+import PasswordInput from '../PasswordShowHide/PasswordShowHide'
 
 class SignIn extends Component {
   constructor () {
@@ -54,18 +58,17 @@ class SignIn extends Component {
     return (
       <div className="container popup">
 
-        <div className="row" style={{ float: "right"}}>
-        <Link to='/'>
-          <button className="close-window m-3" onClick={this.closeWindow}> <img src="close-x.png" alt="close"/> </button>
+        <Link to='/' className="row close-window m3" style={{ float: "right"}} onClick={this.closeWindow}>
+          <img src="close-x-blue.png" alt="close"/>
         </Link>
-        </div>
 
         <div className="mt-3 p-4">
           <h1>Log in to post a review!</h1>
           <h2 className="mt-3">Don't have an account? <a href="#sign-up" className="link">Sign Up</a></h2>
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId="email" className="mt-4">
-              <Form.Control
+              <TextField
+                fullWidth="true"
                 className="account-info"
                 required
                 type="email"
@@ -73,19 +76,26 @@ class SignIn extends Component {
                 value={email}
                 placeholder="Email"
                 onChange={this.handleChange}
+                InputProps={{
+                  disableUnderline: true,
+                  "aria-label": "Email",
+                }}
               />
             </Form.Group>
             <Form.Group controlId="password">
-              <Form.Control
-                className="account-info"
+              <PasswordInput
+                fullWidth="true"
+                className="account-info password"
                 required
                 name="password"
                 value={password}
-                type="password"
                 placeholder="Password"
                 onChange={this.handleChange}
               />
             </Form.Group>
+            <Link to='/' className="cancel-button m-3" onClick={this.closeWindow}>
+              Cancel
+            </Link>
             <Button
               variant="primary"
               type="submit"
