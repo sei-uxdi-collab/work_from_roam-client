@@ -76,6 +76,8 @@ const WorkspaceFilter = props => {
               <p>Do you want coffee?</p>
               <BootstrapSwitchButton
                 checked={filters.coffee}
+                onstyle='primary'
+                offstyle='danger'
                 onlabel='Yes'
                 offlabel='No'
                 size='xs'
