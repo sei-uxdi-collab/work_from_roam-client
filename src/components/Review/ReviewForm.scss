@@ -29,6 +29,9 @@
   border: none;
   color: #FFF;
   font-size: 1.3vw;
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
 
 .form-check {
@@ -128,6 +131,7 @@
   font-weight: 300;
   font-size: 13px;
   margin-right: 15px;
+  margin-top: 1rem;
 }
 
 // Stars CSS
