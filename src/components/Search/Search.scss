@@ -1,23 +1,13 @@
-.search-bar {
-    position: absolute;
-    z-index: 10;
-
-}
 .search-bar input {
-    position: absolute;
+    display: inline-flex;
     height: 36px !important;
-    width: calc(100vw - 90px) !important;
-    // margin-left: 80px;
-    // margin-top: 10px;
-    top: 30px;
-    left: 66px;
+    width: calc(100vw - 200px) !important;
+    margin: 0 auto;
     border-radius: 12px;
-    
+
 }
 
 .autocomplete-dropdown-container {
-    position: relative;
-    width: calc(100vw - 86px);
-    top: 74px;
-    left: 66px;
+    position: absolute;
+    width: calc(100vw - 200px);
 }
