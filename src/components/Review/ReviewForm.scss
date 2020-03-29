@@ -32,6 +32,9 @@
   position: absolute;
   top: 15px;
   right: 15px;
+  img {
+    background: #4775FF;
+  }
 }
 
 .form-check {
@@ -124,14 +127,17 @@
 }
 
 .submit-button {
-  background-color: #FFCC47;
+  background-color: #FFCC47!important;
   border-radius: 33px;
-  color: #222222;
+  color: #222222 !important;
   float: right;
   font-weight: 300;
   font-size: 13px;
-  margin-right: 15px;
   margin-top: 1rem;
+  :hover {
+    background-color: #e4a500 !important;
+    font-weight: 500;
+  }
 }
 
 // Stars CSS
