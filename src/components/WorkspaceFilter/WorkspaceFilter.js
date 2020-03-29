@@ -1,9 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 
 // npm package imports
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
+import { Modal, Button, Form } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 // Styling imports
@@ -24,14 +22,13 @@ const WorkspaceFilter = props => {
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+
   useEffect(() => {console.log(filters)})
 
   const handleSelect = event => {
     event.persist()
     setFilters(filters => ({...filters, [event.target.name]: event.target.value }))
   }
-
-  const selectedValue = 1
 
   return (
     <Fragment>
@@ -46,7 +43,7 @@ const WorkspaceFilter = props => {
           <div className='filter-toggle'>
             <p>Need Wi-Fi?</p>
             <BootstrapSwitchButton
-              checked={true}
+              checked={filters.wifi}
               onstyle='success'
               offstyle='danger'
               onlabel='Yes'
@@ -64,7 +61,7 @@ const WorkspaceFilter = props => {
             <div className='filter-toggle'>
               <p>Do you need an outlet?</p>
               <BootstrapSwitchButton
-                checked={true}
+                checked={filters.outlet}
                 onstyle='primary'
                 offstyle='danger'
                 onlabel='Yes'
@@ -78,9 +75,7 @@ const WorkspaceFilter = props => {
             <div className='filter-toggle'>
               <p>Do you want coffee?</p>
               <BootstrapSwitchButton
-                checked={true}
-                onstyle='primary'
-                offstyle='danger'
+                checked={filters.coffee}
                 onlabel='Yes'
                 offlabel='No'
                 size='xs'
@@ -92,7 +87,7 @@ const WorkspaceFilter = props => {
             <div className='filter-toggle'>
               <p>Do you want food?</p>
               <BootstrapSwitchButton
-                checked={true}
+                checked={filters.food}
                 onstyle='primary'
                 offstyle='danger'
                 onlabel='Yes'
