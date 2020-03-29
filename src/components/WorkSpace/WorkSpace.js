@@ -48,7 +48,7 @@ class WorkSpace extends React.Component {
         return (
             <div className='workspace'>
               <Link to='/'>
-                <h5 style={{ float: 'right' }}>X</h5>
+                <img style={{ float: 'right' }} alt='Click to exit' src={'../../close-x-white.png'}/>
               </Link>
               <div style={{ textAlign: 'center' }}>
                 <h3>Be the first to write a  <Button
@@ -129,7 +129,7 @@ class WorkSpace extends React.Component {
         return (
             <div className='workspace' style={this.state.display}>
               <Link to='/'>
-                <h5 style={{ float: 'right' }}>X</h5>
+                <img style={{ float: 'right' }} alt='Click to exit' src={'../../close-x-white.png'} width={'12'} heigth={'12'}/>
               </Link>
 
                 <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
