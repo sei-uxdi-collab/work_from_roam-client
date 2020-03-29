@@ -1,7 +1,36 @@
 $wfrBlue: #4775ff;
+$white: #fff;
 
 .filter-button {
   background-color: $wfrBlue;
   height: 40px;
   width: 120px;
+}
+
+.filter-modal {
+
+  .filter-modal-header {
+    background-color: $wfrBlue;
+    color: $white;
+
+    button {
+      color: $white;
+    }
+  }
+
+  .filter-modal-body {
+
+    .filter-toggle {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      margin: 10px 30px 10px 0;
+
+      p {
+        align-items: center;
+        display: flex;
+        margin: 0 5px 0 0;
+      }
+    }
+  }
 }
