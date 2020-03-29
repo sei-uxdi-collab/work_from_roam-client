@@ -125,8 +125,8 @@ import Button from 'react-bootstrap/Button'
 
           <div className='review-form' style={{display: this.state.display}}>
 
-          <Link to='/'>
-            <button className="close-window" style={{float: 'right'}} onClick={this.closeWindow}>X</button>
+          <Link to='/' className="close-window" style={{float: 'right'}} onClick={this.closeWindow}>
+            <img src="../../../../public/close-x-white.png" alt="close"/>
           </Link>
 
 
