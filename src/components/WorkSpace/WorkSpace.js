@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 
 import Review from '../Review/Review'
 import { StarRating } from '../Review/StarsRating'
+// import ScaleRating from './ScaleRating'
 
 import './WorkSpace.scss'
 
@@ -108,20 +109,21 @@ class WorkSpace extends React.Component {
       let openingHrsToday
       let today = new Date()
       let day = today.getDay()
-      if (day === 0) {
-        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[6]
-      } else if (day === 1) {
-        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[0]
-      } else if (day === 2) {
-        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[1]
-      } else if (day === 3) {
-        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[2]
-      } else if (day === 4) {
-        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[3]
-      } else if (day === 5) {
-        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[4]
-      } else if (day === 6) {
-        openingHrsToday = this.props.placeData && this.props.placeData.opening_hours.weekday_text[5]
+
+      if (this.props.placeData && this.props.placeData.opening_hours && day === 0) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[6]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 1) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[0]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 2) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[1]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 3) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[2]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 4) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[3]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 5) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[4]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 6) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[5]
       }
 
         return (
@@ -153,9 +155,9 @@ class WorkSpace extends React.Component {
 
                     <p>{this.props.placeData && this.props.placeData.formatted_address}</p>
                     <div>
-                    {!this.state.hours && <p
+                    {!this.state.hours && (this.props.placeData && this.props.placeData.opening_hours ? <p
                       style={{ cursor: 'pointer' }}
-                      onClick={this.showHrs}>{openingHrsToday}<img alt='Click arrow for more hours' src={'../../arrowDwnVec.png'} className='vecStyle'/></p>}
+                      onClick={this.showHrs}>{openingHrsToday}<img alt='Click arrow for more hours' src={'../../arrowDwnVec.png'} className='vecStyle'/></p> : <p>Opening hours unavailable</p> )}
                     </div>
                     {this.state.hours &&
                       <div>
