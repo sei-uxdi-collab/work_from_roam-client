@@ -20,7 +20,18 @@ const WorkspaceFilter = props => {
   })
 
 
-  const handleClose = () => setShow(false)
+  const handleClose = () => {
+    setFilters({
+      wifi: true,
+      outlet: true,
+      coffee: true,
+      food: true,
+      noise: '',
+      bathroom: '',
+      seating: ''
+    })
+    setShow(false)
+  }
   const handleShow = () => setShow(true)
 
   useEffect(() => {console.log(filters)})
