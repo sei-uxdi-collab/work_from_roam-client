@@ -5,7 +5,8 @@ import { signIn } from '../../api/auth'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
+import TextField from '@material-ui/core/TextField'
+import PasswordInput from '../PasswordShowHide/PasswordShowHide'
 import './SignIn.scss'
 import messages from '../AutoAlert/messages'
 
@@ -52,38 +53,50 @@ class SignIn extends Component {
     const { email, password } = this.state
 
     return (
-      <div className="row popup">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <Link to='/'>
-            <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
-          </Link>
-          <h3>Sign In</h3>
+      <div className="container popup">
+
+        <Link to='/' className="row close-window" style={{ float: "right"}} onClick={this.closeWindow}>
+          <img src="close-x-blue.png" alt="close"/>
+        </Link>
+
+        <div className="mt-3 p-4">
+          <h1>Log in to post a review!</h1>
+          <h2 className="mt-3">Don't have an account? <a href="#sign-up" className="link">Sign Up</a></h2>
           <Form onSubmit={this.onSignIn}>
-            <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
+            <Form.Group controlId="email" className="mt-4">
+              <TextField
+                fullWidth={true}
+                className="account-info"
                 required
                 type="email"
                 name="email"
                 value={email}
-                placeholder="Enter email"
+                placeholder="Email"
                 onChange={this.handleChange}
+                InputProps={{
+                  disableUnderline: true,
+                  "aria-label": "Email",
+                }}
               />
             </Form.Group>
             <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
+              <PasswordInput
+                fullWidth={true}
+                className="account-info password"
                 required
                 name="password"
                 value={password}
-                type="password"
                 placeholder="Password"
                 onChange={this.handleChange}
               />
             </Form.Group>
+            <Link to='/' className="cancel-button m-3" onClick={this.closeWindow}>
+              Cancel
+            </Link>
             <Button
               variant="primary"
               type="submit"
+              className="submit-button"
             >
               Submit
             </Button>
