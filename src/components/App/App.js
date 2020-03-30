@@ -35,25 +35,16 @@ class App extends React.Component {
       user: null,
       userLocation: null,
       alerts: [],
-      // List of filter fields
-      filters_wifi: true,
-      filters_outlet: true,
-      filters_coffee: true,
-      filters_food: true,
-      filters_noise: '',
-      filters_bathroom: '',
-      filters_seating:''
+      filteredWorkspaces: [],
     }
 
-    // Handler that allows the WorkspaceFilter to update the App filter state
-    this.filterHandler = this.filterHandler.bind(this)
+    this.filteredWorkspaces = this.filteredWorkspaces.bind(this)
   }
 
-  // Function passed as props to WorkspaceFilter child, that allows the filter component to update the filters states here in App
-  filterHandler = (filter, value) => {
-    this.setState({ [filter]: value })
+  filteredWorkspaces = workspaces => {
+    this.setState({ filteredWorkspaces: workspaces})
+    console.log(this.state.filteredWorkspaces)
   }
-  // ~~~~~~~~~~~~~~~~~~~~
 
   setUser = user => this.setState({ user })
 
@@ -64,8 +55,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
-    console.log(this.filters)
     const { alerts, user } = this.state
 
     return (
@@ -144,7 +133,7 @@ class App extends React.Component {
                         mapCenter={this.state.mapCenter}
                 />
               </div>
-              <WorkspaceFilter filterHandler = {this.filterHandler}/>
+              <WorkspaceFilter filteredWorkspaces = {this.filteredWorkspaces}/>
             </div>
           {/* ~~~~~~~~~~~~~~~~~~~~ */}
             <GoogleMap
