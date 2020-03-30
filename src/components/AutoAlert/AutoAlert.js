@@ -39,7 +39,7 @@ class AutoAlert extends React.Component {
             {heading}
           </Alert.Heading>
           <p className="alert-body" style={{ textAlign: 'center', color: 'grey' }}>{message}</p>
-            <img src={image} alt="alert" />
+            <img src={image} width='100%' alt="alert" />
         </div>
       </Alert>
     )
