@@ -1,35 +1,49 @@
-In order to run on local host, you need a valid google maps [api key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+## Work From Roam
 
-You must create a .env.local file inside ./src to save your key in the following format:
-### `REACT_APP_GOOGLE_API_KEY={enter_valid_api_key}`
-### `npm install`
-### `npm start`
+An application to find the nearest free workspaces for the remote workers in all of us. We are a team of developers and UX designers who met while attending our respective bootcamps at General Assembly. We are currently working towards our very first MVP.
+
+
+## Getting Started
+
+In order to run on localhost, you need a valid google maps [api key](https://developers.google.com/maps/documentation/javascript/get-api-key). You must create a `.env.local` file inside ./src to save your key in the following format:
+`REACT_APP_GOOGLE_API_KEY={enter_valid_api_key}`
+
+### Installation
+
+Install dependencies with
+```bash
+npm install
+```
+Run the development server with
+```bash
+npm start
+```
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Map Component `cheat sheet`
+## Map Component Cheat Sheet
 
 ```
-<Map />    
+<Map />
 ```
 
-### event handlers:
+### Event Handlers
 
-onClick
+##### onClick
 
 also see: onDblclick, onRightclick
 ```
     onClick={this.handleClick}
 ```
 ```
-    // handleClick is a method 
+    // handleClick is a method
     handleClick = (props, map, event) => {
         // gives you access to all map props
         // gives you access to the map object
         // event object
     }
 ```
-onDragend
+##### onDragend
 
 also see onDragstart
 ```
@@ -41,7 +55,7 @@ also see onDragstart
         // gives you access to the map object
     }
 ```
-onZoom_changed
+##### onZoom_changed
 ```
     onZoom_changed={this.handleZoom}
 ```
@@ -51,7 +65,7 @@ onZoom_changed
         // gives you access to the map object
     }
 ```
-onCenter_changed
+##### onCenter_changed
 ```
     onCenter_changed={this.handleCenter_change}
 ```
@@ -61,7 +75,7 @@ onCenter_changed
         // gives you access to the map object
     }
 ```
-onBounds_changed
+##### onBounds_changed
 ```
     onBound_changed={this.handleBounds_change}
 ```
@@ -72,14 +86,9 @@ onBounds_changed
     }
 ```
 
-
-
-In the project directory, you can run:
-
 ## Available Scripts
 
 In the project directory, you can run:
-
 ### `npm start`
 
 Runs the app in the development mode.<br />
@@ -112,33 +121,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
