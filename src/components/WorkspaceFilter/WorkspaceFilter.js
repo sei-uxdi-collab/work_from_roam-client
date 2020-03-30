@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState} from 'react'
 
 // npm package imports
 import { Modal, Button, Form } from 'react-bootstrap'
@@ -9,37 +9,37 @@ import './WorkspaceFilter.scss'
 
 const WorkspaceFilter = props => {
   const [show, setShow] = useState(false)
-  const [filters, setFilters] = useState({
-    wifi: true,
-    outlet: true,
-    coffee: true,
-    food: true,
-    noise: '',
-    bathroom: '',
-    seating: ''
-  })
+  const [wifiToggle, setWifiToggle] = useState(true)
+  const [outletToggle, setOutletToggle] = useState(true)
+  const [coffeeToggle, setCoffeeToggle] = useState(true)
+  const [foodToggle, setFoodToggle] = useState(true)
 
 
-  const handleClose = () => {
-    setFilters({
-      wifi: true,
-      outlet: true,
-      coffee: true,
-      food: true,
-      noise: '',
-      bathroom: '',
-      seating: ''
-    })
+  // Upon closure of the filter modal, resets the filters and de-mounts the component
+  const handleClose = event => {
+    props.filterHandler('filters_wifi', true)
+    props.filterHandler('filters_outlet', true)
+    props.filterHandler('filters_coffee', true)
+    props.filterHandler('filters_food', true)
+    props.filterHandler('filters_noise', '')
+    props.filterHandler('filters_bathroom', '')
+    props.filterHandler('filters_seating', '')
     setShow(false)
   }
+  // ~~~~~~~~~~~~~~~~~~~~
+
+  // Shows the filter modal
   const handleShow = () => setShow(true)
+  // ~~~~~~~~~~~~~~~~~~~~
 
-  useEffect(() => {console.log(filters)})
-
+  // Sets the filter values based on the state of the toggle switches and radios
   const handleSelect = event => {
     event.persist()
-    setFilters(filters => ({...filters, [event.target.name]: event.target.value }))
+    props.filterHandler([event.target.name], event.target.value)
+    // this.props(filters => ({...filters, [event.target.name]: event.target.value }))
   }
+  // ~~~~~~~~~~~~~~~~~~~~
+
 
   return (
     <Fragment>
@@ -54,14 +54,15 @@ const WorkspaceFilter = props => {
           <div className='filter-toggle'>
             <p>Need Wi-Fi?</p>
             <BootstrapSwitchButton
-              checked={filters.wifi}
+              checked={wifiToggle}
               onstyle='success'
               offstyle='danger'
               onlabel='Yes'
               offlabel='No'
               size='sm'
               onChange={(checked: boolean) => {
-                setFilters(filters => ({...filters, wifi: checked}))
+                setWifiToggle(checked)
+                props.filterHandler('filters_wifi', checked)
               }}
               />
           </div>
@@ -72,46 +73,47 @@ const WorkspaceFilter = props => {
             <div className='filter-toggle'>
               <p>Do you need an outlet?</p>
               <BootstrapSwitchButton
-                checked={filters.outlet}
+                checked={outletToggle}
                 onstyle='primary'
                 offstyle='danger'
                 onlabel='Yes'
                 offlabel='No'
                 size='xs'
                 onChange={(checked: boolean) => {
-                  setFilters(filters => ({...filters, outlet: checked}))
-                }}
+                  setOutletToggle(checked)
+                  props.filterHandler('filters_outlet', checked)                }}
                 />
             </div>
             <div className='filter-toggle'>
               <p>Do you want coffee?</p>
               <BootstrapSwitchButton
-                checked={filters.coffee}
+                checked={coffeeToggle}
                 onstyle='primary'
                 offstyle='danger'
                 onlabel='Yes'
                 offlabel='No'
                 size='xs'
                 onChange={(checked: boolean) => {
-                  setFilters(filters => ({...filters, coffee: checked}))
-                }}
+                  setCoffeeToggle(checked)
+                  props.filterHandler('filters_coffee', checked)                }}
                 />
             </div>
             <div className='filter-toggle'>
               <p>Do you want food?</p>
               <BootstrapSwitchButton
-                checked={filters.food}
+                checked={foodToggle}
                 onstyle='primary'
                 offstyle='danger'
                 onlabel='Yes'
                 offlabel='No'
                 size='xs'
                 onChange={(checked: boolean) => {
-                  setFilters(filters => ({...filters, food: checked}))
-                }}
+                  setFoodToggle(checked)
+                  props.filterHandler('filters_food', checked)               }}
                 />
             </div>
             <Form style={{'margin-top':'10px'}}>
+
               {/* RADIO FORM FOR THE WORKSPACE NOISE*/}
               <Form.Label>How quiet do you want the space to be?</Form.Label>
               <Form.Group onChange={handleSelect}>
@@ -120,32 +122,33 @@ const WorkspaceFilter = props => {
                   inline
                   label="1 (silent)"
                   value="1"
-                  name="noise" />
+                  name="filters_noise" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="2"
                   value="2"
-                  name="noise" />
+                  name="filters_noise" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="3"
                   value="3"
-                  name="noise" />
+                  name="filters_noise" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="4"
                   value="4"
-                  name="noise" />
+                  name="filters_noise" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="5 (lively)"
                   value="5"
-                  name="noise" />
+                  name="filters_noise" />
               </Form.Group>
+
               {/* RADIO FORM FOR THE WORKSPACE BATHROOMS*/}
               <Form.Label>Do you want bathroom access?</Form.Label>
               <Form.Group onChange={handleSelect}>
@@ -154,66 +157,68 @@ const WorkspaceFilter = props => {
                   inline
                   label="1 (no)"
                   value="1"
-                  name="bathroom" />
+                  name="filters_bathroom" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="2"
                   value="2"
-                  name="bathroom" />
+                  name="filters_bathroom" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="3"
                   value="3"
-                  name="bathroom" />
+                  name="filters_bathroom" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="4"
                   value="4"
-                  name="bathroom" />
+                  name="filters_bathroom" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="5 (ample)"
                   value="5"
-                  name="bathroom" />
+                  name="filters_bathroom" />
               </Form.Group>
+
               {/* RADIO FORM FOR THE WORKSPACE SEATING*/}
-              <Form.Label>Do you want bathroom access?</Form.Label>
+              <Form.Label>Do you want seating?</Form.Label>
               <Form.Group onChange={handleSelect}>
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="1 (no)"
                   value="1"
-                  name="seating" />
+                  name="filters_seating" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="2"
                   value="2"
-                  name="seating" />
+                  name="filters_seating" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="3"
                   value="3"
-                  name="seating" />
+                  name="filters_seating" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="4"
                   value="4"
-                  name="seating" />
+                  name="filters_seating" />
                 <Form.Check className='radios'
                   type="radio"
                   inline
                   label="5 (ample)"
                   value="5"
-                  name="seating" />
+                  name="filters_seating" />
               </Form.Group>
+
             </Form>
           </div>
         </Modal.Body>
