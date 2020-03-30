@@ -14,18 +14,8 @@ import Button from 'react-bootstrap/Button'
     constructor(props) {
       super(props)
       this.state = {
-        work_space_id: '',
-        rating: 3,
-        review: '',
-        wifi: '',
-        noise: 3,
-        bathroom: 3,
-        coffee: '',
-        food: '',
-        outlet: '',
-        seating: '',
+
         display: 'block',
-        redirect: false
       }
     }
 
@@ -91,10 +81,6 @@ import Button from 'react-bootstrap/Button'
       if (this.props.placeData && this.props.placeData.photos) {
         placeImage =  this.props.placeData.photos[0].getUrl()
       }
-
-        if (!this.props.user) {
-          return (<Redirect to='/sign-in'/>)
-        }
 
         if (this.state.display === 'none') {
           return (<Redirect to='/'/>)
