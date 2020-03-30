@@ -1,8 +1,11 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect} from 'react'
 
 // npm package imports
 import { Modal, Button, Form } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
+
+// Custon component import
+import filteredCall from '../../api/workspaceFilter.js'
 
 // Styling imports
 import './WorkspaceFilter.scss'
@@ -19,15 +22,33 @@ const WorkspaceFilter = props => {
     seating: ''
   })
 
+  // Functions that handle the closing and showing of the filter modal
+  const handleClose = () => {
+    setFilters({
+      wifi: true,
+      outlet: true,
+      coffee: true,
+      food: true,
+      noise: '',
+      bathroom: '',
+      seating: ''
+    })
+    setShow(false)
+  }
 
-  const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-
-  useEffect(() => {console.log(filters)})
+  // ~~~~~~~~~~~~~~~~~~~~
 
   const handleSelect = event => {
     event.persist()
     setFilters(filters => ({...filters, [event.target.name]: event.target.value }))
+  }
+
+  const handleSubmit = event => {
+    event.persist()
+    filteredCall(filters, props.user)
+      .then(res => props.filteredWorkspaces(res.data.work_spaces))
+      .then(handleClose)
   }
 
   return (
@@ -101,60 +122,117 @@ const WorkspaceFilter = props => {
                 />
             </div>
             <Form style={{'margin-top':'10px'}}>
-              <Form.Group>
-                <Form.Label>How much quiet is needed?</Form.Label>
-                <Form.Control
-                  as='select'
-                  type='number'
-                  name='noise'
-                  size='sm'
-                  custom
-                  onChange={handleSelect} >
-                  <option value='1'>1 (silent)</option>
-                  <option value='2'>2</option>
-                  <option value='3'>3</option>
-                  <option value='4'>4</option>
-                  <option value='5'>5 (lively)</option>
-                </Form.Control>
+
+              {/* RADIO FORM FOR THE WORKSPACE NOISE*/}
+              <Form.Label>How quiet do you want the space to be?</Form.Label>
+              <Form.Group onChange={handleSelect}>
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="1 (silent)"
+                  value="1"
+                  name="noise" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="2"
+                  value="2"
+                  name="noise" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="3"
+                  value="3"
+                  name="noise" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="4"
+                  value="4"
+                  name="noise" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="5 (lively)"
+                  value="5"
+                  name="noise" />
               </Form.Group>
-              <Form.Group>
-                <Form.Label>Need bathroom access?</Form.Label>
-                <Form.Control
-                  as='select'
-                  type='number'
-                  name='bathroom'
-                  size='sm'
-                  custom
-                  onChange={handleSelect} >
-                  <option value='1'>1 (not needed)</option>
-                  <option value='2'>2</option>
-                  <option value='3'>3</option>
-                  <option value='4'>4</option>
-                  <option value='5'>5 (pristine porcelain)</option>
-                </Form.Control>
+
+              {/* RADIO FORM FOR THE WORKSPACE BATHROOMS*/}
+              <Form.Label>Do you want bathroom access?</Form.Label>
+              <Form.Group onChange={handleSelect}>
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="1 (no)"
+                  value="1"
+                  name="bathroom" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="2"
+                  value="2"
+                  name="bathroom" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="3"
+                  value="3"
+                  name="bathroom" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="4"
+                  value="4"
+                  name="bathroom" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="5 (ample)"
+                  value="5"
+                  name="bathroom" />
               </Form.Group>
-              <Form.Group>
-                <Form.Label>Amount of seating desired?</Form.Label>
-                <Form.Control
-                  as='select'
-                  type='number'
-                  name='seating'
-                  size='sm'
-                  custom
-                  onChange={handleSelect}>
-                  <option value='1'>1 (not needed)</option>
-                  <option value='2'>2</option>
-                  <option value='3'>3</option>
-                  <option value='4'>4</option>
-                  <option value='5'>5 (ample space)</option>
-                </Form.Control>
+
+              {/* RADIO FORM FOR THE WORKSPACE SEATING*/}
+              <Form.Label>Do you want bathroom access?</Form.Label>
+              <Form.Group onChange={handleSelect}>
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="1 (no)"
+                  value="1"
+                  name="seating" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="2"
+                  value="2"
+                  name="seating" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="3"
+                  value="3"
+                  name="seating" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="4"
+                  value="4"
+                  name="seating" />
+                <Form.Check className='radios'
+                  type="radio"
+                  inline
+                  label="5 (ample)"
+                  value="5"
+                  name="seating" />
               </Form.Group>
             </Form>
           </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>Close</Button>
-          <Button variant='primary' style={{'background-color': '#4775ff'}}>Submit</Button>
+          <Button variant='primary' onClick={handleSubmit} style={{'background-color': '#4775ff'}}>Submit</Button>
         </Modal.Footer>
       </Modal>
     </Fragment>

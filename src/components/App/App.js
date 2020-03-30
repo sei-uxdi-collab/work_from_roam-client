@@ -34,8 +34,16 @@ class App extends React.Component {
       currentWorkspace: null,
       user: null,
       userLocation: null,
-      alerts: []
+      alerts: [],
+      filteredWorkspaces: [],
     }
+
+    this.filteredWorkspaces = this.filteredWorkspaces.bind(this)
+  }
+
+  filteredWorkspaces = workspaces => {
+    this.setState({ filteredWorkspaces: workspaces})
+    console.log(this.state.filteredWorkspaces)
   }
 
   setUser = user => this.setState({ user })
@@ -46,10 +54,7 @@ class App extends React.Component {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant, image }] })
   }
 
-
-
   render() {
-
     const { alerts, user } = this.state
 
     return (
@@ -128,7 +133,7 @@ class App extends React.Component {
                         mapCenter={this.state.mapCenter}
                 />
               </div>
-              <WorkspaceFilter />
+              <WorkspaceFilter filteredWorkspaces = {this.filteredWorkspaces}/>
             </div>
           {/* ~~~~~~~~~~~~~~~~~~~~ */}
             <GoogleMap
