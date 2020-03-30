@@ -6,12 +6,9 @@ import { signIn } from '../../api/auth'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import TextField from '@material-ui/core/TextField'
-
-
+import PasswordInput from '../PasswordShowHide/PasswordShowHide'
 import './SignIn.scss'
 import messages from '../AutoAlert/messages'
-
-import PasswordInput from '../PasswordShowHide/PasswordShowHide'
 
 class SignIn extends Component {
   constructor () {
@@ -58,7 +55,7 @@ class SignIn extends Component {
     return (
       <div className="container popup">
 
-        <Link to='/' className="row close-window m3" style={{ float: "right"}} onClick={this.closeWindow}>
+        <Link to='/' className="row close-window" style={{ float: "right"}} onClick={this.closeWindow}>
           <img src="close-x-blue.png" alt="close"/>
         </Link>
 
@@ -68,7 +65,7 @@ class SignIn extends Component {
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId="email" className="mt-4">
               <TextField
-                fullWidth="true"
+                fullWidth={true}
                 className="account-info"
                 required
                 type="email"
@@ -84,7 +81,7 @@ class SignIn extends Component {
             </Form.Group>
             <Form.Group controlId="password">
               <PasswordInput
-                fullWidth="true"
+                fullWidth={true}
                 className="account-info password"
                 required
                 name="password"

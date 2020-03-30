@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { changePassword } from '../../api/auth'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
-import '../popUp.scss'
+import PasswordInput from '../PasswordShowHide/PasswordShowHide'
+import './ChangePassword.scss'
 
 class ChangePassword extends Component {
   constructor () {
@@ -39,35 +39,44 @@ class ChangePassword extends Component {
     const { oldPassword, newPassword } = this.state
 
     return (
-      <div className="row popup">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Change Password</h3>
+      <div className="container popup">
+
+        <Link to='/' className="row close-window" style={{ float: "right"}} onClick={this.closeWindow}>
+          <img src="close-x-blue.png" alt="close"/>
+        </Link>
+
+        <div className="mt-3 p-4">
+          <h1 className="mb-3">Choose your new password!</h1>
           <Form onSubmit={this.onChangePassword}>
             <Form.Group controlId="oldPassword">
-              <Form.Label>Old password</Form.Label>
-              <Form.Control
+              <PasswordInput
+                fullWidth={true}
+                className="account-info password"
                 required
                 name="oldPassword"
                 value={oldPassword}
-                type="password"
                 placeholder="Old Password"
                 onChange={this.handleChange}
               />
             </Form.Group>
             <Form.Group controlId="newPassword">
-              <Form.Label>New Password</Form.Label>
-              <Form.Control
+              <PasswordInput
+                fullWidth={true}
+                className="account-info password"
                 required
                 name="newPassword"
                 value={newPassword}
-                type="password"
                 placeholder="New Password"
                 onChange={this.handleChange}
               />
             </Form.Group>
+            <Link to='/' className="cancel-button m-3" onClick={this.closeWindow}>
+              Cancel
+            </Link>
             <Button
               variant="primary"
               type="submit"
+              className="submit-button"
             >
               Submit
             </Button>

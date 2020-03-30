@@ -1,6 +1,6 @@
 import Icon from '@mdi/react'
 import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
-import { InputAdornment, withStyles } from '@material-ui/core'
+import { InputAdornment } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'

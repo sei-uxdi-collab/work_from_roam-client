@@ -6,8 +6,9 @@ import messages from '../AutoAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
-import '../popUp.scss'
+import TextField from '@material-ui/core/TextField'
+import PasswordInput from '../PasswordShowHide/PasswordShowHide'
+import './SignUp.scss'
 
 class SignUp extends Component {
   constructor () {
@@ -54,49 +55,61 @@ class SignUp extends Component {
     const { email, password, passwordConfirmation } = this.state
 
     return (
-      <div className="row body popup">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <Link to='/'>
-            <button style={{float: 'right'}} onClick={this.closeWindow}>Close</button>
-          </Link>
-          <h3>Sign Up</h3>
+      <div className="container popup">
+
+        <Link to='/' className="row close-window" style={{ float: "right"}} onClick={this.closeWindow}>
+          <img src="close-x-blue.png" alt="close"/>
+        </Link>
+
+        <div className="mt-3 p-4">
+          <h1>Sign up to post a review!</h1>
+          <h2 className="mt-3">Already have an account? <a href="#sign-in" className="link">Sign In</a></h2>
           <Form onSubmit={this.onSignUp}>
-            <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
+            <Form.Group controlId="email" className="mt-4">
+              <TextField
+                fullWidth={true}
+                className="account-info"
                 required
                 type="email"
                 name="email"
                 value={email}
-                placeholder="Enter email"
+                placeholder="Email"
                 onChange={this.handleChange}
+                InputProps={{
+                  disableUnderline: true,
+                  "aria-label": "Email",
+                }}
               />
             </Form.Group>
             <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
+              <PasswordInput
+                fullWidth={true}
+                className="account-info password"
                 required
                 name="password"
                 value={password}
-                type="password"
                 placeholder="Password"
                 onChange={this.handleChange}
               />
             </Form.Group>
             <Form.Group controlId="passwordConfirmation">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control
+              <PasswordInput
+                fullWidth={true}
+                className="account-info password"
                 required
                 name="passwordConfirmation"
                 value={passwordConfirmation}
-                type="password"
                 placeholder="Confirm Password"
                 onChange={this.handleChange}
               />
             </Form.Group>
+            <Link to='/' className="cancel-button m-3" onClick={this.closeWindow}>
+              Cancel
+            </Link>
             <Button
               variant="primary"
               type="submit"
+              className="submit-button"
             >
               Submit
             </Button>
