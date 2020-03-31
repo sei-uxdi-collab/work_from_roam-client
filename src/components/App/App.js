@@ -148,7 +148,7 @@ class App extends React.Component {
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}
             />
-            <ListView allData={this.state.allData} />
+          <ListView filteredWorkspaces={this.state.filteredWorkspaces} />
           </div>
         </Route>
       </Fragment>

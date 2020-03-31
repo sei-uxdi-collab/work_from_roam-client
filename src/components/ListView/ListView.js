@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 // Component imports
-import WorkspaceCarousel from './WorkspaceCarousel'
+import WorkspaceSlider from './WorkspaceSlider'
 
 // Styling imports
 import './ListView.scss'
@@ -51,13 +51,13 @@ class ListView extends Component {
 
     return (
         <Container className='list-container' fluid id={visible} >
-          <Row>
-            <Col className='list-view' sm={6} md={5} lg={4} ref={node => this.node = node}>
+          <Row className='list-row'>
+            <Col className='list-column' sm={6} md={5} lg={4} ref={node => this.node = node}>
               <div className='list-header' onClick={this.toggleListView}>
                 <p>List View</p>
               </div>
               <div className='list-content'>
-                <WorkspaceCarousel />
+                <WorkspaceSlider workspaces={this.props.filteredWorkspaces}/>
               </div>
             </Col>
           </Row>
