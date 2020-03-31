@@ -1,70 +1,50 @@
-import React, { Component } from 'react';
+import React, { useState, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 // Component imports
 import WorkspaceSlider from './WorkspaceSlider'
+import OutsideClick from '../OutsideClick/OutsideClick.js'
 
 // Styling imports
 import './ListView.scss'
 
-class ListView extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      isListOpen: false
-    }
+const ListView = props => {
+  const [listOpen, setListOpen] = useState(false)
 
-    this.toggleListView = this.toggleListView.bind(this)
+  // Reference and function that listens for events outside of the ListView component, and closes it
+  const ref = useRef()
+
+  OutsideClick (ref, () => {
+    setListOpen(false)
+  })
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+  // Sets the state of the Container ID to trigger showing/hiding of component
+  let visible = 'hide'
+
+  if (listOpen === true) {
+    visible = 'show'
   }
 
-  // Sets isListOpen to false when user clicks outside of ListView, to close it
-  componentWillMount() {
-    document.addEventListener('mousedown', this.handleClick, false)
+  const toggleListView = () => {
+    setListOpen(!listOpen)
   }
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClick, false)
-  }
-
-  handleClick = event => {
-    if (this.node.contains(event.target)) {
-      return
-    }
-
-    this.setState({ isListOpen: false })
-  }
-  // --------------------
-
-  // Toggles the list view from the list header
-  toggleListView(event) {
-    this.setState({
-      isListOpen: !this.state.isListOpen
-    })
-  }
-  // --------------------
-
-  render () {
-    let visible = 'hide'
-
-    if (this.state.isListOpen === true) {
-      visible = 'show'
-    }
-
-    return (
-        <Container className='list-container' fluid id={visible} >
-          <Row className='list-row'>
-            <Col className='list-column' sm={6} md={5} lg={4} ref={node => this.node = node}>
-              <div className='list-header' onClick={this.toggleListView}>
-                <p>List View</p>
-              </div>
-              <div className='list-content'>
-                <WorkspaceSlider workspaces={this.props.filteredWorkspaces}/>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-    )
-  }
-
+  return (
+      <Container className='list-container' fluid id={visible} >
+        <Row className='list-row'>
+          <Col className='list-column' sm={6} md={5} lg={4} ref={ref}>
+            <div className='list-header' onClick={toggleListView}>
+              <p>List View</p>
+            </div>
+            <div className='list-content'>
+              <WorkspaceSlider workspaces={props.filteredWorkspaces}/>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+  )
 }
 
 export default ListView
