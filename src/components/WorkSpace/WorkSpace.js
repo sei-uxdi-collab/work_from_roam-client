@@ -16,6 +16,7 @@ class WorkSpace extends React.Component {
             filters: false,
             hours: false
         }
+        console.log(props.placeData)
     }
 
     // Function to show more filters

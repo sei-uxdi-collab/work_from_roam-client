@@ -23,7 +23,12 @@ $wfrBlue: #4775ff;
       .list-header {
         align-items: center;
         display: flex;
+        flex-flow: column;
         height: 5vh;
+        justify-content: center;
+        position: relative;
+        margin-top: 0;
+        top: 0;
 
         p {
           color: $white;
@@ -31,12 +36,13 @@ $wfrBlue: #4775ff;
         }
       }
 
-      .list-content {
-        align-content: center;
-        display: flex;
-        height: 100%;
-        margin: .25rem auto;
-      }
+      // .list-content {
+      //   align-content: center;
+      //   display: flex;
+      //   height: 100%;
+      //   margin: .25rem auto;
+      //   overflow: hidden;
+      // }
     }
   }
 }
