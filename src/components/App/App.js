@@ -38,13 +38,15 @@ class App extends React.Component {
       filteredWorkspaces: [],
     }
 
-    this.filteredWorkspaces = this.filteredWorkspaces.bind(this)
+    // Allows the WorkspaceFilter component to update filteredWorkspaces[]
+    this.filteredWorkspaces = this.filterWorkspaces.bind(this)
   }
 
-  filteredWorkspaces = workspaces => {
+  // Function bound to filteredWorkspaces state, passed in to the WorkspaceFilter component as props
+  filterWorkspaces = workspaces => {
     this.setState({ filteredWorkspaces: workspaces})
-    console.log(this.state.filteredWorkspaces)
   }
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   setUser = user => this.setState({ user })
 
@@ -133,7 +135,7 @@ class App extends React.Component {
                         mapCenter={this.state.mapCenter}
                 />
               </div>
-              <WorkspaceFilter filteredWorkspaces = {this.filteredWorkspaces}/>
+              <WorkspaceFilter filterWorkspaces={this.filterWorkspaces}/>
             </div>
           {/* ~~~~~~~~~~~~~~~~~~~~ */}
             <GoogleMap
@@ -148,7 +150,7 @@ class App extends React.Component {
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}
             />
-            <ListView allData={this.state.allData} />
+          <ListView filteredWorkspaces={[this.state.filteredWorkspaces]} />
           </div>
         </Route>
       </Fragment>

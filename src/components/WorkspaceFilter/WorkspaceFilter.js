@@ -4,7 +4,7 @@ import React, { Fragment, useState, useEffect} from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
-// Custon component import
+// Custom component import
 import filteredCall from '../../api/workspaceFilter.js'
 
 // Styling imports
@@ -44,10 +44,11 @@ const WorkspaceFilter = props => {
     setFilters(filters => ({...filters, [event.target.name]: event.target.value }))
   }
 
-  const handleSubmit = event => {
-    event.persist()
+  const handleSubmit = () => {
+    // event.persist()
     filteredCall(filters, props.user)
-      .then(res => props.filteredWorkspaces(res.data.work_spaces))
+      // Right now, only pulling the first workspace response to work on ListView display
+      .then(res => props.filterWorkspaces(res.data.work_spaces))
       .then(handleClose)
   }
 
