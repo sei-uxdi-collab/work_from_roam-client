@@ -44,7 +44,7 @@ class Review extends React.Component {
         return (
             <div>
             <img alt='User profile pic' src={userPic} style={userPicStyle}/>
-            <div style={{ float: 'right', paddingRight: '80px' }}>
+            <div style={{ float: 'right', paddingRight: '20px' }}>
             <StarRating
               value={this.props.rating}
               emptyStarColor={'#4775FF'}

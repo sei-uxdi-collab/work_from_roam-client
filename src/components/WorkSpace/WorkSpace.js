@@ -213,7 +213,7 @@ class WorkSpace extends React.Component {
                 <div>
                 {this.props.data.reviews.map(review => (
                   <Review
-                    user={this.props.data.user.email}
+                    user={review.user.email}
                     key={review.id}
                     rating={review.rating}
                     wifi={review.wifi}
