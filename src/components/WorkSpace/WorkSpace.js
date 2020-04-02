@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 
 import Review from '../Review/Review'
 import { StarRating } from '../Review/StarsRating'
-// import ScaleRating from './ScaleRating'
+import ScaleRating from './ScaleRating'
 
 import './WorkSpace.scss'
 
@@ -16,7 +16,7 @@ class WorkSpace extends React.Component {
             filters: false,
             hours: false
         }
-        console.log(props.placeData)
+        // console.log(props.placeData)
     }
 
     // Function to show more filters
@@ -75,13 +75,13 @@ class WorkSpace extends React.Component {
       // Overall average rating for workSpace
       let overall = average(this.props.data.reviews.map(review => review.rating))
       // Bathroom average rating
-      let bath = average(this.props.data.reviews.map(review => review.bathroom))
-      // Noise level average Rating
-      let noise = average(this.props.data.reviews.map(review => review.noise))
-      // Wifi average rating
-      let wifi = average(this.props.data.reviews.map(review => parseInt(review.wifi)))
-      // Seating average Rating
-      let seating = average(this.props.data.reviews.map(review => parseInt(review.seating)))
+      // let bath = average(this.props.data.reviews.map(review => review.bathroom))
+      // // Noise level average Rating
+      // let noise = average(this.props.data.reviews.map(review => review.noise))
+      // // Wifi average rating
+      // let wifi = average(this.props.data.reviews.map(review => parseInt(review.wifi)))
+      // // Seating average Rating
+      // let seating = average(this.props.data.reviews.map(review => parseInt(review.seating)))
       // Outlets average rating
       let outlet = average(this.props.data.reviews.map(review => parseInt(review.outlet)))
       // Coffee average Rating
@@ -96,7 +96,7 @@ class WorkSpace extends React.Component {
 
       // Conditionals for showing if filters are available
       if(outlet > 0) {
-        console.log(outlet)
+        // console.log(outlet)
         outletStyle = true
       }
       if(coffee > 0) {
@@ -177,10 +177,9 @@ class WorkSpace extends React.Component {
                 </div>
 
                 <div>
-                  <p>Wifi Quality {wifi}</p>
-                  <p>Noise {noise}</p>
-                  <p>Seating {seating}</p>
-                  <p>Bathroom {bath}</p>
+                  <ScaleRating
+                    data={this.props.data}
+                  />
                   {!this.state.filters && <p
                     style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Roboto' }}
                     onClick={this.show}>more<img alt='Click arrow for more details' src={'../../arrowDwnVec.png'} className='vecStyle' style={{ paddingTop: '3px'}}/></p>}
