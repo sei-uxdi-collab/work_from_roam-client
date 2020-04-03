@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootstrap-switch-button-react": "^1.2.0",
+    "dotenv": "^8.2.0",
     "gh-pages": "^2.2.0",
     "google-maps-react": "^2.0.2",
     "jquery": "^3.4.1",
