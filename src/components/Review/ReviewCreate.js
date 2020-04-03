@@ -6,7 +6,7 @@ import { StarRating } from './StarsRating'
 
 // import TestButton from '../TestButton'
 import messages from '../AutoAlert/messages'
-import './ReviewForm.scss'
+import './ReviewCreate.scss'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -126,11 +126,11 @@ import Button from 'react-bootstrap/Button'
       <div className='review-form' style={{display: this.state.display}}>
 
         <div className="review-scroll">
-          <Link to='/' className="close-window" onClick={this.closeWindow}>
+          <Link to='/' className="close-window-white" onClick={this.closeWindow}>
             <img src="close-x-white.png" alt="close"/>
           </Link>
-          <h1 className="main-header">Give {placeName} a review!</h1>
-          <Form onSubmit={this.handleSubmit}>
+          <h1 className="main-header ">Give {placeName} a review!</h1>
+          <Form onSubmit={this.handleSubmit} class="ml-1">
             <Form.Group className="stars">
               <StarRating
                 value={this.state.rating}
@@ -138,7 +138,7 @@ import Button from 'react-bootstrap/Button'
             />
             </Form.Group>
 
-            <h2 className="question-header">General Information</h2>
+            <Form.Label className="question-header" htmlFor="wifi">General Information*</Form.Label>
             <Form.Row className="gen-info-options">
               <Form.Group>
                 <Form.Check
@@ -351,7 +351,7 @@ import Button from 'react-bootstrap/Button'
             <Form.Group className="question">
               <Form.Label className="question-header" htmlFor="name">Write a review (optional)</Form.Label>
               <Form.Control
-                style={{ height: '50px' }}
+                style={{ height: '60px' }}
                 type="text"
                 as="textarea"
                 placeholder="Enter Your Review..."
@@ -359,10 +359,11 @@ import Button from 'react-bootstrap/Button'
                 name="review"
                 onChange={this.handleChange}
                 id="review"
+                className="review-text-input"
               />
             </Form.Group>
 
-            <Button className="submit-button" type="submit"> Submit </Button>
+            <Button className="submit" type="submit"> Submit </Button>
           </Form>
         </div>
       </div>

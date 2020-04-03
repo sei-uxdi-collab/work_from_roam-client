@@ -57,7 +57,7 @@ class SignUp extends Component {
     return (
       <div className="container popup">
 
-        <Link to='/' className="row close-window" style={{ float: "right"}} onClick={this.closeWindow}>
+        <Link to='/' className="row close-window-blue" style={{ float: "right"}} onClick={this.closeWindow}>
           <img src="close-x-blue.png" alt="close"/>
         </Link>
 
