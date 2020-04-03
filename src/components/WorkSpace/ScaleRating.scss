@@ -1,0 +1,21 @@
+.scale {
+  position: relative;
+  float: right;
+  right: 188px;
+  top: 7px;
+}
+
+.root {
+  position: absolute;
+  width: 180px;
+  border: .5px solid #FFFFFF;
+  top: 4px;
+}
+
+.rating {
+  position: absolute;
+  height: 10px;
+  width: 180px;
+  background-color: #FFCC47;
+  border-radius: 10px;
+}
