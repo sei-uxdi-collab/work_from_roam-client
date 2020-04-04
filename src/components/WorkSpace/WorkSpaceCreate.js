@@ -1,6 +1,6 @@
 import React from 'react';
 // import '../popUp.scss'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
@@ -34,6 +34,9 @@ import Button from 'react-bootstrap/Button'
 
     handleSubmit = (event) => {
       event.preventDefault()
+      if (!this.props.user) {
+        return this.props.history.push('/sign-in')
+      }
       // 1. create a workspace
       axios({
         method: 'post',
@@ -69,6 +72,7 @@ import Button from 'react-bootstrap/Button'
     }
 
     render () {
+      
       let placeName = ''
       // if user is not signed in, redirect to '/sign-in'
 
@@ -106,4 +110,4 @@ import Button from 'react-bootstrap/Button'
 
 
 
-  export default WorkSpaceCreate;
+  export default withRouter(WorkSpaceCreate);
