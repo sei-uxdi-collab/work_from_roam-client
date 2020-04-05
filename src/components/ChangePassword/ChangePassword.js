@@ -25,11 +25,24 @@ class ChangePassword extends Component {
   onChangePassword = event => {
     event.preventDefault()
 
-    const { history, user } = this.props
+    const { history, user, alert } = this.props
 
     changePassword(this.state, user)
-      .then(() => history.push('/'))
+      .then(() => {
+        alert({
+          heading: 'Success',
+          message: 'Your password has been updated',
+          variant: 'light',
+          image: 'Roman.png'
+        })
+        history.push('/')
+      })
       .catch(error => {
+        alert({
+          heading: 'Failed',
+          message: 'Check your password and try again',
+          variant: 'danger'
+        })
         console.error(error)
         this.setState({ oldPassword: '', newPassword: '' })
       })

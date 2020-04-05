@@ -34,7 +34,7 @@ class SignIn extends Component {
       .then(() => alert({
         heading: 'You are now signed In!',
         message: messages.signInSuccess,
-        variant: 'success',
+        variant: 'light',
         image: 'Roman.png'
       }))
       .then(() => history.push('/'))

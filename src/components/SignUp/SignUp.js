@@ -36,7 +36,7 @@ class SignUp extends Component {
       .then(() => alert({
         heading: 'Sign Up Success',
         message: messages.signUpSuccess,
-        variant: 'success',
+        variant: 'light',
         image: 'Roman.png'
       }))
       .then(() => history.push('/'))
