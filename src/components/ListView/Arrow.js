@@ -11,13 +11,14 @@ const Arrow = ({ direction, handleClick }) => (
       display: flex;
       position: absolute;
       top: 50%;
-      ${direction === 'right' ? `right: 25px` : `left: 25px`};
+      ${direction === 'right' ? `right: 0` : `left: 0`};
       height: 50px;
       width: 50px;
       justify-content: center;
+      border-radius: 50%;
       cursor: pointer;
       align-items: center;
-      transition: ease-in 0.1s;
+      transition: transform ease-in 0.1s;
       &:hover {
         transform: scale(1.1);
       }

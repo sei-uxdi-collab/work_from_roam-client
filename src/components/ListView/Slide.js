@@ -2,18 +2,22 @@
 import React from 'react'
 import { css, jsx } from '@emotion/core'
 
-const Slide = ({ content }) => (
+const Slide = ({ content, width, activeIndex }) => (
   <div
     css={css`
+      border: 1px solid red;
+      display: flex;
+      flex-direction: column;
       height: 100%;
-      width: 100%;
-      background-image:'${content};
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
+      width: ${width}px;
+      position: inline-block;
       `}
   >
-    <h3>{content.place_id}</h3>
+    <p>{content.place_id}</p>
+    <p>{content.avg_noise}</p>
+    <p>{content.id}</p>
+    <p>{width}</p>
+    <p>{activeIndex}</p>
   </div>
 )
 
