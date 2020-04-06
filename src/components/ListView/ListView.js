@@ -13,6 +13,13 @@ import OutsideClick from '../OutsideClick/OutsideClick.js'
 // Styling imports
 import './ListView.scss'
 
+<<<<<<< HEAD
+=======
+
+/**
+* @function ListView
+ **/
+>>>>>>> 2e0ba2ae55ad22cb0d9ac07819016ee83aec2b60
 const ListView = props => {
   const [listOpen, setListOpen] = useState(false)
   const [slider, setSlider] = useState({
