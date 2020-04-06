@@ -82,7 +82,7 @@ function ScaleRating (props) {
     }
 
     return (
-      <div>
+      <div className='ratings-div'>
         <p>Wifi   <div className='scale'>
                     <div className='root'></div>
                     <div className='rating' style={ wifiRating }></div>

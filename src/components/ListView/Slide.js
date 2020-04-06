@@ -1,11 +1,14 @@
 /** @jsx jsx **/
 import React from 'react'
 import { css, jsx } from '@emotion/core'
+import img from './cute_buffalo.jpg'
+
+// Custon component imports
+import ScaleRating from '../WorkSpace/ScaleRating'
 
 const Slide = ({ content, width, activeIndex }) => (
   <div
     css={css`
-      border: 1px solid red;
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -13,11 +16,17 @@ const Slide = ({ content, width, activeIndex }) => (
       position: inline-block;
       `}
   >
+    <div
+      css={css`
+        width: 100%;
+        height: 300px;
+        background-image: url(${img});
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: center;
+        `} />
+    <ScaleRating data={content}/>
     <p>{content.place_id}</p>
-    <p>{content.avg_noise}</p>
-    <p>{content.id}</p>
-    <p>{width}</p>
-    <p>{activeIndex}</p>
   </div>
 )
 
