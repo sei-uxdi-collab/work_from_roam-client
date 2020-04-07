@@ -7,31 +7,32 @@ import './Header.scss'
 
 const authenticatedOptions = (
   <Fragment>
+    <a href="/"> Your Favorites</a><br/>
+    <a href="/"> My Reviews</a><br/>
+    <a href="/"> Top Rated</a><br/>
+    <a href="/"> Info</a><br/>
     <a href="#change-password">Change Password</a>
-    <br /><br />
+    <br />
     <a href="#sign-out">Sign Out</a>
   </Fragment>
 )
 
 const unauthenticatedOptions = (
   <Fragment>
-    <a href="#sign-up">Sign Up</a>
-    <br /><br />
-    <a href="#sign-in">Sign In</a>
+    <a href="#sign-up">Sign Up</a><br/>
+    <a href="#sign-in">Sign In</a><br/>
   </Fragment>
 )
 
 const alwaysOptions = (
   <Fragment>
-    <a href="#/">Home</a><br /><br />
+    <a href="#/">Home</a><br />
+    <a href="/"> Info</a><br/>
   </Fragment>
 )
 
 const Header = ({ user }) => (
   <div className="header" collapseOnSelect fixed="top">
-    <div href="#">
-      WorkFromRoam
-    </div>
     <div>
       { user && <span style={{ color: 'black' }} className="">Welcome, {user.email}</span>}
     </div>
