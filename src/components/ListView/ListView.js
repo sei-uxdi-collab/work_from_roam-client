@@ -1,42 +1,49 @@
 /** @jsx jsx **/
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
 
 // Custom component imports
 import WorkspaceSlider from './WorkspaceSlider'
-import Slide from './Slide'
+import Slide from './Slide';
 import Arrow from './Arrow'
+import Dots from './Dots'
 import OutsideClick from '../OutsideClick/OutsideClick.js'
 
 // Styling imports
 import './ListView.scss'
 
 const ListView = props => {
-  const getWidth = e => {
-    if (e) {
-      let width = e.getBoundingClientRect().width
-      console.log(width)
-    }
-  }
-
   const [listOpen, setListOpen] = useState(false)
   const [slider, setSlider] = useState({
     activeIndex: 0,
     translate: 0,
     transition: 0.5
   })
+  const [width, setWidth] = useState()
+
+  const workspaceArray = props.workspaces[0].slice(0, 5)
 
 
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Reference and function that listens for events outside of the ListView component, and closes it
   const ref = useRef()
 
-  OutsideClick (ref, () => {
+  OutsideClick(ref, () => {
     setListOpen(false)
   })
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  // Sets the state of the Container ID to trigger showing/hiding of component
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Gets and sets the dynamic width of the ListView component
+  const sliderWidth = useRef()
+
+  useEffect(() => {
+    setWidth(sliderWidth.current.getBoundingClientRect().width)
+  }, [])
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   let visible = 'hide'
 
   if (listOpen === true) {
@@ -46,77 +53,84 @@ const ListView = props => {
   const toggleListView = () => {
     setListOpen(!listOpen)
   }
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Function to advance/decrement the slides
   const { translate, transition, activeIndex } = slider
 
   const nextSlide = () => {
-    if (activeIndex === props.filteredWorkspaces.length -1 ) {
-      return setSlider({
-        ...slider,
-        translate: 0,
-        activeIndex: 0
-      })
-    }
-
-    setSlider({
+  if (activeIndex === workspaceArray.length - 1) {
+    return setSlider({
       ...slider,
-      activeIndex: activeIndex + 1,
-      translate: (activeIndex + 1) * getWidth()
+      translate: 0,
+      activeIndex: 0
     })
   }
 
-  const prevSlide = () => {
-    if (activeIndex === 0) {
-      return setSlider({
-        ...slider,
-        translate: (props.filteredWorkspaces.length - 1) * getWidth(),
-        activeIndex: props.filteredWorkspaces.length -1
-      })
-    }
+  setSlider({
+    ...slider,
+    activeIndex: activeIndex + 1,
+    translate: (activeIndex + 1) * width
+  })
+}
 
-    setSlider({
+const prevSlide = () => {
+  if (activeIndex === 0) {
+    return setSlider({
       ...slider,
-      activeIndex: activeIndex - 1,
-      translate: (activeIndex - -1) * getWidth()
+      translate: (workspaceArray.length - 1) * width,
+      activeIndex: workspaceArray.length - 1
     })
   }
+
+  setSlider({
+    ...slider,
+    activeIndex: activeIndex - 1,
+    translate: (activeIndex - 1) * width
+  })
+}
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   return (
-      <Container className='list-container' fluid id={visible} >
-        <Row className='list-row'>
-          <Col className='list-column' sm={6} md={5} lg={4} ref={ref}>
-            <div className='list-header' onClick={toggleListView}>
-              <p>List View</p>
-            </div>
-            <div css={sliderCSS} ref={getWidth}>
-              <WorkspaceSlider
-                translate={translate}
-                transition={transition}
-                width={getWidth() * props.filteredWorkspaces.length}
-              >
-                {props.filteredWorkspaces[0].map((slide, i) => (
-                  <Slide key={slide + i} content={slide} />
-                ))}
-              </WorkspaceSlider>
 
-              <Arrow direction='left' handleClick={prevSlide} />
-              <Arrow direction='right' handleClick={nextSlide} />
-            </div>
-          </Col>
-        </Row>
-      </Container>
+    <Container className='list-container' fluid id={visible}>
+      <Row className='list-row'>
+        <Col className='list-column' sm={6} md={5} lg={4} ref={ref}>
+          <div className='list-header' onClick={toggleListView} >
+            <p>List View</p>
+          </div>
+          <div className='list-content' css={sliderCSS} ref={sliderWidth}>
+
+            <WorkspaceSlider
+              translate={translate}
+              transition={transition}
+              width={width * workspaceArray.length}
+            >
+
+              {workspaceArray.map(workspace => (
+                <Slide key={workspace.id} content={workspace} activeIndex={activeIndex} width={width} />
+              ))}
+
+            </WorkspaceSlider>
+
+            <Dots slides={workspaceArray} width={width} activeIndex={activeIndex}/>
+
+          </div>
+          <Arrow direction='left' handleClick={prevSlide} />
+          <Arrow direction='right' handleClick={nextSlide} />
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
 const sliderCSS = css`
-  display: flex;
   height: 100%;
-  justify-content: center;
-  width: 100%;
-  margin: .25rem auto;
+  width: 80%;
+  margin: 0 auto;
   overflow: hidden;
-  position: relative
-`
+  position: relative;
+`;
 
-export default ListView
+export default ListView;
