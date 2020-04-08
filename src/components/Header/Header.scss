@@ -4,8 +4,17 @@
     background-color: white;
     top: 75px;
     left: 20px;
-    // width: calc(100% - 60px);
+    width: 280px;
     height: 300px;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 10px;
+
+    color: #FFF;
+    background-color: #696969;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+  margin: 10px;
 }
