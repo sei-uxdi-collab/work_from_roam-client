@@ -30,7 +30,7 @@ const Arrow = ({ direction, handleClick }) => (
       }
     `}
   >
-    {direction === 'right' ? <img src={rightArrow} /> : <img src={leftArrow} />}
+    {direction === 'right' ? <img src={rightArrow} alt='Right Arrow'/> : <img src={leftArrow} alt='Left Arrow' />}
   </div>
 )
 

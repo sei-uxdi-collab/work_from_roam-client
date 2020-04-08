@@ -13,13 +13,6 @@ import OutsideClick from '../OutsideClick/OutsideClick.js'
 // Styling imports
 import './ListView.scss'
 
-<<<<<<< HEAD
-=======
-
-/**
-* @function ListView
- **/
->>>>>>> 2e0ba2ae55ad22cb0d9ac07819016ee83aec2b60
 const ListView = props => {
   const [listOpen, setListOpen] = useState(false)
   const [slider, setSlider] = useState({
@@ -29,26 +22,28 @@ const ListView = props => {
   })
   const [width, setWidth] = useState()
 
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  const workspaceArray = props.workspaces[0].slice(0, 5)
+
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Reference and function that listens for events outside of the ListView component, and closes it
   const ref = useRef()
 
   OutsideClick(ref, () => {
     setListOpen(false)
   })
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // Gets the dynamic width of the ListView component
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Gets and sets the dynamic width of the ListView component
   const sliderWidth = useRef()
 
   useEffect(() => {
     setWidth(sliderWidth.current.getBoundingClientRect().width)
   }, [])
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // Sets the state of the Container ID to trigger showing/hiding of component
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   let visible = 'hide'
 
   if (listOpen === true) {
@@ -58,14 +53,14 @@ const ListView = props => {
   const toggleListView = () => {
     setListOpen(!listOpen)
   }
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Function to advance/decrement the slides
   const { translate, transition, activeIndex } = slider
 
   const nextSlide = () => {
-  if (activeIndex === props.workspaces[0].length - 1) {
+  if (activeIndex === workspaceArray.length - 1) {
     return setSlider({
       ...slider,
       translate: 0,
@@ -84,8 +79,8 @@ const prevSlide = () => {
   if (activeIndex === 0) {
     return setSlider({
       ...slider,
-      translate: (props.workspaces[0].length - 1) * width,
-      activeIndex: props.workspaces[0].length - 1
+      translate: (workspaceArray.length - 1) * width,
+      activeIndex: workspaceArray.length - 1
     })
   }
 
@@ -95,10 +90,10 @@ const prevSlide = () => {
     translate: (activeIndex - 1) * width
   })
 }
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   return (
+
     <Container className='list-container' fluid id={visible}>
       <Row className='list-row'>
         <Col className='list-column' sm={6} md={5} lg={4} ref={ref}>
@@ -110,16 +105,16 @@ const prevSlide = () => {
             <WorkspaceSlider
               translate={translate}
               transition={transition}
-              width={width * props.workspaces[0].length}
+              width={width * workspaceArray.length}
             >
 
-              {props.workspaces[0].map((workspace) => (
+              {workspaceArray.map(workspace => (
                 <Slide key={workspace.id} content={workspace} activeIndex={activeIndex} width={width} />
               ))}
 
             </WorkspaceSlider>
 
-            <Dots slides={props.workspaces[0]} width={width} activeIndex={activeIndex}/>
+            <Dots slides={workspaceArray} width={width} activeIndex={activeIndex}/>
 
           </div>
           <Arrow direction='left' handleClick={prevSlide} />
