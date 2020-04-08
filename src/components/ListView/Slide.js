@@ -24,11 +24,10 @@ const Slide = ({ content, width, activeIndex }) => (
         background-size: 50%;
         background-repeat: no-repeat;
         background-position: center;
-        `}
-    />
-      <ScaleRating data={content}/>
-      <p>{content.place_id}</p>
-      <p>{content.id}</p>
+        `} />
+    <ScaleRating data={content}/>
+    <p>{content.place_id}</p>
+    <p>{content.id}</p>
   </div>
 )
 
