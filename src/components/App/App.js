@@ -118,7 +118,7 @@ class App extends React.Component {
               user={user}
               placeId={this.state.placeId}
               placeData={this.state.placeData}
-              location={this.state.poiLocation}
+              workspaceLocation={this.state.poiLocation}
               setApp={this.setState.bind(this)}
             />
           )} />
