@@ -1,13 +1,29 @@
-.search-bar input {
-    display: inline-flex;
-    height: 36px !important;
-    width: calc(100vw - 200px) !important;
-    margin: 0 auto;
-    border-radius: 12px;
+.search-bar {
+  display: flex;
+  width: 100%;
 
+  .input-group {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    margin-left: .5rem;
+
+    .location-search-input {
+      border-radius: 12px;
+      display: flex;
+      flex: 1;
+      height: 36px !important;
+      padding-left: 2rem;
+    }
+
+    img {
+      position: absolute;
+      left: .5rem;
+    }
+  }
 }
 
 .autocomplete-dropdown-container {
-    position: absolute;
-    width: calc(100vw - 200px);
+  position: absolute;
+  width: calc(100vw - 200px);
 }

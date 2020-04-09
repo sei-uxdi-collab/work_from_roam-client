@@ -31,12 +31,14 @@
 .search-group {
   align-items: center;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
-  position: absolute;
-  width: 100vw;
+  position: fixed;
   z-index: 12;
+  left: 6%; top: 4%; right: 6%;
+
+  div {
+    display: flex;
+    flex: 1;
+  }
 }
 
 @keyframes App-logo-spin {
@@ -45,5 +47,20 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+// Handles the width and position of the search header at different screen sizes
+@media (min-width: 420px) {
+  .search-group {
+    left: 1.5%;
+    width: 40vw;
+  }
+}
+
+@media (min-width: 1050px) {
+  .search-group {
+    left: 1.5%;
+    width: 20vw;
   }
 }

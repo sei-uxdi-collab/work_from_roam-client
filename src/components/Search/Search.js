@@ -2,6 +2,7 @@ import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import {GoogleApiWrapper} from 'google-maps-react'
 import './Search.scss'
+import magGlass from './SearchVector.svg'
 
 
 class Search extends React.Component {
@@ -38,13 +39,16 @@ render() {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div className='search-bar'>
-          <input
-            style={{ height: '40px', width: '100%', fontSize: '16px' }}
-            {...getInputProps({
-              placeholder: 'Search Places ...',
-              className: 'location-search-input',
-            })}
-          />
+          <div className='input-group'>
+            <img src={magGlass} alt='Magnifying glass' />
+            <input
+              style={{ fontSize: '16px' }}
+              {...getInputProps({
+                placeholder: 'Search Places ...',
+                className: 'location-search-input',
+              })}
+            />
+          </div>
           <div className="autocomplete-dropdown-container">
             {loading && <div>Loading...</div>}
             {suggestions.map(suggestion => {
