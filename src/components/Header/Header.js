@@ -52,7 +52,7 @@ const unauthenticatedOptions = (
 const Header = ({ user }) => (
   <div className="header" collapseOnSelect fixed="top">
     <Row>
-      <Col>
+      <Col className="p-0">
         <Link to='/'>
           <img src="close-x-white.png" className="icon" alt="close"/>
         </Link>
