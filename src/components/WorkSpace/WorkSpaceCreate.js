@@ -104,7 +104,7 @@ import Button from 'react-bootstrap/Button'
           <h1>{placeName}</h1>
 
           <img width={'90%'} alt={'pic'} src={placeImage || '../../loading-cat.gif'} />
-          <Button type="submit" onClick={this.handleSubmit}> Create New WorkSpace </Button>
+          {this.props.placeData ? <Button type="submit" onClick={this.handleSubmit}> Create New WorkSpace </Button> : null}
       </div>
       )
     }
