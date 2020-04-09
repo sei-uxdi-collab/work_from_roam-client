@@ -44,8 +44,11 @@ import Button from 'react-bootstrap/Button'
         data: {
           work_space: {
             place_id: this.props.placeId,
-            lat: this.props.location.lat,
-            lng: this.props.location.lng
+            lat: this.props.workspaceLocation.lat,
+            lng: this.props.workspaceLocation.lng,
+            name: this.props.placeData.name,
+            address: this.props.placeData.formatted_address,
+            photo: this.props.placeData.photos[0].getUrl(),
           }
         },
         headers: {
@@ -101,7 +104,7 @@ import Button from 'react-bootstrap/Button'
           <h1>{placeName}</h1>
 
           <img width={'90%'} alt={'pic'} src={placeImage || '../../loading-cat.gif'} />
-          <Button type="submit" onClick={this.handleSubmit}> Create New WorkSpace </Button>
+          {this.props.placeData ? <Button type="submit" onClick={this.handleSubmit}> Create New WorkSpace </Button> : null}
       </div>
       )
     }
