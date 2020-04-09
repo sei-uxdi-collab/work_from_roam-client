@@ -102,7 +102,7 @@ class App extends React.Component {
           )} />
 
           <Route user={user} path='/change-password' render={() => (
-              <ChangePassword user={user} />
+              <ChangePassword user={user} alert={this.alert} />
             )} />
 
           <Route user={user} path='/sign-out' render={() => (

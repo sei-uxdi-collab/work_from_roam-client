@@ -33,13 +33,14 @@ class AutoAlert extends React.Component {
         variant={variant}
         onClose={this.handleClose}
         onClick={this.handleClose}
+        className={variant}
       >
         <div className="container">
           <Alert.Heading style={{ textAlign: 'center', color: 'grey' }}>
             {heading}
           </Alert.Heading>
           <p className="alert-body" style={{ textAlign: 'center', color: 'grey' }}>{message}</p>
-            <img src={image} width='100%' alt="alert" />
+            {image ? (<img src={image} width='100%' alt="alert" />) : null}
         </div>
       </Alert>
     )
