@@ -18,7 +18,7 @@ function Review (props) {
         />
         </div>
         <p className='userName'>{props.user}</p>
-        <p className='userNotes'>{props.note}</p>
+        {props.note ? <p className='userNotes'>{props.note}</p>:<p className='userNotes empty'>This reviewer did not leave a comment.</p>}
         </div>
     )
 }
