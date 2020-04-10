@@ -15,6 +15,7 @@ import WorkSpace from '../WorkSpace/WorkSpace'
 import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
 import ListView from '../ListView/ListView'
 import WorkspaceFilter from '../WorkspaceFilter/WorkspaceFilter'
+import ReviewCard from '../Review/ReviewCard'
 
 import './App.scss'
 
@@ -123,10 +124,17 @@ class App extends React.Component {
             />
           )} />
 
+            <Route path='/'>
+              <div className="App">
+              <div style={{
+              position: 'absolute',
+              zIndex: '9',
+              backgroundColor: 'white',
+              top: '40%'
+            }}>
+            <ReviewCard />
+            </div>
 
-
-        <Route path='/'>
-          <div className="App">
           {/* Group makes up the search functions at the top of the page */}
             <div className='search-group'>
               <NavBar />
