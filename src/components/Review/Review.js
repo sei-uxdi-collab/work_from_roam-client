@@ -1,63 +1,26 @@
 import React from 'react'
 import { StarRating } from './StarsRating'
+import './Review.scss'
 
-const userPicStyle = {
-  width: '60px',
-  height: '60px',
-  borderRadius:'10px',
-  float: 'left'
-}
+function Review (props) {
 
-const userNameStyle = {
-  padding: '7px',
-  margin: '10px',
-  fontFamily: 'Roboto',
-  fontSize: '16px',
-  lineHeight: '150%'
-}
-
-const userNotesStyle = {
-  position: 'static',
-  padding: '11px 0px 5px 78px',
-  margin: '1px',
-  height: '60px',
-  left: '0px',
-  top: '32px',
-  fontFamily: 'Roboto',
-  fontWeight: '300',
-  fontSize: '13px',
-  lineHeight: '150%'
-}
-
-class Review extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            test: true
-        }
-    }
-
-    render() {
-      // Placeholder pic for now. Can either use limited set of avatars later or user-uploaded photo
-      // depending on how we want to implement the user profile feature
-      let userPic = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
-        return (
-            <div>
-            <img alt='User profile pic' src={userPic} style={userPicStyle}/>
-            <div style={{ float: 'right', paddingRight: '20px' }}>
-            <StarRating
-              value={this.props.rating}
-              emptyStarColor={'#4775FF'}
-              editing={false}
-            />
-            </div>
-            <span style={userNameStyle}>{this.props.user}</span>
-            <div style={userNotesStyle}>
-            <p>{this.props.note}</p>
-            </div>
-            </div>
-        )
-    }
+  // Placeholder pic for now. Can either use limited set of avatars later or user-uploaded photo
+  // depending on how we want to implement the user profile feature
+  let userPic = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+    return (
+        <div>
+        <img alt='User profile pic' src={userPic} className='userPic'/>
+        <div style={{ float: 'right', paddingRight: '50px' }}>
+        <StarRating
+          value={props.rating}
+          emptyStarColor={'#4775FF'}
+          editing={false}
+        />
+        </div>
+        <p className='userName'>{props.user}</p>
+        {props.note ? <p className='userNotes'>{props.note}</p>:<p className='userNotes empty'>This reviewer did not leave a comment.</p>}
+        </div>
+    )
 }
 
 export default Review
