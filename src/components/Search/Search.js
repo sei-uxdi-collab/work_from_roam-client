@@ -2,8 +2,7 @@ import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import {GoogleApiWrapper} from 'google-maps-react'
 import './Search.scss'
-import magGlass from './SearchVector.svg'
-
+import WorkspaceFilter from './../WorkspaceFilter/WorkspaceFilter.js'
 
 class Search extends React.Component {
     constructor(props) {
@@ -32,15 +31,15 @@ handleAutocompleteSelect = async query => {
 
 render() {
     return (
-        <PlacesAutocomplete
+      <PlacesAutocomplete
         value={this.state.query}
         onChange={this.setQuery}
         onSelect={this.handleAutocompleteSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-        <div className='search-bar'>
+        <React.Fragment>
           <div className='input-group'>
-            <img src={magGlass} alt='Magnifying glass' />
+            <WorkspaceFilter />
             <input
               style={{ fontSize: '16px' }}
               {...getInputProps({
@@ -71,7 +70,7 @@ render() {
               );
             })}
           </div>
-        </div>
+        </React.Fragment>
       )}
       </PlacesAutocomplete>
     )

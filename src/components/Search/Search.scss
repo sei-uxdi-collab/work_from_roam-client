@@ -1,17 +1,15 @@
-.search-bar {
+.input-group {
+  align-items: center;
   display: flex;
-  width: 100%;
-
-  .input-group {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    margin-left: .5rem;
+  margin-left: .5rem;
+  overflow: hidden;
+  position: absolute;
+  top: 0; bottom: 0;
 
     .location-search-input {
       border-radius: 12px;
-      display: flex;
-      flex: 1;
+      border-style: none;
+      width: calc(100% - 50px);
       height: 36px !important;
       padding-left: 2rem;
     }
@@ -20,10 +18,17 @@
       position: absolute;
       left: .5rem;
     }
-  }
+
+
 }
 
 .autocomplete-dropdown-container {
   position: absolute;
   width: calc(100vw - 200px);
+}
+
+@media (min-width: 450px) {
+  .location-search-input {
+    width: 100%;
+  }
 }

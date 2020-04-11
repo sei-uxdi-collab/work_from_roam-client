@@ -2,9 +2,10 @@ $wfrBlue: #4775ff;
 
 .nav-bar {
     height: 40px !important;
-    width: 40px;
+    width: 40px !important;
     background-color: #4775ff;
     border-radius: 12px;
+    margin: 0;
 
     img {
         height: 100%;
