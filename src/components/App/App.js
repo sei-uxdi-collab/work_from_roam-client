@@ -62,7 +62,7 @@ class App extends React.Component {
     return (
 <div>
 <Fragment>
-
+        
         {alerts.map((alert, index) => (
             <AutoAlert
               key={index}
