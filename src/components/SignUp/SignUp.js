@@ -16,6 +16,8 @@ class SignUp extends Component {
 
     this.state = {
       email: '',
+      username: '',
+      avatar: '',
       password: '',
       passwordConfirmation: ''
     }
@@ -42,7 +44,7 @@ class SignUp extends Component {
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
-        this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })
+        this.setState({ email: '', username: '', avatar: '', password: '', passwordConfirmation: '' })
         alert({
           heading: 'Sign Up Failed',
           message: messages.signUpFailure,
@@ -52,7 +54,7 @@ class SignUp extends Component {
   }
 
   render () {
-    const { email, password, passwordConfirmation } = this.state
+    const { email, username, avatar, password, passwordConfirmation } = this.state
 
     return (
       <div className="container popup">
@@ -101,6 +103,36 @@ class SignUp extends Component {
                 value={passwordConfirmation}
                 placeholder="Confirm Password"
                 onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="username" className="mt-4">
+              <TextField
+                fullWidth={true}
+                className="account-info username"
+                required
+                name="username"
+                value={username}
+                placeholder="Username"
+                onChange={this.handleChange}
+                InputProps={{
+                  disableUnderline: true,
+                  "aria-label": "Email",
+                }}
+              />
+            </Form.Group>
+            <Form.Group controlId="avatar" className="mt-4">
+              <TextField
+                fullWidth={true}
+                className="account-info avatar"
+                required
+                name="avatar"
+                value={avatar}
+                placeholder="Avatar"
+                onChange={this.handleChange}
+                InputProps={{
+                  disableUnderline: true,
+                  "aria-label": "Email",
+                }}
               />
             </Form.Group>
             <Link to='/' className="cancel-button m-3" onClick={this.closeWindow}>

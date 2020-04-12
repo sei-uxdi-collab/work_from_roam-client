@@ -28,12 +28,12 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <div className="header" collapseOnSelect fixed="top">
+  <div className="header" fixed="top">
     <div href="#">
       WorkFromRoam
     </div>
     <div>
-      { user && <span style={{ color: 'black' }} className="">Welcome, {user.email}</span>}
+      { user && <span style={{ color: 'black' }}>Welcome, {user.username}</span>}
     </div>
     <br />
     <div id="">

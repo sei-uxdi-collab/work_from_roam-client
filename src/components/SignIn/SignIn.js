@@ -16,6 +16,8 @@ class SignIn extends Component {
 
     this.state = {
       email: '',
+      username: '',
+      avatar: '',
       password: ''
     }
   }
@@ -40,7 +42,7 @@ class SignIn extends Component {
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
-        this.setState({ email: '', password: '' })
+        this.setState({ email: '', username: '', avatar: '', password: '' })
         alert({
          heading: 'Sign In Failed',
          message: messages.signInFailure,
@@ -51,7 +53,6 @@ class SignIn extends Component {
 
   render () {
     const { email, password } = this.state
-
     return (
       <div className="container popup">
 

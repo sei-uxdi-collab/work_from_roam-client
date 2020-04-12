@@ -116,7 +116,7 @@ class WorkSpace extends React.Component {
       } else if (this.props.placeData && this.props.placeData.opening_hours && day === 6) {
         openingHrsToday = this.props.placeData.opening_hours.weekday_text[5]
       }
-
+      console.log(this.props.data)
         return (
             <div className='workspace' style={this.state.display}>
               <Link to='/'>
