@@ -39,6 +39,7 @@ a, a:link, a:visited {
   align-items: center;
   color: #222222 !important;
   font-size: 20px;
+  display: flex;
   margin-left: 5px;
 }
 
@@ -74,13 +75,19 @@ a, a:link, a:visited {
 }
 
 .welcome {
+  align-items: center;
   color: #222222;
   font-size: 20px;
+  display: flex;
 }
 
 @media (min-width: 768px) {
   .header {
     width: 528px;
+  }
+  .prof-pic {
+    height: 50px;
+    width: 50px;
   }
   .sign-out {
     margin-left: 240px;
@@ -89,13 +96,20 @@ a, a:link, a:visited {
 
 @media (min-width: 350px) and (max-width: 767px) {
   .header {
-    width: 326px
-  }
-  .welcome {
-    font-size: 18px;
+    width: 326px;
   }
   .list-item {
     font-size: 15px;
   }
-
+  .prof-pic {
+    height: 40px;
+    width: 40px;
+  }
+  .sign-out {
+    font-size: 12px;
+    margin-left: 90px;
+  }
+  .welcome {
+    font-size: 18px;
+  }
 }
