@@ -7,8 +7,10 @@ import './Header.scss'
 
 const userBanner = ( user ) => (
   <Fragment>
-    <img src="profile-pic-placeholder.png" className="prof-pic" alt="profile pic" />
-    <span style={{ color: 'black' }} className="">Welcome back, {user.email}</span>}
+    <div className="d-flex mb-2" style={{ width: "100%"}}>
+      <img src="profile-pic-placeholder.png" className="prof-pic" alt="profile pic" />
+      <span className="welcome pl-2">Welcome back, {user.email}</span>}
+    </div>
   </Fragment>
 )
 
@@ -16,7 +18,7 @@ const authenticatedOptions = user => (
   <Fragment>
   <Row>
     <Link to='/' className="p-0">
-      <img src="close-x-white.png" className="icon" alt="close"/>
+      <img src="close-x-white.png" className="close-x-white" alt="close"/>
     </Link>
     <div>
       { userBanner(user) }
@@ -26,7 +28,7 @@ const authenticatedOptions = user => (
       <div>
         <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
       </div>
-      <div>
+      <div className="list-item">
         <a href="/">Your Favorites</a>
       </div>
     </Row>
@@ -34,7 +36,7 @@ const authenticatedOptions = user => (
       <div>
         <img src="my-reviews-icon.png" className="icon" alt="My Reviews"/>
       </div>
-      <div>
+      <div className="list-item">
         <a href="/">My Reviews</a>
       </div>
     </Row>
@@ -42,7 +44,7 @@ const authenticatedOptions = user => (
       <div>
         <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
       </div>
-      <div>
+      <div className="list-item">
         <a href="/">Top Rated</a>
       </div>
     </Row>
@@ -50,7 +52,7 @@ const authenticatedOptions = user => (
       <div>
         <img src="info-icon.png" className="icon" alt="info"/>
       </div>
-      <div>
+      <div className="list-item">
         <a href="/">Info</a>
       </div>
     </Row>
@@ -58,11 +60,9 @@ const authenticatedOptions = user => (
       <div>
         <img src="info-icon.png" className="icon" alt="Change Password"/>
       </div>
-      <div>
+      <div className="list-item">
         <a href="#change-password">Change Password</a>
-      </div>
-      <div>
-        <a href="#sign-out">Sign Out</a>
+        <a className="btn sign-out" href="#sign-out" role="button">Sign Out</a>
       </div>
     </Row>
   </Fragment>
@@ -71,13 +71,20 @@ const unauthenticatedOptions = (
   <Fragment>
     <Row>
       <Link to='/' className="p-0">
-        <img src="close-x-white.png" className="icon" alt="close"/>
+        <img src="close-x-white.png" className="close-x-white" alt="close"/>
       </Link>
-      <a href="#sign-up">Sign Up</a>
-      <a href="#sign-in">Sign In</a>
+      <div>
+        <a className="sign-in" href="#sign-in">Log In</a>
+        <a className="sign-up" href="#sign-up">Sign Up</a>
+      </div>
     </Row>
     <Row>
-      <img src="info-icon.png" className="icon" alt="info"/> <a href="/">Info</a>
+    <div>
+      <img src="info-icon.png" className="icon" alt="info"/>
+    </div>
+    <div className="list-item mt-2">
+      <a href="/">Info</a>
+    </div>
     </Row>
   </Fragment>
 )
