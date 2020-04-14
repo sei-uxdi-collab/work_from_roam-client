@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import MyReviewsList from '../MyReviewsList/MyReviewsList';
 // import Nav from 'react-bootstrap/Nav'
 // import Navbar from 'react-bootstrap/Navbar'
 import './Header.scss'
@@ -38,6 +39,7 @@ const authenticatedOptions = user => (
       </div>
       <div className="list-item">
         <a href="/">My Reviews</a>
+        // <MyReviewsList />
       </div>
     </Row>
     <Row>
