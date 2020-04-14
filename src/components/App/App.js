@@ -15,7 +15,7 @@ import WorkSpace from '../WorkSpace/WorkSpace'
 import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
 import ListView from '../ListView/ListView'
 import WorkspaceFilter from '../WorkspaceFilter/WorkspaceFilter'
-import ReviewCard from '../Review/ReviewCard'
+import ReviewCard from '../ReviewCard/ReviewCard'
 
 import './App.scss'
 
@@ -132,7 +132,9 @@ class App extends React.Component {
               backgroundColor: 'white',
               top: '40%'
             }}>
-            <ReviewCard />
+            <ReviewCard review={this.state.allData[28] && this.state.allData[28].reviews[0]}/>
+
+
             </div>
 
           {/* Group makes up the search functions at the top of the page */}
