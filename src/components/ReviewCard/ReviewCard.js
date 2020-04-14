@@ -31,8 +31,8 @@ render() {
              editing={false}
             />
             <h2>Date of Review</h2>
-          </div>
-          <div className="body-container-wrapper">
+        </div>
+        <div className="body-container-wrapper">
             <h1>{this.props.review && this.props.review.work_space.name}</h1>
             <StarRating
              value={this.props.review && this.props.review.work_space.rating}
@@ -40,15 +40,15 @@ render() {
              editing={false}
             />
             <p>{this.props.review && this.props.review.work_space.address}</p>
-            <div className="image">
+          <div className="image">
             <img src={this.props.review && this.props.review.work_space.photo}/>
             </div>
             <p>{this.props.review && this.props.review.note}</p>
 
 
 
-          </div>
         </div>
+      </div>
     );
   }
 }
