@@ -7,6 +7,15 @@ $white: #fff;
   width: 120px;
 }
 
+.select-button {
+  border: none;
+  border-radius: 20px;
+  height: 24px;
+  margin-bottom: 1em;
+  padding: 0;
+  width: 134px;
+}
+
 .filter-modal {
 
   .filter-modal-header {
@@ -20,8 +29,29 @@ $white: #fff;
 
   .filter-modal-body {
 
-    .modal-div {
+    .modal-container {
       background-color: #C4D3FF;
+      margin-bottom: 1rem;
+
+      .button-col {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+      }
+
+      #unclicked {
+        background-color: $white;
+        color: #000;
+        font-weight: 300;
+      }
+
+      #clicked {
+        background-color: $wfrBlue;
+        color: $white;
+        font-weight: bold;
+      }
     }
   }
+
 }
