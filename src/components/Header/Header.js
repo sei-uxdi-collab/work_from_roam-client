@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 // import Nav from 'react-bootstrap/Nav'
 // import Navbar from 'react-bootstrap/Navbar'
 import './Header.scss'
+import Info from "../Info/Info";
 
 const userBanner = ( user ) => (
   <Fragment>
@@ -53,7 +54,10 @@ const authenticatedOptions = user => (
         <img src="info-icon.png" className="icon" alt="info"/>
       </div>
       <div className="list-item">
-        <a href="/">Info</a>
+        <Info
+          title="Info"
+          content="This is our app info: It's great! That's all you need to know."
+        />
       </div>
     </Row>
     <Row>
