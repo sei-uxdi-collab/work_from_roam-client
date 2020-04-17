@@ -16,10 +16,10 @@ function Info(props) {
   }
 
   return (
-    <div className="info-section">
-      <button className={`info ${setActive}`} onClick={toggleInfo}>
-        <p className="info-title">{props.title}</p>
-      </button>
+    <div className="info-section"  onClick={toggleInfo}>
+      <div className={`info info-title ${setActive}`}>
+        {props.title}
+      </div>
       <div
         ref={content}
         style={{ maxHeight: `${setHeight}` }}

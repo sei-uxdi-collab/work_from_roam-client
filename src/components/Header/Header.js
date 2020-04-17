@@ -62,12 +62,10 @@ const authenticatedOptions = user => (
       <div>
         <img src="info-icon.png" className="icon" alt="info"/>
       </div>
-      <div className="list-item">
-        <Info
-          title="Info"
-          content="This is our app info: It's great! That's all you need to know."
-        />
-      </div>
+      <Info
+        title="Info"
+        content="This is our app info: It's great! That's all you need to know."
+      />
     </Row>
   </Fragment>
 )

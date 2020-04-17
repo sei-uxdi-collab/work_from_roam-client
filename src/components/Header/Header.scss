@@ -92,9 +92,6 @@ a, a:link, a:visited {
 
 //desktop view
 @media (min-width: 768px) {
-  .change-pw {
-    font-size: 12px;
-  }
   .header {
     width: 528px;
     height: auto;
@@ -113,9 +110,6 @@ a, a:link, a:visited {
 
 // mobile view
 @media (min-width: 350px) and (max-width: 767px) {
-  .change-pw {
-    font-size: 10px;
-  }
   .header {
     width: 326px;
     height: auto;
