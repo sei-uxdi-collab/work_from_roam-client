@@ -21,6 +21,7 @@ class ReviewCard extends React.Component {
   }
 render() {
   const {value} = this.props;
+
     return (
        <div>
           <div className='header-container'>
