@@ -23,7 +23,7 @@ render() {
   const {value} = this.props;
     return (
        <div>
-          <div className='header-container-wrapper'>
+          <div className='header-container'>
             <h1>Your Review</h1>
             <StarRating
              value={value}
@@ -32,7 +32,7 @@ render() {
             />
             <h2>Date of Review</h2>
           </div>
-          <div className="body-container-wrapper">
+          <div className="body-container">
             <h1>{this.props.review && this.props.review.work_space.name}</h1>
             <StarRating
              value={this.props.review && this.props.review.work_space.rating}
@@ -40,12 +40,10 @@ render() {
              editing={false}
             />
             <p>{this.props.review && this.props.review.work_space.address}</p>
-            <div className="image">
+            <div className="photo">
             <img src={this.props.review && this.props.review.work_space.photo}/>
             </div>
             <p>{this.props.review && this.props.review.note}</p>
-
-
 
           </div>
         </div>
