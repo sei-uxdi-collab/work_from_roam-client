@@ -3,8 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { StarRating } from './StarsRating'
-
-// import TestButton from '../TestButton'
+import { createReview } from '../../api/auth'
 import messages from '../AutoAlert/messages'
 import './ReviewCreate.scss'
 
@@ -15,7 +14,6 @@ import Button from 'react-bootstrap/Button'
     constructor(props) {
       super(props)
       this.state = {
-        work_space_id: props.currentWorkspace.id,
         rating: 3,
         review: '',
         wifi: '',
@@ -32,10 +30,6 @@ import Button from 'react-bootstrap/Button'
       this.toggleChange = this.toggleChange.bind(this);
     }
 
-    componentDidMount(props) {
-      console.log('reviewform data: ' + this.props.placeData)
-    }
-
     handleChange = (event) => {
       this.setState({ [event.target.name]: event.target.value })
       // console.log(event.target.value)
@@ -48,45 +42,34 @@ import Button from 'react-bootstrap/Button'
     handleSubmit = (event) => {
       event.preventDefault()
 
-      const { alert } = this.props
+      const { alert, currentWorkspace, user } = this.props
+      const { rating, noise, bathroom, seating, coffee, outlet, food, wifi, review } = this.state
 
-        axios({
-          method: 'post',
-          url: apiUrl + '/reviews',
-          data: {
-            review: {
-              work_space_id: this.state.work_space_id,
-              rating: this.state.rating,
-              noise: this.state.noise,
-              bathroom: this.state.bathroom,
-              seating: this.state.seating,
-              coffee: this.state.coffee ? "5" : "0",
-              outlet: this.state.outlet ? "5" : "0",
-              food: this.state.food ? "5" : "0",
-              wifi: this.state.wifi,
-              note: this.state.review
-            }
-          },
-          headers: {
-            Authorization: `Token token=${this.props.user.token}`
-          }
-        })
-        .then(data => {
-          // console.log(data)
-          axios(apiUrl + '/work_spaces')
-            .then(data => {
-                // console.log(data)
-                this.props.setApp({ allData: data.data.work_spaces })
-            })
-          this.setState({ display: 'none' })
-        })
-        .then(() => alert({
+      createReview({
+        id: currentWorkspace.id,
+        rating,
+        noise,
+        bathroom,
+        seating,
+        coffee: coffee ? "5" : "0",
+        outlet: outlet ? "5" : "0",
+        food: food ? "5" : "0",
+        wifi: wifi,
+        note: review,
+        token: user.token,
+      })
+      .then(() => {
+        // reload all workspace data
+        axios(apiUrl + '/work_spaces')
+          .then(data => this.props.setApp({ allData: data.data.work_spaces }))
+        this.setState({ display: 'none' })
+      })
+      .then(() => alert({
         heading: 'Thanks for your review!',
         message: messages.reviewCreateSuccess,
         variant: 'success',
         image: 'Roman.png'
       }))
-      // 3. redirect to '/' and close the review form
       .catch(() => alert('create review failed'))
     }
 
@@ -97,29 +80,18 @@ import Button from 'react-bootstrap/Button'
 
     render () {
       let placeName = ''
-      // if user is not signed in, redirect to '/sign-in'
-
       if (this.props.placeData && this.props.placeData.name) {
         placeName = this.props.placeData.name
       }
 
-      let placeImage = ''
+      // if user is not signed in, redirect to '/sign-in'
+      if (!this.props.user) {
+        return (<Redirect to='/sign-in'/>)
+      }
 
-      if (this.props.placeData && this.props.placeData.photos) {
-        placeImage =  this.props.placeData.photos[0].getUrl()
-
-}
-
-
-      // console.log(placeImage)
-
-        if (!this.props.user) {
-          return (<Redirect to='/sign-in'/>)
-        }
-
-        if (this.state.display === 'none') {
-          return (<Redirect to='/'/>)
-        }
+      if (this.state.display === 'none') {
+        return (<Redirect to='/'/>)
+      }
 
       return (
 

@@ -52,7 +52,7 @@ class WorkSpace extends React.Component {
               <div style={{ textAlign: 'center' }}>
                 <h3>Be the first to write a  <Button
                 data={this.props.data.id}
-                href={`#work_spaces/${this.props.data.id}/create-review`}
+                href={`#work_spaces/create-review`}
               >
                 Review
               </Button> for</h3>
