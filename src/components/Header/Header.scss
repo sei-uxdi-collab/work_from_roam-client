@@ -3,6 +3,17 @@ a, a:link, a:visited {
   text-decoration: none;
 }
 
+.change-pw {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 150%;
+  display: block;
+  align-items: center;
+  text-decoration-line: underline !important;
+}
+
 .close-x-white {
   height: 15px;
   width: 15px;
@@ -17,7 +28,6 @@ a, a:link, a:visited {
     top: 75px;
     left: 20px;
     width: 280px;
-    height: auto;
     border-radius: 10px;
     padding: 10px;
 
@@ -38,7 +48,6 @@ a, a:link, a:visited {
 .list-item {
   align-items: center;
   color: #222222 !important;
-  font-size: 20px;
   display: flex;
   margin-left: 5px;
 }
@@ -78,12 +87,17 @@ a, a:link, a:visited {
   align-items: center;
   color: #222222;
   font-size: 20px;
-  display: flex;
+  display: block;
 }
 
+//desktop view
 @media (min-width: 768px) {
   .header {
     width: 528px;
+    height: auto;
+  }
+  .list-item {
+    font-size: 20px;
   }
   .prof-pic {
     height: 50px;
@@ -94,9 +108,11 @@ a, a:link, a:visited {
   }
 }
 
+// mobile view
 @media (min-width: 350px) and (max-width: 767px) {
   .header {
     width: 326px;
+    height: auto;
   }
   .list-item {
     font-size: 15px;

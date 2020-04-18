@@ -4,12 +4,22 @@ import { Link } from 'react-router-dom'
 // import Nav from 'react-bootstrap/Nav'
 // import Navbar from 'react-bootstrap/Navbar'
 import './Header.scss'
+import Info from "../Info/Info";
 
 const userBanner = ( user ) => (
   <Fragment>
     <div className="d-flex mb-2" style={{ width: "100%"}}>
-      <img src="profile-pic-placeholder.png" className="prof-pic" alt="profile pic" />
-      <span className="welcome pl-2">Welcome back, {user.email}</span>}
+      <div>
+        <img src="profile-pic-placeholder.png" className="prof-pic" alt="profile pic" />
+      </div>
+      <div className="ml-4">
+        <Row>
+          <div className="welcome">Welcome back, {user.email}</div>
+        </Row>
+        <Row>
+            <a href="#change-password" className="change-pw">Change Password</a>
+        </Row>
+      </div>
     </div>
   </Fragment>
 )
@@ -52,18 +62,10 @@ const authenticatedOptions = user => (
       <div>
         <img src="info-icon.png" className="icon" alt="info"/>
       </div>
-      <div className="list-item">
-        <a href="/">Info</a>
-      </div>
-    </Row>
-    <Row>
-      <div>
-        <img src="info-icon.png" className="icon" alt="Change Password"/>
-      </div>
-      <div className="list-item">
-        <a href="#change-password">Change Password</a>
-        <a className="btn sign-out" href="#sign-out" role="button">Sign Out</a>
-      </div>
+      <Info
+        title="Info"
+        content="This is our app info: It's great! That's all you need to know."
+      />
     </Row>
   </Fragment>
 )
@@ -79,12 +81,15 @@ const unauthenticatedOptions = (
       </div>
     </Row>
     <Row>
-    <div>
-      <img src="info-icon.png" className="icon" alt="info"/>
-    </div>
-    <div className="list-item mt-2">
-      <a href="/">Info</a>
-    </div>
+      <div>
+        <img src="info-icon.png" className="icon" alt="info"/>
+      </div>
+      <div className="list-item">
+        <Info
+          title="Info"
+          content="This is our app info: It's great! That's all you need to know."
+        />
+      </div>
     </Row>
   </Fragment>
 )
