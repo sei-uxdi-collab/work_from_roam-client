@@ -17,7 +17,8 @@ function Review (props) {
           editing={false}
         />
         </div>
-        <p className='userName'>{props.user}</p>
+        <p className='userName'><span title={props.user}>{props.user}</span></p>
+        {}
         {props.note ? <p className='userNotes'>{props.note}</p>:<p className='userNotes empty'>This reviewer did not leave a comment.</p>}
         </div>
     )
