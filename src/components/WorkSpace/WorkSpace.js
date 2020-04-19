@@ -43,7 +43,7 @@ class WorkSpace extends React.Component {
         photo = '../../image_not_found.png'
       }
 
-      if(this.props.data.reviews.length < 1) {
+      if(!this.props.data || this.props.data.reviews.length < 1) {
         return (
             <div className='workspace'>
               <Link to='/'>
@@ -51,8 +51,7 @@ class WorkSpace extends React.Component {
               </Link>
               <div style={{ textAlign: 'center' }}>
                 <h3>Be the first to write a  <Button
-                data={this.props.data.id}
-                href={`#work_spaces/create-review`}
+                href={`#/create-review`}
               >
                 Review
               </Button> for</h3>
@@ -188,7 +187,7 @@ class WorkSpace extends React.Component {
                     <Button
                       className='reviewButton'
                       data={this.props.data.id}
-                      href={`#work_spaces/${this.props.data.id}/create-review`}
+                      href={`#/create-review`}
                     >
                       Leave a Review
                     </Button>

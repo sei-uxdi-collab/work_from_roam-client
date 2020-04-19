@@ -73,7 +73,7 @@ class App extends React.Component {
             />
           ))}
 
-        <Route path='/work_spaces/create-review'>
+        <Route path='/create-review'>
           <ReviewCreate
             user={user}
             alert={this.alert}

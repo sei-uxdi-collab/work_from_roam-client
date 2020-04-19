@@ -93,7 +93,7 @@ class GoogleMap extends React.Component {
         this.props.setApp({ mapCenter, poiLocation, placeId })
 
         this.getPlaceDetails(map, placeId)
-        this.props.history.push('/create-workspace')
+        this.props.history.push('/workspace')
     }
 
     handleClick = (props, map, event) => {
