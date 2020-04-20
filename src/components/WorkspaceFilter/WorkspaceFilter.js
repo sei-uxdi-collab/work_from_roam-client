@@ -138,13 +138,14 @@ const WorkspaceFilter = props => {
     }
   }
 
-  // const handleSubmit = () => {
-  //   // event.persist()
-  //   filteredCall(filters, props.user)
-  //     // Right now, only pulling the first workspace response to work on ListView display
-  //     .then(res => props.filterWorkspaces(res.data.work_spaces))
-  //     .then(handleClose)
-  // }
+  const handleSubmit = () => {
+    // event.persist()
+    filteredCall(filters)
+      // Right now, only pulling the first workspace response to work on ListView display
+      .then(res => console.log(res))
+      .then(res => props.filterWorkspaces(res.data.work_spaces))
+      .then(handleClose)
+  }
 
   return (
     <Fragment>
@@ -156,7 +157,8 @@ const WorkspaceFilter = props => {
             <h6>Venue</h6>
             <Row>
               <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.coffeeShop ? 'clicked' : 'unclicked'} onClick={handleSelect} name='coffeeShop'>coffee shop</Button >
+                <Button className='select-button' id={filters.coffeeShop ? 'clicked' : 'unclicked'} onClick={handleSelect} name='coffeeShop'
+                  value={filters.coffeeShop ? 'false' : 'true'}>coffee shop</Button >
               </Col>
               <Col sm={6} className='button-col'>
                 <Button className='select-button' id={filters.cowork ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='cowork'>cowork space</Button>
@@ -236,12 +238,18 @@ const WorkspaceFilter = props => {
             </Row>
           </Container>
 
-          <Button onClick={handleClose}>Submit</Button>
+          <Container className='modal-container' style={{background: 'white'}}>
+            <Row>
+              <Col sm={6} className='button-col'>
+                <p onClick={resetFilters}>Clear Filters</p>
+              </Col>
+              <Col sm={6} className='button-col'>
+                <Button className='submit-button' onClick={handleClose}>Apply Filters</Button>
+              </Col>
+            </Row>
+          </Container>
 
-          <div className='modal-div'>
-          </div>
-          <div className='modal-div'>
-          </div>
+
         </Modal.Body>
       </Modal>
     </Fragment>

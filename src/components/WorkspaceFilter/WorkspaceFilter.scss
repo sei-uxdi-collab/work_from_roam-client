@@ -18,40 +18,53 @@ $white: #fff;
 
 .filter-modal {
 
-  .filter-modal-header {
-    background-color: $wfrBlue;
-    color: $white;
-
-    button {
-      color: $white;
-    }
-  }
-
   .filter-modal-body {
 
     .modal-container {
       background-color: #C4D3FF;
+      border-radius: 16px;
+      font-family: 'Roboto';
       margin-bottom: 1rem;
+      padding-top: .5rem;
+
+      h6 {
+        margin-left: 1rem;
+      }
 
       .button-col {
         align-items: center;
         display: flex;
         justify-content: center;
 
-      }
+        .submit-button {
+          border-radius: 20px;
+          height: 32px;
+          margin: 0;
+          width: 168px;
+        }
 
-      #unclicked {
-        background-color: $white;
-        color: #000;
-        font-weight: 300;
-      }
+        p {
+          font-weight: 300;
+          margin: 0;
+          text-decoration-line: underline;
+        }
 
-      #clicked {
-        background-color: $wfrBlue;
-        color: $white;
-        font-weight: bold;
+        #unclicked {
+          background-color: $white;
+          color: #000;
+          font-weight: 300;
+        }
+
+        #clicked {
+          background-color: $wfrBlue;
+          color: $white;
+          font-weight: bold;
+        }
+
       }
     }
+
+
   }
 
 }
