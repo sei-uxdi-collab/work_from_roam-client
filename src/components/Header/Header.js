@@ -40,7 +40,7 @@ const authenticatedOptions = user => (
         <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
       </div>
       <div className="list-item">
-        <a href="/">Your Favorites</a>
+        <a href="/">My Favorites</a>
       </div>
     </Row>
     <Row>
@@ -69,6 +69,9 @@ const authenticatedOptions = user => (
         content="This is our app info: It's great! That's all you need to know."
       />
     </Row>
+    <div>
+      <a className="btn sign-out" href="#sign-out" role="button">Sign Out</a>
+    </div>
   </Fragment>
 )
 const unauthenticatedOptions = (
