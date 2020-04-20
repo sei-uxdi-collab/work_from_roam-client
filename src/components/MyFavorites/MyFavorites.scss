@@ -1,0 +1,62 @@
+/* Entire favorites section */
+.myfavorites-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* This is the button that is used to open and close the content */
+.myfavorites {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  padding: 0px;
+}
+
+/* This is the list item that the user sees in the menu, it is the text only, not the button itself */
+.myfavorites-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  text-align: left;
+  align-items: center;
+  color: #222222;
+  display: flex;
+  font-weight: 300;
+  margin: 0px;
+  margin-left: 5px;
+}
+
+
+/* Styles the top rated content panel. Note: hidden by default */
+.myfavorites-content {
+  overflow: auto;
+  transition: max-height 0.6s ease;
+}
+
+/* Styles the top rated content text */
+.myfavorites-text {
+  color: #222222;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  padding: 18px;
+}
+
+.myfavorites:hover,
+.active {
+  color: #4775FF !important;
+}
+
+@media (min-width: 768px) {
+  .myfavorites-title {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 350px) and (max-width: 767px) {
+  .myfavorites-title {
+    font-size: 15px;
+  }
+}
