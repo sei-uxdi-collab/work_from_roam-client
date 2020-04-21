@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 // import Navbar from 'react-bootstrap/Navbar'
 import './Header.scss'
 import Info from "../Info/Info";
+import TopRated from "../TopRated/TopRated";
+import MyFavorites from "../MyFavorites/MyFavorites";
 
 const userBanner = ( user ) => (
   <Fragment>
@@ -38,9 +40,10 @@ const authenticatedOptions = user => (
       <div>
         <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
       </div>
-      <div className="list-item">
-        <a href="/">Your Favorites</a>
-      </div>
+      <MyFavorites
+        title="My Favorites"
+        content="This is where all your favorites will appear... coming soon!"
+      />
     </Row>
     <Row>
       <div>
@@ -54,9 +57,10 @@ const authenticatedOptions = user => (
       <div>
         <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
       </div>
-      <div className="list-item">
-        <a href="/">Top Rated</a>
-      </div>
+      <TopRated
+        title="Top Rated"
+        content="This is where your top rated workspaces will appear... coming soon!"
+      />
     </Row>
     <Row>
       <div>
@@ -67,6 +71,9 @@ const authenticatedOptions = user => (
         content="This is our app info: It's great! That's all you need to know."
       />
     </Row>
+    <div>
+      <a className="btn sign-out" href="#sign-out" role="button">Sign Out</a>
+    </div>
   </Fragment>
 )
 const unauthenticatedOptions = (

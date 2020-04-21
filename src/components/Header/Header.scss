@@ -3,6 +3,10 @@ a, a:link, a:visited {
   text-decoration: none;
 }
 
+.row {
+  flex-wrap: nowrap;
+}
+
 .change-pw {
   font-family: Roboto;
   font-style: normal;
