@@ -138,16 +138,14 @@ class App extends React.Component {
             </div>
 
           {/* Group makes up the search functions at the top of the page */}
+        <Route path='/'>
+          <div className="App">
             <div className='search-group'>
               <NavBar />
-              <div>
-                <Search setApp={this.setState.bind(this)}
-                        mapCenter={this.state.mapCenter}
-                />
-              </div>
-              <WorkspaceFilter filterWorkspaces={this.filterWorkspaces}/>
+              <Search setApp={this.setState.bind(this)}
+                      mapCenter={this.state.mapCenter}
+              />
             </div>
-          {/* ~~~~~~~~~~~~~~~~~~~~ */}
             <GoogleMap
               center={this.state.mapCenter}
               coordinates={this.state.coordinates}
