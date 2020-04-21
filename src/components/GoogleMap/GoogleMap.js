@@ -82,18 +82,27 @@ class GoogleMap extends React.Component {
         }
     }
 
+    findExistingWorkspace = placeId => {
+        const dataId = this.props.allData.findIndex(workspace => workspace.place_id === placeId)
+        if (dataId >= 0) {
+            this.props.setApp({ currentWorkspace: this.props.allData[dataId]})
+        }
+    }
+
     handlePOI = (map, event) => {
-        this.props.setApp({ placeData: null })
+        this.props.setApp({ placeData: null, currentWorkspace: null })
         const placeId = event.placeId
         const poiLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
         const mapCenter = poiLocation
+
+        this.findExistingWorkspace(placeId)
         // turn infoWindow on to overwrite default poi window
         this.setState({ showPOI: true })
   
         this.props.setApp({ mapCenter, poiLocation, placeId })
 
         this.getPlaceDetails(map, placeId)
-        this.props.history.push('/create-workspace')
+        this.props.history.push('/workspace')
     }
 
     handleClick = (props, map, event) => {

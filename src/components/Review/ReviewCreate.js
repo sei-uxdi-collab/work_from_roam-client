@@ -3,8 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { StarRating } from './StarsRating'
-
-// import TestButton from '../TestButton'
+import { createReview, createWorkspace } from '../../api/create'
 import messages from '../AutoAlert/messages'
 import './ReviewCreate.scss'
 
@@ -15,9 +14,8 @@ import Button from 'react-bootstrap/Button'
     constructor(props) {
       super(props)
       this.state = {
-        work_space_id: props.currentWorkspace.id,
         rating: 3,
-        review: '',
+        note: '',
         wifi: '',
         noise: 3,
         bathroom: 3,
@@ -32,10 +30,6 @@ import Button from 'react-bootstrap/Button'
       this.toggleChange = this.toggleChange.bind(this);
     }
 
-    componentDidMount(props) {
-      console.log('reviewform data: ' + this.props.placeData)
-    }
-
     handleChange = (event) => {
       this.setState({ [event.target.name]: event.target.value })
       // console.log(event.target.value)
@@ -45,49 +39,48 @@ import Button from 'react-bootstrap/Button'
       this.setState({ [event.target.name]: !this.state[event.target.name] })
     }
 
+    //submit review for given workspace id
+    submitReview = (id) => {
+      const { rating, noise, bathroom, seating, coffee, outlet, food, wifi, note } = this.state
+      const { alert, user } = this.props
+      const token = user.token
+      createReview({ id, rating, noise, bathroom, seating, coffee, outlet, food, wifi, note, token })
+        .then(() => {
+          // reload all workspace data
+          axios(apiUrl + '/work_spaces')
+            .then(data => this.props.setApp({ allData: data.data.work_spaces }))
+          this.setState({ display: 'none' })
+          alert({
+            heading: 'Thanks for your review!',
+            message: messages.reviewCreateSuccess,
+            variant: 'light',
+            image: 'Roman.png'
+          })
+        })
+        .catch(() => alert('create review failed'))
+    }
+
+    newWorkspaceReview = () => {
+      const { placeId, location, placeData, user } = this.props
+      const { lat, lng } = location
+      const name = placeData.name
+      const address = placeData.formatted_address
+      const photo = placeData.photos && placeData.photos[0].getUrl()
+      const token = user.token
+
+      createWorkspace({ placeId, lat, lng, name, address, photo, token })
+        .then(data => this.submitReview(data.data.work_space.id))
+    }
+
     handleSubmit = (event) => {
       event.preventDefault()
-
-      const { alert } = this.props
-
-        axios({
-          method: 'post',
-          url: apiUrl + '/reviews',
-          data: {
-            review: {
-              work_space_id: this.state.work_space_id,
-              rating: this.state.rating,
-              noise: this.state.noise,
-              bathroom: this.state.bathroom,
-              seating: this.state.seating,
-              coffee: this.state.coffee ? "5" : "0",
-              outlet: this.state.outlet ? "5" : "0",
-              food: this.state.food ? "5" : "0",
-              wifi: this.state.wifi,
-              note: this.state.review
-            }
-          },
-          headers: {
-            Authorization: `Token token=${this.props.user.token}`
-          }
-        })
-        .then(data => {
-          // console.log(data)
-          axios(apiUrl + '/work_spaces')
-            .then(data => {
-                // console.log(data)
-                this.props.setApp({ allData: data.data.work_spaces })
-            })
-          this.setState({ display: 'none' })
-        })
-        .then(() => alert({
-        heading: 'Thanks for your review!',
-        message: messages.reviewCreateSuccess,
-        variant: 'success',
-        image: 'Roman.png'
-      }))
-      // 3. redirect to '/' and close the review form
-      .catch(() => alert('create review failed'))
+      const { currentWorkspace } = this.props
+      
+      if (!currentWorkspace) {
+        this.newWorkspaceReview()
+      } else {
+        this.submitReview(currentWorkspace.id)
+      }
     }
 
     closeWindow = () => {
@@ -97,29 +90,18 @@ import Button from 'react-bootstrap/Button'
 
     render () {
       let placeName = ''
-      // if user is not signed in, redirect to '/sign-in'
-
       if (this.props.placeData && this.props.placeData.name) {
         placeName = this.props.placeData.name
       }
 
-      let placeImage = ''
+      // if user is not signed in, redirect to '/sign-in'
+      if (!this.props.user) {
+        return (<Redirect to='/sign-in'/>)
+      }
 
-      if (this.props.placeData && this.props.placeData.photos) {
-        placeImage =  this.props.placeData.photos[0].getUrl()
-
-}
-
-
-      // console.log(placeImage)
-
-        if (!this.props.user) {
-          return (<Redirect to='/sign-in'/>)
-        }
-
-        if (this.state.display === 'none') {
-          return (<Redirect to='/'/>)
-        }
+      if (this.state.display === 'none') {
+        return (<Redirect to='/'/>)
+      }
 
       return (
 
@@ -355,8 +337,8 @@ import Button from 'react-bootstrap/Button'
                 type="text"
                 as="textarea"
                 placeholder="Enter Your Review..."
-                value={this.state.review}
-                name="review"
+                value={this.state.note}
+                name="note"
                 onChange={this.handleChange}
                 id="review"
                 className="review-text-input"
