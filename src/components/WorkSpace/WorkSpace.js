@@ -12,11 +12,9 @@ class WorkSpace extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            test: true,
             filters: false,
             hours: false
         }
-        // console.log(props.placeData)
     }
 
     // Function to show more filters
@@ -74,14 +72,6 @@ class WorkSpace extends React.Component {
       }
       // Overall average rating for workSpace
       let overall = average(this.props.data.reviews.map(review => review.rating))
-      // Bathroom average rating
-      // let bath = average(this.props.data.reviews.map(review => review.bathroom))
-      // // Noise level average Rating
-      // let noise = average(this.props.data.reviews.map(review => review.noise))
-      // // Wifi average rating
-      // let wifi = average(this.props.data.reviews.map(review => parseInt(review.wifi)))
-      // // Seating average Rating
-      // let seating = average(this.props.data.reviews.map(review => parseInt(review.seating)))
       // Outlets average rating
       let outlet = average(this.props.data.reviews.map(review => parseInt(review.outlet)))
       // Coffee average Rating

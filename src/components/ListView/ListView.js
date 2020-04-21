@@ -8,13 +8,13 @@ import WorkspaceSlider from './WorkspaceSlider'
 import Slide from './Slide';
 import Arrow from './Arrow'
 import Dots from './Dots'
-import OutsideClick from '../OutsideClick/OutsideClick.js'
+import ClickOutside from '../ClickOutside/ClickOutside.js'
 
 // Styling imports
 import './ListView.scss'
 
 const ListView = props => {
-  const [listOpen, setListOpen] = useState(false)
+  const [isListOpen, setIsListOpen] = useState(false)
   const [slider, setSlider] = useState({
     activeIndex: 0,
     translate: 0,
@@ -29,8 +29,8 @@ const ListView = props => {
   // Reference and function that listens for events outside of the ListView component, and closes it
   const ref = useRef()
 
-  OutsideClick(ref, () => {
-    setListOpen(false)
+  ClickOutside(ref, () => {
+    setIsListOpen(false)
   })
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -44,19 +44,19 @@ const ListView = props => {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  let visible = 'hide'
+  let isVisible = 'hide'
 
-  if (listOpen === true) {
-    visible = 'show'
+  if (isListOpen === true) {
+    isVisible = 'show'
   }
 
   const toggleListView = () => {
-    setListOpen(!listOpen)
+    setIsListOpen(!isListOpen)
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // Function to advance/decrement the slides
+  // Functions to advance/decrement the slides
   const { translate, transition, activeIndex } = slider
 
   const nextSlide = () => {
@@ -94,28 +94,23 @@ const prevSlide = () => {
 
   return (
 
-    <Container className='list-container' fluid id={visible}>
+    <Container className='list-container' fluid id={isVisible}>
       <Row className='list-row'>
         <Col className='list-column' sm={6} md={5} lg={4} ref={ref}>
           <div className='list-header' onClick={toggleListView} >
             <p>List View</p>
           </div>
           <div className='list-content' css={sliderCSS} ref={sliderWidth}>
-
             <WorkspaceSlider
               translate={translate}
               transition={transition}
               width={width * workspaceArray.length}
             >
-
               {workspaceArray.map(workspace => (
                 <Slide key={workspace.id} content={workspace} activeIndex={activeIndex} width={width} />
               ))}
-
             </WorkspaceSlider>
-
             <Dots slides={workspaceArray} width={width} activeIndex={activeIndex}/>
-
           </div>
           <Arrow direction='left' handleClick={prevSlide} />
           <Arrow direction='right' handleClick={nextSlide} />

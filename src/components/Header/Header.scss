@@ -1,11 +1,131 @@
+a, a:link, a:visited {
+  color: #222222;
+  text-decoration: none;
+}
+
+.change-pw {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 150%;
+  display: block;
+  align-items: center;
+  text-decoration-line: underline !important;
+}
+
+.close-x-white {
+  height: 15px;
+  width: 15px;
+  margin: 12px;
+  margin-top: 0px;
+}
+
 .header {
     position: absolute;
     z-index: 10;
     background-color: white;
     top: 75px;
     left: 20px;
-    // width: calc(100% - 60px);
-    height: 300px;
-    border-radius: 12px;
+    width: 280px;
+    border-radius: 10px;
     padding: 10px;
+
+    color: #FFF;
+    font-family: Roboto;
+    font-weight: 300;
+
+    // background: linear-gradient(to right, #4775FF, #4775FF 10%, white 90%);
+    background: linear-gradient(to right, #4775FF, #4775FF 30px, #FFF 30px, #FFF 66.66%, #FFF 66.66%);
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+  margin: 10px;
+}
+
+.list-item {
+  align-items: center;
+  color: #222222 !important;
+  display: flex;
+  margin-left: 5px;
+}
+
+.prof-pic {
+  height: 35px;
+  width: 35px;
+  display: inline;
+  margin-left: 5px;
+}
+
+.sign-in, .sign-up {
+  color: #777777;
+  line-height: 150%;
+  font-family: Roboto;
+  font-szie: 16px;
+  font-weight: 300;
+  margin: 0px 33px;
+  text-transform: uppercase;
+}
+
+.sign-out {
+  align-items: center;
+  background-color: #4775FF;
+  border: 1px solid #4775FF;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: #FFF !important;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 300;
+  float: right;
+  padding: 4px 8px;
+}
+
+.welcome {
+  align-items: center;
+  color: #222222;
+  font-size: 20px;
+  display: block;
+}
+
+//desktop view
+@media (min-width: 768px) {
+  .header {
+    width: 528px;
+    height: auto;
+  }
+  .list-item {
+    font-size: 20px;
+  }
+  .prof-pic {
+    height: 50px;
+    width: 50px;
+  }
+  .sign-out {
+    margin-left: 240px;
+  }
+}
+
+// mobile view
+@media (min-width: 350px) and (max-width: 767px) {
+  .header {
+    width: 326px;
+    height: auto;
+  }
+  .list-item {
+    font-size: 15px;
+  }
+  .prof-pic {
+    height: 40px;
+    width: 40px;
+  }
+  .sign-out {
+    font-size: 12px;
+    margin-left: 90px;
+  }
+  .welcome {
+    font-size: 18px;
+  }
 }

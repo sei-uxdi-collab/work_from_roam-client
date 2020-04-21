@@ -2,7 +2,7 @@ import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import {GoogleApiWrapper} from 'google-maps-react'
 import './Search.scss'
-
+import WorkspaceFilter from './../WorkspaceFilter/WorkspaceFilter.js'
 
 class Search extends React.Component {
     constructor(props) {
@@ -31,20 +31,23 @@ handleAutocompleteSelect = async query => {
 
 render() {
     return (
-        <PlacesAutocomplete
+      <PlacesAutocomplete
         value={this.state.query}
         onChange={this.setQuery}
         onSelect={this.handleAutocompleteSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-        <div className='search-bar'>
-          <input
-            style={{ height: '40px', width: '100%', fontSize: '16px' }}
-            {...getInputProps({
-              placeholder: 'Search Places ...',
-              className: 'location-search-input',
-            })}
-          />
+        <React.Fragment>
+          <div className='input-group'>
+            <WorkspaceFilter />
+            <input
+              style={{ fontSize: '16px' }}
+              {...getInputProps({
+                placeholder: 'Search Places ...',
+                className: 'location-search-input',
+              })}
+            />
+          </div>
           <div className="autocomplete-dropdown-container">
             {loading && <div>Loading...</div>}
             {suggestions.map(suggestion => {
@@ -67,7 +70,7 @@ render() {
               );
             })}
           </div>
-        </div>
+        </React.Fragment>
       )}
       </PlacesAutocomplete>
     )
