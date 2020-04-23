@@ -3,52 +3,59 @@ $white: #fff;
 
 @media (max-width: 450px) {
   .filter-modal {
+    margin: 0 auto;
+
+    .modal-content {
+      margin: 0 auto;
+      width: 75vw;
+    }
 
     .filter-modal-body {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      margin: 0 auto;
+      width: 75vw;
 
-      .modal-container {
+      div {
+        align-items: center;
         display: flex;
-        flex-flow: row wrap;
+        flex-direction: row;
+        margin-top: .5rem;
 
-        h6 {
-          display: none;
+        p {
+          color: #222;
+          font-weight: 300;
+          margin: 0;
+          text-decoration-line: underline;
         }
 
-        .button-col {
-          display: flex;
-
-          .select-button {
-            border: none;
-            border-radius: 20px;
-            height: 24px;
-            margin-bottom: .5rem;
-            padding: 2px 16px;
-          }
-
-          p {
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: 300;
-            font-size: 13px;
-            line-height: 150%;
-          }
-
-          #unclicked {
-            background-color: #C4D3FF;
-            color: #000;
-            font-weight: 300;
-          }
-
-          #clicked {
-            background-color: $wfrBlue;
-            color: $white;
-            font-weight: bold;
-          }
+        * {
+          margin: .5rem;
         }
-
       }
 
+      .select-button {
+        border: none;
+        border-radius: 20px;
+        font-family: 'Roboto';
+        font-size: 13px;
+        line-height: 13px;
+        height: 24px;
+        margin: .2rem;
+      }
 
+      #unclicked {
+        background-color: #C4D3FF;
+        color: #000;
+        font-weight: 300;
+      }
+
+      #clicked {
+        background-color: $wfrBlue;
+        color: $white;
+        font-weight: bold;
+      }
 
     }
 
@@ -57,7 +64,7 @@ $white: #fff;
 }
 
 
-@media (min-width: 450px) {
+@media (min-width: 451px) {
 
   .filter-modal {
 
@@ -83,6 +90,7 @@ $white: #fff;
           .select-button {
             border: none;
             border-radius: 20px;
+            font-size: 16px;
             height: 24px;
             margin-bottom: 1em;
             padding: 0;
@@ -91,6 +99,8 @@ $white: #fff;
 
           .submit-button {
             border-radius: 20px;
+            font-size: 16px;
+            line-height: 16px;
             height: 32px;
             margin: 0;
             width: 168px;

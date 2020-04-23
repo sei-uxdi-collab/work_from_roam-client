@@ -20,6 +20,7 @@ const WorkspaceFilter = props => {
     quiet: false,
     lively: false,
     outlets: false,
+    openNow: false,
     openEarly: false,
     openLate: false,
     cowork: false,
@@ -46,6 +47,7 @@ const WorkspaceFilter = props => {
       quiet: false,
       lively: false,
       outlets: false,
+      openNow: false,
       openEarly: false,
       openLate: false,
       cowork: false,
@@ -148,6 +150,7 @@ const WorkspaceFilter = props => {
 
   return (
     <Fragment>
+      <img src={magGlass} alt='Mag Glass' onClick={toggleShow}/>
 
       <Media queries={{
           small: '(max-width: 450px)',
@@ -158,19 +161,34 @@ const WorkspaceFilter = props => {
           <Fragment>
 
             {matches.small &&
-              <Fragment>
-                <img src={magGlass} alt='Mag Glass' onClick={toggleShow}/>
-                <Modal centered show={show} onHide={handleClose}>
-                    <Modal.Body>
-                      <p>Here's the small one!</p>
+              <div>
+                <Modal className='filter-modal' show={show} onHide={handleClose} style={{top: '10vh'}}>
+                    <Modal.Body className='filter-modal-body'>
+                      <Button className='select-button' id={filters.fastWifi ? 'clicked' : 'unclicked'} name='fastWifi' onClick={handleSelect}>Fast WiFi</Button>
+                      <Button className='select-button' id={filters.lotsOfSeats ? 'clicked' : 'unclicked'} name='lotsOfSeats' onClick={handleSelect}>Lots of seats</Button >
+                      <Button className='select-button' id={filters.quiet ? 'clicked' : 'unclicked'} name='quiet' onClick={handleSelect}>Quiet</Button >
+                      <Button className='select-button' id={filters.outlets ? 'clicked' : 'unclicked'} onClick={handleSelect} name='outlets'>Outlets</Button>
+                      <Button className='select-button' id={filters.openNow ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openNow'>Open Now</Button>
+                      <Button className='select-button' id={filters.openLate ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openLate'>Open Late</Button>
+                      <Button className='select-button' id={filters.cowork ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='cowork'>Co-work Space</Button>
+                      <Button className='select-button' id={filters.library ? 'clicked' : 'unclicked'} onClick={handleSelect} name='library'>Library</Button>
+                      <Button className='select-button' id={filters.coffeeShop ? 'clicked' : 'unclicked'} onClick={handleSelect} name='coffeeShop'>Cafe</Button >
+                      <Button className='select-button' id={filters.food ? 'clicked' : 'unclicked'} onClick={handleSelect} name='food'>Food</Button>
+                      <Button className='select-button' id={filters.coffee ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='coffee'>Coffee</Button>
+                      <Button className='select-button' id={filters.alcohol ? 'clicked' : 'unclicked'} name='alcohol' onClick={handleSelect}>Beer + Wine</Button >
+                      <div>
+                        <div>
+                          <p onClick={resetFilters}>Clear Filters</p>
+                        </div>
+                        <Button className='submit-button' onClick={handleSubmit}>Apply Filters</Button>
+                      </div>
                     </Modal.Body>
                 </Modal>
-              </Fragment>
+              </div>
             }
 
             {matches.large &&
               <Fragment>
-                <img src={magGlass} alt='Mag Glass' onClick={toggleShow}/>
                 <Modal className='filter-modal' centered show={show} onHide={handleClose}>
                   <Modal.Body className='filter-modal-body'>
 
@@ -178,8 +196,7 @@ const WorkspaceFilter = props => {
                       <h6>Venue</h6>
                       <Row>
                         <Col sm={6} className='button-col'>
-                          <Button className='select-button' id={filters.coffeeShop ? 'clicked' : 'unclicked'} onClick={handleSelect} name='coffeeShop'
-                            value={filters.coffeeShop ? 'false' : 'true'}>coffee shop</Button >
+                          <Button className='select-button' id={filters.coffeeShop ? 'clicked' : 'unclicked'} onClick={handleSelect} name='coffeeShop'>coffee shop</Button >
                         </Col>
                         <Col sm={6} className='button-col'>
                           <Button className='select-button' id={filters.cowork ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='cowork'>cowork space</Button>
@@ -231,6 +248,9 @@ const WorkspaceFilter = props => {
                         </Col>
                         <Col sm={6} className='button-col'>
                           <Button className='select-button' id={filters.pets ? 'clicked' : 'unclicked'} onClick={handleSelect} name='pets'>pet friendly</Button>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.fastWifi ? 'clicked' : 'unclicked'} onClick={handleSelect} name='fastWifi'>fast WiFi</Button>
                         </Col>
                       </Row>
                     </Container>
