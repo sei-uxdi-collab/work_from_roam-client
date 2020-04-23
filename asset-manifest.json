@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.css": "/work_from_roam-client/static/css/main.a47b2f95.chunk.css",
-    "main.js": "/work_from_roam-client/static/js/main.5184fe4c.chunk.js",
-    "main.js.map": "/work_from_roam-client/static/js/main.5184fe4c.chunk.js.map",
+    "main.css": "/work_from_roam-client/static/css/main.d3c951cb.chunk.css",
+    "main.js": "/work_from_roam-client/static/js/main.0c7f6bb6.chunk.js",
+    "main.js.map": "/work_from_roam-client/static/js/main.0c7f6bb6.chunk.js.map",
     "runtime-main.js": "/work_from_roam-client/static/js/runtime-main.632891d8.js",
     "runtime-main.js.map": "/work_from_roam-client/static/js/runtime-main.632891d8.js.map",
-    "static/js/2.c4e84d91.chunk.js": "/work_from_roam-client/static/js/2.c4e84d91.chunk.js",
-    "static/js/2.c4e84d91.chunk.js.map": "/work_from_roam-client/static/js/2.c4e84d91.chunk.js.map",
+    "static/js/2.aaefc25b.chunk.js": "/work_from_roam-client/static/js/2.aaefc25b.chunk.js",
+    "static/js/2.aaefc25b.chunk.js.map": "/work_from_roam-client/static/js/2.aaefc25b.chunk.js.map",
     "index.html": "/work_from_roam-client/index.html",
-    "precache-manifest.376aaf0b04e2595434b4e1f9e2be4a28.js": "/work_from_roam-client/precache-manifest.376aaf0b04e2595434b4e1f9e2be4a28.js",
+    "precache-manifest.fe0b1c92303557e8e633366e6e36afbb.js": "/work_from_roam-client/precache-manifest.fe0b1c92303557e8e633366e6e36afbb.js",
     "service-worker.js": "/work_from_roam-client/service-worker.js",
-    "static/css/main.a47b2f95.chunk.css.map": "/work_from_roam-client/static/css/main.a47b2f95.chunk.css.map",
-    "static/js/2.c4e84d91.chunk.js.LICENSE.txt": "/work_from_roam-client/static/js/2.c4e84d91.chunk.js.LICENSE.txt",
+    "static/css/main.d3c951cb.chunk.css.map": "/work_from_roam-client/static/css/main.d3c951cb.chunk.css.map",
+    "static/js/2.aaefc25b.chunk.js.LICENSE.txt": "/work_from_roam-client/static/js/2.aaefc25b.chunk.js.LICENSE.txt",
+    "static/media/SearchVector.svg": "/work_from_roam-client/static/media/SearchVector.d25bb085.svg",
     "static/media/cute_buffalo.jpg": "/work_from_roam-client/static/media/cute_buffalo.b1f18555.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.632891d8.js",
-    "static/js/2.c4e84d91.chunk.js",
-    "static/css/main.a47b2f95.chunk.css",
-    "static/js/main.5184fe4c.chunk.js"
+    "static/js/2.aaefc25b.chunk.js",
+    "static/css/main.d3c951cb.chunk.css",
+    "static/js/main.0c7f6bb6.chunk.js"
   ]
 }
