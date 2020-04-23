@@ -3,10 +3,6 @@ a, a:link, a:visited {
   text-decoration: none;
 }
 
-.row {
-  flex-wrap: nowrap;
-}
-
 .change-pw {
   font-family: Roboto;
   font-style: normal;
@@ -41,6 +37,10 @@ a, a:link, a:visited {
 
     // background: linear-gradient(to right, #4775FF, #4775FF 10%, white 90%);
     background: linear-gradient(to right, #4775FF, #4775FF 30px, #FFF 30px, #FFF 66.66%, #FFF 66.66%);
+    
+    .row {
+      flex-wrap: nowrap;
+    }
 }
 
 .icon {
