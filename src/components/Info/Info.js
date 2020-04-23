@@ -29,6 +29,7 @@ function Info(props) {
           className="info-text"
           dangerouslySetInnerHTML={{ __html: props.content }}
         />
+        {props.children}
       </div>
     </div>
   );
