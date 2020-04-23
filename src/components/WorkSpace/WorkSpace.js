@@ -12,30 +12,32 @@ class WorkSpace extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            filters: false,
+            features: false,
             hours: false
         }
     }
 
-    // Function to show more filters
-   show = () => {
-      this.setState({ filters: true })
-    }
-    // Function to show less filters
-    notshow = () => {
-       this.setState({ filters: false })
-     }
 
+    // To show more features within this worspace
+    showFeatures = () => {
+      this.setState({ features: true })
+    }
+    // To hide features on collapsed
+    hideFeatures = () => {
+      this.setState({ features: false })
+    }
+    // To show more operating hours on expanded arrow
     showHrs = () => {
       this.setState({ hours: true })
     }
-
-    notShowHrs = () => {
+    // To hide hours on collapsed
+    hideHrs = () => {
       this.setState({ hours: false })
     }
 
     // render information inside an infoWindow for POI
     render() {
+      console.log(this.props.data)
       let photo = '../../loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
@@ -72,28 +74,65 @@ class WorkSpace extends React.Component {
       // Overall average rating for workSpace
       let overall = average(this.props.data.reviews.map(review => review.rating))
       // Outlets average rating
-      let outlet = average(this.props.data.reviews.map(review => parseInt(review.outlet)))
-      // Coffee average Rating
-      let coffee = average(this.props.data.reviews.map(review => parseInt(review.coffee)))
-      // Food average rating
-      let food = average(this.props.data.reviews.map(review => parseInt(review.food)))
+      // let outlet = average(this.props.data.reviews.map(review => parseInt(review.outlet)))
+      // // Coffee average Rating
+      // let coffee = average(this.props.data.reviews.map(review => parseInt(review.coffee)))
+      // // Food average rating
+      // let food = average(this.props.data.reviews.map(review => parseInt(review.food)))
 
       // Style booleans for showing filter options as being available or not
-      let outletStyle = false
-      let coffeeStyle = false
-      let foodStyle = false
+      let bathrooms = false
+      let bathroomCode = false
+      let cashOnly = false
+      let coffee = false
+      let comfyChairs = false
+      let food = false
+      let goodForGroups = false
+      let outlets = false
+      let outdoorSeats = false
+      let quiet = false
+      let parking = false
+      let wifiPassword = false
 
       // Conditionals for showing if filters are available
-      if(outlet > 0) {
+      if(this.props.data.bool_bathroom === true) {
+        bathrooms = true
+      }
+      if(this.props.data.bool_bathroomCode === true) {
+        bathroomCode = true
+      }
+      if(this.props.data.bool_cashOnly === true) {
+        cashOnly = true
+      }
+      if(this.props.data.avg_coffee > 0) {
+        coffee = true
+      }
+      if(this.props.data.avg_comfyChairs > 0) {
+        comfyChairs = true
+      }
+      if(this.props.data.avg_food > 0) {
+        food = true
+      }
+      if(this.props.data.avg_goodForGroups > 0) {
+        goodForGroups = true
+      }
+      if(this.props.data.avg_outlet > 0) {
         // console.log(outlet)
-        outletStyle = true
+        outlets = true
       }
-      if(coffee > 0) {
-        coffeeStyle = true
+      if(this.props.data.bool_outdoorSeats === true) {
+        outdoorSeats = true
       }
-      if(food > 0) {
-        foodStyle = true
+      if(this.props.data.avg_quiet > 2) {
+        quiet = true
       }
+      if(this.props.data.bool_parking === true) {
+        parking = true
+      }
+      if(this.props.data.bool_wifiPassword === true) {
+        wifiPassword = true
+      }
+
 
       // Conditionals for determining today's day and showing corresponding opening hours
       let openingHrsToday
@@ -119,11 +158,25 @@ class WorkSpace extends React.Component {
         return (
             <div className='workspace' style={this.state.display}>
               <Link to='/'>
-                <img style={{ float: 'right' }} alt='Click to exit' src={'../../close-x-white.png'} width={'12'} heigth={'12'}/>
+                <img style={{ float: 'right' }} alt='close' src='../../close-x-white.svg' width={'12'} heigth={'12'}/>
               </Link>
 
                 <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
-
+                <div className='buttonGroup'>
+                <Button
+                  className='button'
+                  data={this.props.data.id}
+                  ><img src='getDirections.svg' alt='directions'/>Get Directions</Button>
+                <Button
+                  className='button'
+                  data={this.props.data.id}
+                  href={`#/create-review`}
+                  ><img src='../../leaveReview.svg' alt='leave a review'/>Leave a Review</Button>
+                <Button
+                  className='button'
+                  data={this.props.data.id}
+                  ><img src='../../favoriteHeartRed.svg' alt='favorite'/>Add to Favorites</Button>
+                </div>
                 <div className='work-space-div'>
                 <div>
                 <div className='starRating'>
@@ -147,12 +200,12 @@ class WorkSpace extends React.Component {
                     <div>
                     {!this.state.hours && (this.props.placeData && this.props.placeData.opening_hours ? <p
                       style={{ cursor: 'pointer' }}
-                      onClick={this.showHrs}>{openingHrsToday}<img alt='Click arrow for more hours' src={'../../arrowDwnVec.png'} className='vecStyle'/></p> : <p>Opening hours unavailable</p> )}
+                      onClick={this.showHrs}>{openingHrsToday}<img alt='more hours' src='../../arrowDown.svg' className='vecStyle'/></p> : <p>Opening hours unavailable</p> )}
                     </div>
                     {this.state.hours &&
                       <div>
-                      <p onClick={this.notShowHrs}
-                         style={{ cursor: 'pointer' }}><img alt='Click arrow for less hours' src={'../../arrowUpVec.png'} className='vecStyle'/></p>
+                      <p onClick={this.hideHrs}
+                         style={{ cursor: 'pointer' }}><img alt='less hours' src='../../arrowUp.svg' className='vecStyle'/></p>
                         <div>
                           <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[0]}</p>
                           <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[1]}</p>
@@ -164,33 +217,36 @@ class WorkSpace extends React.Component {
                         </div>
                       </div>}
                 </div>
-
-                <div>
+                  <div>
                   <ScaleRating
                     data={this.props.data}
                   />
-                  {!this.state.filters && <p
-                    style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Roboto' }}
-                    onClick={this.show}>more<img alt='Click arrow for more details' src={'../../arrowDwnVec.png'} className='vecStyle' style={{ paddingTop: '3px'}}/></p>}
-                  {this.state.filters &&
+                  {!this.state.features && <p onClick={this.showFeatures} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>more<img alt='more' src='../../arrowDown.svg' className='vecStyle'/></p>}
+                  {this.state.features &&
                     <div>
-                      <div style={{ display: 'flex' }}>
-                        <p id="outlets" style={{ margin: '10px', display: outletStyle ? 'visible' : 'none' }}>outlets</p>
-                        <p id="coffee" style={{ margin: '10px', display: coffeeStyle ? 'visible' : 'none' }}>coffee</p>
-                        <p id="food" style={{ margin: '10px', display: foodStyle ? 'visible' : 'none' }}>food</p>
+                    <p onClick={this.hideFeatures} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'flex-end', textDecoration: 'underline' }}>less<img alt='less' src='../../arrowUp.svg' className='vecStyle'/></p>
+                    <div className='features' style={{ display: 'flex', justifyContent: 'space-evenly', fontSize: '14px', marginBottom: '15px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
+                          <p style={{ color: bathrooms ? '#FFFFFF' : '#C4C4C4' }}>Bathrooms</p>
+                          <p style={{ color: bathroomCode ? '#FFFFFF' : '#C4C4C4' }}>Bathroom Code</p>
+                          <p style={{ color: cashOnly ? '#FFFFFF' : '#C4C4C4' }}>Cash Only</p>
+                          <p style={{ color: coffee ? '#FFFFFF' : '#C4C4C4' }}>Coffee</p>
+                        </div>
+                        <div style={{ float: 'right', display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
+                          <p style={{ color: comfyChairs ? '#FFFFFF' : '#C4C4C4' }}>Comfy Chairs</p>
+                          <p style={{ color: food ? '#FFFFFF' : '#C4C4C4' }}>Food</p>
+                          <p style={{ color: goodForGroups ? '#FFFFFF' : '#C4C4C4' }}>Good For Groups</p>
+                          <p style={{ color: outlets ? '#FFFFFF' : '#C4C4C4' }}>Outlets</p>
+                        </div>
+                        <div style={{ float: 'right', display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
+                          <p style={{ color: outdoorSeats ? '#FFFFFF' : '#C4C4C4' }}>Outdoor Seats</p>
+                          <p style={{ color: quiet ? '#FFFFFF' : '#C4C4C4' }}>Quiet</p>
+                          <p style={{ color: parking ? '#FFFFFF' : '#C4C4C4' }}>Parking</p>
+                          <p style={{ color: wifiPassword ? '#FFFFFF' : '#C4C4C4' }}>Wifi Password</p>
+                        </div>
+                        </div>
                       </div>
-                      <p
-                        onClick={this.notshow}
-                        style={{ float: 'right', border: 'none', textDecoration: 'underline', cursor: 'pointer', fontFamily: 'Roboto' }}>
-                      less<img alt='Click arrow for less details' src={'../../arrowUpVec.png'} className='vecStyle' style={{ paddingTop: '3px'}}/></p>
-                    </div>}
-                    <Button
-                      className='reviewButton'
-                      data={this.props.data.id}
-                      href={`#/create-review`}
-                    >
-                      Leave a Review
-                    </Button>
+                    }
                 </div>
                 <br />
               <hr style={{ visibility: 'hidden', margin: '30px' }} />

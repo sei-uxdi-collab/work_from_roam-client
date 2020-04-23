@@ -29,6 +29,24 @@
   border-radius: 10px;
 }
 
+.buttonGroup {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+.button {
+  width: 80px;
+  height: 80px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  color: #222222;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 120%;
+  text-align: center;
+}
+
 .starRating {
   float: right;
 }
@@ -36,6 +54,11 @@
 .vecStyle {
   float: right;
   margin: 6px;
+}
+
+
+.features p {
+  margin-bottom: 5px;
 }
 
 .reviewButton {
