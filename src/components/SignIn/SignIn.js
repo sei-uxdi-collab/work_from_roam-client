@@ -15,7 +15,7 @@ class SignIn extends Component {
     super()
 
     this.state = {
-      email: '',
+      identifier: '',
       password: ''
     }
   }
@@ -50,7 +50,7 @@ class SignIn extends Component {
   }
 
   render () {
-    const { email, password } = this.state
+    const { identifier, password } = this.state
 
     return (
       <div className="container popup">
@@ -63,19 +63,19 @@ class SignIn extends Component {
           <h1>Log in to post a review!</h1>
           <h2 className="mt-3">Don't have an account? <a href="#sign-up" className="link">Sign Up</a></h2>
           <Form onSubmit={this.onSignIn}>
-            <Form.Group controlId="email" className="mt-4">
+            <Form.Group controlId="identifier" className="mt-4">
               <TextField
                 fullWidth={true}
                 className="account-info"
                 required
-                type="email"
-                name="email"
-                value={email}
-                placeholder="Email"
+                type="identifier"
+                name="identifier"
+                value={identifier}
+                placeholder="Login"
                 onChange={this.handleChange}
                 InputProps={{
                   disableUnderline: true,
-                  "aria-label": "Email",
+                  "aria-label": "Login",
                 }}
               />
             </Form.Group>
