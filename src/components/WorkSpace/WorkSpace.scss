@@ -3,15 +3,14 @@
   border-radius: 10px 10px 10px 10px;
   box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.15);
   color: #FFFFFF;
-  height: 590px;
-  left: 20%;
-  transform: translate(-50%, -45%);
+  width: 413px;
+  height: 92vh;
+  left: 15px;
+  top: 60px;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 1rem;
   position: absolute;
-  top: 50%;
-  width: 340px;
   z-index: 12;
 
   font-family: SF Pro Display;
@@ -20,13 +19,23 @@
 }
 
 .workspaceImage {
-  width: 328px;
-  height: 152px;
-  left: 24px;
-  top: 193px;
+  width: 355px;
+  height: 190px;
   margin-top: 8%;
   margin-bottom: 8%;
   border-radius: 10px;
+}
+
+.worspaceLink {
+  display: inline-block;
+  width: 298px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.workspaceInfo {
+  margin-top: 15px;
 }
 
 .buttonGroup {
@@ -47,8 +56,17 @@
   text-align: center;
 }
 
+.button img {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.nameAndStar {
+  display: -webkit-inline-box;
+}
+
 .starRating {
-  float: right;
+  margin-left: 10px;
 }
 
 .vecStyle {
@@ -77,7 +95,7 @@
 }
 
 img {
-  max-width: 305px;
+  // max-width: 305px;
   display: block;
   margin: 0 auto;
 }
@@ -86,74 +104,117 @@ h5 {
   margin: 0px;
 }
 
-.link:hover {
-  color: blue;
-}
-
-@media only screen and (max-width: 2560px) {
-  .workspace {
-    top: 50%;
-    left: 17%;
-    height: 505px;
-  }
-}
-
 @media only screen and (min-width: 2560px) {
   .workspace {
-    left: 10%;
+    top: 79px;
+    margin: 10px;
+    width: 505px;
+    height: 55vh;
+  }
+
+  .worspaceLink {
+    display: inline-block;
+    width: 380px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (min-width: 1440px) and (max-width: 2559px) {
   .workspace {
-    left: 20%;
-    top: 52%;
-    height: 482px;
-  }
-
-  .workspaceImage {
-    height: 190px;
+    top: 65px;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .workspace {
-    height: 475px;
-    left: 25%;
-    top: 52%;
+      height: 90vh;
+      width: 301px;
   }
 
   .workspaceImage {
-    height: 180px;
+      width: 272px;
+      height: 162px;
+      margin-top: 8%;
+      margin-bottom: 8%;
+      border-radius: 10px;
+  }
+}
+
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+  .worspaceLink {
+    display: inline-block;
+    width: 195px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
 @media only screen and (max-width: 425px) {
   .workspace {
-    position: absolute;
-    width: 375px;
-    height: 480px;
-    left: 50%;
-    top: 53%;
+    width: 100vw;
+    left: 0;
+    height: 90vh;
   }
 
   .workspaceImage {
+    width: 355px;
+    height: 185px;
+  }
+}
+//
+// @media only screen and (min-width: 375px) and (max-width: 424px) {
+//   .workspace {
+//     width: 100vw;
+//     height: 87vh;
+//     left: 0;
+//     top: 70px;
+//   }
+//
+//   .workspaceImage {
+//       width: 340px;
+//       height: 177px;
+//   }
+// }
+
+@media only screen and (max-width: 375px) {
+  .workspace {
+    width: 100vw;
+    left: 0;
+    top: 68px;
+    height: 88vh;
+  }
+
+  .workspaceImage {
+    width: 318px;
     height: 175px;
-    margin-top: 8%;
-    margin-bottom: 8%;
+  }
+
+  .worspaceLink {
+    display: inline-block;
+    width: 262px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
 @media only screen and (max-width: 320px) {
-  .workspace {
-    width: 318px;
-  }
-
   .workspaceImage {
     max-width: 260px;
     height: 160px;
     margin-top: 8%;
     margin-bottom: 5%;
     margin-left: 5%;
+  }
+
+  .worspaceLink {
+    display: inline-block;
+    width: 210px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }

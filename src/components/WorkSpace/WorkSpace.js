@@ -37,7 +37,7 @@ class WorkSpace extends React.Component {
 
     // render information inside an infoWindow for POI
     render() {
-      console.log(this.props.data)
+      // console.log(this.props.data)
       let photo = '../../loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
@@ -175,19 +175,14 @@ class WorkSpace extends React.Component {
                 <Button
                   className='button'
                   data={this.props.data.id}
-                  ><img src='../../favoriteHeartRed.svg' alt='favorite'/>Add to Favorites</Button>
+                  ><img src='../../favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>
                 </div>
-                <div className='work-space-div'>
+                <div className='workspaceInfo'>
                 <div>
-                <div className='starRating'>
-                <StarRating
-                 value={overall}
-                 emptyStarColor='#4775FF'
-                 editing={false}
-                />
-                </div>
+                <div clasName='nameAndStar' style={{ display: '-webkit-inline-box' }}>
+
                   <a
-                    className='link'
+                    className='worspaceLink'
                     style={{ textDecoration: 'none', color: 'white', fontSize: '17px', fontWeight: '500', lineHeight: '150%' }}
                     href={this.props.placeData && this.props.placeData.website}
                     target='_blank'
@@ -195,7 +190,14 @@ class WorkSpace extends React.Component {
                     >
                     {this.props.placeData && this.props.placeData.name}
                     </a>
-
+                    <div className='starRating'>
+                    <StarRating
+                     value={overall}
+                     emptyStarColor='#4775FF'
+                     editing={false}
+                    />
+                    </div>
+                </div>
                     <p>{this.props.placeData && this.props.placeData.formatted_address}</p>
                     <div>
                     {!this.state.hours && (this.props.placeData && this.props.placeData.opening_hours ? <p
