@@ -90,6 +90,7 @@ class App extends React.Component {
            <WorkSpace
               data={this.state.currentWorkspace}
               placeData={this.state.placeData}
+              userLocation={this.state.userLocation}
             />
          )} />
 
