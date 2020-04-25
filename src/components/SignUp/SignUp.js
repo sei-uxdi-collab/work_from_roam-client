@@ -16,6 +16,8 @@ class SignUp extends Component {
 
     this.state = {
       email: '',
+      username: '',
+      identifier: '',
       password: '',
       passwordConfirmation: ''
     }
@@ -27,7 +29,7 @@ class SignUp extends Component {
 
   onSignUp = event => {
     event.preventDefault()
-
+    this.setState({ identifier: this.state.email })
     const { alert, history, setUser } = this.props
 
     signUp(this.state)
@@ -52,7 +54,7 @@ class SignUp extends Component {
   }
 
   render () {
-    const { email, password, passwordConfirmation } = this.state
+    const { email, username, password, passwordConfirmation } = this.state
 
     return (
       <div className="container popup">
@@ -65,6 +67,22 @@ class SignUp extends Component {
           <h1>Sign up to post a review!</h1>
           <h2 className="mt-3">Already have an account? <a href="#sign-in" className="link">Sign In</a></h2>
           <Form onSubmit={this.onSignUp}>
+          <Form.Group controlId="username" className="mt-4">
+            <TextField
+              fullWidth={true}
+              className="account-info"
+              required
+              type="username"
+              name="username"
+              value={username}
+              placeholder="Username"
+              onChange={this.handleChange}
+              InputProps={{
+                disableUnderline: true,
+                "aria-label": "Username",
+              }}
+            />
+          </Form.Group>
             <Form.Group controlId="email" className="mt-4">
               <TextField
                 fullWidth={true}
