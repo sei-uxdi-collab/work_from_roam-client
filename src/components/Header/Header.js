@@ -7,6 +7,7 @@ import './Header.scss'
 import Info from "../Info/Info";
 import TopRated from "../TopRated/TopRated";
 import MyFavorites from "../MyFavorites/MyFavorites";
+import ReviewCard from "../ReviewCard/ReviewCard";
 
 const userBanner = ( user ) => (
   <Fragment>
@@ -42,8 +43,9 @@ const authenticatedOptions = user => (
       </div>
       <MyFavorites
         title="My Favorites"
-        content="This is where all your favorites will appear... coming soon!"
+        content="This is where your favorite workspaces will appear... coming soon!"
       />
+
     </Row>
     <Row>
       <div>
@@ -57,10 +59,7 @@ const authenticatedOptions = user => (
       <div>
         <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
       </div>
-      <TopRated
-        title="Top Rated"
-        content="This is where your top rated workspaces will appear... coming soon!"
-      />
+      <TopRated/>
     </Row>
     <Row>
       <div>

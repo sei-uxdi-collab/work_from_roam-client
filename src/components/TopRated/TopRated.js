@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-
+import TopRatedCard from "./TopRatedCard"
 import "./TopRated.scss";
 
 function TopRated(props) {
@@ -18,17 +18,14 @@ function TopRated(props) {
   return (
     <div className="toprated-section"  onClick={toggleInfo}>
       <div className={`toprated toprated-title ${setActive}`}>
-        {props.title}
+        Top Rated
       </div>
       <div
         ref={content}
         style={{ maxHeight: `${setHeight}` }}
         className="toprated-content"
       >
-        <div
-          className="toprated-text"
-          dangerouslySetInnerHTML={{ __html: props.content }}
-        />
+      <TopRatedCard/>
       </div>
     </div>
   );

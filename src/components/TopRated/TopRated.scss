@@ -31,17 +31,9 @@
 
 /* Styles the top rated content panel. Note: hidden by default */
 .toprated-content {
-  overflow: auto;
+  overflow-y: scroll;
   transition: max-height 0.6s ease;
-}
-
-/* Styles the top rated content text */
-.toprated-text {
-  color: #222222;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  padding: 18px;
+  height: 45vh;
 }
 
 .toprated:hover,
@@ -57,6 +49,6 @@
 
 @media (min-width: 350px) and (max-width: 767px) {
   .toprated-title {
-    font-size: 15px;
+    font-size: 18px;
   }
 }

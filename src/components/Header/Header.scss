@@ -27,7 +27,6 @@ a, a:link, a:visited {
     background-color: white;
     top: 75px;
     left: 20px;
-    width: 280px;
     border-radius: 10px;
     padding: 10px;
 
@@ -37,7 +36,7 @@ a, a:link, a:visited {
 
     // background: linear-gradient(to right, #4775FF, #4775FF 10%, white 90%);
     background: linear-gradient(to right, #4775FF, #4775FF 30px, #FFF 30px, #FFF 66.66%, #FFF 66.66%);
-    
+
     .row {
       flex-wrap: nowrap;
     }
@@ -117,9 +116,10 @@ a, a:link, a:visited {
   .header {
     width: 326px;
     height: auto;
+    max-height: 80vh;
   }
   .list-item {
-    font-size: 15px;
+    font-size: 18px;
   }
   .prof-pic {
     height: 40px;

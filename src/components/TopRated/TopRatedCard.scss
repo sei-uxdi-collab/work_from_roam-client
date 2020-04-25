@@ -1,0 +1,62 @@
+.top-rated-card {
+  border: 1px solid #4775FF;
+  border-radius: 16px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  height: 176px;
+  width: 252px;
+  padding-left: 25px;
+  padding-top: 5px;
+  margin: 10px;
+}
+
+.bars {
+  padding: 3px 0px;
+}
+
+.card-content {
+  color: #222222;
+  font-size: 12px;
+  font-family: Roboto;
+  font-weight: 300;
+}
+
+.open-now {
+  display: inline;
+  background: #A4FF2E;
+  border-radius: 31px;
+  margin-right: 5px;
+  padding: 1px 8px;
+}
+
+.plain-text {
+  color: #222222;
+  font-family: Roboto;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%;
+}
+
+.top-rated-stars {
+  font-size: 12px;
+  color: #FFCC47;
+}
+
+.workplace-title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 150%;
+  text-decoration: underline;
+  margin-right: 5px;
+}
+
+//desktop view
+@media (min-width: 768px) {
+
+}
+
+// mobile view
+@media (min-width: 350px) and (max-width: 767px) {
+
+}
