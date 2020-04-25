@@ -180,7 +180,7 @@ class WorkSpace extends React.Component {
                 </div>
                 <div className='workspaceInfo'>
                 <div>
-                <div clasName='nameAndStar' style={{ display: '-webkit-inline-box' }}>
+                <div className='nameAndStar'>
 
                   <a
                     className='worspaceLink'
