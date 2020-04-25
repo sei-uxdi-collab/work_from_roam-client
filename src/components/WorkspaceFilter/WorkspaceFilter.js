@@ -1,4 +1,5 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState  } from 'react'
+import Media from 'react-media'
 
 // npm package imports
 import { Modal, Button, Container, Row, Col } from 'react-bootstrap'
@@ -19,6 +20,7 @@ const WorkspaceFilter = props => {
     quiet: false,
     lively: false,
     outlets: false,
+    openNow: false,
     openEarly: false,
     openLate: false,
     cowork: false,
@@ -45,6 +47,7 @@ const WorkspaceFilter = props => {
       quiet: false,
       lively: false,
       outlets: false,
+      openNow: false,
       openEarly: false,
       openLate: false,
       cowork: false,
@@ -63,7 +66,6 @@ const WorkspaceFilter = props => {
   }
 
   const handleClose = () => {
-    console.log(filters)
     resetFilters()
     setShow(false)
   }
@@ -71,7 +73,7 @@ const WorkspaceFilter = props => {
   const toggleShow = () => setShow(!show)
   // ~~~~~~~~~~~~~~~~~~~~
 
-  const handleSelect = (event, ident) => {
+  const handleSelect = event => {
     event.persist()
     switch(event.target.name) {
       // Venue
@@ -138,112 +140,165 @@ const WorkspaceFilter = props => {
     }
   }
 
-  // const handleSubmit = () => {
-  //   // event.persist()
-  //   filteredCall(filters, props.user)
-  //     // Right now, only pulling the first workspace response to work on ListView display
-  //     .then(res => props.filterWorkspaces(res.data.work_spaces))
-  //     .then(handleClose)
-  // }
+  const handleSubmit = () => {
+    // event.persist()
+    filteredCall(filters)
+      // Right now, only pulling the first workspace response to work on ListView display
+      .then(res => props.filterWorkspaces(res.data.work_spaces))
+      .then(handleClose)
+  }
 
   return (
     <Fragment>
       <img src={magGlass} alt='Mag Glass' onClick={toggleShow}/>
-      <Modal className='filter-modal' centered show={show} onHide={handleClose}>
-        <Modal.Body className='filter-modal-body'>
 
-          <Container className='modal-container'>
-            <h6>Venue</h6>
-            <Row>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.coffeeShop ? 'clicked' : 'unclicked'} onClick={handleSelect} name='coffeeShop'>coffee shop</Button >
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.cowork ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='cowork'>cowork space</Button>
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.restaurant ? 'clicked' : 'unclicked'} onClick={handleSelect} name='restaurant'>restaurant</Button>
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.library ? 'clicked' : 'unclicked'} onClick={handleSelect} name='library'>library</Button>
-              </Col>
-            </Row>
-          </Container>
+      <Media queries={{
+          small: '(max-width: 450px)',
+          large: '(min-width: 451px)'
+        }}>
 
-          <Container className='modal-container'>
-            <h6>Refreshments</h6>
-            <Row>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.alcohol ? 'clicked' : 'unclicked'} name='alcohol' onClick={handleSelect}>beer + wine</Button >
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.coffee ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='coffee'>coffee</Button>
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.food ? 'clicked' : 'unclicked'} onClick={handleSelect} name='food'>food</Button>
-              </Col>
-            </Row>
-          </Container>
+        {matches => (
+          <Fragment>
 
-          <Container className='modal-container'>
-            <h6>Amenities</h6>
-            <Row>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.bathrooms ? 'clicked' : 'unclicked'} name='bathrooms' onClick={handleSelect}>bathrooms</Button >
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.comfiness ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='comfiness'>comfy chairs</Button>
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.goodForGroups ? 'clicked' : 'unclicked'} onClick={handleSelect} name='goodForGroups'>good for groups</Button>
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.lotsOfSeats ? 'clicked' : 'unclicked'} name='lotsOfSeats' onClick={handleSelect}>lots of seats</Button >
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.outdoorSpace ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='outdoorSpace'>outdoors</Button>
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.outlets ? 'clicked' : 'unclicked'} onClick={handleSelect} name='outlets'>outlets</Button>
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.pets ? 'clicked' : 'unclicked'} onClick={handleSelect} name='pets'>pet friendly</Button>
-              </Col>
-            </Row>
-          </Container>
+            {matches.small &&
+              <div>
+                <Modal className='filter-modal' show={show} onHide={handleClose} style={{top: '10vh'}}>
+                    <Modal.Body className='filter-modal-body'>
+                      <Button className='select-button' id={filters.fastWifi ? 'clicked' : 'unclicked'} name='fastWifi' onClick={handleSelect}>Fast WiFi</Button>
+                      <Button className='select-button' id={filters.lotsOfSeats ? 'clicked' : 'unclicked'} name='lotsOfSeats' onClick={handleSelect}>Lots of seats</Button >
+                      <Button className='select-button' id={filters.quiet ? 'clicked' : 'unclicked'} name='quiet' onClick={handleSelect}>Quiet</Button >
+                      <Button className='select-button' id={filters.outlets ? 'clicked' : 'unclicked'} onClick={handleSelect} name='outlets'>Outlets</Button>
+                      <Button className='select-button' id={filters.openNow ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openNow'>Open Now</Button>
+                      <Button className='select-button' id={filters.openLate ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openLate'>Open Late</Button>
+                      <Button className='select-button' id={filters.cowork ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='cowork'>Co-work Space</Button>
+                      <Button className='select-button' id={filters.library ? 'clicked' : 'unclicked'} onClick={handleSelect} name='library'>Library</Button>
+                      <Button className='select-button' id={filters.coffeeShop ? 'clicked' : 'unclicked'} onClick={handleSelect} name='coffeeShop'>Cafe</Button >
+                      <Button className='select-button' id={filters.food ? 'clicked' : 'unclicked'} onClick={handleSelect} name='food'>Food</Button>
+                      <Button className='select-button' id={filters.coffee ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='coffee'>Coffee</Button>
+                      <Button className='select-button' id={filters.alcohol ? 'clicked' : 'unclicked'} name='alcohol' onClick={handleSelect}>Beer + Wine</Button >
+                      <div>
+                        <div>
+                          <p onClick={resetFilters}>Clear Filters</p>
+                        </div>
+                        <Button className='submit-button' onClick={handleSubmit}>Apply Filters</Button>
+                      </div>
+                    </Modal.Body>
+                </Modal>
+              </div>
+            }
 
-          <Container className='modal-container'>
-            <h6>Noise</h6>
-            <Row>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.quiet ? 'clicked' : 'unclicked'} name='quiet' onClick={handleSelect}>quiet</Button >
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.lively ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='lively'>lively</Button>
-              </Col>
-            </Row>
-          </Container>
+            {matches.large &&
+              <Fragment>
+                <Modal className='filter-modal' centered show={show} onHide={handleClose}>
+                  <Modal.Body className='filter-modal-body'>
 
-          <Container className='modal-container'>
-            <h6>Hours</h6>
-            <Row>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.openEarly ? 'clicked' : 'unclicked'} name='openEarly' onClick={handleSelect}>open early</Button >
-              </Col>
-              <Col sm={6} className='button-col'>
-                <Button className='select-button' id={filters.openLate ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openLate'>open late</Button>
-              </Col>
-            </Row>
-          </Container>
+                    <Container className='modal-container'>
+                      <h6>Venue</h6>
+                      <Row>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.coffeeShop ? 'clicked' : 'unclicked'} onClick={handleSelect} name='coffeeShop'>coffee shop</Button >
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.cowork ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='cowork'>cowork space</Button>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.restaurant ? 'clicked' : 'unclicked'} onClick={handleSelect} name='restaurant'>restaurant</Button>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.library ? 'clicked' : 'unclicked'} onClick={handleSelect} name='library'>library</Button>
+                        </Col>
+                      </Row>
+                    </Container>
 
-          <Button onClick={handleClose}>Submit</Button>
+                    <Container className='modal-container'>
+                      <h6>Refreshments</h6>
+                      <Row>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.alcohol ? 'clicked' : 'unclicked'} name='alcohol' onClick={handleSelect}>beer + wine</Button >
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.coffee ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='coffee'>coffee</Button>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.food ? 'clicked' : 'unclicked'} onClick={handleSelect} name='food'>food</Button>
+                        </Col>
+                      </Row>
+                    </Container>
 
-          <div className='modal-div'>
-          </div>
-          <div className='modal-div'>
-          </div>
-        </Modal.Body>
-      </Modal>
+                    <Container className='modal-container'>
+                      <h6>Amenities</h6>
+                      <Row>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.bathrooms ? 'clicked' : 'unclicked'} name='bathrooms' onClick={handleSelect}>bathrooms</Button >
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.comfiness ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='comfiness'>comfy chairs</Button>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.goodForGroups ? 'clicked' : 'unclicked'} onClick={handleSelect} name='goodForGroups'>good for groups</Button>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.lotsOfSeats ? 'clicked' : 'unclicked'} name='lotsOfSeats' onClick={handleSelect}>lots of seats</Button >
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.outdoorSpace ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='outdoorSpace'>outdoors</Button>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.outlets ? 'clicked' : 'unclicked'} onClick={handleSelect} name='outlets'>outlets</Button>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.pets ? 'clicked' : 'unclicked'} onClick={handleSelect} name='pets'>pet friendly</Button>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.fastWifi ? 'clicked' : 'unclicked'} onClick={handleSelect} name='fastWifi'>fast WiFi</Button>
+                        </Col>
+                      </Row>
+                    </Container>
+
+                    <Container className='modal-container'>
+                      <h6>Noise</h6>
+                      <Row>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.quiet ? 'clicked' : 'unclicked'} name='quiet' onClick={handleSelect}>quiet</Button >
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.lively ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='lively'>lively</Button>
+                        </Col>
+                      </Row>
+                    </Container>
+
+                    <Container className='modal-container'>
+                      <h6>Hours</h6>
+                      <Row>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.openEarly ? 'clicked' : 'unclicked'} name='openEarly' onClick={handleSelect}>open early</Button >
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='select-button' id={filters.openLate ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openLate'>open late</Button>
+                        </Col>
+                      </Row>
+                    </Container>
+
+                    <Container className='modal-container' style={{background: 'white'}}>
+                      <Row>
+                        <Col sm={6} className='button-col'>
+                          <p onClick={resetFilters}>Clear Filters</p>
+                        </Col>
+                        <Col sm={6} className='button-col'>
+                          <Button className='submit-button' onClick={handleSubmit}>Apply Filters</Button>
+                        </Col>
+                      </Row>
+                    </Container>
+
+
+                  </Modal.Body>
+                </Modal>
+              </Fragment>
+            }
+
+          </Fragment>
+        )}
+      </Media>
     </Fragment>
   )
 
