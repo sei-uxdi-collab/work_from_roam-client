@@ -37,7 +37,6 @@ class WorkSpace extends React.Component {
 
     // render information inside an infoWindow for POI
     render() {
-      // console.log(this.props.data)
       let photo = '../../loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
@@ -165,7 +164,9 @@ class WorkSpace extends React.Component {
                 <div className='buttonGroup'>
                 <Button
                   className='button'
-                  data={this.props.data.id}
+                  data={this.props.data && this.props.userLocation}
+                  href={`https://www.google.com/maps/dir/?api=1&origin=${this.props.userLocation.lat}%2c${this.props.userLocation.lng}&destination=${this.props.data.lat}%2c${this.props.data.lng}`}
+                  target={'_blank'}
                   ><img src='getDirections.svg' alt='directions'/>Get Directions</Button>
                 <Button
                   className='button'
