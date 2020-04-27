@@ -11,16 +11,40 @@ $white: #fff;
     }
 
     .filter-modal-body {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      margin: 0 auto;
-      width: 75vw;
 
-      div {
+      .main-div, .secondary-div {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin: 0 auto 1rem;
+
+        .select-button {
+          border: none;
+          border-radius: 20px;
+          font-family: 'Roboto';
+          font-size: 13px;
+          line-height: 13px;
+          height: 24px;
+          margin: .2rem;
+        }
+
+        .small-button {
+          border: none;
+          border-radius: 20px;
+          font-family: 'Roboto';
+          font-size: 11px;
+          line-height: 11px;
+          height: 21px;
+          margin: .2rem;
+        }
+
+      }
+
+      .footer-div {
         align-items: center;
         display: flex;
         flex-direction: row;
+        justify-content: center;
         margin-top: .5rem;
 
         p {
@@ -33,16 +57,6 @@ $white: #fff;
         * {
           margin: .5rem;
         }
-      }
-
-      .select-button {
-        border: none;
-        border-radius: 20px;
-        font-family: 'Roboto';
-        font-size: 13px;
-        line-height: 13px;
-        height: 24px;
-        margin: .2rem;
       }
 
       #unclicked {
