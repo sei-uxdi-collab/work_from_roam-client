@@ -141,7 +141,6 @@ const WorkspaceFilter = props => {
   }
 
   const handleSubmit = () => {
-    // event.persist()
     filteredCall(filters)
       // Right now, only pulling the first workspace response to work on ListView display
       .then(res => props.filterWorkspaces(res.data.work_spaces))

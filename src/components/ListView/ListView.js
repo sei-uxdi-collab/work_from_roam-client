@@ -1,6 +1,6 @@
 /** @jsx jsx **/
 import React, { useState, useRef, useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Dropdown, Container, Row, Col } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
 
 // Custom component imports
@@ -23,7 +23,6 @@ const ListView = props => {
   const [width, setWidth] = useState()
 
   const workspaceArray = props.workspaces[0].slice(0, 5)
-
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Reference and function that listens for events outside of the ListView component, and closes it
@@ -100,7 +99,17 @@ const prevSlide = () => {
           <div className='list-header' onClick={toggleListView} >
             <p>List View</p>
           </div>
-          <div className='list-content' css={sliderCSS} ref={sliderWidth}>
+          <Dropdown>
+            <Dropdown.Toggle css={dropdownCSS}>
+              Dropdown Button
+            </Dropdown.Toggle>
+            <Dropdown.Menu css={menuCSS}>
+              <Dropdown.Item eventKey='2'>Highest Rated</Dropdown.Item>
+              <Dropdown.Item eventKey='3'>Best WiFi</Dropdown.Item>
+              <Dropdown.Item eventKey='4'>Quietest</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <div css={sliderCSS} ref={sliderWidth}>
             <WorkspaceSlider
               translate={translate}
               transition={transition}
@@ -119,6 +128,20 @@ const prevSlide = () => {
     </Container>
   )
 }
+
+const dropdownCSS = css`
+  color: #000;
+  width: 324px;
+  background: #fff;
+  height: 36px;
+  border-radius: 18px;
+`
+
+const menuCSS = css`
+  color: #000;
+  background: #fff;
+  width: 324px;
+`
 
 const sliderCSS = css`
   height: 100%;
