@@ -8,7 +8,7 @@ function Info(props) {
 
   const content = useRef(null);
 
-  function toggleInfo() {
+  function toggleView() {
     setActiveState(setActive === "" ? "active" : "");
     setHeightState(
       setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
@@ -16,7 +16,7 @@ function Info(props) {
   }
 
   return (
-    <div className="info-section"  onClick={toggleInfo}>
+    <div className="info-section"  onClick={toggleView}>
       <div className={`info info-title ${setActive}`}>
         {props.title}
       </div>

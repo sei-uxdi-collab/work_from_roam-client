@@ -8,7 +8,7 @@ function MyFavorites(props) {
 
   const content = useRef(null);
 
-  function toggleInfo() {
+  function toggleView() {
     setActiveState(setActive === "" ? "active" : "");
     setHeightState(
       setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
@@ -16,7 +16,7 @@ function MyFavorites(props) {
   }
 
   return (
-    <div className="myfavorites-section"  onClick={toggleInfo}>
+    <div className="myfavorites-section"  onClick={toggleView}>
       <div className={`myfavorites myfavorites-title ${setActive}`}>
         {props.title}
       </div>

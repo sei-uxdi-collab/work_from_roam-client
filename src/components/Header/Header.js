@@ -59,7 +59,7 @@ const authenticatedOptions = user => (
       <div>
         <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
       </div>
-      <TopRated/>
+      <TopRated user={user} />
     </Row>
     <Row>
       <div>

@@ -1,14 +1,10 @@
 import React from "react"
 import { StarRating } from "../Review/StarsRating"
 // import { Card } from '@material-ui/core';
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import "./TopRatedCard.scss"
 
 class TopRatedCard extends React.Component {
-  constructor() {
-    super()
-
-  }
 
 render() {
 
