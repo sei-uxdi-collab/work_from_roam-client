@@ -1,7 +1,5 @@
 import React, { useState, useRef } from "react";
-import ListGroup from 'react-bootstrap/ListGroup'
-import { Row } from 'react-bootstrap';
-// import TopRatedCard from "./TopRatedCard"
+import { Row, Col } from 'react-bootstrap';
 import "./TopRated.scss";
 
 function TopRated(props) {
@@ -18,11 +16,9 @@ function TopRated(props) {
   }
 
   console.log(props)
-  
-  const workspaceArray = props.workspaces[0].slice(0, 5)
 
-  const topRatedJsx = workspaceArray.map(workplace => (
-    <ListGroup.Item
+  const topRatedJsx = props.user.top_avg_rating.map(workplace => (
+    <li
       key={workplace.id}
       action
       href={`#workplace/${workplace.id}`}
@@ -30,8 +26,12 @@ function TopRated(props) {
     <div className="top-rated-card">
       <div className="card-content">
         <Row>
-          <span className="workplace-title"> {workplace.name}</span>
-          <span className="top-rated-stars"> ★★★★★</span>
+          <Col xs={7}>
+            <div className="workplace-title"> {workplace.name}</div>
+          </Col>
+          <Col>
+            <div className="top-rated-stars"> ★★★★★</div>
+          </Col>
         </Row>
         <Row>
           <div className="open-now">Open Now</div>
@@ -54,7 +54,7 @@ function TopRated(props) {
         </Row>
       </div>
     </div>
-    </ListGroup.Item>
+    </li>
   ))
 
   return (
@@ -67,9 +67,9 @@ function TopRated(props) {
         style={{ maxHeight: `${setHeight}` }}
         className="toprated-content"
       >
-      <ListGroup>
+      <ul>
         {topRatedJsx}
-      </ListGroup>
+      </ul>
       </div>
     </div>
   );
