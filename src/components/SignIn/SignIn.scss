@@ -60,7 +60,7 @@ h2 {
 
 .link {
   color: inherit;
-  text-decoration: underline;
+  text-decoration: underline !important;
   :focus {
     color: #4775FF;
   }

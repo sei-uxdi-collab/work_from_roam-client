@@ -39,7 +39,7 @@ class SignUp extends Component {
         heading: 'Sign Up Success',
         message: messages.signUpSuccess,
         variant: 'light',
-        image: 'Roman.png'
+        image: 'logo-text-only.svg'
       }))
       .then(() => history.push('/'))
       .catch(error => {
@@ -83,7 +83,7 @@ class SignUp extends Component {
               }}
             />
           </Form.Group>
-            <Form.Group controlId="email" className="mt-4">
+            <Form.Group controlId="email">
               <TextField
                 fullWidth={true}
                 className="account-info"
