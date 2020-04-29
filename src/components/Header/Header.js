@@ -41,11 +41,7 @@ const authenticatedOptions = user => (
       <div>
         <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
       </div>
-      <MyFavorites
-        title="My Favorites"
-        content="This is where your favorite workspaces will appear... coming soon!"
-      />
-
+      <MyFavorites user={user} />
     </Row>
     <Row>
       <div>
