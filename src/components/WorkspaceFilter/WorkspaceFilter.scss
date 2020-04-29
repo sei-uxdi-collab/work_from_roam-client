@@ -1,47 +1,66 @@
 $wfrBlue: #4775ff;
 $white: #fff;
 
-.filter-button {
-  background-color: $wfrBlue;
-  height: 40px;
-  width: 120px;
-}
+@media (max-width: 450px) {
+  .filter-modal {
+    margin: 0 auto;
 
-.select-button {
-  border: none;
-  border-radius: 20px;
-  height: 24px;
-  margin-bottom: 1em;
-  padding: 0;
-  width: 134px;
-}
-
-.filter-modal {
-
-  .filter-modal-header {
-    background-color: $wfrBlue;
-    color: $white;
-
-    button {
-      color: $white;
+    .modal-content {
+      margin: 0 auto;
+      width: 75vw;
     }
-  }
 
-  .filter-modal-body {
+    .filter-modal-body {
 
-    .modal-container {
-      background-color: #C4D3FF;
-      margin-bottom: 1rem;
-
-      .button-col {
-        align-items: center;
+      .main-div, .secondary-div {
         display: flex;
+        flex-flow: row wrap;
         justify-content: center;
+        margin: 0 auto 1rem;
+
+        .select-button {
+          border: none;
+          border-radius: 20px;
+          font-family: 'Roboto';
+          font-size: 13px;
+          line-height: 13px;
+          height: 24px;
+          margin: .2rem;
+        }
+
+        .small-button {
+          border: none;
+          border-radius: 20px;
+          font-family: 'Roboto';
+          font-size: 11px;
+          line-height: 11px;
+          height: 21px;
+          margin: .2rem;
+        }
 
       }
 
+      .footer-div {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: .5rem;
+
+        p {
+          color: #222;
+          font-weight: 300;
+          margin: 0;
+          text-decoration-line: underline;
+        }
+
+        * {
+          margin: .5rem;
+        }
+      }
+
       #unclicked {
-        background-color: $white;
+        background-color: #C4D3FF;
         color: #000;
         font-weight: 300;
       }
@@ -51,7 +70,77 @@ $white: #fff;
         color: $white;
         font-weight: bold;
       }
+
     }
+
   }
 
+}
+
+
+@media (min-width: 451px) {
+
+  .filter-modal {
+
+    .filter-modal-body {
+
+      .modal-container {
+        background-color: #C4D3FF;
+        border-radius: 16px;
+        display: show;
+        font-family: 'Roboto';
+        margin-bottom: 1rem;
+        padding-top: .5rem;
+
+        h6 {
+          margin-left: 1rem;
+        }
+
+        .button-col {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+
+          .select-button {
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            height: 24px;
+            margin-bottom: 1em;
+            padding: 0;
+            width: 134px;
+          }
+
+          .submit-button {
+            border-radius: 20px;
+            font-size: 16px;
+            line-height: 16px;
+            height: 32px;
+            margin: 0;
+            width: 168px;
+          }
+
+          p {
+            color: #222;
+            font-weight: 300;
+            margin: 0;
+            text-decoration-line: underline;
+          }
+
+          #unclicked {
+            background-color: $white;
+            color: #000;
+            font-weight: 300;
+          }
+
+          #clicked {
+            background-color: $wfrBlue;
+            color: $white;
+            font-weight: bold;
+          }
+
+        }
+      }
+    }
+  }
 }

@@ -1,3 +1,14 @@
+.ratings-div {
+  p {
+    color: white;
+    text-align: left;
+  }
+}
+
+.ratings-section {
+  margin: 10px 0 10px 0;
+}
+
 .scale {
   position: relative;
   float: right;
@@ -18,11 +29,4 @@
   width: 180px;
   background-color: #FFCC47;
   border-radius: 10px;
-}
-
-.ratings-div {
-  p {
-    color: white;
-    text-align: left;
-  }
 }

@@ -83,22 +83,22 @@ function ScaleRating (props) {
 
     return (
       <div className='ratings-div'>
-        <p>Wifi   <div className='scale'>
+        <div className='ratings-section'>Wifi   <div className='scale'>
                     <div className='root'></div>
                     <div className='rating' style={ wifiRating }></div>
-                  </div></p>
-        <p>Seating <div className='scale'>
+                  </div></div>
+        <div className='ratings-section'>Seating <div className='scale'>
                     <div className='root'></div>
                     <div className='rating' style={ seatRating }></div>
-                  </div></p>
-        <p>Bathroom   <div className='scale'>
+                  </div></div>
+        <div className='ratings-section'>Bathroom   <div className='scale'>
                         <div className='root'></div>
                         <div className='rating' style={ bathRating }></div>
-                      </div></p>
-        <p>Noise    <div className='scale'>
+                      </div></div>
+        <div className='ratings-section'>Noise    <div className='scale'>
                       <div className='root'></div>
                       <div className='rating' style={ noiseRating }></div>
-                    </div></p>
+                    </div></div>
       </div>
     )
   }

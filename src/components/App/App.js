@@ -14,7 +14,7 @@ import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
 import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
 import ListView from '../ListView/ListView'
-import WorkspaceFilter from '../WorkspaceFilter/WorkspaceFilter'
+// import WorkspaceFilter from '../WorkspaceFilter/WorkspaceFilter'
 
 import './App.scss'
 
@@ -90,6 +90,7 @@ class App extends React.Component {
            <WorkSpace
               data={this.state.currentWorkspace}
               placeData={this.state.placeData}
+              userLocation={this.state.userLocation}
             />
          )} />
 
@@ -131,6 +132,7 @@ class App extends React.Component {
               <NavBar />
               <Search setApp={this.setState.bind(this)}
                       mapCenter={this.state.mapCenter}
+                      filterWorkspaces={this.filterWorkspaces}
               />
             </div>
             <GoogleMap
