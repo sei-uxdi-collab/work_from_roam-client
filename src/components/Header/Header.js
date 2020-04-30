@@ -7,7 +7,7 @@ import './Header.scss'
 import Info from "../Info/Info";
 import TopRated from "../TopRated/TopRated";
 import MyFavorites from "../MyFavorites/MyFavorites";
-import ReviewCard from "../ReviewCard/ReviewCard";
+import MyReviews from "../MyReviews/MyReviews";
 
 const userBanner = ( user ) => (
   <Fragment>
@@ -47,9 +47,7 @@ const authenticatedOptions = user => (
       <div>
         <img src="my-reviews-icon.png" className="icon" alt="My Reviews"/>
       </div>
-      <div className="list-item">
-        <a href="/">My Reviews</a>
-      </div>
+      <MyReviews user={user} />
     </Row>
     <Row>
       <div>

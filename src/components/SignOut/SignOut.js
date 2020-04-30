@@ -13,7 +13,7 @@ class SignOut extends Component {
       heading: 'Signed Out Successfully',
       message: messages.signOutSuccess,
       variant: 'light',
-      image: 'wavingroman.jpg'
+      image: 'logo-text-only.svg'
     }))
       .finally(() => history.push('/'))
       .finally(() => clearUser())

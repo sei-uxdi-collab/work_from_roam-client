@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
+import { StarRating } from '../Review/StarsRating'
 import "./TopRated.scss";
 
 function TopRated(props) {
@@ -8,6 +9,8 @@ function TopRated(props) {
 
   const content = useRef(null);
 
+  console.log(props)
+
   function toggleView() {
     setActiveState(setActive === "" ? "active" : "");
     setHeightState(
@@ -15,7 +18,17 @@ function TopRated(props) {
     );
   }
 
-  console.log(props)
+
+  // let average = function(array) {
+  //   let answer = 0
+  //   let length = array.length
+  //   for(let i = 0; i < array.length; i++) {
+  //     answer += array[i]
+  //   }
+  //   return Math.round(answer/length)
+  // }
+  // // Overall average rating for workSpace
+  // let overall = average(props.data.reviews.map(review => review.rating))
 
   const topRatedJsx = props.user.top_avg_rating.map(workplace => (
     <li
@@ -30,7 +43,13 @@ function TopRated(props) {
             <div className="workplace-title"> {workplace.name}</div>
           </Col>
           <Col>
-            <div className="top-rated-stars"> ★★★★★</div>
+            <div className="top-rated-stars">
+              <StarRating
+               value={5}
+               emptyStarColor='#FFFFFF'
+               editing={false}
+              />
+            </div>
           </Col>
         </Row>
         <Row>
