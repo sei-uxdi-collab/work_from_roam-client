@@ -1,11 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Row, Col } from 'react-bootstrap';
 import { StarRating } from '../Review/StarsRating'
 import "./TopRated.scss";
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
 
 function TopRated(props) {
   const [setActive, setActiveState] = useState("");
   const [setHeight, setHeightState] = useState("0px");
+  const [workplaces, setWorkplaces] = useState([])
 
   const content = useRef(null);
 
@@ -18,19 +21,22 @@ function TopRated(props) {
     );
   }
 
+  useEffect(() => {
+      axios({
+        url: apiUrl + '/work_spaces/top_rated',
+        method: 'GET',
+        headers: {
+          'Authorization': `Token token=${props.user.token}`
+        }
+      })
+        // .then(response => console.log(response.data))
+        .then(response => {
+          setWorkplaces(response.data.work_spaces)
+        })
+        .catch((error) => console.log(error))
+    }, [])
 
-  // let average = function(array) {
-  //   let answer = 0
-  //   let length = array.length
-  //   for(let i = 0; i < array.length; i++) {
-  //     answer += array[i]
-  //   }
-  //   return Math.round(answer/length)
-  // }
-  // // Overall average rating for workSpace
-  // let overall = average(props.data.reviews.map(review => review.rating))
-
-  const topRatedJsx = props.user.top_avg_rating.map(workplace => (
+  const topRatedJsx = workplaces.map(workplace => (
     <li
       key={workplace.id}
       action
@@ -45,7 +51,7 @@ function TopRated(props) {
           <Col>
             <div className="top-rated-stars">
               <StarRating
-               value={5}
+               value={workplace.avg_rating}
                emptyStarColor='#FFFFFF'
                editing={false}
               />
@@ -60,16 +66,16 @@ function TopRated(props) {
           <span className="plain-text address"> {workplace.address}</span>
         </Row>
         <Row>
-          <span className="plain-text phone"> Phone: <u>{workplace.phone}</u></span>
+          <span className="plain-text phone"> Phone: <u>(555) 555-5555</u></span>
         </Row>
         <Row>
-          <span className="plain-text bars"> Wifi Quality </span>
+          <span className="plain-text bars"> Wifi Quality: {workplace.avg_wifi} </span>
         </Row>
         <Row>
-          <span className="plain-text bars"> Seat Comfort </span>
+          <span className="plain-text bars"> Seat Comfort: {workplace.avg_seating} </span>
         </Row>
         <Row>
-          <span className="plain-text bars"> Noise Level </span>
+          <span className="plain-text bars"> Noise Level: {workplace.avg_noise} </span>
         </Row>
       </div>
     </div>
