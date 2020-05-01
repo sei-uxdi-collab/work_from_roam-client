@@ -27,7 +27,7 @@ const userBanner = ( user ) => (
   </Fragment>
 )
 
-const authenticatedOptions = ( user, data ) => (
+const authenticatedOptions = ( user ) => (
   <Fragment>
   <Row>
     <Link to='/' className="p-0">
@@ -41,7 +41,7 @@ const authenticatedOptions = ( user, data ) => (
       <div>
         <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
       </div>
-      <MyFavorites user={user} data={data}  />
+      <MyFavorites user={user}  />
     </Row>
     <Row>
       <div>
