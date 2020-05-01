@@ -7,6 +7,7 @@ import './Header.scss'
 import Info from "../Info/Info";
 import TopRated from "../TopRated/TopRated";
 import MyFavorites from "../MyFavorites/MyFavorites";
+import MyReviews from "../MyReviews/MyReviews";
 
 const userBanner = ( user ) => (
   <Fragment>
@@ -26,7 +27,7 @@ const userBanner = ( user ) => (
   </Fragment>
 )
 
-const authenticatedOptions = user => (
+const authenticatedOptions = ( user ) => (
   <Fragment>
   <Row>
     <Link to='/' className="p-0">
@@ -40,27 +41,19 @@ const authenticatedOptions = user => (
       <div>
         <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
       </div>
-      <MyFavorites
-        title="My Favorites"
-        content="This is where all your favorites will appear... coming soon!"
-      />
+      <MyFavorites user={user}  />
     </Row>
     <Row>
       <div>
         <img src="my-reviews-icon.png" className="icon" alt="My Reviews"/>
       </div>
-      <div className="list-item">
-        <a href="/">My Reviews</a>
-      </div>
+      <MyReviews user={user} />
     </Row>
     <Row>
       <div>
         <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
       </div>
-      <TopRated
-        title="Top Rated"
-        content="This is where your top rated workspaces will appear... coming soon!"
-      />
+      <TopRated user={user} />
     </Row>
     <Row>
       <div>

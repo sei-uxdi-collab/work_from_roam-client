@@ -32,10 +32,10 @@ class SignIn extends Component {
     signIn(this.state)
       .then(res => setUser(res.data.user))
       .then(() => alert({
-        heading: 'You are now signed In!',
+        heading: 'You are now signed in!',
         message: messages.signInSuccess,
         variant: 'light',
-        image: 'Roman.png'
+        image: 'logo-text-only.svg'
       }))
       .then(() => history.push('/'))
       .catch(error => {

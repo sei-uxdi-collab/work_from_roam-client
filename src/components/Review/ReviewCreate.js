@@ -54,7 +54,7 @@ import Button from 'react-bootstrap/Button'
             heading: 'Thanks for your review!',
             message: messages.reviewCreateSuccess,
             variant: 'light',
-            image: 'Roman.png'
+            image: 'logo-text-only.svg'
           })
         })
         .catch(() => alert('create review failed'))
@@ -75,7 +75,7 @@ import Button from 'react-bootstrap/Button'
     handleSubmit = (event) => {
       event.preventDefault()
       const { currentWorkspace } = this.props
-      
+
       if (!currentWorkspace) {
         this.newWorkspaceReview()
       } else {

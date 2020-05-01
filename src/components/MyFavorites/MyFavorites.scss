@@ -49,14 +49,77 @@
   color: #4775FF !important;
 }
 
+// desktop
 @media (min-width: 768px) {
   .myfavorites-title {
     font-size: 20px;
   }
 }
 
+// mobile
 @media (min-width: 350px) and (max-width: 767px) {
   .myfavorites-title {
-    font-size: 15px;
+    font-size: 18px;
   }
+}
+
+///////////// FOR MY FAVORITE CARDS
+ul {
+  padding: 0px
+}
+
+.col-7 {
+  padding: 0px;
+}
+
+.bars {
+  padding: 3px 0px;
+}
+
+.card-content {
+  color: #222222;
+  font-size: 12px;
+  font-family: Roboto;
+  font-weight: 300;
+}
+
+.open-now {
+  display: inline;
+  background: #A4FF2E;
+  border-radius: 31px;
+  margin-right: 5px;
+  padding: 1px 8px;
+}
+
+.plain-text {
+  color: #222222;
+  font-family: Roboto;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%;
+}
+
+.my-favorite-card {
+  border: 1px solid #4775FF;
+  border-radius: 16px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  height: auto;
+  width: 252px;
+  padding: 5px 0px 5px 25px;
+  margin: 10px;
+}
+
+.my-favorite-stars {
+  font-size: 12px;
+  color: #FFCC47;
+}
+
+.workplace-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  text-decoration: underline;
+  margin-right: 5px;
 }
