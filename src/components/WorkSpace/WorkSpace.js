@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
 
 import Review from '../Review/Review'
 import { StarRating } from '../Review/StarsRating'
@@ -12,11 +14,11 @@ class WorkSpace extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            user: props.user,
             features: false,
             hours: false
         }
     }
-
 
     // To show more features within this worspace
     showFeatures = () => {
@@ -33,6 +35,22 @@ class WorkSpace extends React.Component {
     // To hide hours on collapsed
     hideHrs = () => {
       this.setState({ hours: false })
+    }
+
+    // GET favorite status of current user
+    componentDidMount = () => {
+    if (this.props.user) {
+      console.log(this.props.user)
+        axios({
+          url: `${apiUrl}/work_spaces/${this.props.data.id}/likes`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          }
+        })
+          .then(res => this.setState({ flag: res.data[0] }))
+          .catch(console.error)
+    }
     }
 
     // render information inside an infoWindow for POI
@@ -154,6 +172,32 @@ class WorkSpace extends React.Component {
         openingHrsToday = this.props.placeData.opening_hours.weekday_text[5]
       }
 
+      // Register as favorited
+      const handleFave = event => {
+        console.log(this.props.data)
+        this.setState({ flag: true })
+        axios({
+          url: `${apiUrl}/work_spaces/${this.props.data.id}/like`,
+          method: 'PUT',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          }
+        })
+      }
+
+      // Register as unfavorited
+      const handleUnfave = event => {
+        console.log(this.props.data)
+        this.setState({ flag: false })
+        axios({
+          url: `${apiUrl}/work_spaces/${this.props.data.id}/unlike`,
+          method: 'PUT',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          }
+        })
+      }
+
         return (
             <div className='workspace' style={this.state.display}>
               <Link to='/'>
@@ -173,10 +217,21 @@ class WorkSpace extends React.Component {
                   data={this.props.data.id}
                   href={`#/create-review`}
                   ><img src='../../leaveReview.svg' alt='leave a review'/>Leave a Review</Button>
-                <Button
-                  className='button'
-                  data={this.props.data.id}
-                  ><img src='../../favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>
+                {this.props.user && !this.state.flag && <Button
+                                                          className='button'
+                                                          data={this.props.data.id}
+                                                          onClick={handleFave}
+                                                          ><img src='../../favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
+                {this.props.user && this.state.flag && <Button
+                                                          className='button'
+                                                          data={this.props.data.id}
+                                                          onClick={handleUnfave}
+                                                          ><img src='../../favoriteHeartRed.svg' alt='favorite'/>Add to Favorites</Button>}
+                {!this.props.user && <Button
+                                        className='button'
+                                        data={this.props.data.id}
+                                        href={`#/sign-in`}
+                                        ><img src='../../favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
                 </div>
                 <div className='workspaceInfo'>
                 <div>
