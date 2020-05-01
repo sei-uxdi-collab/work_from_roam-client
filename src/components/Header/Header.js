@@ -93,7 +93,7 @@ const unauthenticatedOptions = (
     </Row>
   </Fragment>
 )
-const Header = ({ user, data }) => (
+const Header = ({ user }) => (
   <div className="header" collapseOnSelect fixed="top">
     <div id="">
       <div>
