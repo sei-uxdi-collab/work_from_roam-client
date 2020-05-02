@@ -209,7 +209,7 @@ class WorkSpace extends React.Component {
                 <Button
                   className='button'
                   data={this.props.data && this.props.userLocation}
-                  href={`https://www.google.com/maps/dir/?api=1&origin=${this.props.userLocation.lat}%2c${this.props.userLocation.lng}&destination=${this.props.data.lat}%2c${this.props.data.lng}`}
+                  href={this.props.userLocation ? `https://www.google.com/maps/dir/?api=1&origin=${this.props.userLocation.lat}%2c${this.props.userLocation.lng}&destination=${this.props.data.lat}%2c${this.props.data.lng}` : `https://www.google.com/maps/dir/?api=1&origin=${this.props.data.lat}%2c${this.props.data.lng}&destination=${this.props.data.lat}%2c${this.props.data.lng}`}
                   target={'_blank'}
                   ><img src='getDirections.svg' alt='directions'/>Get Directions</Button>
                 <Button
