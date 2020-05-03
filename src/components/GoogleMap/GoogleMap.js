@@ -158,6 +158,7 @@ class GoogleMap extends React.Component {
                     placeId={workSpace.placeId}
                     data={workSpace}
                     name={'Current location'}
+                    icon={'logo-bull-icon.svg'}
                 />
             ))}         
 
