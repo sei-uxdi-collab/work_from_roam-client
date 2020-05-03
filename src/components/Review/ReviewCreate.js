@@ -66,9 +66,10 @@ import Button from 'react-bootstrap/Button'
       const name = placeData.name
       const address = placeData.formatted_address
       const photo = placeData.photos && placeData.photos[0].getUrl()
+      const phone = placeData.formatted_phone_number
       const token = user.token
 
-      createWorkspace({ placeId, lat, lng, name, address, photo, token })
+      createWorkspace({ placeId, lat, lng, name, address, photo, token, phone })
         .then(data => this.submitReview(data.data.work_space.id))
     }
 
