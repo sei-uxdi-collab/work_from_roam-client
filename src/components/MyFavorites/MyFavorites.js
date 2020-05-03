@@ -18,7 +18,7 @@ function MyFavorites(props) {
 
   console.log(props)
 
-  const myFavoritesJsx = props.user.favorites.map(workplace => (
+  const myFavoritesJsx = props.user.find_up_voted_items.map(workplace => (
     <li
       key={workplace.id}
       action

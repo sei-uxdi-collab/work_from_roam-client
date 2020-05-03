@@ -66,7 +66,7 @@ function TopRated(props) {
           <span className="plain-text address"> {workplace.address}</span>
         </Row>
         <Row>
-          <span className="plain-text phone"> Phone: <u>(555) 555-5555</u></span>
+          <span className="plain-text phone"> Phone: <u> {workplace.phone} </u></span>
         </Row>
         <Row>
           <span className="plain-text bars"> Wifi Quality: {workplace.avg_wifi} </span>
