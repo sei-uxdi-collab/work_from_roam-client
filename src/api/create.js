@@ -37,6 +37,7 @@ export const createReview = (params) => {
           name: params.name,
           address: params.address,
           photo: params.photo,
+          phone: params.phone,
         }
       },
       headers: {
