@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -62,20 +63,55 @@ class WorkSpace extends React.Component {
         photo = '../../image_not_found.png'
       }
 
+      // Conditionals for determining today's day and showing corresponding opening hours
+      let openingHrsToday
+      let today = new Date()
+      let day = today.getDay()
+
+      if (this.props.placeData && this.props.placeData.opening_hours && day === 0) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[6]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 1) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[0]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 2) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[1]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 3) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[2]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 4) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[3]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 5) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[4]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 6) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[5]
+      }
+
       if(!this.props.data || this.props.data.reviews.length < 1) {
         return (
-            <div className='workspace'>
-              <Link to='/'>
-                <img style={{ float: 'right' }} alt='Click to exit' src={'../../close-x-white.png'}/>
-              </Link>
-              <div style={{ textAlign: 'center' }}>
-                <h3>Be the first to write a  <Button
+            <div className='userAlertCard'>
+              <div className='cardContent'>
+                <Row>
+                  <span className='name'>{this.props.placeData && this.props.placeData.name}</span>
+                </Row>
+                <Row>
+                  <span className='address'>{this.props.placeData && this.props.placeData.formatted_address}</span>
+                </Row>
+                <Row>
+                  {this.props.placeData && this.props.placeData.opening_hours ? <span className='hours'>{openingHrsToday}</span> : <span className='hours'>Hours unavailable</span> }
+                  <Col>
+                    {this.props.placeData && this.props.placeData.opening_hours && this.props.placeData.opening_hours.open_now ? <span className='now open'>Open Now</span> : <span className='now close'>Closed Now</span>}
+                  </Col>
+                </Row>
+                <Row>
+                  <span className='message'>Found a hidden gem? Share it with everyone!</span>
+                </Row>
+                </div>
+                <Row>
+                <Button
+                className='review'
                 href={`#/create-review`}
-              >
-                Review
-              </Button> for</h3>
-                <h3>{this.props.placeData && this.props.placeData.name}</h3>
-              </div>
+                >
+                Leave the first review
+              </Button>
+              </Row>
             </div>)
       }
 
@@ -151,26 +187,7 @@ class WorkSpace extends React.Component {
       }
 
 
-      // Conditionals for determining today's day and showing corresponding opening hours
-      let openingHrsToday
-      let today = new Date()
-      let day = today.getDay()
 
-      if (this.props.placeData && this.props.placeData.opening_hours && day === 0) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[6]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 1) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[0]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 2) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[1]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 3) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[2]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 4) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[3]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 5) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[4]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 6) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[5]
-      }
 
       // Register as favorited
       const handleFave = event => {

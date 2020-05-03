@@ -1,3 +1,94 @@
+.userAlertCard {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 280px;
+  height: 200px;
+  background: linear-gradient(to right, #4775FF, #4775FF 33px, #FFF 30px, #FFF 66.66%, #FFF 66.66%);
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  left: 50%;
+  margin-left: -140px;
+  top: 10%;
+  z-index: 20;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  line-height: 150%;
+}
+
+.cardContent{
+  margin-left: 20%;
+  margin-top: -25%;
+}
+
+.name {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.address {
+  font-weight: 300;
+  font-size: 11px;
+}
+
+.hours{
+  font-weight: 300;
+  font-size: 11px;
+}
+
+.now {
+  display: flex;
+  flex-direction: row;
+  padding: 1px 8px;
+  position: absolute;
+  width: 71px;
+  height: 23px;
+  border-radius: 31px;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.open {
+  background: #A4FF2E;
+}
+
+.close {
+  background: #C4C4C4;
+  color: black;
+  width: 80px;
+  padding-top: 5px;
+}
+
+.message {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 200%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.review {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 32px 8px;
+
+  position: absolute;
+  width: 193px;
+  height: 36px;
+
+  background: #4775FF;
+  border-radius: 24px;
+
+  font-weight: bold;
+  font-size: 13px;
+  color: #FFFFFF;
+
+  left: 20%;
+  bottom: 10%;
+}
+
 .workspace {
   background-color: #4775FF;
   border-radius: 10px 10px 10px 10px;
@@ -13,7 +104,7 @@
   position: absolute;
   z-index: 12;
 
-  font-family: SF Pro Display;
+  font-family: SF Pro Display, sans-serif;
   font-size: 15px;
   font-weight: 300;
 }
@@ -77,21 +168,6 @@
 
 .features p {
   margin-bottom: 5px;
-}
-
-.reviewButton {
-  float: left;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 150%;
-  width: 172px;
-  height: 40px;
-  left: 17px;
-  top: 790px;
-  background: #FFCC47;
-  border-radius: 24px;
-  color: #000000;
-  font-family: Roboto;
 }
 
 img {
