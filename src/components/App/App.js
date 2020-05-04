@@ -146,6 +146,7 @@ class App extends React.Component {
               poiLocation={this.state.poiLocation}
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}
+              currentWorkspace={this.state.currentWorkspace}
             />
           <ListView workspaces={[this.state.filteredWorkspaces]} />
           </div>
