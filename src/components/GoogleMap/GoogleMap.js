@@ -119,6 +119,7 @@ class GoogleMap extends React.Component {
     }
 
     render() {
+        const { currentWorkspace } = this.props
         return (
             <Map google={this.props.google}
                 center={this.props.center}
@@ -158,7 +159,7 @@ class GoogleMap extends React.Component {
                     placeId={workSpace.placeId}
                     data={workSpace}
                     name={'Current location'}
-                    icon={'logo-bull-icon.svg'}
+                    icon={currentWorkspace && workSpace === currentWorkspace ? 'logo-bull-icon-active.svg' : 'logo-bull-icon.svg'}
                 />
             ))}         
 
