@@ -40,8 +40,7 @@ class WorkSpace extends React.Component {
 
     // GET favorite status of current user
     componentDidMount = () => {
-    if (this.props.user) {
-      console.log(this.props.user)
+    if (this.props.user && this.props.data) {
         axios({
           url: `${apiUrl}/work_spaces/${this.props.data.id}/likes`,
           method: 'GET',
