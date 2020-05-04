@@ -96,7 +96,7 @@ class WorkSpace extends React.Component {
                 <Row>
                   {this.props.placeData && this.props.placeData.opening_hours ? <span className='hours'>{openingHrsToday}</span> : <span className='hours'>Hours unavailable</span> }
                   <Col>
-                    {this.props.placeData && this.props.placeData.opening_hours && this.props.placeData.opening_hours.open_now ? <span className='now open'>Open Now</span> : <span className='now close'>Closed Now</span>}
+                    {this.props.placeData && this.props.placeData.opening_hours && this.props.placeData.opening_hours.isOpen() ? <span className='now open'>Open Now</span> : <span className='now close'>Closed Now</span>}
                   </Col>
                 </Row>
                 <Row>
