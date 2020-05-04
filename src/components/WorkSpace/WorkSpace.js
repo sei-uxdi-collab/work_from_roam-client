@@ -55,11 +55,11 @@ class WorkSpace extends React.Component {
 
     // render information inside an infoWindow for POI
     render() {
-      let photo = '../../loading-cat.gif'
+      let photo = 'loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
       } else {
-        photo = '../../image_not_found.png'
+        photo = 'image_not_found.png'
       }
 
       // Conditionals for determining today's day and showing corresponding opening hours
@@ -217,7 +217,7 @@ class WorkSpace extends React.Component {
         return (
             <div className='workspace' style={this.state.display}>
               <Link to='/'>
-                <img style={{ float: 'right' }} alt='close' src='../../close-x-white.svg' width={'12'} heigth={'12'}/>
+                <img style={{ float: 'right' }} alt='close' src='close-x-white.svg' width={'12'} heigth={'12'}/>
               </Link>
 
                 <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
@@ -232,22 +232,22 @@ class WorkSpace extends React.Component {
                   className='button'
                   data={this.props.data.id}
                   href={`#/create-review`}
-                  ><img src='../../leaveReview.svg' alt='leave a review'/>Leave a Review</Button>
+                  ><img src='leaveReview.svg' alt='leave a review'/>Leave a Review</Button>
                 {this.props.user && !this.state.flag && <Button
                                                           className='button'
                                                           data={this.props.data.id}
                                                           onClick={handleFave}
-                                                          ><img src='../../favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
+                                                          ><img src='favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
                 {this.props.user && this.state.flag && <Button
                                                           className='button'
                                                           data={this.props.data.id}
                                                           onClick={handleUnfave}
-                                                          ><img src='../../favoriteHeartRed.svg' alt='favorite'/>Add to Favorites</Button>}
+                                                          ><img src='favoriteHeartRed.svg' alt='favorite'/>Add to Favorites</Button>}
                 {!this.props.user && <Button
                                         className='button'
                                         data={this.props.data.id}
                                         href={`#/sign-in`}
-                                        ><img src='../../favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
+                                        ><img src='favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
                 </div>
                 <div className='workspaceInfo'>
                 <div>
@@ -274,12 +274,12 @@ class WorkSpace extends React.Component {
                     <div>
                     {!this.state.hours && (this.props.placeData && this.props.placeData.opening_hours ? <p
                       style={{ cursor: 'pointer' }}
-                      onClick={this.showHrs}>{openingHrsToday}<img alt='more hours' src='../../arrowDown.svg' className='vecStyle'/></p> : <p>Opening hours unavailable</p> )}
+                      onClick={this.showHrs}>{openingHrsToday}<img alt='more hours' src='arrowDown.svg' className='vecStyle'/></p> : <p>Opening hours unavailable</p> )}
                     </div>
                     {this.state.hours &&
                       <div>
                       <p onClick={this.hideHrs}
-                         style={{ cursor: 'pointer' }}><img alt='less hours' src='../../arrowUp.svg' className='vecStyle'/></p>
+                         style={{ cursor: 'pointer' }}><img alt='less hours' src='arrowUp.svg' className='vecStyle'/></p>
                         <div>
                           <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[0]}</p>
                           <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[1]}</p>
