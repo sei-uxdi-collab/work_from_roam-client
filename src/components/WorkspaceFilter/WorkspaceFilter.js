@@ -40,6 +40,7 @@ const WorkspaceFilter = props => {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Functions to reset the filters and to close/show the dropdown
   const resetFilters = () => {
+    console.log(props.data)
     setFilters({
       // Main filters
       fastWifi: false,
