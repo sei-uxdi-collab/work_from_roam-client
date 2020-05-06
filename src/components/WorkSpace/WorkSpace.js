@@ -7,7 +7,8 @@ import apiUrl from '../../apiConfig'
 
 import Review from '../Review/Review'
 import { StarRating } from '../Review/StarsRating'
-import ScaleRating from './ScaleRating'
+// import ScaleRating from './ScaleRating'
+import AmenityRating from './AmenityRating'
 
 import './WorkSpace.scss'
 
@@ -292,9 +293,18 @@ class WorkSpace extends React.Component {
                       </div>}
                 </div>
                   <div>
-                  <ScaleRating
-                    data={this.props.data}
-                  />
+                    <AmenityRating
+                      amenity={this.props.data.avg_wifi}
+                      amenityName='Wifi Quality'
+                    />
+                    <AmenityRating
+                      amenity={this.props.data.avg_noise}
+                      amenityName='Noise Level'
+                    />
+                    <AmenityRating
+                      amenity={this.props.data.avg_seating}
+                      amenityName='Seating'
+                    />
                   {!this.state.features && <p onClick={this.showFeatures} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>more<img alt='more' src='../../arrowDown.svg' className='vecStyle'/></p>}
                   {this.state.features &&
                     <div>
