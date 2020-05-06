@@ -31,7 +31,7 @@ function MyFavorites(props) {
             <div className="workplace-title"> {workplace.name}</div>
           </Col>
           <Col>
-            <div className="my-favorite-stars"> ★★★★★</div>
+            <div className="my-favorite-stars"> {workplace.avgrating}</div>
           </Col>
         </Row>
         <Row>
@@ -45,13 +45,13 @@ function MyFavorites(props) {
           <span className="plain-text phone"> Phone: <u>{workplace.phone}</u></span>
         </Row>
         <Row>
-          <span className="plain-text bars"> Wifi Quality </span>
+          <span className="plain-text bars"> Wifi Quality: {workplace.avgwifi} </span>
         </Row>
         <Row>
-          <span className="plain-text bars"> Seat Comfort </span>
+          <span className="plain-text bars"> Seat Comfort: {workplace.avgseating} </span>
         </Row>
         <Row>
-          <span className="plain-text bars"> Noise Level </span>
+          <span className="plain-text bars"> Noise Level: {workplace.avgnoise} </span>
         </Row>
       </div>
     </div>

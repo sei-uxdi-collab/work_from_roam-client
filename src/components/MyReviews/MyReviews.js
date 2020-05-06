@@ -9,6 +9,8 @@ function MyReviews(props) {
 
   const content = useRef(null);
 
+  // encounter.date_of_encounter = new Date(encounter.date_of_encounter).toLocaleDateString()
+
   function toggleView() {
     setActiveState(setActive === "" ? "active" : "");
     setHeightState(
@@ -17,7 +19,7 @@ function MyReviews(props) {
   }
 
   // function getDate(date) {
-  //    return date.split(' ')[0]
+  //   date = new Date(date).toLocaleDateString('en-US');
   //  }
 
   console.log(props)

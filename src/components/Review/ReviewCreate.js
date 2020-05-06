@@ -141,10 +141,10 @@ import Button from 'react-bootstrap/Button'
                 <Form.Check
                   className="checkbox-toolbar"
                   type="checkbox"
-                  label="Available Outlets"
+                  label="Free Parking"
                   onChange={this.toggleChange}
-                  name="outlet"
-                  id="outlet"
+                  name="parking"
+                  id="parking"
                 />
               </Form.Group>
 
@@ -185,10 +185,10 @@ import Button from 'react-bootstrap/Button'
                 <Form.Check
                   className="checkbox-toolbar"
                   type="checkbox"
-                  label="Free Parking"
+                  label="Available Outlets"
                   onChange={this.toggleChange}
-                  name="parking"
-                  id="parking"
+                  name="outlet"
+                  id="outlet"
                 />
               </Form.Group>
 
