@@ -25,8 +25,8 @@ const Slide = ({ content, width, activeIndex }) => {
   const address = () => {
     return (
       <React.Fragment>
-        <p>1 Financial Center, Boston, MA 02210</p>
-        <p>(555) 555-5555</p>
+        <p>{content.address}</p>
+        <p>{content.phone}</p>
       </React.Fragment>
     )
   }
@@ -43,7 +43,7 @@ const Slide = ({ content, width, activeIndex }) => {
         `}
     >
       <div css={cardCSS}>
-        <h5 css={headerCSS}>Place #{content.id}</h5>
+        <h5 css={headerCSS}>{content.name}</h5>
         <div css={infoCSS}>
           {openHours()}
           {distFromUser()}
