@@ -113,7 +113,9 @@ import Button from 'react-bootstrap/Button'
             <img src="close-x-white.png" alt="close"/>
           </Link>
           <h1 className="main-header ">Give {placeName} a review!</h1>
-          <Form onSubmit={this.handleSubmit} class="ml-1">
+          <h2 className="sub-header ">* Required Fields</h2>
+          <Form onSubmit={this.handleSubmit} className="ml-1">
+            <Form.Label className="question-header mt-3 mb-0" htmlFor="rating">Rate Your Experience*</Form.Label>
             <Form.Group className="stars">
               <StarRating
                 value={this.state.rating}
@@ -121,13 +123,25 @@ import Button from 'react-bootstrap/Button'
             />
             </Form.Group>
 
-            <Form.Label className="question-header" htmlFor="wifi">General Information*</Form.Label>
-            <Form.Row className="gen-info-options">
+            <Form.Label className="question-header">Please highlight all that apply:</Form.Label>
+            <div className="d-flex flex-wrap gen-info-options">
+
               <Form.Group>
                 <Form.Check
                   className="checkbox-toolbar"
                   type="checkbox"
-                  label="Outlets"
+                  label="Wifi Password"
+                  onChange={this.toggleChange}
+                  name="wifipass"
+                  id="wifipass"
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Available Outlets"
                   onChange={this.toggleChange}
                   name="outlet"
                   id="outlet"
@@ -155,184 +169,156 @@ import Button from 'react-bootstrap/Button'
                   id="food"
                 />
               </Form.Group>
-            </Form.Row>
 
-            <Form.Group className="question mt-0">
-              <Form.Label className="question-header" htmlFor="wifi">How was the Wifi?*</Form.Label>
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Beer + Wine"
+                  onChange={this.toggleChange}
+                  name="alcohol"
+                  id="alcohol"
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Free Parking"
+                  onChange={this.toggleChange}
+                  name="parking"
+                  id="parking"
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Good for Groups"
+                  onChange={this.toggleChange}
+                  name="goodforgroup"
+                  id="goodforgroup"
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Meeting Rooms"
+                  onChange={this.toggleChange}
+                  name="meetingspace"
+                  id="meetingspace"
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Outdoor Space"
+                  onChange={this.toggleChange}
+                  name="outdoorspace"
+                  id="outdoorspace"
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Pet Friendly"
+                  onChange={this.toggleChange}
+                  name="petfriendly"
+                  id="petfriendly"
+                />
+              </Form.Group>
+            </div>
+
+            <Form.Group className="question mt-3" controlId="wifi">
+              <Form.Label className="question-header mb-0">How was the Wifi?*</Form.Label>
+              <Form.Row className="slider-text d-flex justify-content-between">
+                <div className="d-inline-flex">Slow</div>
+                <div className="d-inline-flex">Fast</div>
+              </Form.Row>
               <Form.Row>
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="None"
-                  value="0"
-                  checked={this.state.wifi === '0'}
+                <Form.Control
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
                   name="wifi"
+                  className="slider"
+                  value={this.state.wifi}
                   onChange={this.handleChange}
-                  id="wifi1"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Slow"
-                  value="1"
-                  checked={this.state.wifi === '1'}
-                  name="wifi"
-                  onChange={this.handleChange}
-                  id="wifi2"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Spotty"
-                  value="2.5"
-                  checked={this.state.wifi === '2.5'}
-                  name="wifi"
-                  onChange={this.handleChange}
-                  id="wifi3"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Fast!"
-                  value="5"
-                  checked={this.state.wifi === '5'}
-                  name="wifi"
-                  onChange={this.handleChange}
-                  id="wifi4"
                 />
               </Form.Row>
             </Form.Group>
 
-            <Form.Group className="question">
-              <Form.Label className="question-header" htmlFor="name">How noisy was it?*</Form.Label>
+            <Form.Group className="question mt-3" controlId="noise">
+              <Form.Label className="question-header mb-0">What was the noise level?*</Form.Label>
+              <Form.Row className="slider-text d-flex justify-content-between">
+                <div className="d-inline-flex">Silent</div>
+                <div className="d-inline-flex">Loud</div>
+              </Form.Row>
               <Form.Row>
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Quiet"
-                  value="1"
-                  checked={this.state.noise === '1'}
+                <Form.Control
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
                   name="noise"
+                  className="slider"
+                  value={this.state.noise}
                   onChange={this.handleChange}
-                  id="noise1"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Moderate"
-                  value="2.5"
-                  checked={this.state.noise === '2.5'}
-                  name="noise"
-                  onChange={this.handleChange}
-                  id="noise2"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Loud"
-                  value="5"
-                  checked={this.state.noise === '5'}
-                  name="noise"
-                  onChange={this.handleChange}
-                  id="noise3"
                 />
               </Form.Row>
             </Form.Group>
 
-            <Form.Group className="question">
-              <Form.Label className="question-header" htmlFor="name">How were the bathrooms?*</Form.Label>
+            <Form.Group className="question mt-3" controlId="seating">
+              <Form.Label className="question-header mb-0">How easily did you find a seat?*</Form.Label>
+              <Form.Row className="slider-text d-flex justify-content-between">
+                <div className="d-inline-flex">No Seats</div>
+                <div className="d-inline-flex">Easily</div>
+              </Form.Row>
               <Form.Row>
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="None"
-                  value="0"
-                  checked={this.state.bathroom === '0'}
-                  name="bathroom"
+                <Form.Control
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
+                  name="seating"
+                  className="slider"
+                  value={this.state.seating}
                   onChange={this.handleChange}
-                  id="bathroom1"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Messy"
-                  value="1"
-                  checked={this.state.bathroom === '1'}
-                  name="bathroom"
-                  onChange={this.handleChange}
-                  id="bathroom2"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Usable"
-                  value="2.5"
-                  checked={this.state.bathroom === '2.5'}
-                  name="bathroom"
-                  onChange={this.handleChange}
-                  id="bathroom3"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Great!"
-                  value="5"
-                  checked={this.state.bathroom === '5'}
-                  name="bathroom"
-                  onChange={this.handleChange}
-                  id="bathroom4"
                 />
               </Form.Row>
             </Form.Group>
 
-            <Form.Group className="question">
-              <Form.Label className="question-header" htmlFor="seating">What was the seating like?*</Form.Label>
+            <Form.Group className="question mt-3" controlId="bathroom">
+              <Form.Label className="question-header mb-0">How was the bathroom?*</Form.Label>
+              <Form.Row className="slider-text d-flex justify-content-between">
+                <div className="d-inline-flex">Disastrous</div>
+                <div className="d-inline-flex">Immaculate</div>
+              </Form.Row>
               <Form.Row>
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="None"
-                  value="0"
-                  checked={this.state.seating === '0'}
-                  name="seating"
+                <Form.Control
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
+                  name="bathroom"
+                  className="slider"
+                  value={this.state.bathroom}
                   onChange={this.handleChange}
-                  id="seating1"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Very Little"
-                  value="1"
-                  checked={this.state.seating === '1'}
-                  name="seating"
-                  onChange={this.handleChange}
-                  id="seating2"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Adequate"
-                  value="2.5"
-                  checked={this.state.seating === '2.5'}
-                  name="seating"
-                  onChange={this.handleChange}
-                  id="seating3"
-                />
-                <Form.Check
-                  className="radio-toolbar"
-                  type="radio"
-                  label="Lots!"
-                  value="5"
-                  checked={this.state.seating === '5'}
-                  name="seating"
-                  onChange={this.handleChange}
-                  id="seating4"
                 />
               </Form.Row>
             </Form.Group>
 
             <Form.Group className="question">
-              <Form.Label className="question-header" htmlFor="name">Write a review (optional)</Form.Label>
+              <Form.Label className="question-header" htmlFor="note">Write a review (optional)</Form.Label>
               <Form.Control
                 style={{ height: '60px' }}
                 type="text"
