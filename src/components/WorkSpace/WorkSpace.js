@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
 
 import Review from '../Review/Review'
 import { StarRating } from '../Review/StarsRating'
@@ -12,11 +15,11 @@ class WorkSpace extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            user: props.user,
             features: false,
             hours: false
         }
     }
-
 
     // To show more features within this worspace
     showFeatures = () => {
@@ -35,29 +38,79 @@ class WorkSpace extends React.Component {
       this.setState({ hours: false })
     }
 
+    // GET favorite status of current user
+    componentDidMount = () => {
+    if (this.props.user && this.props.data) {
+        axios({
+          url: `${apiUrl}/work_spaces/${this.props.data.id}/likes`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          }
+        })
+          .then(res => this.setState({ flag: res.data[0] }))
+          .catch(console.error)
+    }
+    }
+
     // render information inside an infoWindow for POI
     render() {
-      let photo = '../../loading-cat.gif'
+      let photo = 'loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
       } else {
-        photo = '../../image_not_found.png'
+        photo = 'image_not_found.png'
+      }
+
+      // Conditionals for determining today's day and showing corresponding opening hours
+      let openingHrsToday
+      let today = new Date()
+      let day = today.getDay()
+
+      if (this.props.placeData && this.props.placeData.opening_hours && day === 0) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[6]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 1) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[0]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 2) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[1]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 3) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[2]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 4) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[3]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 5) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[4]
+      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 6) {
+        openingHrsToday = this.props.placeData.opening_hours.weekday_text[5]
       }
 
       if(!this.props.data || this.props.data.reviews.length < 1) {
         return (
-            <div className='workspace'>
-              <Link to='/'>
-                <img style={{ float: 'right' }} alt='Click to exit' src={'../../close-x-white.png'}/>
-              </Link>
-              <div style={{ textAlign: 'center' }}>
-                <h3>Be the first to write a  <Button
+            <div className='userAlertCard'>
+              <div className='cardContent'>
+                <Row>
+                  <span className='name'>{this.props.placeData && this.props.placeData.name}</span>
+                </Row>
+                <Row>
+                  <span className='address'>{this.props.placeData && this.props.placeData.formatted_address}</span>
+                </Row>
+                <Row>
+                  {this.props.placeData && this.props.placeData.opening_hours ? <span className='hours'>{openingHrsToday}</span> : <span className='hours'>Hours unavailable</span> }
+                  <Col>
+                    {this.props.placeData && this.props.placeData.opening_hours && this.props.placeData.opening_hours.isOpen() ? <span className='now open'>Open Now</span> : <span className='now close'>Closed Now</span>}
+                  </Col>
+                </Row>
+                <Row>
+                  <span className='message'>Found a hidden gem? Share it with everyone!</span>
+                </Row>
+                </div>
+                <Row>
+                <Button
+                className='review'
                 href={`#/create-review`}
-              >
-                Review
-              </Button> for</h3>
-                <h3>{this.props.placeData && this.props.placeData.name}</h3>
-              </div>
+                >
+                Leave the first review
+              </Button>
+              </Row>
             </div>)
       }
 
@@ -133,31 +186,38 @@ class WorkSpace extends React.Component {
       }
 
 
-      // Conditionals for determining today's day and showing corresponding opening hours
-      let openingHrsToday
-      let today = new Date()
-      let day = today.getDay()
 
-      if (this.props.placeData && this.props.placeData.opening_hours && day === 0) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[6]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 1) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[0]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 2) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[1]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 3) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[2]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 4) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[3]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 5) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[4]
-      } else if (this.props.placeData && this.props.placeData.opening_hours && day === 6) {
-        openingHrsToday = this.props.placeData.opening_hours.weekday_text[5]
+
+      // Register as favorited
+      const handleFave = event => {
+        console.log(this.props.data)
+        this.setState({ flag: true })
+        axios({
+          url: `${apiUrl}/work_spaces/${this.props.data.id}/like`,
+          method: 'PUT',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          }
+        })
+      }
+
+      // Register as unfavorited
+      const handleUnfave = event => {
+        console.log(this.props.data)
+        this.setState({ flag: false })
+        axios({
+          url: `${apiUrl}/work_spaces/${this.props.data.id}/unlike`,
+          method: 'PUT',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          }
+        })
       }
 
         return (
             <div className='workspace' style={this.state.display}>
               <Link to='/'>
-                <img style={{ float: 'right' }} alt='close' src='../../close-x-white.svg' width={'12'} heigth={'12'}/>
+                <img style={{ float: 'right' }} alt='close' src='close-x-white.svg' width={'12'} heigth={'12'}/>
               </Link>
 
                 <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
@@ -165,18 +225,29 @@ class WorkSpace extends React.Component {
                 <Button
                   className='button'
                   data={this.props.data && this.props.userLocation}
-                  href={`https://www.google.com/maps/dir/?api=1&origin=${this.props.userLocation.lat}%2c${this.props.userLocation.lng}&destination=${this.props.data.lat}%2c${this.props.data.lng}`}
+                  href={this.props.userLocation ? `https://www.google.com/maps/dir/?api=1&origin=${this.props.userLocation.lat}%2c${this.props.userLocation.lng}&destination=${this.props.data.lat}%2c${this.props.data.lng}` : `https://www.google.com/maps/dir/?api=1&origin=${this.props.data.lat}%2c${this.props.data.lng}&destination=${this.props.data.lat}%2c${this.props.data.lng}`}
                   target={'_blank'}
                   ><img src='getDirections.svg' alt='directions'/>Get Directions</Button>
                 <Button
                   className='button'
                   data={this.props.data.id}
                   href={`#/create-review`}
-                  ><img src='../../leaveReview.svg' alt='leave a review'/>Leave a Review</Button>
-                <Button
-                  className='button'
-                  data={this.props.data.id}
-                  ><img src='../../favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>
+                  ><img src='leaveReview.svg' alt='leave a review'/>Leave a Review</Button>
+                {this.props.user && !this.state.flag && <Button
+                                                          className='button'
+                                                          data={this.props.data.id}
+                                                          onClick={handleFave}
+                                                          ><img src='favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
+                {this.props.user && this.state.flag && <Button
+                                                          className='button'
+                                                          data={this.props.data.id}
+                                                          onClick={handleUnfave}
+                                                          ><img src='favoriteHeartRed.svg' alt='favorite'/>Add to Favorites</Button>}
+                {!this.props.user && <Button
+                                        className='button'
+                                        data={this.props.data.id}
+                                        href={`#/sign-in`}
+                                        ><img src='favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
                 </div>
                 <div className='workspaceInfo'>
                 <div>
@@ -203,12 +274,12 @@ class WorkSpace extends React.Component {
                     <div>
                     {!this.state.hours && (this.props.placeData && this.props.placeData.opening_hours ? <p
                       style={{ cursor: 'pointer' }}
-                      onClick={this.showHrs}>{openingHrsToday}<img alt='more hours' src='../../arrowDown.svg' className='vecStyle'/></p> : <p>Opening hours unavailable</p> )}
+                      onClick={this.showHrs}>{openingHrsToday}<img alt='more hours' src='arrowDown.svg' className='vecStyle'/></p> : <p>Opening hours unavailable</p> )}
                     </div>
                     {this.state.hours &&
                       <div>
                       <p onClick={this.hideHrs}
-                         style={{ cursor: 'pointer' }}><img alt='less hours' src='../../arrowUp.svg' className='vecStyle'/></p>
+                         style={{ cursor: 'pointer' }}><img alt='less hours' src='arrowUp.svg' className='vecStyle'/></p>
                         <div>
                           <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[0]}</p>
                           <p>{this.props.placeData && this.props.placeData.opening_hours.weekday_text[1]}</p>

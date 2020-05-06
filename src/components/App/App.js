@@ -88,6 +88,7 @@ class App extends React.Component {
 
         <Route path='/workspace' render={() => (
            <WorkSpace
+              user={user}
               data={this.state.currentWorkspace}
               placeData={this.state.placeData}
               userLocation={this.state.userLocation}
