@@ -1,10 +1,14 @@
 /** @jsx jsx */
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { css, jsx } from '@emotion/core'
 
 const AmenityRating = ({ amenity, amenityName }) => {
 
-  const amenityCount = useState(Math.floor(amenity))
+  const [amenityCount, setAmenityCount] = useState([])
+
+  useEffect(() => {
+    setAmenityCount(Math.floor(amenity))
+  }, [amenity])
 
   const yellowTick = () => {
       return (
@@ -23,8 +27,8 @@ const AmenityRating = ({ amenity, amenityName }) => {
    <div css={ratingsRow}>
      <p>{amenityName}</p>
      <div>
-       {Array(amenityCount[0]).fill().map(item => yellowTick())}
-       {Array(5 - amenityCount[0]).fill().map(item => grayTick())}
+       {Array(amenityCount).fill().map(item => yellowTick())}
+       {Array(5 - amenityCount).fill().map(item => grayTick())}
      </div>
    </div>
    </div>
