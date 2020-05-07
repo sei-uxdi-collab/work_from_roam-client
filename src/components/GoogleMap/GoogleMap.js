@@ -17,7 +17,6 @@ class GoogleMap extends React.Component {
             selectedMarker: null,
             showWindow: false,
             allData: [],
-            showPOI: false
         }
     }
 
@@ -77,9 +76,6 @@ class GoogleMap extends React.Component {
         if (this.state.showWindow) {
             this.setState({ showWindow: false })
         }
-        if (this.state.showPOI) {
-            this.setState({ showPOI: false })
-        }
     }
 
     findExistingWorkspace = placeId => {
@@ -96,8 +92,6 @@ class GoogleMap extends React.Component {
         const mapCenter = poiLocation
 
         this.findExistingWorkspace(placeId)
-        // turn infoWindow on to overwrite default poi window
-        this.setState({ showPOI: true })
   
         this.props.setApp({ mapCenter, poiLocation, placeId })
 
@@ -130,12 +124,6 @@ class GoogleMap extends React.Component {
                 onClick={this.handleClick}
                 className='google-map'
             >
-                
-            {/* info window to overwrite default poi locations */}
-            <InfoWindow
-                position={this.props.poiLocation}
-                visible={this.state.showPOI}
-            />
 
             <Marker
                 name={'user location'}
