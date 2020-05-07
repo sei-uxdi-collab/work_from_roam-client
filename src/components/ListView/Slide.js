@@ -4,7 +4,6 @@ import { css, jsx } from '@emotion/core'
 // import img from './cute_buffalo.jpg'
 
 // Custon component imports
-// import ScaleRating from '../WorkSpace/ScaleRating'
 import ListViewRatings from './ListViewRatings'
 
 const Slide = ({ content, width, activeIndex }) => {
@@ -54,7 +53,6 @@ const Slide = ({ content, width, activeIndex }) => {
         <ListViewRatings data={content} />
       </div>
     </div>
-
   )
 }
 
@@ -64,7 +62,8 @@ const cardCSS = css`
   border-radius: 20px;
   height: 217px;
   margin: 20px auto;
-  width: 252px;
+  width: 280px;
+  // width: 252px;
   box-shadow: 2px 8px 16px
     rgba(0, 0, 0, 0.25);
 `
