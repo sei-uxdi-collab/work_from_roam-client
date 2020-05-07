@@ -56,6 +56,7 @@ class WorkSpace extends React.Component {
 
     // render information inside an infoWindow for POI
     render() {
+      console.log(this.props.data)
       let photo = 'loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
@@ -157,32 +158,32 @@ class WorkSpace extends React.Component {
       if(this.props.data.bool_cashOnly === true) {
         cashOnly = true
       }
-      if(this.props.data.avg_coffee > 0) {
+      if(this.props.data.bool_coffee === true) {
         coffee = true
       }
       if(this.props.data.avg_comfyChairs > 0) {
         comfyChairs = true
       }
-      if(this.props.data.avg_food > 0) {
+      if(this.props.data.bool_food === true) {
         food = true
       }
-      if(this.props.data.avg_goodForGroups > 0) {
+      if(this.props.data.bool_goodforgroup === true) {
         goodForGroups = true
       }
-      if(this.props.data.avg_outlet > 0) {
+      if(this.props.data.bool_outlet === true) {
         // console.log(outlet)
         outlets = true
       }
-      if(this.props.data.bool_outdoorSeats === true) {
+      if(this.props.data.bool_outdoorspace === true) {
         outdoorSeats = true
       }
-      if(this.props.data.avg_quiet > 2) {
+      if(this.props.data.avgnoise > 2) {
         quiet = true
       }
       if(this.props.data.bool_parking === true) {
         parking = true
       }
-      if(this.props.data.bool_wifiPassword === true) {
+      if(this.props.data.bool_wifipass === true) {
         wifiPassword = true
       }
 
@@ -294,15 +295,15 @@ class WorkSpace extends React.Component {
                 </div>
                   <div>
                     <AmenityRating
-                      amenity={this.props.data.avg_wifi}
+                      amenity={this.props.data.avgwifi}
                       amenityName='Wifi Quality'
                     />
                     <AmenityRating
-                      amenity={this.props.data.avg_noise}
+                      amenity={this.props.data.avgnoise}
                       amenityName='Noise Level'
                     />
                     <AmenityRating
-                      amenity={this.props.data.avg_seating}
+                      amenity={this.props.data.avgseating}
                       amenityName='Seating'
                     />
                   {!this.state.features && <p onClick={this.showFeatures} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>more<img alt='more' src='../../arrowDown.svg' className='vecStyle'/></p>}
