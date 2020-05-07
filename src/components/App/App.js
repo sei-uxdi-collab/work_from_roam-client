@@ -58,8 +58,8 @@ class App extends React.Component {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant, image }] })
   }
 
-  barAlert = ({ heading, message, variant }) => {
-    this.setState({ barAlerts: [...this.state.barAlerts, { heading, message, variant }] })
+  barAlert = ({ heading, message, variant, image }) => {
+    this.setState({ barAlerts: [...this.state.barAlerts, { heading, message, variant, image }] })
   }
 
   render() {
