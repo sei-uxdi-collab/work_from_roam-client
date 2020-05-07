@@ -6,9 +6,13 @@ $wfrBlue: #4775ff;
     background-color: #4775ff;
     border-radius: 12px;
     margin: 0;
+    justify-content: center;
+    align-items: center;
+}
 
-    img {
-        height: 100%;
-        width: 100%;
-    }
+.hamburger {
+  display: inline;
+  height: 50%;
+  margin-top: 9px;
+  width: 50%;
 }

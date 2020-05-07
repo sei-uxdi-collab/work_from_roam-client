@@ -25,7 +25,7 @@ class NavBar extends React.Component {
             <HashRouter>
               <Link to={redirect}>
                 <div className="nav-bar" onClick={this.handleClick} >
-                  <img  src="ROME.png" alt="nav-bar" />
+                  <img  src="hamburger.svg" className="hamburger" alt="nav-bar" />
                 </div>
               </Link>
             </HashRouter>

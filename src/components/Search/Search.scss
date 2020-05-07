@@ -25,6 +25,9 @@
 .autocomplete-dropdown-container {
   position: absolute;
   width: calc(100vw - 200px);
+  margin-top: 20px;
+  margin-left: 10px;
+  text-align: left;
 }
 
 @media (min-width: 450px) {
