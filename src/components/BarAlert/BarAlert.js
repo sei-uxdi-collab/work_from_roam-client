@@ -31,13 +31,15 @@ class BarAlert extends React.Component {
         style={{
           borderRadius: '0px',
           width: '100vw',
+          height: '39px',
+          padding: '11px',
           textAlign: 'center',
           color: 'black',
           backgroundColor: '#a4ff2e',
-          fonSize: '11px',
+          fontSize: '11px',
           fontFamily: 'Roboto',
           fontWeight: '500',
-          top: '3%' }}
+          top: '2%' }}
         show={this.state.show}
         variant={variant}
         onClose={this.handleClose}

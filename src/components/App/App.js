@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom'
 
 import AutoAlert from '../AutoAlert/AutoAlert.js'
+import BarAlert from '../BarAlert/BarAlert'
 import Search from '../Search/Search'
 import GoogleMap from '../GoogleMap/GoogleMap'
 import ReviewCreate from '../Review/ReviewCreate'
@@ -35,6 +36,7 @@ class App extends React.Component {
       user: null,
       userLocation: null,
       alerts: [],
+      barAlerts: [],
       filteredWorkspaces: [],
     }
 
@@ -56,8 +58,12 @@ class App extends React.Component {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant, image }] })
   }
 
+  barAlert = ({ heading, message, variant }) => {
+    this.setState({ barAlerts: [...this.state.barAlerts, { heading, message, variant }] })
+  }
+
   render() {
-    const { alerts, user } = this.state
+    const { alerts, barAlerts, user } = this.state
 
     return (
 <div>
@@ -72,6 +78,16 @@ class App extends React.Component {
               image={alert.image}
             />
           ))}
+
+          {barAlerts.map((barAlert, index) => (
+              <BarAlert
+                key={index}
+                heading={barAlert.heading}
+                variant={barAlert.variant}
+                message={barAlert.message}
+                image={barAlert.image}
+              />
+            ))}
 
         <Route path='/create-review'>
           <ReviewCreate
@@ -100,7 +116,7 @@ class App extends React.Component {
          )} />
 
          <Route path='/sign-in' render={() => (
-            <SignIn user={user} alert={this.alert} setUser={this.setUser} />
+            <SignIn user={user} alert={this.barAlert} setUser={this.setUser} />
           )} />
 
           <Route user={user} path='/change-password' render={() => (
@@ -108,7 +124,7 @@ class App extends React.Component {
             )} />
 
           <Route user={user} path='/sign-out' render={() => (
-              <SignOut clearUser={this.clearUser} alert={this.alert} user={user} />
+              <SignOut clearUser={this.clearUser} alert={this.barAlert} user={user} />
             )} />
 
           <Route user={user} path='/nav' render={() => (
