@@ -33,7 +33,8 @@ class SignIn extends Component {
       .then(res => setUser(res.data.user))
       .then(() => alert({
         heading: 'You are now signed in!',
-        message: messages.signInSuccess,
+        message: messages.signInSuccess + ', ' + (this.props.user.username ?
+          this.props.user.username : this.props.user.email),
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
