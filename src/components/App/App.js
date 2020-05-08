@@ -134,6 +134,7 @@ class App extends React.Component {
               <Search setApp={this.setState.bind(this)}
                       mapCenter={this.state.mapCenter}
                       filterWorkspaces={this.filterWorkspaces}
+                      data={this.state.allData}
               />
             </div>
             <GoogleMap

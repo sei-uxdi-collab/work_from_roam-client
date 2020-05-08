@@ -1,10 +1,11 @@
 import React, { Fragment, useState  } from 'react'
 
 // npm package imports
-import { Accordion, Button, Modal, Container, Row, Col } from 'react-bootstrap'
+import { Button, Modal, Container, Row, Col } from 'react-bootstrap'
 import Media from 'react-media'
 
 // Custom component import
+import ApplyFilters from './ApplyFilters.js'
 import filteredCall from '../../api/workspaceFilter.js'
 import magGlass from './SearchVector.svg'
 
@@ -12,6 +13,7 @@ import magGlass from './SearchVector.svg'
 import './WorkspaceFilter.scss'
 
 const WorkspaceFilter = props => {
+  const [filteredWorkspaces, setFilteredWorkspaces] = useState([])
   const [show, setShow] = useState(false)
   const [filters, setFilters] = useState({
     // Main filters
@@ -65,11 +67,6 @@ const WorkspaceFilter = props => {
     })
   }
 
-  const handleClose = () => {
-    resetFilters()
-    setShow(false)
-  }
-
   const toggleShow = () => setShow(!show)
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -100,6 +97,9 @@ const WorkspaceFilter = props => {
         setFilters(filters => ({...filters, food : !filters.food }))
         break
       // Amenities
+      case 'fastWifi':
+        setFilters(filters => ({...filters, fastWifi : !filters.fastWifi}))
+        break
       case 'bathrooms':
         setFilters(filters => ({...filters, bathrooms : !filters.bathrooms }))
         break
@@ -140,11 +140,32 @@ const WorkspaceFilter = props => {
     }
   }
 
+  function doFiltering() {
+    return new Promise((resolve, reject) => {
+      let array = ApplyFilters(filters, props.data)
+      if (array.length > 0) {
+        resolve(array)
+      } else {
+        reject('No results!')
+      }
+    })
+  }
+
   const handleSubmit = () => {
-    filteredCall(filters)
-      // Right now, only pulling the first workspace response to work on ListView display
-      .then(res => props.filterWorkspaces(res.data.work_spaces))
-      .then(handleClose)
+    doFiltering()
+      .then(resolve => props.filterWorkspaces(resolve))
+      .then(resolve => handleClose())
+      .catch(reject => handleFail())
+  }
+
+  const handleClose = () => {
+    resetFilters()
+    setShow(false)
+  }
+
+  const handleFail = () => {
+    resetFilters()
+    alert('No matches found!')
   }
 
   return (
