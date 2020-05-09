@@ -27,7 +27,7 @@ const userBanner = ( user ) => (
   </Fragment>
 )
 
-const authenticatedOptions = ( user ) => (
+const authenticatedOptions = ( user, allData, setApp ) => (
   <Fragment>
   <Row>
     <Link to='/' className="p-0">
@@ -41,7 +41,7 @@ const authenticatedOptions = ( user ) => (
       <div>
         <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
       </div>
-      <MyFavorites user={user}  />
+      <MyFavorites user={user} allData={allData} setApp={setApp} />
     </Row>
     <Row>
       <div>
@@ -93,11 +93,11 @@ const unauthenticatedOptions = (
     </Row>
   </Fragment>
 )
-const Header = ({ user }) => (
+const Header = ({ user, allData, setApp }) => (
   <div className="header" collapseOnSelect fixed="top">
     <div id="">
       <div>
-        { user ? authenticatedOptions(user) : unauthenticatedOptions }
+        { user ? authenticatedOptions(user, allData, setApp) : unauthenticatedOptions }
       </div>
     </div>
   </div>

@@ -128,7 +128,7 @@ class App extends React.Component {
             )} />
 
           <Route user={user} path='/nav' render={() => (
-              <Header clearUser={this.clearUser} user={user} />
+              <Header clearUser={this.clearUser} user={user} allData={this.state.allData} setApp={this.setState.bind(this)}/>
             )} />
 
             <Route user={user} path='/create-workspace' render={() => (

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom'
 
 import "./MyFavorites.scss";
 
@@ -18,11 +19,19 @@ function MyFavorites(props) {
 
   console.log(props)
 
+  const onCardClick = id => {
+    console.log(id)
+    const currentWorkspace = props.allData.find(workspace => workspace.id === id)
+    props.setApp({ currentWorkspace })
+    props.history.push('/workspace')
+  }
+
   const myFavoritesJsx = props.user.find_up_voted_items.map(workplace => (
     <li
       key={workplace.id}
       action
       href={`#workplace/${workplace.id}`}
+      onClick={() => onCardClick(workplace.id)}
     >
     <div className="my-favorite-card">
       <div className="card-content">
@@ -59,8 +68,8 @@ function MyFavorites(props) {
   ))
 
   return (
-    <div className="myfavorites-section"  onClick={toggleView}>
-      <div className={`myfavorites myfavorites-title ${setActive}`}>
+    <div className="myfavorites-section" >
+      <div className={`myfavorites myfavorites-title ${setActive}`} onClick={toggleView}>
         My Favorites
       </div>
       <div
@@ -76,4 +85,4 @@ function MyFavorites(props) {
   );
 }
 
-export default MyFavorites;
+export default withRouter(MyFavorites);
