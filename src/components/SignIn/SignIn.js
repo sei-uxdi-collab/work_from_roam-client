@@ -72,7 +72,7 @@ class SignIn extends Component {
                 type="identifier"
                 name="identifier"
                 value={identifier}
-                placeholder="Login"
+                placeholder="Username or Email"
                 onChange={this.handleChange}
                 InputProps={{
                   disableUnderline: true,
