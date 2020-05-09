@@ -6,27 +6,21 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 function TopRated(props) {
-  const [setActive, setActiveState] = useState("");
-  const [setHeight, setHeightState] = useState("0px");
+  const { user, isExpanded, toggleExpand } = props
   const [workplaces, setWorkplaces] = useState([])
 
   const content = useRef(null);
+  const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
+
 
   console.log(props)
-
-  function toggleView() {
-    setActiveState(setActive === "" ? "active" : "");
-    setHeightState(
-      setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
-    );
-  }
 
   useEffect(() => {
       axios({
         url: apiUrl + '/work_spaces/top_rated',
         method: 'GET',
         headers: {
-          'Authorization': `Token token=${props.user.token}`
+          'Authorization': `Token token=${user.token}`
         }
       })
         // .then(response => console.log(response.data))
@@ -83,13 +77,13 @@ function TopRated(props) {
   ))
 
   return (
-    <div className="toprated-section"  onClick={toggleView}>
-      <div className={`toprated toprated-title ${setActive}`}>
+    <div className="toprated-section"  onClick={toggleExpand}>
+      <div className={`toprated toprated-title ${isExpanded ? 'active' : ''}`}>
         Top Rated
       </div>
       <div
         ref={content}
-        style={{ maxHeight: `${setHeight}` }}
+        style={{ maxHeight }}
         className="toprated-content"
       >
       <ul>
