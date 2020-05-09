@@ -1,5 +1,9 @@
 import React, { useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
+import Button from 'react-bootstrap/Button'
+import { StarRating } from '../Review/StarsRating'
 
 import "./MyFavorites.scss";
 
@@ -8,8 +12,7 @@ function MyFavorites(props) {
   const content = useRef(null);
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
-  console.log(props)
-
+  // function to change the telephone number from a string with parenthesis and dashes to ONLY numbers
   const formatPhone = function(phone) {
     return "tel:" + phone.replace(/[ ()\\s-]+/g, "")
   }
@@ -18,7 +21,7 @@ function MyFavorites(props) {
     <li
       key={workplace.id}
       action
-      href={`#workplace/${workplace.id}`}
+      href={`#workspace/${workplace.id}`}
     >
     <div className="my-favorite-card">
       <div className="card-content">
@@ -27,7 +30,16 @@ function MyFavorites(props) {
             <div className="workplace-title"> {workplace.name}</div>
           </Col>
           <Col>
-            <div className="my-favorite-stars"> {workplace.avgrating}</div>
+            <div className="my-favorite-stars">
+              <StarRating
+               value={workplace.avgrating}
+               emptyStarColor='#FFFFFF'
+               editing={false}
+              />
+            </div>
+          </Col>
+          <Col>
+              <img src='favoriteHeartRed.svg' alt='favorited' className="heart"/>
           </Col>
         </Row>
         <Row>

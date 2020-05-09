@@ -1,3 +1,12 @@
+.heart {
+  background-color: #FFFFFF;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  height: 16px;
+  width: 16px;
+}
+
 /* Entire favorites section */
 .myfavorites-section {
   display: flex;
@@ -109,7 +118,7 @@ ul {
   box-sizing: border-box;
   height: auto;
   width: 252px;
-  padding: 5px 0px 5px 25px;
+  padding: 5px 25px;
   margin: 10px;
 }
 
