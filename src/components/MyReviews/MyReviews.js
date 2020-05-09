@@ -1,22 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
 import { StarRating } from '../Review/StarsRating'
 import "./MyReviews.scss";
 
 function MyReviews(props) {
-  const [setActive, setActiveState] = useState("");
-  const [setHeight, setHeightState] = useState("0px");
-
+  const { user, isExpanded, toggleExpand } = props
   const content = useRef(null);
+  const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
   // encounter.date_of_encounter = new Date(encounter.date_of_encounter).toLocaleDateString()
-
-  function toggleView() {
-    setActiveState(setActive === "" ? "active" : "");
-    setHeightState(
-      setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
-    );
-  }
 
   // function getDate(date) {
   //   date = new Date(date).toLocaleDateString('en-US');
@@ -24,7 +16,7 @@ function MyReviews(props) {
 
   console.log(props)
 
-  const myReviewsJsx = props.user.reviews.map(review => (
+  const myReviewsJsx = user.reviews.map(review => (
     <li
       key={review.id}
       action
@@ -61,13 +53,13 @@ function MyReviews(props) {
   ))
 
   return (
-    <div className="my-reviews-section"  onClick={toggleView}>
-      <div className={`my-reviews  my-reviews-title ${setActive}`}>
+    <div className="my-reviews-section"  onClick={toggleExpand}>
+      <div className={`my-reviews  my-reviews-title ${isExpanded ? 'active' : ''}`}>
         My Reviews
       </div>
       <div
         ref={content}
-        style={{ maxHeight: `${setHeight}` }}
+        style={{ maxHeight }}
         className="my-reviews-content"
       >
       <ul>
