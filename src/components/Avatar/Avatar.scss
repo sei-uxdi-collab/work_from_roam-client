@@ -1,0 +1,45 @@
+
+.avatar-container {
+  position: fixed;
+  z-index: 120;
+  width: 100vw;
+  max-width: 600px;
+  height: 95vh;
+  max-height: 1400px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  padding: 20px;
+  border-radius: 16px;
+  font-family: Roboto;
+
+  .close-button {
+    float: right;
+  }
+
+  .pick-your-avatar {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-size: 18px;
+  }
+
+  .avatar-display {
+    button {
+      border-radius: 33px;
+      display: flex;
+      margin: 12px auto;
+      padding: 9px 35px;
+      background-color: #4775FF;
+      color: #FFF;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+
+  .avatar-preview {
+    width: 100px;
+    margin: auto;
+  }
+}
