@@ -1,24 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
 
 import "./MyFavorites.scss";
 
 function MyFavorites(props) {
-  const [setActive, setActiveState] = useState("");
-  const [setHeight, setHeightState] = useState("0px");
-
+  const { user, isExpanded, toggleExpand } = props
   const content = useRef(null);
-
-  function toggleView() {
-    setActiveState(setActive === "" ? "active" : "");
-    setHeightState(
-      setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
-    );
-  }
+  const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
   console.log(props)
 
-  const myFavoritesJsx = props.user.find_up_voted_items.map(workplace => (
+  const myFavoritesJsx = user.find_up_voted_items.map(workplace => (
     <li
       key={workplace.id}
       action
@@ -59,13 +51,13 @@ function MyFavorites(props) {
   ))
 
   return (
-    <div className="myfavorites-section"  onClick={toggleView}>
-      <div className={`myfavorites myfavorites-title ${setActive}`}>
+    <div className="myfavorites-section"  onClick={toggleExpand}>
+      <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`}>
         My Favorites
       </div>
       <div
         ref={content}
-        style={{ maxHeight: `${setHeight}` }}
+        style={{ maxHeight }}
         className="myfavorites-content"
       >
       <ul>
