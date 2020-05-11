@@ -10,7 +10,7 @@ function Review (props) {
     return (
         <div>
         <img alt='User profile pic' src={userPic} className='userPic'/>
-        <div style={{ float: 'right', paddingRight: '50px' }}>
+        <div className='stars'>
         <StarRating
           value={props.rating}
           emptyStarColor={'#4775FF'}
