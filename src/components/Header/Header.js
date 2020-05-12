@@ -9,7 +9,7 @@ import TopRated from "../TopRated/TopRated";
 import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
 
-const Header = ({ user }) => {
+const Header = ({ user, userLocation }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
@@ -61,7 +61,7 @@ const Header = ({ user }) => {
         <div>
           <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
         </div>
-        <MyFavorites user={user} isExpanded={expanded.favorites} toggleExpand={() => toggleExpand('favorites')}/>
+        <MyFavorites user={user} userLocation={userLocation} isExpanded={expanded.favorites} toggleExpand={() => toggleExpand('favorites')}/>
       </Row>
       <Row>
         <div>
@@ -73,7 +73,7 @@ const Header = ({ user }) => {
         <div>
           <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
         </div>
-        <TopRated user={user} isExpanded={expanded.topRated} toggleExpand={() => toggleExpand('topRated')}/>
+        <TopRated user={user} userLocation={userLocation} isExpanded={expanded.topRated} toggleExpand={() => toggleExpand('topRated')}/>
       </Row>
       <Row>
         <div>
