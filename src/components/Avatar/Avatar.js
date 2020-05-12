@@ -60,7 +60,7 @@ class Avatar extends React.Component {
         </Link>
 
         <div className="pick-your-avatar">
-          { user ? 'Update Your Avatar!' : 'Pick Your Avatar!' }
+          { user && user.avatar ? 'Update Your Avatar!' : 'Pick Your Avatar!' }
         </div>
 
         <div className="top-section">
