@@ -30,6 +30,10 @@ function TopRated(props) {
         .catch((error) => console.log(error))
     }, [])
 
+  const formatPhone = function(phone) {
+    return "tel:" + phone.replace(/[ ()\\s-]+/g, "")
+  }
+
   const topRatedJsx = workplaces.map(workplace => (
     <li
       key={workplace.id}
@@ -60,7 +64,7 @@ function TopRated(props) {
           <span className="plain-text address"> {workplace.address}</span>
         </Row>
         <Row>
-          <span className="plain-text phone"> Phone: <u> {workplace.phone} </u></span>
+          <span className="plain-text phone"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
         </Row>
         <Row>
           <span className="plain-text bars"> Wifi Quality: {workplace.avg_wifi} </span>

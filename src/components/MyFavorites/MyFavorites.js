@@ -10,6 +10,10 @@ function MyFavorites(props) {
 
   console.log(props)
 
+  const formatPhone = function(phone) {
+    return "tel:" + phone.replace(/[ ()\\s-]+/g, "")
+  }
+
   const myFavoritesJsx = user.find_up_voted_items.map(workplace => (
     <li
       key={workplace.id}
@@ -34,7 +38,7 @@ function MyFavorites(props) {
           <span className="plain-text address"> {workplace.address}</span>
         </Row>
         <Row>
-          <span className="plain-text phone"> Phone: <u>{workplace.phone}</u></span>
+          <span className="plain-text phone"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
         </Row>
         <Row>
           <span className="plain-text bars"> Wifi Quality: {workplace.avgwifi} </span>
