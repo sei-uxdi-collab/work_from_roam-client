@@ -7,7 +7,7 @@ import apiUrl from '../../apiConfig'
 import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
 
 function TopRated(props) {
-  const { user, isExpanded, toggleExpand } = props
+  const { user, userLocation, isExpanded, toggleExpand } = props
   const [workplaces, setWorkplaces] = useState([])
 
   const content = useRef(null);
@@ -31,8 +31,18 @@ function TopRated(props) {
         .catch((error) => console.log(error))
     }, [])
 
+  // takes formatted phone number and removes everything that's not a number
+  // this allows us to pass it into an href and make the number "callable"
   const formatPhone = function(phone) {
     return "tel:" + phone.replace(/[ ()\\s-]+/g, "")
+  }
+
+  // used for figuring out calculated distance
+  const workplaceLocation = function(workplace) {
+    return {
+      lat: workplace.lat,
+      lng: workplace.lng
+    }
   }
 
   const topRatedJsx = workplaces.map(workplace => (
@@ -59,7 +69,7 @@ function TopRated(props) {
         </Row>
         <Row>
           <div className="open-now">Open Now</div>
-          <span className="plain-text distance"> {calculateDistanceMiles()}</span>
+          <span className="plain-text distance"> {calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
         </Row>
         <Row>
           <span className="plain-text address"> {workplace.address}</span>
