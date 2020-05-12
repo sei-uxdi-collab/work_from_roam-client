@@ -58,22 +58,23 @@
         width: 32px;
         height: 32px;
         margin: 16px 0px;
+        border-radius: 3px;
       }
   
       .yellow {
-        background-color: yellow;
+        background-color: #FFCC47;
       }
       .brown {
-        background-color: brown;
+        background-color: #7C533E;
       }
       .orange {
-        background-color: orange;
+        background-color: #F0844D;
       }
       .black {
-        background-color: black;
+        background-color: #222222;
       }
       .grey {
-        background-color: grey;
+        background-color: #BBBBBB;
       }
       .misc {
         background-image: url("./logo-bull-icon.svg");
@@ -95,8 +96,8 @@
         height: 120px;
         width: 120px;
         border-color: black;
-        border-radius: 22px;
-
+        border-radius: 10px;
+        font-size: 40px;
       }
     }
 

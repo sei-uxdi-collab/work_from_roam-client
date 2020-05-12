@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import './Avatar.scss'
 
-export default class Avatar extends React.Component {
-  constructor() {
-    super()
+class Avatar extends React.Component {
+  constructor(props) {
+    super(props)
     this.state = {
       group: {
         yellow: true,
@@ -15,7 +15,7 @@ export default class Avatar extends React.Component {
         grey: false,
         misc: false,
       },
-      selectedAvatar: '',
+      selectedAvatar: props.user && props.user.avatar,
     }
   }
 
@@ -33,6 +33,19 @@ export default class Avatar extends React.Component {
         [selectedName]: true,
       }
     })
+  }
+
+  selectAvatar = event => {
+    const selectedAvatar = event.target.value
+    this.setState({ selectedAvatar })
+  }
+
+  onSave = event => {
+    if (this.state.selectedAvatar) {
+      console.log('make patch request to api')
+      alert(`user selected avatar ${this.state.selectedAvatar}. Send patch request to the API`)
+    }
+    this.props.history.push('/nav')
   }
 
   render() {
@@ -54,7 +67,7 @@ export default class Avatar extends React.Component {
           <div className="avatar-preview">
             <img src="ROME.png" width="100%"/>
           </div>
-          <button>
+          <button onClick={this.onSave}>
             Save
           </button>
         </div>
@@ -71,120 +84,120 @@ export default class Avatar extends React.Component {
 
           { yellow && (
             <div className="avatar-select">
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'0'} >
+                0
+              </button>
+              <button className="avatar-button" onClick={this.selectAvatar} value={'1'} >
                 1
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'2'} >
                 2
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'3'} >
                 3
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'4'} >
                 4
-              </button>
-              <button className="avatar-button" >
-                5
               </button>
             </div>
           )}
 
           { brown && (
             <div className="avatar-select">
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'5'} >
+                5
+              </button>
+              <button className="avatar-button" onClick={this.selectAvatar} value={'6'} >
                 6
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'7'} >
                 7
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'8'} >
                 8
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'9'} >
                 9
-              </button>
-              <button className="avatar-button" >
-                10
               </button>
             </div>
           )}
 
           { orange && (
             <div className="avatar-select">
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'10'} >
+                10
+              </button>
+              <button className="avatar-button" onClick={this.selectAvatar} value={'11'} >
                 11
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'12'} >
                 12
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'13'} >
                 13
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'14'} >
                 14
-              </button>
-              <button className="avatar-button" >
-                15
               </button>
             </div>
           )}
 
           { black && (
             <div className="avatar-select">
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'15'} >
+                15
+              </button>
+              <button className="avatar-button" onClick={this.selectAvatar} value={'16'} >
                 16
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'17'} >
                 17
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'18'} >
                 18
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'19'} >
                 19
-              </button>
-              <button className="avatar-button" >
-                20
               </button>
             </div>
           )}
 
           { grey && (
             <div className="avatar-select">
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'20'} >
+                20
+              </button>
+              <button className="avatar-button" onClick={this.selectAvatar} value={'21'} >
                 21
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'22'} >
                 22
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'23'} >
                 23
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'24'} >
                 24
-              </button>
-              <button className="avatar-button" >
-                25
               </button>
             </div>
           )}
 
           { misc && (
             <div className="avatar-select">
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'25'} >
+                25
+              </button>
+              <button className="avatar-button" onClick={this.selectAvatar} value={'26'} >
                 26
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'27'} >
                 27
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'28'} >
                 28
               </button>
-              <button className="avatar-button" >
+              <button className="avatar-button" onClick={this.selectAvatar} value={'29'} >
                 29
-              </button>
-              <button className="avatar-button" >
-                30
               </button>
             </div>
           )}
@@ -195,3 +208,5 @@ export default class Avatar extends React.Component {
     )
   }
 }
+
+export default withRouter(Avatar)
