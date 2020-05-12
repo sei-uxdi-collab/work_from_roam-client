@@ -39,7 +39,11 @@ render() {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <React.Fragment>
           <div className='input-group'>
-            <WorkspaceFilter data={this.props.data} filterWorkspaces={this.props.filterWorkspaces}/>
+            <WorkspaceFilter
+              data={this.props.data}
+              userLocation={this.props.userLocation} 
+              filterWorkspaces={this.props.filterWorkspaces}
+            />
             <input
               style={{ fontSize: '16px' }}
               {...getInputProps({

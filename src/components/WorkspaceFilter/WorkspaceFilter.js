@@ -130,7 +130,7 @@ const WorkspaceFilter = props => {
 
   const doFiltering = () => {
     return new Promise((resolve, reject) => {
-      let array = ApplyFilter(filter, props.data)
+      let array = ApplyFilter(filter, props.data, props.userLocation)
       if (array.length > 0) {
         resolve(array)
       } else {
