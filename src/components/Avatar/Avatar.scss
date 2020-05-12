@@ -3,14 +3,14 @@
   position: fixed;
   z-index: 120;
   width: 100vw;
-  max-width: 600px;
+  max-width: 500px;
   height: 95vh;
-  max-height: 1400px;
+  max-height: 640px;
   background-color: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -45%);
-  padding: 20px;
+  padding: 20px 0;
   border-radius: 16px;
   font-family: Roboto;
 
@@ -21,7 +21,7 @@
   .pick-your-avatar {
     display: flex;
     justify-content: center;
-    padding: 20px;
+    padding: 12px;
     font-size: 18px;
   }
 
@@ -29,17 +29,54 @@
     button {
       border-radius: 33px;
       display: flex;
-      margin: 12px auto;
-      padding: 9px 35px;
+      margin: 10px auto;
+      padding: 7px 35px;
       background-color: #4775FF;
       color: #FFF;
-      font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
     }
   }
 
   .avatar-preview {
     width: 100px;
     margin: auto;
+  }
+
+  .select-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+
+    .select-button {
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      margin: 16px 0px;
+    }
+
+    .yellow {
+      background-color: yellow;
+    }
+    .brown {
+      background-color: brown;
+    }
+    .orange {
+      background-color: orange;
+    }
+    .black {
+      background-color: black;
+    }
+    .grey {
+      background-color: grey;
+    }
+    .misc {
+      background-image: url("./logo-bull-icon.svg");
+    }
+    
+    .select-image {
+      height: 100%;
+      width: 100%;
+    }
   }
 }
