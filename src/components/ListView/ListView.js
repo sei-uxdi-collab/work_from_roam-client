@@ -91,10 +91,6 @@ const ListView = props => {
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  const handleSort = selection => {
-    props.sortWorkspaces(selection)
-  }
-
   return (
 
     <Container className='list-container' fluid id={isVisible}>
@@ -104,13 +100,13 @@ const ListView = props => {
             <p>List View</p>
           </div>
           <Dropdown
-            onSelect={eventKey => handleSort(eventKey)}>
+            onSelect={eventKey => props.sortWorkspaces(eventKey)}>
             <Dropdown.Toggle css={dropdownCSS}>
               Sort by...
             </Dropdown.Toggle>
             <Dropdown.Menu css={menuCSS}>
-              <Dropdown.Item eventKey='distance'>Closest</Dropdown.Item>
               <Dropdown.Item eventKey='avg_rating'>Highest Rated</Dropdown.Item>
+              <Dropdown.Item eventKey='distance'>Closest</Dropdown.Item>
               <Dropdown.Item eventKey='avg_wifi'>Best WiFi</Dropdown.Item>
               <Dropdown.Item eventKey='avg_noise'>Quietest</Dropdown.Item>
             </Dropdown.Menu>
@@ -150,8 +146,10 @@ const dropdownCSS = css`
 `
 
 const menuCSS = css`
+  border-radius: 18px;
   color: #000;
   background: #fff;
+  margin-top: 1em;
   width: 324px;
 `
 

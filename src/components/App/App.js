@@ -45,7 +45,7 @@ class App extends React.Component {
     this.filteredWorkspaces = this.sortWorkspaces.bind(this)
   }
 
-  // Function bound to filteredWorkspaces state, passed in to the WorkspaceFilter component as props
+  // Functions bound to filteredWorkspaces state
   filterWorkspaces = workspaces => {
     this.setState({ filteredWorkspaces: workspaces})
   }
@@ -67,7 +67,6 @@ class App extends React.Component {
       default:
         console.log('Sort failed!')
     }
-    console.log(this.state.filteredWorkspaces)
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
