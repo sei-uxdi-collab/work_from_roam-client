@@ -4,6 +4,7 @@ import { StarRating } from '../Review/StarsRating'
 import "./TopRated.scss";
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
 
 function TopRated(props) {
   const { user, isExpanded, toggleExpand } = props
@@ -58,7 +59,7 @@ function TopRated(props) {
         </Row>
         <Row>
           <div className="open-now">Open Now</div>
-          <span className="plain-text distance">.5 miles away</span>
+          <span className="plain-text distance"> {calculateDistanceMiles()}</span>
         </Row>
         <Row>
           <span className="plain-text address"> {workplace.address}</span>
