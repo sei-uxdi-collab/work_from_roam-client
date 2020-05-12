@@ -143,7 +143,7 @@ class App extends React.Component {
           )} />
 
         <Route user={user} path='/avatar' render={() => (
-          <Avatar />
+          <Avatar user={user} setApp={this.setState.bind(this)}/>
         )} />
 
         <Route path='/'>

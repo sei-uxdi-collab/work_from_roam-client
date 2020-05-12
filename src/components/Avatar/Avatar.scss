@@ -16,16 +16,18 @@
 
   .close-button {
     float: right;
+    margin-right: 20px;
   }
 
   .pick-your-avatar {
     display: flex;
     justify-content: center;
     padding: 12px;
+    margin-left: 32px;
     font-size: 18px;
   }
 
-  .avatar-display {
+  .top-section {
     button {
       border-radius: 33px;
       display: flex;
@@ -42,41 +44,78 @@
     margin: auto;
   }
 
-  .select-group {
+  .bottom-section {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
+    justify-content: space-evenly;
+    .select-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 20%;
+  
+      .select-button {
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        margin: 16px 0px;
+      }
+  
+      .yellow {
+        background-color: yellow;
+      }
+      .brown {
+        background-color: brown;
+      }
+      .orange {
+        background-color: orange;
+      }
+      .black {
+        background-color: black;
+      }
+      .grey {
+        background-color: grey;
+      }
+      .misc {
+        background-image: url("./logo-bull-icon.svg");
+      }
+  
+      .select-image {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  
+    .avatar-select {
+      width: 78%;
+      padding: 0px;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 5%;
+      .avatar-button {
+        height: 120px;
+        width: 120px;
+        border-color: black;
+        border-radius: 22px;
 
-    .select-button {
-      padding: 0;
-      width: 32px;
-      height: 32px;
-      margin: 16px 0px;
+      }
     }
 
-    .yellow {
-      background-color: yellow;
+    @media (max-width: 370px) {
+      .avatar-select {
+        padding: 0;
+      }
     }
-    .brown {
-      background-color: brown;
+
+    @media (min-width: 500px) {
+      .avatar-button {
+        margin-right: 40px;
+      }
     }
-    .orange {
-      background-color: orange;
-    }
-    .black {
-      background-color: black;
-    }
-    .grey {
-      background-color: grey;
-    }
-    .misc {
-      background-image: url("./logo-bull-icon.svg");
-    }
-    
-    .select-image {
-      height: 100%;
-      width: 100%;
-    }
+  }
+}
+
+@media (max-width: 370px) {
+  .avatar-container {
+    overflow-y: scroll;
   }
 }
