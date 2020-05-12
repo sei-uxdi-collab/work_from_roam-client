@@ -7,16 +7,22 @@ export default class Avatar extends React.Component {
   constructor() {
     super()
     this.state = {
-      yellow: true,
-      brown: false,
-      orange: false,
-      black: false,
-      grey: false,
-      misc: false,
+      group: {
+        yellow: true,
+        brown: false,
+        orange: false,
+        black: false,
+        grey: false,
+        misc: false,
+      },
+      selectedAvatar: '',
     }
   }
 
   render() {
+    const { group } = this.state
+    const { yellow, brown, orange, black, grey, misc } = group
+
     return (
       <div className="avatar-container">
         <Link to='/nav'>
@@ -34,6 +40,17 @@ export default class Avatar extends React.Component {
           <button>
             Save
           </button>
+        </div>
+
+        <div className="avatar-select">
+          <div className="select-group">
+            <button className="select-button yellow" />
+            <button className="select-button brown" />
+            <button className="select-button orange" />
+            <button className="select-button black" />
+            <button className="select-button grey" />
+            <button className="select-button misc" />
+          </div>
         </div>
       </div>
     )
