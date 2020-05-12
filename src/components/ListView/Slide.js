@@ -1,12 +1,12 @@
 /** @jsx jsx **/
 import React from 'react'
 import { css, jsx } from '@emotion/core'
-// import img from './cute_buffalo.jpg'
 
-// Custon component imports
+// Custom component imports
 import ListViewRatings from './ListViewRatings'
+import calculateDistanceMiles from './../../helpers/calculateDistance'
 
-const Slide = ({ content, width, activeIndex }) => {
+const Slide = ({ content, userLocation, width, activeIndex }) => {
 
   // Will eventually be altered to toggle from open/closed states
   const openHours = () => {
@@ -17,7 +17,7 @@ const Slide = ({ content, width, activeIndex }) => {
 
   const distFromUser = () => {
     return (
-      <p>.5 miles away</p>
+      <p>{calculateDistanceMiles(userLocation, content, 1)} miles away</p>
     )
   }
 
@@ -62,8 +62,7 @@ const cardCSS = css`
   border-radius: 20px;
   height: 217px;
   margin: 20px auto;
-  width: 280px;
-  // width: 252px;
+  width: 252px;
   box-shadow: 2px 8px 16px
     rgba(0, 0, 0, 0.25);
 `

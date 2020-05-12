@@ -1,4 +1,4 @@
-export const calculateDistanceMiles = (location1, location2, decimals) => {
+const calculateDistanceMiles = (location1, location2, decimals) => {
 
     // check locations must be in format { lat, lng }
     if (!location1.lat || !location1.lng || !location2.lat || !location2.lng) {
@@ -24,3 +24,5 @@ export const calculateDistanceMiles = (location1, location2, decimals) => {
     // decimals defaults to 1 if not specified
     return parseFloat(distanceInMiles.toFixed(decimals || 1))
 }
+
+export default calculateDistanceMiles

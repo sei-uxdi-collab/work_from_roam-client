@@ -116,7 +116,11 @@ const prevSlide = () => {
               width={width * workspaceArray.length}
             >
               {workspaceArray.map(workspace => (
-                <Slide key={workspace.id} content={workspace} activeIndex={activeIndex} width={width} />
+                <Slide key={workspace.id}
+                  content={workspace}
+                  userLocation={props.userLocation} 
+                  activeIndex={activeIndex}
+                  width={width} />
               ))}
             </WorkspaceSlider>
             <Dots slides={workspaceArray} width={width} activeIndex={activeIndex}/>

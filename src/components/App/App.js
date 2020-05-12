@@ -166,7 +166,7 @@ class App extends React.Component {
               userLocation={this.state.userLocation}
               currentWorkspace={this.state.currentWorkspace}
             />
-          <ListView workspaces={[this.state.filteredWorkspaces]} />
+          <ListView workspaces={[this.state.filteredWorkspaces]} userLocation={this.state.userLocation}/>
           </div>
         </Route>
       </Fragment>

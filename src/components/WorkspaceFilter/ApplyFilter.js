@@ -1,15 +1,9 @@
 import React from 'react'
 
-const ApplyFilters = (filters, workspaces) => {
-  const selectedFilters = {
-    fastWifi: filters.fastWifi,
-    lotsOfSeats: filters.lotsOfSeats,
-    quiet: filters.quiet
-  }
-
+const ApplyFilter = (filters, workspaces) => {
+  console.log(workspaces)
   cleanData(workspaces)
-  return filterArray(workspaces, selectedFilters)
-
+  return filterArray(workspaces, filters)
 }
 
 const filterArray = (array, filters) => {
@@ -30,4 +24,4 @@ const cleanData = data => {
   })
 }
 
-export default ApplyFilters
+export default ApplyFilter
