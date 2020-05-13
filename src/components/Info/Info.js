@@ -1,28 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 
 import "./Info.scss";
 
 function Info(props) {
-  const [setActive, setActiveState] = useState("");
-  const [setHeight, setHeightState] = useState("0px");
+  const { isExpanded, toggleExpand } = props
 
   const content = useRef(null);
-
-  function toggleView() {
-    setActiveState(setActive === "" ? "active" : "");
-    setHeightState(
-      setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
-    );
-  }
+  const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
   return (
-    <div className="info-section"  onClick={toggleView}>
-      <div className={`info info-title ${setActive}`}>
+    <div className="info-section"  onClick={toggleExpand}>
+      <div className={`info info-title ${isExpanded ? 'active' : ''}`}>
         {props.title}
       </div>
       <div
         ref={content}
-        style={{ maxHeight: `${setHeight}` }}
+        style={{ maxHeight }}
         className="info-content"
       >
         <div
