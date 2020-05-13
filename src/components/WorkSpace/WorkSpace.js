@@ -18,7 +18,8 @@ class WorkSpace extends React.Component {
         this.state = {
             user: props.user,
             features: false,
-            hours: false
+            hours: false,
+            flag: null
         }
     }
 
@@ -40,7 +41,7 @@ class WorkSpace extends React.Component {
     }
 
     // GET favorite status of current user
-    componentDidUpdate = () => {
+    componentDidMount = () => {
     if (this.props.user && this.props.data) {
         axios({
           url: `${apiUrl}/work_spaces/${this.props.data.id}/likes`,
@@ -54,9 +55,25 @@ class WorkSpace extends React.Component {
     }
     }
 
+    // Should user click on another workspace without exiting out or
+    // "unmounting" the component, it will re-render with the current favorite status
+    componentDidUpdate = (prevProps, prevState) => {
+      if (prevProps.data !== this.props.data && this.props.user) {
+        axios({
+          url: `${apiUrl}/work_spaces/${this.props.data.id}/likes`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          }
+        })
+          .then(res => this.setState({ flag: res.data[0] }))
+          .catch(console.error)
+      }
+    }
+
     // render information inside an infoWindow for POI
     render() {
-      console.log(this.props.data)
+      // console.log(this.props.data)
       let photo = 'loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
