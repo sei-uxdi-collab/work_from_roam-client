@@ -11,7 +11,7 @@ function Info(props) {
   return (
     <div className="info-section"  onClick={toggleExpand}>
       <div className={`info info-title ${isExpanded ? 'active' : ''}`}>
-        {props.title}
+        Info
       </div>
       <div
         ref={content}
