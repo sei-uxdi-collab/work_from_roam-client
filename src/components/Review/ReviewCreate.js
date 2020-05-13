@@ -240,7 +240,7 @@ import Button from 'react-bootstrap/Button'
             <Form.Group className="question mt-3" controlId="wifi">
               <Form.Label className="question-header mb-0">How was the Wifi?*</Form.Label>
               <Form.Row className="slider-text d-flex justify-content-between">
-                <div className="d-inline-flex">Slow</div>
+                <div className="d-inline-flex">No Wifi</div>
                 <div className="d-inline-flex">Fast</div>
               </Form.Row>
               <Form.Row>
@@ -300,7 +300,7 @@ import Button from 'react-bootstrap/Button'
             <Form.Group className="question mt-3" controlId="bathroom">
               <Form.Label className="question-header mb-0">How was the bathroom?*</Form.Label>
               <Form.Row className="slider-text d-flex justify-content-between">
-                <div className="d-inline-flex">Disastrous</div>
+                <div className="d-inline-flex">No Bathrooms</div>
                 <div className="d-inline-flex">Immaculate</div>
               </Form.Row>
               <Form.Row>
@@ -343,4 +343,4 @@ import Button from 'react-bootstrap/Button'
 
 
 
-  export default ReviewCreate;
+export default ReviewCreate;

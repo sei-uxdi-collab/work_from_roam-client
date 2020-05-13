@@ -79,11 +79,13 @@ a, a:link, a:visited {
   border-radius: 20px;
   box-sizing: border-box;
   color: #FFF !important;
+  display: block;
   font-family: Roboto;
   font-size: 16px;
   font-weight: 300;
   float: right;
   padding: 4px 8px;
+  width: 115px;
 }
 
 .welcome {
@@ -109,6 +111,11 @@ a, a:link, a:visited {
   .sign-out {
     margin-left: 240px;
   }
+  .welcome {
+    font-size: 20px;
+    margin-top: 7px;
+    margin-left: 10px;
+  }
 }
 
 // mobile view
@@ -131,5 +138,6 @@ a, a:link, a:visited {
   }
   .welcome {
     font-size: 18px;
+    margin-top: 5px;
   }
 }

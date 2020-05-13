@@ -8,13 +8,15 @@ import Info from "../Info/Info";
 import TopRated from "../TopRated/TopRated";
 import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
+import Settings from "../Settings/Settings";
 
-const Header = ({ user }) => {
+const Header = ({ user, userLocation }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
     topRated: false,
-    info: false
+    info: false,
+    settings: false,
   })
 
   const toggleExpand = section => {
@@ -24,6 +26,7 @@ const Header = ({ user }) => {
       reviews: false,
       topRated: false,
       info: false,
+      settings: false,
       [section]: newState
     })
 
@@ -38,9 +41,6 @@ const Header = ({ user }) => {
         <div className="ml-4">
           <Row>
             <div className="welcome">Welcome back, {user && user.email}</div>
-          </Row>
-          <Row>
-              <a href="#change-password" className="change-pw">Change Password</a>
           </Row>
         </div>
       </div>
@@ -61,7 +61,7 @@ const Header = ({ user }) => {
         <div>
           <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
         </div>
-        <MyFavorites user={user} isExpanded={expanded.favorites} toggleExpand={() => toggleExpand('favorites')}/>
+        <MyFavorites user={user} userLocation={userLocation} isExpanded={expanded.favorites} toggleExpand={() => toggleExpand('favorites')}/>
       </Row>
       <Row>
         <div>
@@ -73,18 +73,13 @@ const Header = ({ user }) => {
         <div>
           <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
         </div>
-        <TopRated user={user} isExpanded={expanded.topRated} toggleExpand={() => toggleExpand('topRated')}/>
+        <TopRated user={user} userLocation={userLocation} isExpanded={expanded.topRated} toggleExpand={() => toggleExpand('topRated')}/>
       </Row>
       <Row>
         <div>
-          <img src="info-icon.png" className="icon" alt="info"/>
+          <img src="settings-icon.svg" className="icon" alt="Settings"/>
         </div>
-        <Info
-          title="Info"
-          content="This is our app info: It's great! That's all you need to know."
-          isExpanded={expanded.info}
-          toggleExpand={() => toggleExpand('info')}
-        />
+        <Settings isExpanded={expanded.settings} toggleExpand={() => toggleExpand('settings')}/>
       </Row>
       <div>
         <a className="btn sign-out" href="#sign-out" role="button">Sign Out</a>

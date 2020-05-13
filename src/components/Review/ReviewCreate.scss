@@ -118,7 +118,12 @@
   height: 90%;
   margin: 15px;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+}
+
+.review-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .review-text-input {
