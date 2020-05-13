@@ -42,9 +42,6 @@ const Header = ({ user, userLocation }) => {
           <Row>
             <div className="welcome">Welcome back, {user && user.email}</div>
           </Row>
-          <Row>
-              <a href="#change-password" className="change-pw">Change Password</a>
-          </Row>
         </div>
       </div>
     </Fragment>
@@ -87,7 +84,6 @@ const Header = ({ user, userLocation }) => {
       <div>
         <a className="btn sign-out" href="#sign-out" role="button">Sign Out</a>
       </div>
-      <div> WorkFromRoam App V1.0</div>
     </Fragment>
   )
 
