@@ -56,6 +56,9 @@
 
 .settings-options {
  padding: 10px 0px,
+ :hover {
+   color: #4775FF;
+ }
 }
 
 .settings:hover,
@@ -63,22 +66,37 @@
   color: #4775FF !important;
 }
 
+.version-info {
+  color: #222222;
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 150%;
+  padding: 10px 0px,
+}
+
+//desktop view
 @media (min-width: 768px) {
   .settings-title {
     font-size: 20px;
   }
-
   .settings-options {
     font-size: 18px;
   }
+  .version-info {
+    font-size: 13px;
+  }
 }
 
+
+//mobile view
 @media (min-width: 350px) and (max-width: 767px) {
   .settings-title {
     font-size: 18px;
   }
-
   .settings-options {
     font-size: 16px;
+  }
+  .version-info {
+    font-size: 11px;
   }
 }

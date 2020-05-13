@@ -21,6 +21,9 @@ function Settings(props) {
           <Row>
             <a href="#avatar" className="settings-options"><u>Update Avatar</u></a>
           </Row>
+          <Row>
+            <div className="settings-options version-info">WorkFromRoam App V1.0</div>
+          </Row>
         </div>
       </div>
     </div>
