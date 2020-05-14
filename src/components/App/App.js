@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom'
 
 import AutoAlert from '../AutoAlert/AutoAlert.js'
+import Avatar from '../Avatar/Avatar'
 import BarAlert from '../BarAlert/BarAlert'
 import Search from '../Search/Search'
 import GoogleMap from '../GoogleMap/GoogleMap'
@@ -141,7 +142,9 @@ class App extends React.Component {
             />
           )} />
 
-
+        <Route user={user} path='/avatar' render={() => (
+          <Avatar user={user} setApp={this.setState.bind(this)}/>
+        )} />
 
         <Route path='/'>
           <div className="App">
