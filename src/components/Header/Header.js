@@ -84,6 +84,9 @@ const Header = ({ user, userLocation }) => {
       <div>
         <a className="btn sign-out" href="#sign-out" role="button">Sign Out</a>
       </div>
+      <div>
+        <a className="btn sign-out" href="#show-user" role="button">Show User</a>
+      </div>
     </Fragment>
   )
 
@@ -113,7 +116,7 @@ const Header = ({ user, userLocation }) => {
       </Row>
     </Fragment>
   )
-
+  console.log(user)
   return (
     <div className="header" collapseOnSelect fixed="top">
       <div id="">

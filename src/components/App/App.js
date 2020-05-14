@@ -10,6 +10,7 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import SignOut from '../SignOut/SignOut'
+import ShowUser from '../ShowUser/ShowUser'
 import Header from '../Header/Header'
 import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
@@ -64,7 +65,7 @@ class App extends React.Component {
 
   render() {
     const { alerts, barAlerts, user } = this.state
-
+    console.log(user)
     return (
 <div>
 <Fragment>
@@ -125,6 +126,10 @@ class App extends React.Component {
 
           <Route user={user} path='/sign-out' render={() => (
               <SignOut clearUser={this.clearUser} alert={this.barAlert} user={user} />
+            )} />
+
+          <Route user={user} path='/show-user' render={() => (
+              <ShowUser alert={this.barAlert} setUser={this.setUser} user={user} />
             )} />
 
           <Route user={user} path='/nav' render={() => (

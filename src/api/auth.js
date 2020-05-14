@@ -39,6 +39,16 @@ export const signOut = user => {
   })
 }
 
+export const showUser = user => {
+  return axios({
+    url: apiUrl + '/show-user',
+    method: 'GET',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    }
+  })
+}
+
 export const changePassword = (passwords, user) => {
   return axios({
     url: apiUrl + '/change-password',
