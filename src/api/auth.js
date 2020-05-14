@@ -48,7 +48,7 @@ export const updateUser = (credentials, user) => {
     },
     data: {
       credentials: {
-        password: credentials.avatar,
+        avatar: credentials.avatar,
         email: credentials.email,
         username: credentials.username
       }
