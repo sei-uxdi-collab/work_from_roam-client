@@ -1,12 +1,11 @@
 /** @jsx jsx **/
 import React from 'react'
 import { css, jsx } from '@emotion/core'
-// import img from './cute_buffalo.jpg'
 
-// Custon component imports
+// Custom component imports
 import ListViewRatings from './ListViewRatings'
 
-const Slide = ({ content, width, activeIndex }) => {
+export const Slide = ({ content, width, activeIndex }) => {
 
   // Will eventually be altered to toggle from open/closed states
   const openHours = () => {
@@ -17,14 +16,14 @@ const Slide = ({ content, width, activeIndex }) => {
 
   const distFromUser = () => {
     return (
-      <p>.5 miles away</p>
+      <p>{content.distance} miles away</p>
     )
   }
 
   const address = () => {
     return (
       <React.Fragment>
-        <p>{content.address}</p>
+        <p>{content.address.slice(0, -5)}</p>
         <p>{content.phone}</p>
       </React.Fragment>
     )
@@ -62,8 +61,7 @@ const cardCSS = css`
   border-radius: 20px;
   height: 217px;
   margin: 20px auto;
-  width: 280px;
-  // width: 252px;
+  width: 252px;
   box-shadow: 2px 8px 16px
     rgba(0, 0, 0, 0.25);
 `
@@ -108,5 +106,3 @@ p {
   text-align: left;
 }
 `
-
-export default Slide

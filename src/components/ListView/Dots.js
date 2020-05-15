@@ -14,7 +14,7 @@ const Dot = ({ active }) => (
   />
 )
 
-const Dots = ({ slides, activeIndex }) => (
+export const Dots = ({ slides, activeIndex }) => (
   <div
     css={css`
       position: absolute;
@@ -30,5 +30,3 @@ const Dots = ({ slides, activeIndex }) => (
     ))}
   </div>
 )
-
-export default Dots

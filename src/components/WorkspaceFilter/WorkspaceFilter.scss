@@ -1,5 +1,6 @@
 $wfrBlue: #4775ff;
 $white: #fff;
+$warning: red;
 
 @media (max-width: 450px) {
   .filter-modal {
@@ -57,6 +58,21 @@ $white: #fff;
         * {
           margin: .5rem;
         }
+      }
+
+      .rejection-message {
+        margin: 1em auto;
+
+        p {
+          color: $warning;
+          font-size: 13px;
+          font-family: 'Roboto';
+          text-align: center;
+        }
+      }
+
+      #hide {
+        display: none;
       }
 
       #unclicked {

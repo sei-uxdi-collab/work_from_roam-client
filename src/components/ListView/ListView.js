@@ -2,13 +2,15 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Dropdown, Container, Row, Col } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
+import { GoogleApiWrapper } from 'google-maps-react'
+
 
 // Custom component imports
 import WorkspaceSlider from './WorkspaceSlider'
-import Slide from './Slide';
-import Arrow from './Arrow'
-import Dots from './Dots'
-import ClickOutside from '../ClickOutside/ClickOutside.js'
+import { Slide } from './Slide';
+import { Arrow } from './Arrow'
+import { Dots } from './Dots'
+import { ClickOutside } from '../ClickOutside/ClickOutside.js'
 
 // Styling imports
 import './ListView.scss'
@@ -59,36 +61,36 @@ const ListView = props => {
   const { translate, transition, activeIndex } = slider
 
   const nextSlide = () => {
-  if (activeIndex === workspaceArray.length - 1) {
-    return setSlider({
+    if (activeIndex === workspaceArray.length - 1) {
+      return setSlider({
+        ...slider,
+        translate: 0,
+        activeIndex: 0
+      })
+    }
+
+    setSlider({
       ...slider,
-      translate: 0,
-      activeIndex: 0
+      activeIndex: activeIndex + 1,
+      translate: (activeIndex + 1) * width
     })
   }
 
-  setSlider({
-    ...slider,
-    activeIndex: activeIndex + 1,
-    translate: (activeIndex + 1) * width
-  })
-}
+  const prevSlide = () => {
+    if (activeIndex === 0) {
+      return setSlider({
+        ...slider,
+        translate: (workspaceArray.length - 1) * width,
+        activeIndex: workspaceArray.length - 1
+      })
+    }
 
-const prevSlide = () => {
-  if (activeIndex === 0) {
-    return setSlider({
+    setSlider({
       ...slider,
-      translate: (workspaceArray.length - 1) * width,
-      activeIndex: workspaceArray.length - 1
+      activeIndex: activeIndex - 1,
+      translate: (activeIndex - 1) * width
     })
   }
-
-  setSlider({
-    ...slider,
-    activeIndex: activeIndex - 1,
-    translate: (activeIndex - 1) * width
-  })
-}
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   return (
@@ -99,14 +101,16 @@ const prevSlide = () => {
           <div className='list-header' onClick={toggleListView} >
             <p>List View</p>
           </div>
-          <Dropdown>
+          <Dropdown
+            onSelect={eventKey => props.sortWorkspaces(eventKey)}>
             <Dropdown.Toggle css={dropdownCSS}>
-              Dropdown Button
+              Sort by...
             </Dropdown.Toggle>
             <Dropdown.Menu css={menuCSS}>
-              <Dropdown.Item eventKey='2'>Highest Rated</Dropdown.Item>
-              <Dropdown.Item eventKey='3'>Best WiFi</Dropdown.Item>
-              <Dropdown.Item eventKey='4'>Quietest</Dropdown.Item>
+              <Dropdown.Item eventKey='avg_rating'>Highest Rated</Dropdown.Item>
+              <Dropdown.Item eventKey='distance'>Closest</Dropdown.Item>
+              <Dropdown.Item eventKey='avg_wifi'>Best WiFi</Dropdown.Item>
+              <Dropdown.Item eventKey='avg_noise'>Quietest</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <div css={sliderCSS} ref={sliderWidth}>
@@ -116,7 +120,10 @@ const prevSlide = () => {
               width={width * workspaceArray.length}
             >
               {workspaceArray.map(workspace => (
-                <Slide key={workspace.id} content={workspace} activeIndex={activeIndex} width={width} />
+                <Slide key={workspace.id}
+                  content={workspace}
+                  activeIndex={activeIndex}
+                  width={width} />
               ))}
             </WorkspaceSlider>
             <Dots slides={workspaceArray} width={width} activeIndex={activeIndex}/>
@@ -135,11 +142,16 @@ const dropdownCSS = css`
   background: #fff;
   height: 36px;
   border-radius: 18px;
+  font-size: 15px;
+  font-weight: 300;
+  font-family: 'Roboto'
 `
 
 const menuCSS = css`
+  border-radius: 18px;
   color: #000;
   background: #fff;
+  margin-top: 1em;
   width: 324px;
 `
 
@@ -151,4 +163,6 @@ const sliderCSS = css`
   position: relative;
 `;
 
-export default ListView;
+export default GoogleApiWrapper({
+  apiKey: (process.env.REACT_APP_GOOGLE_API_KEY)
+})(ListView)
