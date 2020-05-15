@@ -4,9 +4,8 @@ import { css, jsx } from '@emotion/core'
 
 // Custom component imports
 import ListViewRatings from './ListViewRatings'
-import calculateDistanceMiles from './../../helpers/calculateDistance'
 
-const Slide = ({ content, width, activeIndex }) => {
+export const Slide = ({ content, width, activeIndex }) => {
 
   // Will eventually be altered to toggle from open/closed states
   const openHours = () => {
@@ -107,5 +106,3 @@ p {
   text-align: left;
 }
 `
-
-export default Slide

@@ -2,13 +2,15 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Dropdown, Container, Row, Col } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
+import { GoogleApiWrapper } from 'google-maps-react'
+
 
 // Custom component imports
 import WorkspaceSlider from './WorkspaceSlider'
-import Slide from './Slide';
-import Arrow from './Arrow'
-import Dots from './Dots'
-import ClickOutside from '../ClickOutside/ClickOutside.js'
+import { Slide } from './Slide';
+import { Arrow } from './Arrow'
+import { Dots } from './Dots'
+import { ClickOutside } from '../ClickOutside/ClickOutside.js'
 
 // Styling imports
 import './ListView.scss'
@@ -161,4 +163,6 @@ const sliderCSS = css`
   position: relative;
 `;
 
-export default ListView;
+export default GoogleApiWrapper({
+  apiKey: (process.env.REACT_APP_GOOGLE_API_KEY)
+})(ListView)

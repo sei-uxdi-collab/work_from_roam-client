@@ -2,7 +2,7 @@ import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import {GoogleApiWrapper} from 'google-maps-react'
 import './Search.scss'
-import WorkspaceFilter from './../WorkspaceFilter/WorkspaceFilter.js'
+import { WorkspaceFilter } from './../WorkspaceFilter/WorkspaceFilter.js'
 
 class Search extends React.Component {
     constructor(props) {
@@ -41,7 +41,7 @@ render() {
           <div className='input-group'>
             <WorkspaceFilter
               data={this.props.data}
-              userLocation={this.props.userLocation} 
+              userLocation={this.props.userLocation}
               filterWorkspaces={this.props.filterWorkspaces}
             />
             <input

@@ -6,14 +6,14 @@ import Media from 'react-media'
 import mapValues from 'lodash/mapValues'
 
 // Custom component import
-import ApplyFilter from './ApplyFilter.js'
+import { ApplyFilter } from './ApplyFilter.js'
 // import filteredCall from '../../api/workspaceFilter.js'
 import magGlass from './SearchVector.svg'
 
 // Styling imports
 import './WorkspaceFilter.scss'
 
-const WorkspaceFilter = props => {
+export const WorkspaceFilter = props => {
   const [rejection, setRejection] = useState(false)
   const [show, setShow] = useState(false)
   const [filter, setFilter] = useState({
@@ -314,5 +314,3 @@ const WorkspaceFilter = props => {
   )
 
 }
-
-export default WorkspaceFilter

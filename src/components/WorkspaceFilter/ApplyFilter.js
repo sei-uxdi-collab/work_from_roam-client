@@ -1,7 +1,7 @@
 import React from 'react'
-import calculateDistanceMiles from './../../helpers/calculateDistance.js'
+import { calculateDistanceMiles } from './../../helpers/calculateDistance.js'
 
-const ApplyFilter = (filters, workspaces, userLocation) => {
+export const ApplyFilter = (filters, workspaces, userLocation) => {
   cleanData(workspaces, userLocation)
   return filterArray(workspaces, filters)
 }
@@ -24,5 +24,3 @@ const cleanData = (data, userLocation) => {
     w.distance = calculateDistanceMiles(w, userLocation, 2)
   })
 }
-
-export default ApplyFilter
