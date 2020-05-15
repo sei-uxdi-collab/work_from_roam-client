@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom'
 
 import AutoAlert from '../AutoAlert/AutoAlert.js'
+import Avatar from '../Avatar/Avatar'
 import BarAlert from '../BarAlert/BarAlert'
 import Search from '../Search/Search'
 import GoogleMap from '../GoogleMap/GoogleMap'
@@ -15,7 +16,7 @@ import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
 import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
 import ListView from '../ListView/ListView'
-// import WorkspaceFilter from '../WorkspaceFilter/WorkspaceFilter'
+import orderBy from 'lodash/orderBy'
 
 import './App.scss'
 
@@ -42,11 +43,31 @@ class App extends React.Component {
 
     // Allows the WorkspaceFilter component to update filteredWorkspaces[]
     this.filteredWorkspaces = this.filterWorkspaces.bind(this)
+    this.filteredWorkspaces = this.sortWorkspaces.bind(this)
   }
 
-  // Function bound to filteredWorkspaces state, passed in to the WorkspaceFilter component as props
+  // Functions bound to filteredWorkspaces state
   filterWorkspaces = workspaces => {
     this.setState({ filteredWorkspaces: workspaces})
+  }
+
+  sortWorkspaces = selection => {
+    switch (selection) {
+      case 'avg_rating':
+        this.setState({filteredWorkspaces: orderBy(this.state.filteredWorkspaces, [selection, 'distance'], ['desc', 'asc'])})
+        break
+      case 'avg_wifi':
+        this.setState({filteredWorkspaces: orderBy(this.state.filteredWorkspaces, [selection, 'avg_rating'], ['desc', 'desc'])})
+        break
+      case 'avg_noise':
+        this.setState({filteredWorkspaces: orderBy(this.state.filteredWorkspaces, [selection, 'avg_rating'], ['asc', 'desc'])})
+        break
+      case 'distance':
+        this.setState({filteredWorkspaces: orderBy(this.state.filteredWorkspaces, [selection, 'avg_rating'], ['asc', 'desc'])})
+        break
+      default:
+        console.log('Sort failed!')
+    }
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -128,7 +149,7 @@ class App extends React.Component {
             )} />
 
           <Route user={user} path='/nav' render={() => (
-              <Header clearUser={this.clearUser} user={user} />
+              <Header clearUser={this.clearUser} user={user} userLocation={this.state.userLocation} />
             )} />
 
             <Route user={user} path='/create-workspace' render={() => (
@@ -141,7 +162,9 @@ class App extends React.Component {
             />
           )} />
 
-
+        <Route user={user} path='/avatar' render={() => (
+          <Avatar user={user} setApp={this.setState.bind(this)}/>
+        )} />
 
         <Route path='/'>
           <div className="App">
@@ -151,6 +174,7 @@ class App extends React.Component {
                       mapCenter={this.state.mapCenter}
                       filterWorkspaces={this.filterWorkspaces}
                       data={this.state.allData}
+                      userLocation={this.state.userLocation}
               />
             </div>
             <GoogleMap
@@ -166,7 +190,10 @@ class App extends React.Component {
               userLocation={this.state.userLocation}
               currentWorkspace={this.state.currentWorkspace}
             />
-          <ListView workspaces={[this.state.filteredWorkspaces]} userLocation={this.state.userLocation}/>
+          <ListView
+            workspaces={[this.state.filteredWorkspaces]}
+            sortWorkspaces={this.sortWorkspaces}
+          />
           </div>
         </Route>
       </Fragment>

@@ -6,7 +6,7 @@
 }
 
 .userName {
-  width: 100px;
+  width: 170px;
   padding-left: 20px;
   margin: 10px;
   font-family: Roboto;
@@ -15,7 +15,38 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+
+
+  @media only screen and (min-width: 426px) and (max-width: 768px) {
+    width: 120px;
+  }
+  @media only screen and (max-width: 425px) {
+    width: 125px;
+  }
+  @media only screen and (max-width: 320px) {
+    width: 135px;
+  }
 }
+
+.stars {
+  font-size: 15px;
+  float: right;
+  padding-right: 50px;
+
+  @media only screen and (min-width: 426px) and (max-width: 768px) {
+    padding-right: 5px;
+  }
+  @media only screen and (max-width: 425px) {
+    padding-right: 110px;
+  }
+  @media only screen and (max-width: 375px) {
+    padding-right: 80px;
+  }
+  @media only screen and (max-width: 320px) {
+    padding-right: 0px;
+  }
+}
+
 
 .userNotes {
   height: 42px;

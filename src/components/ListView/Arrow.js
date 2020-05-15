@@ -4,7 +4,7 @@ import { css, jsx } from '@emotion/core'
 import leftArrow from './arrowLftVec.png'
 import rightArrow from './arrowRghtVec.png'
 
-const Arrow = ({ direction, handleClick }) => (
+export const Arrow = ({ direction, handleClick }) => (
   <div
     onClick={handleClick}
     css={css`
@@ -33,5 +33,3 @@ const Arrow = ({ direction, handleClick }) => (
     {direction === 'right' ? <img src={rightArrow} alt='Right Arrow'/> : <img src={leftArrow} alt='Left Arrow' />}
   </div>
 )
-
-export default Arrow

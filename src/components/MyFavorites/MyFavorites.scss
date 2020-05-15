@@ -1,3 +1,12 @@
+.heart {
+  background-color: #FFFFFF;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  height: 16px;
+  width: 16px;
+}
+
 /* Entire favorites section */
 .myfavorites-section {
   display: flex;
@@ -31,9 +40,22 @@
 
 /* Styles the top rated content panel. Note: hidden by default */
 .myfavorites-content {
-  overflow: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
   transition: max-height 0.6s ease;
+  height: 45vh;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.myfavorites-content::-webkit-scrollbar {
+  display: none;
+}
+
+// /* Hide scrollbar for IE and Edge */
+// .myfavorites-content {
+//   -ms-overflow-style: none;
+// }
 
 /* Styles the top rated content text */
 .myfavorites-text {
@@ -107,7 +129,7 @@ ul {
   box-sizing: border-box;
   height: auto;
   width: 252px;
-  padding: 5px 0px 5px 25px;
+  padding: 5px 25px;
   margin: 10px;
 }
 

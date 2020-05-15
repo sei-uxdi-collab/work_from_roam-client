@@ -4,9 +4,8 @@ import { css, jsx } from '@emotion/core'
 
 // Custom component imports
 import ListViewRatings from './ListViewRatings'
-import calculateDistanceMiles from './../../helpers/calculateDistance'
 
-const Slide = ({ content, userLocation, width, activeIndex }) => {
+export const Slide = ({ content, width, activeIndex }) => {
 
   // Will eventually be altered to toggle from open/closed states
   const openHours = () => {
@@ -17,14 +16,14 @@ const Slide = ({ content, userLocation, width, activeIndex }) => {
 
   const distFromUser = () => {
     return (
-      <p>{calculateDistanceMiles(userLocation, content, 1)} miles away</p>
+      <p>{content.distance} miles away</p>
     )
   }
 
   const address = () => {
     return (
       <React.Fragment>
-        <p>{content.address}</p>
+        <p>{content.address.slice(0, -5)}</p>
         <p>{content.phone}</p>
       </React.Fragment>
     )
@@ -107,5 +106,3 @@ p {
   text-align: left;
 }
 `
-
-export default Slide

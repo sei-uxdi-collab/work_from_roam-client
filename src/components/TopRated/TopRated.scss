@@ -33,9 +33,20 @@
 .toprated-content {
   overflow-y: scroll;
   overflow-x: hidden;
+  -ms-overflow-style: none;
   transition: max-height 0.6s ease;
   height: 45vh;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.toprated-content::-webkit-scrollbar {
+  display: none;
+}
+
+// /* Hide scrollbar for IE and Edge */
+// .toprated-content {
+//   -ms-overflow-style: none;
+// }
 
 .toprated:hover,
 .active {
@@ -114,14 +125,4 @@ ul {
   line-height: 150%;
   text-decoration: underline;
   margin-right: 5px;
-}
-
-//desktop view
-@media (min-width: 768px) {
-
-}
-
-// mobile view
-@media (min-width: 350px) and (max-width: 767px) {
-
 }

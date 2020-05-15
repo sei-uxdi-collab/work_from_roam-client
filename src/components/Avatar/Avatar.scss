@@ -1,0 +1,122 @@
+
+.avatar-container {
+  position: fixed;
+  z-index: 120;
+  width: 100vw;
+  max-width: 500px;
+  height: 95vh;
+  max-height: 640px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  padding: 20px 0;
+  border-radius: 16px;
+  font-family: Roboto;
+
+  .close-button {
+    float: right;
+    margin-right: 20px;
+  }
+
+  .pick-your-avatar {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    margin-left: 32px;
+    font-size: 18px;
+  }
+
+  .top-section {
+    button {
+      border-radius: 33px;
+      display: flex;
+      margin: 10px auto;
+      padding: 7px 35px;
+      background-color: #4775FF;
+      color: #FFF;
+      font-size: 13px;
+    }
+  }
+
+  .avatar-preview {
+    width: 100px;
+    margin: auto;
+  }
+
+  .bottom-section {
+    display: flex;
+    justify-content: space-evenly;
+    .select-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 20%;
+  
+      .select-button {
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        margin: 16px 0px;
+        border-radius: 3px;
+      }
+  
+      .yellow {
+        background-color: #FFCC47;
+      }
+      .brown {
+        background-color: #7C533E;
+      }
+      .orange {
+        background-color: #F0844D;
+      }
+      .black {
+        background-color: #222222;
+      }
+      .grey {
+        background-color: #BBBBBB;
+      }
+      .misc {
+        background-image: url("./logo-bull-icon.svg");
+      }
+  
+      .select-image {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  
+    .avatar-select {
+      width: 78%;
+      padding: 0px;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 5%;
+      .avatar-button {
+        height: 120px;
+        width: 120px;
+        border-color: black;
+        border-radius: 10px;
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .avatar-select {
+        padding: 0;
+      }
+    }
+
+    @media (min-width: 500px) {
+      .avatar-button {
+        margin-right: 40px;
+      }
+    }
+  }
+}
+
+@media (max-width: 370px) {
+  .avatar-container {
+    overflow-y: scroll;
+  }
+}

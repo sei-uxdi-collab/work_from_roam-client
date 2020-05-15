@@ -7,7 +7,8 @@ import apiUrl from '../../apiConfig'
 
 import Review from '../Review/Review'
 import { StarRating } from '../Review/StarsRating'
-import ScaleRating from './ScaleRating'
+// import ScaleRating from './ScaleRating'
+import AmenityRating from './AmenityRating'
 
 import './WorkSpace.scss'
 
@@ -17,7 +18,8 @@ class WorkSpace extends React.Component {
         this.state = {
             user: props.user,
             features: false,
-            hours: false
+            hours: false,
+            flag: null
         }
     }
 
@@ -53,8 +55,25 @@ class WorkSpace extends React.Component {
     }
     }
 
+    // Should user click on another workspace without exiting out or
+    // "unmounting" the component, it will re-render with the current favorite status
+    componentDidUpdate = (prevProps, prevState) => {
+      if (prevProps.data !== this.props.data && this.props.user) {
+        axios({
+          url: `${apiUrl}/work_spaces/${this.props.data.id}/likes`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Token token=${this.props.user.token}`
+          }
+        })
+          .then(res => this.setState({ flag: res.data[0] }))
+          .catch(console.error)
+      }
+    }
+
     // render information inside an infoWindow for POI
     render() {
+      // console.log(this.props.data)
       let photo = 'loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
@@ -133,55 +152,51 @@ class WorkSpace extends React.Component {
       // let food = average(this.props.data.reviews.map(review => parseInt(review.food)))
 
       // Style booleans for showing filter options as being available or not
-      let bathrooms = false
-      let bathroomCode = false
-      let cashOnly = false
+      let alcohol = false
       let coffee = false
-      let comfyChairs = false
       let food = false
+      let freeParking = false
       let goodForGroups = false
+      let petFriendly = false
+      let meetingSpace = false
       let outlets = false
-      let outdoorSeats = false
+      let outdoorSpace = false
       let quiet = false
-      let parking = false
+
       let wifiPassword = false
 
       // Conditionals for showing if filters are available
-      if(this.props.data.bool_bathroom === true) {
-        bathrooms = true
+      if(this.props.data.bool_alcohol === true) {
+        alcohol = true
       }
-      if(this.props.data.bool_bathroomCode === true) {
-        bathroomCode = true
-      }
-      if(this.props.data.bool_cashOnly === true) {
-        cashOnly = true
-      }
-      if(this.props.data.avg_coffee > 0) {
+      if(this.props.data.bool_coffee === true) {
         coffee = true
       }
-      if(this.props.data.avg_comfyChairs > 0) {
-        comfyChairs = true
-      }
-      if(this.props.data.avg_food > 0) {
+      if(this.props.data.bool_food === true) {
         food = true
       }
-      if(this.props.data.avg_goodForGroups > 0) {
+      if(this.props.data.bool_parking === true) {
+        freeParking = true
+      }
+      if(this.props.data.bool_goodforgroup === true) {
         goodForGroups = true
       }
-      if(this.props.data.avg_outlet > 0) {
-        // console.log(outlet)
+      if(this.props.data.bool_petfriendly === true) {
+        petFriendly = true
+      }
+      if(this.props.data.bool_meetingspace === true) {
+        meetingSpace = true
+      }
+      if(this.props.data.bool_outdoorspace === true) {
+        outdoorSpace = true
+      }
+      if(this.props.data.bool_outlet === true) {
         outlets = true
       }
-      if(this.props.data.bool_outdoorSeats === true) {
-        outdoorSeats = true
-      }
-      if(this.props.data.avg_quiet > 2) {
+      if(this.props.data.avgnoise < 2) {
         quiet = true
       }
-      if(this.props.data.bool_parking === true) {
-        parking = true
-      }
-      if(this.props.data.bool_wifiPassword === true) {
+      if(this.props.data.bool_wifipass === true) {
         wifiPassword = true
       }
 
@@ -292,30 +307,38 @@ class WorkSpace extends React.Component {
                       </div>}
                 </div>
                   <div>
-                  <ScaleRating
-                    data={this.props.data}
-                  />
-                  {!this.state.features && <p onClick={this.showFeatures} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>more<img alt='more' src='../../arrowDown.svg' className='vecStyle'/></p>}
+                    <AmenityRating
+                      amenity={this.props.data.avgwifi}
+                      amenityName='Wifi Quality'
+                    />
+                    <AmenityRating
+                      amenity={this.props.data.avgnoise}
+                      amenityName='Noise Level'
+                    />
+                    <AmenityRating
+                      amenity={this.props.data.avgseating}
+                      amenityName='Seating'
+                    />
+                  {!this.state.features && <p onClick={this.showFeatures} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>more<img alt='more' src='arrowDown.svg' className='vecStyle'/></p>}
                   {this.state.features &&
                     <div>
-                    <p onClick={this.hideFeatures} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'flex-end', textDecoration: 'underline' }}>less<img alt='less' src='../../arrowUp.svg' className='vecStyle'/></p>
+                    <p onClick={this.hideFeatures} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'flex-end', textDecoration: 'underline' }}>less<img alt='less' src='arrowUp.svg' className='vecStyle'/></p>
                     <div className='features' style={{ display: 'flex', justifyContent: 'space-evenly', fontSize: '14px', marginBottom: '15px' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
-                          <p style={{ color: bathrooms ? '#FFFFFF' : '#C4C4C4' }}>Bathrooms</p>
-                          <p style={{ color: bathroomCode ? '#FFFFFF' : '#C4C4C4' }}>Bathroom Code</p>
-                          <p style={{ color: cashOnly ? '#FFFFFF' : '#C4C4C4' }}>Cash Only</p>
+                          <p style={{ color: alcohol ? '#FFFFFF' : '#C4C4C4' }}>Beer + Wine</p>
                           <p style={{ color: coffee ? '#FFFFFF' : '#C4C4C4' }}>Coffee</p>
+                          <p style={{ color: food ? '#FFFFFF' : '#C4C4C4' }}>Food</p>
+                          <p style={{ color: freeParking ? '#FFFFFF' : '#C4C4C4' }}>Free Parking</p>
                         </div>
                         <div style={{ float: 'right', display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
-                          <p style={{ color: comfyChairs ? '#FFFFFF' : '#C4C4C4' }}>Comfy Chairs</p>
-                          <p style={{ color: food ? '#FFFFFF' : '#C4C4C4' }}>Food</p>
                           <p style={{ color: goodForGroups ? '#FFFFFF' : '#C4C4C4' }}>Good For Groups</p>
+                          <p style={{ color: meetingSpace ? '#FFFFFF' : '#C4C4C4' }}>Meeting Rooms</p>
+                          <p style={{ color: outdoorSpace ? '#FFFFFF' : '#C4C4C4' }}>Outdoor Space</p>
                           <p style={{ color: outlets ? '#FFFFFF' : '#C4C4C4' }}>Outlets</p>
                         </div>
                         <div style={{ float: 'right', display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
-                          <p style={{ color: outdoorSeats ? '#FFFFFF' : '#C4C4C4' }}>Outdoor Seats</p>
+                          <p style={{ color: petFriendly ? '#FFFFFF' : '#C4C4C4' }}>Pet Friendly</p>
                           <p style={{ color: quiet ? '#FFFFFF' : '#C4C4C4' }}>Quiet</p>
-                          <p style={{ color: parking ? '#FFFFFF' : '#C4C4C4' }}>Parking</p>
                           <p style={{ color: wifiPassword ? '#FFFFFF' : '#C4C4C4' }}>Wifi Password</p>
                         </div>
                         </div>

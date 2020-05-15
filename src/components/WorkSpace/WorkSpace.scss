@@ -173,6 +173,14 @@
 
 .features p {
   margin-bottom: 5px;
+
+  @media only screen and (max-width: 320px) {
+    font-size: 12px;
+  }
+
+  @media only screen and (min-width: 426px) and (max-width: 768px) {
+    font-size: 12px;
+  }
 }
 
 img {
@@ -245,20 +253,6 @@ h5 {
     height: 185px;
   }
 }
-//
-// @media only screen and (min-width: 375px) and (max-width: 424px) {
-//   .workspace {
-//     width: 100vw;
-//     height: 87vh;
-//     left: 0;
-//     top: 70px;
-//   }
-//
-//   .workspaceImage {
-//       width: 340px;
-//       height: 177px;
-//   }
-// }
 
 @media only screen and (max-width: 375px) {
   .workspace {
