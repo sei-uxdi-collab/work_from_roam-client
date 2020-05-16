@@ -22,17 +22,19 @@
   .pick-your-avatar {
     display: flex;
     justify-content: center;
-    padding: 12px;
+    padding: 6px;
     margin-left: 32px;
     font-size: 18px;
   }
 
   .top-section {
+    margin: 22px;
+    border-bottom: solid #AAAAAA 2px;
     button {
       border-radius: 33px;
       display: flex;
       margin: 10px auto;
-      padding: 7px 35px;
+      padding: 4px 26px;
       background-color: #4775FF;
       color: #FFF;
       font-size: 13px;
@@ -41,7 +43,12 @@
 
   .avatar-preview {
     width: 100px;
+    height: 108px;
     margin: auto;
+    img {
+      max-width: 100%;
+      height: 108px;
+    }
   }
 
   .bottom-section {
@@ -93,11 +100,14 @@
       flex-wrap: wrap;
       padding: 0 5%;
       .avatar-button {
-        height: 120px;
-        width: 120px;
+        height: 110px;
+        width: 110px;
         border-color: black;
         border-radius: 10px;
         font-size: 40px;
+        img {
+          height: 100%;
+        }
       }
     }
 
