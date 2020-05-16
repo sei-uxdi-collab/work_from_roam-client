@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
 import StarRatingComponent from "react-star-rating-component";
-// import { StarRating } from '../Review/StarsRating'
 import "./MyReviews.scss";
 
 function MyReviews(props) {
@@ -37,7 +36,6 @@ function MyReviews(props) {
              emptyStarColor='#C4D3FF'
              editing={false}
              renderStarIcon={() => <img src="star-icon.svg" className="my-reviews-star" alt="star"/>}
-             className="my-reviews-star"
             />
           </div>
         </Row>
