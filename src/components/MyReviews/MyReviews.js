@@ -25,21 +25,18 @@ function MyReviews(props) {
     <div className="my-reviews-card">
       <div className="card-content">
         <Row>
-          <Col xs={7}>
-            <div className="workplace-title"> {review.work_space.name}</div>
-          </Col>
-          <Col>
-            <div className="my-reviews-stars">
-              <StarRating
-               value={review.rating}
-               emptyStarColor='#FFFFFF'
-               editing={false}
-              />
-            </div>
+          <Col xs={10}>
+            <div className="workplace-title mr-0"> {review.work_space.name}</div>
           </Col>
         </Row>
         <Row>
-          <span className="plain-text address"> {review.work_space.address} </span>
+          <div className="my-reviews-stars">
+            <StarRating
+             value={review.rating}
+             emptyStarColor='#C4D3FF'
+             editing={false}
+            />
+          </div>
         </Row>
         <Row>
           <span className=" mt-2 mb-2 plain-text note"> {review.note} </span>
