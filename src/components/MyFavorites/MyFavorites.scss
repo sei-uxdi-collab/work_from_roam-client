@@ -116,7 +116,7 @@ ul {
 .plain-text {
   color: #222222;
   font-family: Roboto;
-  font-size: 13px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 300;
   line-height: 150%;
@@ -129,13 +129,19 @@ ul {
   box-sizing: border-box;
   height: auto;
   width: 252px;
-  padding: 5px 25px;
+  padding: 10px 30px;
   margin: 10px;
 }
 
 .my-favorite-stars {
-  font-size: 12px;
+  font-size: 28px;
   color: #FFCC47;
+  padding-top: 5px;
+}
+
+.my-favorite-star {
+  padding-right: 4px;
+  height: 28px;
 }
 
 .workplace-title {

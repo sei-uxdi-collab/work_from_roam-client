@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 // import axios from 'axios'
 // import apiUrl from '../../apiConfig'
 // import Button from 'react-bootstrap/Button'
-import { StarRating } from '../Review/StarsRating'
+import StarRatingComponent from "react-star-rating-component";
 import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
 
 
@@ -36,40 +36,32 @@ function MyFavorites(props) {
     <div className="my-favorite-card">
       <div className="card-content">
         <Row>
-          <Col xs={7}>
+          <Col xs={10} className="pl-0">
             <div className="workplace-title"> {workplace.name}</div>
-          </Col>
-          <Col>
-            <div className="my-favorite-stars">
-              <StarRating
-               value={workplace.avgrating}
-               emptyStarColor='#FFFFFF'
-               editing={false}
-              />
-            </div>
           </Col>
           <Col>
               <img src='favoriteHeartRed.svg' alt='favorited' className="heart"/>
           </Col>
         </Row>
         <Row>
+          <span className="plain-text"> {workplace.address}</span>
+        </Row>
+        <Row>
+          <span className="plain-text"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
+        </Row>
+        <Row>
+          <div className="my-favorite-stars">
+            <StarRatingComponent
+             value={workplace.avgrating}
+             emptyStarColor='#C4D3FF'
+             editing={false}
+             renderStarIcon={() => <img src="star-icon.svg" className="my-favorite-star" alt="star"/>}
+            />
+          </div>
+        </Row>
+        <Row className="pb-2">
           <div className="open-now">Open Now</div>
           <span className="plain-text distance">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
-        </Row>
-        <Row>
-          <span className="plain-text address"> {workplace.address}</span>
-        </Row>
-        <Row>
-          <span className="plain-text phone"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Wifi Quality: {workplace.avgwifi} </span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Seat Comfort: {workplace.avgseating} </span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Noise Level: {workplace.avgnoise} </span>
         </Row>
       </div>
     </div>
