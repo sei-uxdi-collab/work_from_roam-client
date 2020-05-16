@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Row, Col } from 'react-bootstrap';
-import { StarRating } from '../Review/StarsRating'
+import { Row } from 'react-bootstrap';
+import StarRatingComponent from "react-star-rating-component";
 import "./TopRated.scss";
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -54,37 +54,27 @@ function TopRated(props) {
     <div className="top-rated-card">
       <div className="card-content">
         <Row>
-          <Col xs={7}>
-            <div className="workplace-title"> {workplace.name}</div>
-          </Col>
-          <Col>
-            <div className="top-rated-stars">
-              <StarRating
-               value={workplace.avg_rating}
-               emptyStarColor='#FFFFFF'
-               editing={false}
-              />
-            </div>
-          </Col>
+          <div className="workplace-title"> {workplace.name}</div>
         </Row>
         <Row>
+          <span className="plain-text"> {workplace.address}</span>
+        </Row>
+        <Row>
+          <span className="plain-text"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
+        </Row>
+        <Row>
+          <div className="top-rated-stars">
+            <StarRatingComponent
+             value={workplace.rating}
+             emptyStarColor='#C4D3FF'
+             editing={false}
+             renderStarIcon={() => <img src="star-icon.svg" className="top-rated-star" alt="star"/>}
+            />
+          </div>
+        </Row>
+        <Row className="pb-2">
           <div className="open-now">Open Now</div>
-          <span className="plain-text distance"> {calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
-        </Row>
-        <Row>
-          <span className="plain-text address"> {workplace.address}</span>
-        </Row>
-        <Row>
-          <span className="plain-text phone"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Wifi Quality: {workplace.avg_wifi} </span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Seat Comfort: {workplace.avg_seating} </span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Noise Level: {workplace.avg_noise} </span>
+          <span className="plain-text"> {calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
         </Row>
       </div>
     </div>
