@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
-import { StarRating } from '../Review/StarsRating'
+import StarRatingComponent from "react-star-rating-component";
+// import { StarRating } from '../Review/StarsRating'
 import "./MyReviews.scss";
 
 function MyReviews(props) {
@@ -25,16 +26,18 @@ function MyReviews(props) {
     <div className="my-reviews-card">
       <div className="card-content">
         <Row>
-          <Col xs={10}>
-            <div className="workplace-title mr-0"> {review.work_space.name}</div>
+          <Col xs={10} className="pl-0">
+            <div className="workplace-title"> {review.work_space.name}</div>
           </Col>
         </Row>
         <Row>
           <div className="my-reviews-stars">
-            <StarRating
+            <StarRatingComponent
              value={review.rating}
              emptyStarColor='#C4D3FF'
              editing={false}
+             renderStarIcon={() => <img src="star-icon.svg" className="my-reviews-star" alt="star"/>}
+             className="my-reviews-star"
             />
           </div>
         </Row>
@@ -42,7 +45,7 @@ function MyReviews(props) {
           <span className=" mt-2 mb-2 plain-text note"> {review.note} </span>
         </Row>
         <Row>
-          <span className="date-created"> <img className="created-at-icon" src="created-at-icon.svg" alt="created date"/> {review.user.created_at} </span>
+          <span className="date-created"> <img className="created-at-icon" src="created-at-icon.svg" alt="created date"/> {review.date} </span>
         </Row>
       </div>
     </div>
