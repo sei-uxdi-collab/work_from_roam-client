@@ -43,7 +43,12 @@ function MyReviews(props) {
           <span className=" mt-2 mb-2 plain-text note"> {review.note} </span>
         </Row>
         <Row>
-          <span className="date-created"> <img className="created-at-icon" src="created-at-icon.svg" alt="created date"/> {review.date} </span>
+          <Col xs={11} className="m-0 p-0">
+            <span className="date-created"> <img className="created-at-icon" src="created-at-icon.svg" alt="created date"/> {review.date} </span>
+          </Col>
+          <Col xs={1} className="m-0 p-0">
+            <span><img src="arrowRight.svg" className="right-arrow" alt="See More"/></span>
+          </Col>
         </Row>
       </div>
     </div>

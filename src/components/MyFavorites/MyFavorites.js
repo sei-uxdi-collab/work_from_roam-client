@@ -60,8 +60,13 @@ function MyFavorites(props) {
           </div>
         </Row>
         <Row className="pb-2">
-          <div className="open-now">Open Now</div>
-          <span className="plain-text distance">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
+          <Col xs={11} className="m-0 p-0">
+            <div className="open-now">Open Now</div>
+            <span className="plain-text">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
+          </Col>
+          <Col xs={1} className="m-0 p-0">
+            <span><img src="arrowRight.svg" className="right-arrow" alt="See More"/></span>
+          </Col>
         </Row>
       </div>
     </div>
