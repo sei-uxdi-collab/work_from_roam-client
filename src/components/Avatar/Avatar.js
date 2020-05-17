@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { avatar } from '../../helpers/avatarsArray'
+import { updateUser, showUser } from '../../api/auth'
 
 import './Avatar.scss'
 
@@ -40,10 +41,16 @@ class Avatar extends React.Component {
     this.setState({ selectedAvatar })
   }
 
-  onSave = event => {
-    if (this.state.selectedAvatar) {
-      console.log('make patch request to api')
-      alert(`user selected avatar ${this.state.selectedAvatar}. Send patch request to the API`)
+  onSave = () => {
+    const { user, setUser } = this.props
+    if (user) {
+      const { email, username } = user
+      const avatar = this.state.selectedAvatar
+      const properties = { avatar, email, username }
+      updateUser(properties, user)
+        .then(() => showUser(user))
+        .then(res => setUser(res.data.user))
+        .catch(console.error)
     }
     this.props.history.push('/nav')
   }
