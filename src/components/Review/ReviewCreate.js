@@ -2,7 +2,8 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { StarRating } from './StarsRating'
+// import { StarRating } from './StarsRating'
+import StarRatingComponent from "react-star-rating-component";
 import { createReview, createWorkspace } from '../../api/create'
 import messages from '../AutoAlert/messages'
 import './ReviewCreate.scss'
@@ -32,7 +33,7 @@ import Button from 'react-bootstrap/Button'
 
     handleChange = (event) => {
       this.setState({ [event.target.name]: event.target.value })
-      // console.log(event.target.value)
+      console.log(event.target.value)
     }
 
     toggleChange = (event) => {
@@ -84,6 +85,10 @@ import Button from 'react-bootstrap/Button'
       }
     }
 
+    // onStarClick(value, prevValue, name) {
+    //   this.setState({rating: value});
+    // }
+
     closeWindow = () => {
       // update state which updates component's style to display: none
       this.setState({ display: 'none' })
@@ -117,10 +122,17 @@ import Button from 'react-bootstrap/Button'
           <Form onSubmit={this.handleSubmit} className="ml-1">
             <Form.Label className="question-header mt-3 mb-0" htmlFor="rating">Rate Your Experience*</Form.Label>
             <Form.Group className="stars">
-              <StarRating
+              <StarRatingComponent
                 value={this.state.rating}
                 onStarClick= {(val) => this.setState({ rating: val })}
-            />
+                emptyStarColor="#FFF"
+                starColor="#000"
+                renderStarIcon={(nextValue, prevValue) =>
+                  (nextValue <= prevValue) ?
+                    <img src="star-icon.svg" className="review-star" alt="star"/> :
+                    <img src="star-icon-empty.svg" className="review-star" alt="star"/>
+                }
+              />
             </Form.Group>
 
             <Form.Label className="question-header">Please highlight all that apply:</Form.Label>
