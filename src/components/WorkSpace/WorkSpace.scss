@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 295px;
+  width: 305px;
   height: 210px;
   background: linear-gradient(to right, #4775FF, #4775FF 33px, #FFF 30px, #FFF 66.66%, #FFF 66.66%);
   background-color: #FFFFFF;
@@ -347,6 +347,10 @@ h5 {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+
+  .userAlertCard {
+    left:47%;
   }
 
 }
