@@ -40,7 +40,7 @@ const Header = ({ user, userLocation }) => {
         </div>
         <div className="ml-4">
           <Row>
-            <div className="welcome">Welcome back, {user && user.email}</div>
+            <div className="welcome">Welcome back, {user && (user.username || user.email)}</div>
           </Row>
         </div>
       </div>

@@ -18,8 +18,7 @@
 
 .checkbox-toolbar input[type="checkbox"]:checked+ label {
     background-color:#FFCC47;
-    color: #FFF;
-    font-weight: bold;
+    color: #000;
 }
 
 .close-window-white {
@@ -160,10 +159,9 @@
 
 // Stars CSS
 .stars {
-  font-size: 40px;
+  float: left !important;
   height: auto;
   margin: 0 auto;
-  text-align: left;
 }
 
 .dv-star-rating-star {
@@ -172,6 +170,12 @@
   i {
     // color: #FFCC47 !important;
   }
+}
+
+.review-star {
+  height: 32px;
+  width: 32px;
+  margin: 10px 14px 20px 0px;
 }
 
 // Slider CSS

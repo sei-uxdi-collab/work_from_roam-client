@@ -109,17 +109,24 @@ ul {
   box-sizing: border-box;
   height: auto;
   width: 252px;
-  padding: 7px 25px;
+  padding: 10px 30px;
   margin: 10px;
 }
 
 .my-reviews-stars {
-  font-size: 12px;
+  font-size: 28px;
   color: #FFCC47;
+  height: 35px;
+  padding-top: 5px;
+}
+
+.my-reviews-star {
+  padding-right: 8px;
+  height: 28px;
 }
 
 .workplace-title {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 150%;
   text-decoration: underline;
