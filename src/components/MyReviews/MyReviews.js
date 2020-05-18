@@ -4,7 +4,7 @@ import StarRatingComponent from "react-star-rating-component";
 import "./MyReviews.scss";
 
 function MyReviews(props) {
-  const { user, isExpanded, toggleExpand } = props
+  const { user, isExpanded, toggleExpand, allData, setApp } = props
   const content = useRef(null);
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
@@ -15,6 +15,13 @@ function MyReviews(props) {
   //  }
 
   console.log(props)
+
+  const onArrowClick = id => {
+    const currentWorkspace = allData.find(workspace => workspace.id === id)
+    const { lat, lng } = currentWorkspace
+    const mapCenter = { lat, lng }
+    setApp({ currentWorkspace, mapCenter })
+  }
 
   const myReviewsJsx = user.reviews.map(review => (
     <li
@@ -46,7 +53,7 @@ function MyReviews(props) {
           <Col xs={11} className="m-0 p-0">
             <span className="date-created"> <img className="created-at-icon" src="created-at-icon.svg" alt="created date"/> {review.date} </span>
           </Col>
-          <Col xs={1} className="m-0 p-0">
+          <Col xs={1} className="m-0 p-0" onClick={() => onArrowClick(review.work_space.id)}>
             <span><img src="arrowRight.svg" className="right-arrow" alt="See More"/></span>
           </Col>
         </Row>
@@ -56,8 +63,8 @@ function MyReviews(props) {
   ))
 
   return (
-    <div className="my-reviews-section"  onClick={toggleExpand}>
-      <div className={`my-reviews  my-reviews-title ${isExpanded ? 'active' : ''}`}>
+    <div className="my-reviews-section">
+      <div className={`my-reviews  my-reviews-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
         My Reviews
       </div>
       <div

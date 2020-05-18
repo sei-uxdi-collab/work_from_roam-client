@@ -10,7 +10,7 @@ import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
 
-const Header = ({ user, userLocation }) => {
+const Header = ({ user, userLocation, allData, setApp }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
@@ -61,19 +61,39 @@ const Header = ({ user, userLocation }) => {
         <div>
           <img src="your-favorites-heart-icon.png" className="icon" alt="Your Favorites"/>
         </div>
-        <MyFavorites user={user} userLocation={userLocation} isExpanded={expanded.favorites} toggleExpand={() => toggleExpand('favorites')}/>
+        <MyFavorites
+          user={user}
+          userLocation={userLocation}
+          isExpanded={expanded.favorites}
+          toggleExpand={() => toggleExpand('favorites')}
+          allData={allData}
+          setApp={setApp}
+        />
       </Row>
       <Row>
         <div>
           <img src="my-reviews-icon.png" className="icon" alt="My Reviews"/>
         </div>
-        <MyReviews user={user} isExpanded={expanded.reviews} toggleExpand={() => toggleExpand('reviews')}/>
+        <MyReviews
+          user={user}
+          isExpanded={expanded.reviews}
+          toggleExpand={() => toggleExpand('reviews')}
+          allData={allData}
+          setApp={setApp}
+        />
       </Row>
       <Row>
         <div>
           <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
         </div>
-        <TopRated user={user} userLocation={userLocation} isExpanded={expanded.topRated} toggleExpand={() => toggleExpand('topRated')}/>
+        <TopRated
+          user={user}
+          userLocation={userLocation}
+          isExpanded={expanded.topRated}
+          toggleExpand={() => toggleExpand('topRated')}
+          allData={allData}
+          setApp={setApp}
+        />
       </Row>
       <Row>
         <div>
