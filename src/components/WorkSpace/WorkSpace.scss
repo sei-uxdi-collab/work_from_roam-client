@@ -112,6 +112,12 @@
   font-family: SF Pro Display, sans-serif;
   font-size: 15px;
   font-weight: 300;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .workspaceImage {
@@ -125,6 +131,7 @@
 .worspaceLink {
   display: inline-block;
   width: 298px;
+
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -341,4 +348,5 @@ h5 {
     white-space: nowrap;
     overflow: hidden;
   }
+
 }
