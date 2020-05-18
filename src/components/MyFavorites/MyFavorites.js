@@ -10,7 +10,7 @@ import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
 import "./MyFavorites.scss";
 
 function MyFavorites(props) {
-  const { user, userLocation, isExpanded, toggleExpand } = props
+  const { user, userLocation, isExpanded, toggleExpand, allData, setApp } = props
   const content = useRef(null);
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
@@ -25,6 +25,13 @@ function MyFavorites(props) {
       lat: workplace.lat,
       lng: workplace.lng
     }
+  }
+
+  const onArrowClick = id => {
+    const currentWorkspace = allData.find(workspace => workspace.id === id)
+    const { lat, lng } = currentWorkspace
+    const mapCenter = { lat, lng }
+    setApp({ currentWorkspace, mapCenter })
   }
 
   const myFavoritesJsx = user.find_up_voted_items.map(workplace => (
@@ -64,7 +71,7 @@ function MyFavorites(props) {
             <div className="open-now">Open Now</div>
             <span className="plain-text">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
           </Col>
-          <Col xs={1} className="m-0 p-0">
+          <Col xs={1} className="m-0 p-0" onClick={() => onArrowClick(workplace.id)}>
             <span><img src="arrowRight.svg" className="right-arrow" alt="See More"/></span>
           </Col>
         </Row>
@@ -74,8 +81,8 @@ function MyFavorites(props) {
   ))
 
   return (
-    <div className="myfavorites-section"  onClick={toggleExpand}>
-      <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`}>
+    <div className="myfavorites-section">
+      <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
         My Favorites
       </div>
       <div

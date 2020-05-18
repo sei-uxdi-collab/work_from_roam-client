@@ -7,7 +7,7 @@ import apiUrl from '../../apiConfig'
 import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
 
 function TopRated(props) {
-  const { user, userLocation, isExpanded, toggleExpand } = props
+  const { user, userLocation, isExpanded, toggleExpand, allData, setApp } = props
   const [workplaces, setWorkplaces] = useState([])
 
   const content = useRef(null);
@@ -45,6 +45,13 @@ function TopRated(props) {
     }
   }
 
+  const onArrowClick = id => {
+    const currentWorkspace = allData.find(workspace => workspace.id === id)
+    const { lat, lng } = currentWorkspace
+    const mapCenter = { lat, lng }
+    setApp({ currentWorkspace, mapCenter })
+  }
+
   const topRatedJsx = workplaces.map(workplace => (
     <li
       key={workplace.id}
@@ -77,7 +84,7 @@ function TopRated(props) {
             <div className="open-now">Open Now</div>
             <span className="plain-text">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
           </Col>
-          <Col xs={1} className="m-0 p-0">
+          <Col xs={1} className="m-0 p-0" onClick={() => onArrowClick(workplace.id)} >
             <span><img src="arrowRight.svg" className="right-arrow" alt="See More"/></span>
           </Col>
         </Row>
@@ -87,8 +94,8 @@ function TopRated(props) {
   ))
 
   return (
-    <div className="toprated-section"  onClick={toggleExpand}>
-      <div className={`toprated toprated-title ${isExpanded ? 'active' : ''}`}>
+    <div className="toprated-section" >
+      <div className={`toprated toprated-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
         Top Rated
       </div>
       <div
