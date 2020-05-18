@@ -57,7 +57,7 @@ class WorkSpace extends React.Component {
     // Should user click on another workspace without exiting out or
     // "unmounting" the component, it will re-render with the current favorite status
     componentDidUpdate = (prevProps, prevState) => {
-      if (prevProps.data !== this.props.data && this.props.user) {
+      if (this.props.user && this.props.data && (prevProps.data !== this.props.data)) {
         axios({
           url: `${apiUrl}/work_spaces/${this.props.data.id}/likes`,
           method: 'GET',
