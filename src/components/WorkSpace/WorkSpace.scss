@@ -170,6 +170,55 @@
   margin: 6px;
 }
 
+.ratingsRow {
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+  @media only screen and (max-width:320px) {
+    margin: 5px 0px;
+  }
+  @media only screen and (min-width: 426px) and (max-width: 768px) {
+    margin: 5px 0px;
+  }
+}
+
+.yellowBubble {
+  height: 10px;
+  margin: 0 6px;
+  padding: 0;
+  width: 40px;
+  @media only screen and (max-width:320px) {
+    height: 8px;
+    margin: 0 2px;
+    width: 24px;
+  }
+  @media only screen and (min-width: 426px) and (max-width: 768px) {
+    height: 8px;
+    margin: 0 2px;
+    width: 24px;
+  }
+}
+
+.grayBubble {
+  height: 10px;
+  margin: 0 6px;
+  padding: 0;
+  width: 40px;
+  @media (max-width:320px) {
+    height: 8px;
+    margin: 0 2px;
+    width: 24px;
+  }
+  @media (min-width: 426px) and (max-width: 768px) {
+    height: 8px;
+    margin: 0 2px;
+    width: 24px;
+  }
+}
 
 .features p {
   margin-bottom: 5px;
