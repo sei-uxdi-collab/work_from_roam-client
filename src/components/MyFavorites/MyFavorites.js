@@ -3,14 +3,14 @@ import { Row, Col } from 'react-bootstrap';
 // import axios from 'axios'
 // import apiUrl from '../../apiConfig'
 // import Button from 'react-bootstrap/Button'
-import { StarRating } from '../Review/StarsRating'
+import StarRatingComponent from "react-star-rating-component";
 import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
 
 
 import "./MyFavorites.scss";
 
 function MyFavorites(props) {
-  const { user, userLocation, isExpanded, toggleExpand } = props
+  const { user, userLocation, isExpanded, toggleExpand, allData, setApp } = props
   const content = useRef(null);
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
@@ -27,6 +27,13 @@ function MyFavorites(props) {
     }
   }
 
+  const onArrowClick = id => {
+    const currentWorkspace = allData.find(workspace => workspace.id === id)
+    const { lat, lng } = currentWorkspace
+    const mapCenter = { lat, lng }
+    setApp({ currentWorkspace, mapCenter })
+  }
+
   const myFavoritesJsx = user.find_up_voted_items.map(workplace => (
     <li
       key={workplace.id}
@@ -36,40 +43,37 @@ function MyFavorites(props) {
     <div className="my-favorite-card">
       <div className="card-content">
         <Row>
-          <Col xs={7}>
+          <Col xs={10} className="pl-0">
             <div className="workplace-title"> {workplace.name}</div>
-          </Col>
-          <Col>
-            <div className="my-favorite-stars">
-              <StarRating
-               value={workplace.avgrating}
-               emptyStarColor='#FFFFFF'
-               editing={false}
-              />
-            </div>
           </Col>
           <Col>
               <img src='favoriteHeartRed.svg' alt='favorited' className="heart"/>
           </Col>
         </Row>
         <Row>
-          <div className="open-now">Open Now</div>
-          <span className="plain-text distance">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
+          <span className="plain-text"> {workplace.address}</span>
         </Row>
         <Row>
-          <span className="plain-text address"> {workplace.address}</span>
+          <span className="plain-text"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
         </Row>
         <Row>
-          <span className="plain-text phone"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
+          <div className="my-favorite-stars">
+            <StarRatingComponent
+             value={workplace.avgrating}
+             emptyStarColor='#C4D3FF'
+             editing={false}
+             renderStarIcon={() => <img src="star-icon.svg" className="my-favorite-star" alt="star"/>}
+            />
+          </div>
         </Row>
-        <Row>
-          <span className="plain-text bars"> Wifi Quality: {workplace.avgwifi} </span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Seat Comfort: {workplace.avgseating} </span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Noise Level: {workplace.avgnoise} </span>
+        <Row className="pb-2">
+          <Col xs={11} className="m-0 p-0">
+            <div className="open-now">Open Now</div>
+            <span className="plain-text">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
+          </Col>
+          <Col xs={1} className="m-0 p-0" onClick={() => onArrowClick(workplace.id)}>
+            <span><img src="arrowRight.svg" className="right-arrow" alt="See More"/></span>
+          </Col>
         </Row>
       </div>
     </div>
@@ -77,8 +81,8 @@ function MyFavorites(props) {
   ))
 
   return (
-    <div className="myfavorites-section"  onClick={toggleExpand}>
-      <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`}>
+    <div className="myfavorites-section">
+      <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
         My Favorites
       </div>
       <div

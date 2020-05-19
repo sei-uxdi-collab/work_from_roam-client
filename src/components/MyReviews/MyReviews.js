@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
-import { StarRating } from '../Review/StarsRating'
+import StarRatingComponent from "react-star-rating-component";
 import "./MyReviews.scss";
 
 function MyReviews(props) {
-  const { user, isExpanded, toggleExpand } = props
+  const { user, isExpanded, toggleExpand, allData, setApp } = props
   const content = useRef(null);
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
@@ -16,6 +16,13 @@ function MyReviews(props) {
 
   console.log(props)
 
+  const onArrowClick = id => {
+    const currentWorkspace = allData.find(workspace => workspace.id === id)
+    const { lat, lng } = currentWorkspace
+    const mapCenter = { lat, lng }
+    setApp({ currentWorkspace, mapCenter })
+  }
+
   const myReviewsJsx = user.reviews.map(review => (
     <li
       key={review.id}
@@ -25,27 +32,30 @@ function MyReviews(props) {
     <div className="my-reviews-card">
       <div className="card-content">
         <Row>
-          <Col xs={7}>
+          <Col xs={10} className="pl-0">
             <div className="workplace-title"> {review.work_space.name}</div>
-          </Col>
-          <Col>
-            <div className="my-reviews-stars">
-              <StarRating
-               value={review.rating}
-               emptyStarColor='#FFFFFF'
-               editing={false}
-              />
-            </div>
           </Col>
         </Row>
         <Row>
-          <span className="plain-text address"> {review.work_space.address} </span>
+          <div className="my-reviews-stars">
+            <StarRatingComponent
+             value={review.rating}
+             emptyStarColor='#C4D3FF'
+             editing={false}
+             renderStarIcon={() => <img src="star-icon.svg" className="my-reviews-star" alt="star"/>}
+            />
+          </div>
         </Row>
         <Row>
           <span className=" mt-2 mb-2 plain-text note"> {review.note} </span>
         </Row>
         <Row>
-          <span className="date-created"> <img className="created-at-icon" src="created-at-icon.svg" alt="created date"/> {review.user.created_at} </span>
+          <Col xs={11} className="m-0 p-0">
+            <span className="date-created"> <img className="created-at-icon" src="created-at-icon.svg" alt="created date"/> {review.date} </span>
+          </Col>
+          <Col xs={1} className="m-0 p-0" onClick={() => onArrowClick(review.work_space.id)}>
+            <span><img src="arrowRight.svg" className="right-arrow" alt="See More"/></span>
+          </Col>
         </Row>
       </div>
     </div>
@@ -53,8 +63,8 @@ function MyReviews(props) {
   ))
 
   return (
-    <div className="my-reviews-section"  onClick={toggleExpand}>
-      <div className={`my-reviews  my-reviews-title ${isExpanded ? 'active' : ''}`}>
+    <div className="my-reviews-section">
+      <div className={`my-reviews  my-reviews-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
         My Reviews
       </div>
       <div

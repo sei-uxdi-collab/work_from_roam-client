@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Row, Col } from 'react-bootstrap';
-import { StarRating } from '../Review/StarsRating'
+import StarRatingComponent from "react-star-rating-component";
 import "./TopRated.scss";
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
 
 function TopRated(props) {
-  const { user, userLocation, isExpanded, toggleExpand } = props
+  const { user, userLocation, isExpanded, toggleExpand, allData, setApp } = props
   const [workplaces, setWorkplaces] = useState([])
 
   const content = useRef(null);
@@ -45,6 +45,13 @@ function TopRated(props) {
     }
   }
 
+  const onArrowClick = id => {
+    const currentWorkspace = allData.find(workspace => workspace.id === id)
+    const { lat, lng } = currentWorkspace
+    const mapCenter = { lat, lng }
+    setApp({ currentWorkspace, mapCenter })
+  }
+
   const topRatedJsx = workplaces.map(workplace => (
     <li
       key={workplace.id}
@@ -54,37 +61,32 @@ function TopRated(props) {
     <div className="top-rated-card">
       <div className="card-content">
         <Row>
-          <Col xs={7}>
-            <div className="workplace-title"> {workplace.name}</div>
+          <div className="workplace-title"> {workplace.name}</div>
+        </Row>
+        <Row>
+          <span className="plain-text"> {workplace.address}</span>
+        </Row>
+        <Row>
+          <span className="plain-text"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
+        </Row>
+        <Row>
+          <div className="top-rated-stars">
+            <StarRatingComponent
+             value={workplace.rating}
+             emptyStarColor='#C4D3FF'
+             editing={false}
+             renderStarIcon={() => <img src="star-icon.svg" className="top-rated-star" alt="star"/>}
+            />
+          </div>
+        </Row>
+        <Row className="pb-2">
+          <Col xs={11} className="m-0 p-0">
+            <div className="open-now">Open Now</div>
+            <span className="plain-text">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
           </Col>
-          <Col>
-            <div className="top-rated-stars">
-              <StarRating
-               value={workplace.avg_rating}
-               emptyStarColor='#FFFFFF'
-               editing={false}
-              />
-            </div>
+          <Col xs={1} className="m-0 p-0" onClick={() => onArrowClick(workplace.id)} >
+            <span><img src="arrowRight.svg" className="right-arrow" alt="See More"/></span>
           </Col>
-        </Row>
-        <Row>
-          <div className="open-now">Open Now</div>
-          <span className="plain-text distance"> {calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
-        </Row>
-        <Row>
-          <span className="plain-text address"> {workplace.address}</span>
-        </Row>
-        <Row>
-          <span className="plain-text phone"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Wifi Quality: {workplace.avg_wifi} </span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Seat Comfort: {workplace.avg_seating} </span>
-        </Row>
-        <Row>
-          <span className="plain-text bars"> Noise Level: {workplace.avg_noise} </span>
         </Row>
       </div>
     </div>
@@ -92,8 +94,8 @@ function TopRated(props) {
   ))
 
   return (
-    <div className="toprated-section"  onClick={toggleExpand}>
-      <div className={`toprated toprated-title ${isExpanded ? 'active' : ''}`}>
+    <div className="toprated-section" >
+      <div className={`toprated toprated-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
         Top Rated
       </div>
       <div

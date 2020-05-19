@@ -39,6 +39,33 @@ export const signOut = user => {
   })
 }
 
+export const updateUser = (credentials, user) => {
+  return axios({
+    url: apiUrl + '/update-user',
+    method: 'PATCH',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    },
+    data: {
+      credentials: {
+        avatar: credentials.avatar,
+        email: credentials.email,
+        username: credentials.username
+      }
+    }
+  })
+}
+
+export const showUser = user => {
+  return axios({
+    url: apiUrl + '/show-user',
+    method: 'GET',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    }
+  })
+}
+
 export const changePassword = (passwords, user) => {
   return axios({
     url: apiUrl + '/change-password',
