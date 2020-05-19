@@ -110,6 +110,15 @@ ul {
   margin: 10px;
 }
 
+.top-rated-right-arrow {
+  fill: #222222;
+}
+
+.top-rated-right-arrow:hover {
+    fill: #4775FF;
+    transform: scale(1.4);
+}
+
 .top-rated-stars {
   font-size: 28px;
   color: #FFCC47;

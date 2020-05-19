@@ -148,6 +148,15 @@ ul {
   height: 28px;
 }
 
+.favorites-right-arrow {
+  fill: #222222;
+}
+
+.favorites-right-arrow:hover {
+    fill: #4775FF;
+    transform: scale(1.4);
+}
+
 .workplace-title {
   font-size: 18px;
   font-weight: 500;
