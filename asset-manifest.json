@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.css": "/work_from_roam-client/static/css/main.aa7a0023.chunk.css",
-    "main.js": "/work_from_roam-client/static/js/main.b0224082.chunk.js",
-    "main.js.map": "/work_from_roam-client/static/js/main.b0224082.chunk.js.map",
+    "main.css": "/work_from_roam-client/static/css/main.132be42b.chunk.css",
+    "main.js": "/work_from_roam-client/static/js/main.dab9171a.chunk.js",
+    "main.js.map": "/work_from_roam-client/static/js/main.dab9171a.chunk.js.map",
     "runtime-main.js": "/work_from_roam-client/static/js/runtime-main.632891d8.js",
     "runtime-main.js.map": "/work_from_roam-client/static/js/runtime-main.632891d8.js.map",
-    "static/js/2.a9c0fc76.chunk.js": "/work_from_roam-client/static/js/2.a9c0fc76.chunk.js",
-    "static/js/2.a9c0fc76.chunk.js.map": "/work_from_roam-client/static/js/2.a9c0fc76.chunk.js.map",
+    "static/js/2.d8a861ca.chunk.js": "/work_from_roam-client/static/js/2.d8a861ca.chunk.js",
+    "static/js/2.d8a861ca.chunk.js.map": "/work_from_roam-client/static/js/2.d8a861ca.chunk.js.map",
     "index.html": "/work_from_roam-client/index.html",
-    "precache-manifest.c643175f60b65019b76aa3fbae9d4734.js": "/work_from_roam-client/precache-manifest.c643175f60b65019b76aa3fbae9d4734.js",
+    "precache-manifest.25df4372d4094dc4222228fb388ace97.js": "/work_from_roam-client/precache-manifest.25df4372d4094dc4222228fb388ace97.js",
     "service-worker.js": "/work_from_roam-client/service-worker.js",
-    "static/css/main.aa7a0023.chunk.css.map": "/work_from_roam-client/static/css/main.aa7a0023.chunk.css.map",
-    "static/js/2.a9c0fc76.chunk.js.LICENSE.txt": "/work_from_roam-client/static/js/2.a9c0fc76.chunk.js.LICENSE.txt",
-    "static/media/SearchVector.svg": "/work_from_roam-client/static/media/SearchVector.0e7c5298.svg"
+    "static/css/main.132be42b.chunk.css.map": "/work_from_roam-client/static/css/main.132be42b.chunk.css.map",
+    "static/js/2.d8a861ca.chunk.js.LICENSE.txt": "/work_from_roam-client/static/js/2.d8a861ca.chunk.js.LICENSE.txt",
+    "static/media/SearchVector.svg": "/work_from_roam-client/static/media/SearchVector.0e7c5298.svg",
+    "static/media/Avatar.scss": "/work_from_roam-client/static/media/logo-bull-icon.78c52155.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.632891d8.js",
-    "static/js/2.a9c0fc76.chunk.js",
-    "static/css/main.aa7a0023.chunk.css",
-    "static/js/main.b0224082.chunk.js"
+    "static/js/2.d8a861ca.chunk.js",
+    "static/css/main.132be42b.chunk.css",
+    "static/js/main.dab9171a.chunk.js"
   ]
 }
