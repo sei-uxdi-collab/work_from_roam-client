@@ -9,6 +9,7 @@ import GoogleMap from '../GoogleMap/GoogleMap'
 import ReviewCreate from '../Review/ReviewCreate'
 import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
+import SplashPage from '../SplashPage/SplashPage'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import SignOut from '../SignOut/SignOut'
 import Header from '../Header/Header'
@@ -172,6 +173,7 @@ class App extends React.Component {
         )} />
 
         <Route path='/'>
+          <SplashPage />
           <div className="App">
             <div className='search-group'>
               <NavBar />
