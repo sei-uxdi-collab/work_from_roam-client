@@ -47,7 +47,7 @@ function MyFavorites(props) {
             <div className="workplace-title"> {workplace.name}</div>
           </Col>
           <Col>
-              <img src='favoriteHeartRed.svg' alt='favorited' className="heart"/>
+              <img src='favoriteHeartRed.svg' alt='favorited' className="myfavorites-heart"/>
           </Col>
         </Row>
         <Row>

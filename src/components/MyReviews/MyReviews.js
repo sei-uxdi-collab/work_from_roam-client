@@ -41,6 +41,9 @@ function MyReviews(props) {
           <Col xs={10} className="pl-0">
             <div className="workplace-title"> {review.work_space.name}</div>
           </Col>
+          <Col>
+              <img src='kebab-icon-blue.svg' alt='options' className="my-reviews-options"/>
+          </Col>
         </Row>
         <Row>
           <div className="my-reviews-stars">
