@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
 import StarRatingComponent from "react-star-rating-component";
 import "./MyReviews.scss";
-import Button from 'react-bootstrap/Button'
 
 function MyReviews(props) {
   const { user, isExpanded, toggleExpand, allData, setApp } = props
