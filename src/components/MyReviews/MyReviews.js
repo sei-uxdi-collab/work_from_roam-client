@@ -26,7 +26,8 @@ function MyReviews(props) {
 
   const onUpdateClick = review => {
     const currentReview = review
-    setApp({ currentReview })
+    const currentWorkspace = allData.find(workspace => workspace.id === review.work_space.id)
+    setApp({ currentReview, currentWorkspace })
   }
 
   const myReviewsJsx = user.reviews.map(review => (

@@ -180,6 +180,7 @@ class App extends React.Component {
             setUser={this.setUser}
             setApp={this.setState.bind(this)}
             currentReview={this.state.currentReview}
+            currentWorkspace={this.state.currentWorkspace}
             alert={this.alert}
           />
         )} />

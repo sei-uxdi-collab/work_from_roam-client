@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom'
-// import axios from 'axios'
-// import apiUrl from '../../apiConfig'
-// import { StarRating } from './StarsRating'
+
 import StarRatingComponent from "react-star-rating-component";
 import { updateReview } from '../../api/update'
 import messages from '../AutoAlert/messages'
@@ -17,12 +15,19 @@ import Button from 'react-bootstrap/Button'
       this.state = {
         rating: this.props.currentReview.rating,
         note: this.props.currentReview.note,
+        petfriendly: this.props.currentReview.petfriendly,
         wifi: this.props.currentReview.wifi,
+        wifipass: this.props.currentReview.wifipass,
+        meetingspace: this.props.currentReview.meetingspace,
         noise: this.props.currentReview.noise,
+        outdoorspace: this.props.currentReview.outdoorspace,
+        alcohol: this.props.currentReview.alcohol,
         bathroom: this.props.currentReview.bathroom,
         coffee: this.props.currentReview.coffee,
         food: this.props.currentReview.food,
+        goodforgroup: this.props.currentReview.goodforgroup,
         outlet: this.props.currentReview.outlet,
+        parking: this.props.currentReview.parking,
         seating: this.props.currentReview.seating,
         display: 'block',
         redirect: false,
@@ -33,7 +38,6 @@ import Button from 'react-bootstrap/Button'
 
     handleChange = (event) => {
       this.setState({ [event.target.name]: event.target.value })
-      console.log(event.target.value)
     }
 
     toggleChange = (event) => {
@@ -43,11 +47,15 @@ import Button from 'react-bootstrap/Button'
     handleSubmit = (event) => {
       event.preventDefault()
 
-      const { rating, noise, bathroom, seating, coffee, outlet, food, wifi, note } = this.state
+      const { rating, noise, bathroom, seating, coffee, outlet, food, wifi,
+              note, petfriendly, goodforgroup, meetingspace, outdoorspace,
+              parking, alcohol, wifipass } = this.state
       const { alert, user } = this.props
       const token = user.token
       const id = this.props.currentReview.id
-      updateReview({ id, rating, noise, bathroom, seating, coffee, outlet, food, wifi, note, token })
+      updateReview({ id, rating, noise, bathroom, seating, coffee, outlet,
+                     food, wifi, note, petfriendly, token, goodforgroup,
+                     meetingspace, outdoorspace, parking, alcohol, wifipass })
         .then(() => {
           this.setState({ display: 'none' })
           alert({
@@ -71,8 +79,8 @@ import Button from 'react-bootstrap/Button'
 
     render () {
       let placeName = ''
-      if (this.props.placeData && this.props.placeData.name) {
-        placeName = this.props.placeData.name
+      if (this.props.currentWorkspace && this.props.currentWorkspace.name) {
+        placeName = this.props.currentWorkspace.name
       }
 
       // if user is not signed in, redirect to '/sign-in'
