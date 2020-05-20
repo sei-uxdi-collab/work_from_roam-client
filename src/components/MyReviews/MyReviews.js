@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
 import StarRatingComponent from "react-star-rating-component";
 import "./MyReviews.scss";
+import Button from 'react-bootstrap/Button'
 
 function MyReviews(props) {
   const { user, isExpanded, toggleExpand, allData, setApp } = props
@@ -23,6 +24,11 @@ function MyReviews(props) {
     setApp({ currentWorkspace, mapCenter })
   }
 
+  const onUpdateClick = review => {
+    const currentReview = review
+    setApp({ currentReview })
+  }
+
   const myReviewsJsx = user.reviews.map(review => (
     <li
       key={review.id}
@@ -36,6 +42,10 @@ function MyReviews(props) {
             <div className="workplace-title"> {review.work_space.name}</div>
           </Col>
         </Row>
+        <Button
+          href={`#reviews/${review.id}/update`}
+          onClick={() => onUpdateClick(review)}
+        >update</Button>
         <Row>
           <div className="my-reviews-stars">
             <StarRatingComponent

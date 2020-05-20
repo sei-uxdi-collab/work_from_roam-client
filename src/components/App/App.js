@@ -7,6 +7,7 @@ import BarAlert from '../BarAlert/BarAlert'
 import Search from '../Search/Search'
 import GoogleMap from '../GoogleMap/GoogleMap'
 import ReviewCreate from '../Review/ReviewCreate'
+import ReviewUpdate from '../Review/ReviewUpdate'
 import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SplashPage from '../SplashPage/SplashPage'
@@ -35,6 +36,7 @@ class App extends React.Component {
       searchLocation: null,
       workSpaceId: null,
       currentWorkspace: null,
+      currentReview: null,
       user: null,
       userLocation: null,
       alerts: [],
@@ -150,7 +152,7 @@ class App extends React.Component {
             )} />
 
           <Route user={user} path='/nav' render={() => (
-              <Header 
+              <Header
                 clearUser={this.clearUser}
                 user={user}
                 userLocation={this.state.userLocation}
@@ -170,6 +172,16 @@ class App extends React.Component {
 
         <Route user={user} path='/avatar' render={() => (
           <Avatar user={user} setUser={this.setUser}/>
+        )} />
+
+        <Route user={user} path='/reviews/:id/update' render={() => (
+          <ReviewUpdate
+            user={user}
+            setUser={this.setUser}
+            setApp={this.setState.bind(this)}
+            currentReview={this.state.currentReview}
+            alert={this.alert}
+          />
         )} />
 
         <Route path='/'>
