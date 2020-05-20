@@ -43,10 +43,6 @@ function MyReviews(props) {
             <div className="workplace-title"> {review.work_space.name}</div>
           </Col>
         </Row>
-        <Button
-          href={`#reviews/${review.id}/update`}
-          onClick={() => onUpdateClick(review)}
-        >update</Button>
         <Row>
           <div className="my-reviews-stars">
             <StarRatingComponent
