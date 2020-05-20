@@ -7,8 +7,7 @@ import apiUrl from '../../apiConfig'
 
 import Review from '../Review/Review'
 import { StarRating } from '../Review/StarsRating'
-// import ScaleRating from './ScaleRating'
-import AmenityRating from './AmenityRating'
+import AmenityRating from '../AmenityRating/AmenityRating.js'
 
 import './WorkSpace.scss'
 
@@ -58,7 +57,7 @@ class WorkSpace extends React.Component {
     // Should user click on another workspace without exiting out or
     // "unmounting" the component, it will re-render with the current favorite status
     componentDidUpdate = (prevProps, prevState) => {
-      if (prevProps.data !== this.props.data && this.props.user) {
+      if (this.props.user && this.props.data && (prevProps.data !== this.props.data)) {
         axios({
           url: `${apiUrl}/work_spaces/${this.props.data.id}/likes`,
           method: 'GET',
@@ -307,18 +306,18 @@ class WorkSpace extends React.Component {
                       </div>}
                 </div>
                   <div>
+                    <span className='ratingsRow'>Wifi Quality
                     <AmenityRating
                       amenity={this.props.data.avgwifi}
-                      amenityName='Wifi Quality'
-                    />
+                    /></span>
+                    <span className='ratingsRow'>Noise Level
                     <AmenityRating
                       amenity={this.props.data.avgnoise}
-                      amenityName='Noise Level'
-                    />
+                    /></span>
+                    <span className='ratingsRow'>Seating
                     <AmenityRating
                       amenity={this.props.data.avgseating}
-                      amenityName='Seating'
-                    />
+                    /></span>
                   {!this.state.features && <p onClick={this.showFeatures} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>more<img alt='more' src='arrowDown.svg' className='vecStyle'/></p>}
                   {this.state.features &&
                     <div>

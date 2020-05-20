@@ -57,6 +57,12 @@
   font-size: 13px;
   line-height: 150%;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+.userNotes::-webkit-scrollbar {
+  display: none;
 }
 
 .empty {

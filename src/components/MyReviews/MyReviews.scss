@@ -113,6 +113,14 @@ ul {
   margin: 10px;
 }
 
+.my-reviews-right-arrow {
+  fill: #222222;
+}
+
+.my-reviews-right-arrow:hover {
+    fill: #4775FF;
+    transform: scale(1.4);
+}
 .my-reviews-stars {
   font-size: 28px;
   color: #FFCC47;

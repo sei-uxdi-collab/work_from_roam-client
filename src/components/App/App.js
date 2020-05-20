@@ -7,8 +7,10 @@ import BarAlert from '../BarAlert/BarAlert'
 import Search from '../Search/Search'
 import GoogleMap from '../GoogleMap/GoogleMap'
 import ReviewCreate from '../Review/ReviewCreate'
+import ReviewUpdate from '../Review/ReviewUpdate'
 import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
+import SplashPage from '../SplashPage/SplashPage'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import SignOut from '../SignOut/SignOut'
 import Header from '../Header/Header'
@@ -34,6 +36,7 @@ class App extends React.Component {
       searchLocation: null,
       workSpaceId: null,
       currentWorkspace: null,
+      currentReview: null,
       user: null,
       userLocation: null,
       alerts: [],
@@ -149,7 +152,7 @@ class App extends React.Component {
             )} />
 
           <Route user={user} path='/nav' render={() => (
-              <Header 
+              <Header
                 clearUser={this.clearUser}
                 user={user}
                 userLocation={this.state.userLocation}
@@ -171,7 +174,19 @@ class App extends React.Component {
           <Avatar user={user} setUser={this.setUser}/>
         )} />
 
+        <Route user={user} path='/reviews/:id/update' render={() => (
+          <ReviewUpdate
+            user={user}
+            setUser={this.setUser}
+            setApp={this.setState.bind(this)}
+            currentReview={this.state.currentReview}
+            currentWorkspace={this.state.currentWorkspace}
+            alert={this.alert}
+          />
+        )} />
+
         <Route path='/'>
+          <SplashPage />
           <div className="App">
             <div className='search-group'>
               <NavBar />
