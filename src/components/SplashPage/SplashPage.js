@@ -24,7 +24,7 @@ class SplashPage extends React.Component {
           <Link onClick={this.handleDisplay} className="p-0">
             <img src="close-x-blue.png" className="splash-x" alt="close"/>
           </Link>
-        <div style={{ marginTop: '24%' }}>
+        <div style={{ marginTop: '22vh' }}>
           <img
             src='splash-logo.svg'
             alt='logo'
