@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
 import StarRatingComponent from "react-star-rating-component";
 import "./MyReviews.scss";
+import Button from 'react-bootstrap/Button'
+import { deleteReview } from '../../api/delete'
 
 function MyReviews(props) {
   const { user, isExpanded, toggleExpand, allData, setApp } = props
@@ -29,6 +31,10 @@ function MyReviews(props) {
     setApp({ currentReview, currentWorkspace })
   }
 
+  const onDeleteReview = (review, user) => {
+    deleteReview(review, user)
+  }
+
   const myReviewsJsx = user.reviews.map(review => (
     <li
       key={review.id}
@@ -42,6 +48,11 @@ function MyReviews(props) {
             <div className="workplace-title"> {review.work_space.name}</div>
           </Col>
         </Row>
+        <Button
+          onClick={() => { if (window.confirm('Are you sure?')) onDeleteReview(review, user) }}
+        >
+          DELETE
+        </Button>
         <Row>
           <div className="my-reviews-stars">
             <StarRatingComponent
