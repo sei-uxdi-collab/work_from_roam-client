@@ -1,5 +1,5 @@
 import React from 'react'
-import { StarRating } from './StarsRating'
+import StarRatingComponent from 'react-star-rating-component'
 import './Review.scss'
 
 function Review (props) {
@@ -10,15 +10,16 @@ function Review (props) {
     return (
         <div>
         <img alt='User profile pic' src={userPic} className='userPic'/>
-        <div className='stars'>
-        <StarRating
+        <div className='nameStar'>
+        <p className='userName'><span title={props.user}>{props.user}</span></p>
+        <div className='starsReview'>
+        <StarRatingComponent
           value={props.rating}
           emptyStarColor={'#4775FF'}
           editing={false}
         />
         </div>
-        <p className='userName'><span title={props.user}>{props.user}</span></p>
-        {}
+        </div>
         {props.note ? <p className='userNotes'>{props.note}</p>:<p className='userNotes empty'>This reviewer did not leave a comment.</p>}
         </div>
     )

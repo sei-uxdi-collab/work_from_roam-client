@@ -6,7 +6,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 import Review from '../Review/Review'
-import { StarRating } from '../Review/StarsRating'
+import StarRatingComponent from 'react-star-rating-component'
 import AmenityRating from '../AmenityRating/AmenityRating.js'
 
 import './WorkSpace.scss'
@@ -131,6 +131,8 @@ class WorkSpace extends React.Component {
               </Row>
             </div>)
       }
+
+      const telNum = `tel:+${this.props.placeData && this.props.placeData.formatted_phone_number}`
 
     // Function for averaging the different amenities for Review
       let average = function(array) {
@@ -277,14 +279,15 @@ class WorkSpace extends React.Component {
                     {this.props.placeData && this.props.placeData.name}
                     </a>
                     <div className='starRating'>
-                    <StarRating
+                    <StarRatingComponent
                      value={overall}
                      emptyStarColor='#4775FF'
                      editing={false}
                     />
                     </div>
                 </div>
-                    <p>{this.props.placeData && this.props.placeData.formatted_address}</p>
+                    <span>{this.props.placeData && this.props.placeData.formatted_address}</span>
+                    <a href={telNum} style={{ display: 'block', textDecoration: 'underline', color: '#FFF'}}>{this.props.placeData && this.props.placeData.formatted_phone_number}</a>
                     <div>
                     {!this.state.hours && (this.props.placeData && this.props.placeData.opening_hours ? <p
                       style={{ cursor: 'pointer' }}
