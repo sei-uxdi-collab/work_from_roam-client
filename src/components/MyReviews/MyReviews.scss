@@ -116,10 +116,19 @@ ul {
 .my-reviews-options {
   background-color: #FFFFFF;
   padding: 0px;
-  margin: 3px 0px 0px 10px;
+  margin: 3px 0px 0px 10px !important;
   border: none;
-  height: 16px;
-  width: 16px;
+  height: 20px;
+  width: 20px;
+}
+
+.my-reviews-options img {
+  height: 17px;
+  width: 17px;
+}
+
+.my-reviews-options:hover {
+  background-color: #FFFFFF;
 }
 
 .my-reviews-right-arrow {

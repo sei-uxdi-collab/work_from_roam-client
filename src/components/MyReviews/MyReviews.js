@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import React, { Fragment, useRef } from "react";
 import { Row, Col } from 'react-bootstrap';
 import StarRatingComponent from "react-star-rating-component";
+import Button from 'react-bootstrap/Button'
 import "./MyReviews.scss";
+import { deleteReview } from '../../api/delete'
 
 function MyReviews(props) {
   const { user, isExpanded, toggleExpand, allData, setApp } = props
@@ -23,11 +25,53 @@ function MyReviews(props) {
     setApp({ currentWorkspace, mapCenter })
   }
 
+  // const onOptionsClick= event => {
+  //
+  // }
+
   const onUpdateClick = review => {
     const currentReview = review
     const currentWorkspace = allData.find(workspace => workspace.id === review.work_space.id)
     setApp({ currentReview, currentWorkspace })
   }
+
+  const onDeleteReview = (review, user) => {
+    deleteReview(review, user)
+  }
+
+  // const onDeleteReview = event => {
+  //   event.preventDefault()
+  //
+  //   const { alert, history } = this.props
+  //
+  //   deleteReview(this.state)
+  //     .then(() => alert({
+  //       heading: 'Your review has been deleted.',
+  //       variant: 'light',
+  //       image: 'logo-text-only.svg'
+  //     }))
+  //     .then(() => history.push('/'))
+  //     .catch(error => {
+  //       console.error(error)
+  //       alert({
+  //        heading: 'Sorry, you review could not be deleted.',
+  //        variant: 'danger'
+  //      })
+  //     })
+  // }
+
+  const optionsJsx = review => (
+    <Fragment>
+      <div className="container options-box">
+        <Row className="outline-bottom">
+          <Button href={`#reviews/${review.id}/update`} onClick={() => onUpdateClick(review)}>Update</Button>
+        </Row>
+        <Row>
+          <Button onClick={onDeleteReview}>Delete</Button>
+        </Row>
+      </div>
+    </Fragment>
+  )
 
   const myReviewsJsx = user.reviews.map(review => (
     <li
@@ -42,7 +86,16 @@ function MyReviews(props) {
             <div className="workplace-title"> {review.work_space.name}</div>
           </Col>
           <Col>
-              <img src='kebab-icon-blue.svg' alt='options' className="my-reviews-options"/>
+          <Button
+          href={`#reviews/${review.id}/update`}
+          onClick={() => onUpdateClick(review)}
+          >UPDATE
+          </Button>
+          <Button
+            onClick={() => { if (window.confirm('Are you sure?')) onDeleteReview(review, user) }}
+          >
+            DELETE
+          </Button>
           </Col>
         </Row>
         <Row>
