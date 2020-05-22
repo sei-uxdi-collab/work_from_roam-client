@@ -122,14 +122,14 @@ ul {
   width: 20px;
 }
 
-.my-reviews-options img {
-  height: 17px;
-  width: 17px;
-}
-
-.my-reviews-options:hover {
-  background-color: #FFFFFF;
-}
+// .my-reviews-options img {
+//   height: 17px;
+//   width: 17px;
+// }
+//
+// .my-reviews-options:hover {
+//   background-color: #FFFFFF;
+// }
 
 .my-reviews-right-arrow {
   fill: #222222;
@@ -157,4 +157,86 @@ ul {
   line-height: 150%;
   text-decoration: underline;
   margin-right: 5px;
+}
+
+///////////////KEBEB MENU TOGGLE
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none !important;
+}
+
+.dropdown-button {
+  background-color: #FFF;
+  border: none;
+  padding: 0px;
+  position: absolute;
+}
+
+.dropdown-button:hover {
+  pointer: cursor;
+  background-color: #FFF !important;
+  border: none !important;
+  padding: 0px;
+  position: absolute;
+}
+
+// this is the image
+.kebab {
+  height: 17px;
+  width: 17px;
+  padding: 0px;
+}
+
+//this is the box that appears with the options
+.options-box {
+  background: #FFFFFF;
+  border: 1px solid #EEEEEE;
+  box-sizing: border-box;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  height: 70px;
+  width: 85px;
+  list-style-type: none;
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  z-index: 1;
+}
+
+.option-button {
+  background-color: #FFF;
+  border: none;
+  color: #222222;
+  font-weight: 300;
+  font-family: Roboto;
+  font-size: 11px;
+  padding: 7px 0px 7px 4px !important;
+  margin: 5px;
+  text-align: left;
+}
+
+.option-button:hover {
+  background-color: #FFF;
+  color: #222222;
+}
+
+.options-icon {
+  height: 12px;
+  width: 12px;
+  display: inline;
+  margin-right: 8px;
+}
+
+.line-under {
+  border-bottom: 1px solid #AAAAAA;
+  border-radius: 0px;
+}
+
+.line-under:hover {
+  border-bottom: 1px solid #AAAAAA;
 }

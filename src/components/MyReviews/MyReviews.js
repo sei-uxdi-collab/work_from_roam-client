@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Row, Col } from 'react-bootstrap';
 import StarRatingComponent from "react-star-rating-component";
 import Button from 'react-bootstrap/Button'
@@ -9,12 +9,7 @@ function MyReviews(props) {
   const { user, isExpanded, toggleExpand, allData, setApp } = props
   const content = useRef(null);
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
-
-  // encounter.date_of_encounter = new Date(encounter.date_of_encounter).toLocaleDateString()
-
-  // function getDate(date) {
-  //   date = new Date(date).toLocaleDateString('en-US');
-  //  }
+  const [open, setOpen] = useState(false);
 
   console.log(props)
 
@@ -25,8 +20,9 @@ function MyReviews(props) {
     setApp({ currentWorkspace, mapCenter })
   }
 
-  // const onOptionsClick= event => {
-  //
+  // function onKebabClick () {
+  //   if(!open) setOpen(true);
+  //   else setOpen(false);
   // }
 
   const onUpdateClick = review => {
@@ -39,39 +35,18 @@ function MyReviews(props) {
     deleteReview(review, user)
   }
 
-  // const onDeleteReview = event => {
-  //   event.preventDefault()
-  //
-  //   const { alert, history } = this.props
-  //
-  //   deleteReview(this.state)
-  //     .then(() => alert({
-  //       heading: 'Your review has been deleted.',
-  //       variant: 'light',
-  //       image: 'logo-text-only.svg'
-  //     }))
-  //     .then(() => history.push('/'))
-  //     .catch(error => {
-  //       console.error(error)
-  //       alert({
-  //        heading: 'Sorry, you review could not be deleted.',
-  //        variant: 'danger'
-  //      })
-  //     })
-  // }
-
-  const optionsJsx = review => (
-    <Fragment>
-      <div className="container options-box">
-        <Row className="outline-bottom">
-          <Button href={`#reviews/${review.id}/update`} onClick={() => onUpdateClick(review)}>Update</Button>
-        </Row>
-        <Row>
-          <Button onClick={onDeleteReview}>Delete</Button>
-        </Row>
-      </div>
-    </Fragment>
-  )
+  // const optionsJsx = review => (
+  //   <Fragment>
+  //     <div className="container options-box">
+  //       <Row className="outline-bottom">
+  //         <Button href={`#reviews/${review.id}/update`} onClick={() => onUpdateClick(review)}>Update</Button>
+  //       </Row>
+  //       <Row>
+  //         <Button onClick={onDeleteReview}>Delete</Button>
+  //       </Row>
+  //     </div>
+  //   </Fragment>
+  // )
 
   const myReviewsJsx = user.reviews.map(review => (
     <li
@@ -86,16 +61,28 @@ function MyReviews(props) {
             <div className="workplace-title"> {review.work_space.name}</div>
           </Col>
           <Col>
-          <Button
-          href={`#reviews/${review.id}/update`}
-          onClick={() => onUpdateClick(review)}
-          >UPDATE
-          </Button>
-          <Button
-            onClick={() => { if (window.confirm('Are you sure?')) onDeleteReview(review, user) }}
-          >
-            DELETE
-          </Button>
+            <div
+              aria-expanded={open === true ? "true" : "false"}
+              className={open === true ? "active dropdown-button" : "dropdown-button"}
+              onClick={ () => setOpen(!open) }
+            >
+              <img src="kebab-icon-blue.svg" alt="options" className="kebab"/>
+            </div>
+            <div className={open ? "show options-box d-flex flex-column justify-content-center" : "hide options-box d-flex flex-column justify-content-center"}>
+                <Button
+                href={`#reviews/${review.id}/update`}
+                onClick={() => onUpdateClick(review)}
+                className="m-0 p-0 option-button line-under"
+                >
+                  <img src="edit-icon-blue.svg" alt="edit" className="options-icon"/>EDIT
+                </Button>
+                <Button
+                  onClick={() => { if (window.confirm('Are you sure?')) onDeleteReview(review, user) }}
+                  className="m-0 p-0 option-button"
+                >
+                  <img src="delete-icon-blue.svg" alt="delete" className="options-icon"/>DELETE
+                </Button>
+            </div>
           </Col>
         </Row>
         <Row>
