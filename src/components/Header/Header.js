@@ -120,6 +120,19 @@ const Header = ({ user, userLocation, allData, setApp }) => {
       </Row>
       <Row>
         <div>
+          <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
+        </div>
+        <TopRated
+          user={user}
+          userLocation={userLocation}
+          isExpanded={expanded.topRated}
+          toggleExpand={() => toggleExpand('topRated')}
+          allData={allData}
+          setApp={setApp}
+        />
+      </Row>
+      <Row>
+        <div>
           <img src="info-icon.png" className="icon" alt="info"/>
         </div>
         <div className="list-item">
@@ -135,7 +148,7 @@ const Header = ({ user, userLocation, allData, setApp }) => {
   )
 
   return (
-    <div className="header" collapseOnSelect fixed="top">
+    <div className="header" fixed="top">
       <div id="">
         <div>
           { user ? authenticatedOptions : unauthenticatedOptions }
