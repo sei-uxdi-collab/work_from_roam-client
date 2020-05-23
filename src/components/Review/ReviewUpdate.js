@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
+
 
 import StarRatingComponent from "react-star-rating-component";
 import { updateReview } from '../../api/update'
@@ -56,6 +59,12 @@ import Button from 'react-bootstrap/Button'
       updateReview({ id, rating, noise, bathroom, seating, coffee, outlet,
                      food, wifi, note, petfriendly, token, goodforgroup,
                      meetingspace, outdoorspace, parking, alcohol, wifipass })
+       .then(data => {
+         axios(apiUrl + '/work_spaces')
+           .then(data => {
+               this.props.setApp({ allData: data.data.work_spaces })
+           })
+       })
         .then(() => {
           this.setState({ display: 'none' })
           alert({
