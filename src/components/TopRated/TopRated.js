@@ -19,10 +19,7 @@ function TopRated(props) {
   useEffect(() => {
       axios({
         url: apiUrl + '/work_spaces/top_rated',
-        method: 'GET',
-        headers: {
-          'Authorization': `Token token=${user.token}`
-        }
+        method: 'GET'
       })
         // .then(response => console.log(response.data))
         .then(response => {
@@ -82,7 +79,7 @@ function TopRated(props) {
         <Row className="pb-2">
           <Col xs={11} className="m-0 p-0">
             <div className="open-now">Open Now</div>
-            <span className="plain-text">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
+            <span className="plain-text">{userLocation && (calculateDistanceMiles( userLocation, workplaceLocation(workplace) ))} miles away</span>
           </Col>
           <Col xs={1} className="m-0 p-0" onClick={() => onArrowClick(workplace.id)} >
           <span><svg  class="top-rated-right-arrow" width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">

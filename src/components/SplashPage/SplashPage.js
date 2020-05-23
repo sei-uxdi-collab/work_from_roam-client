@@ -21,7 +21,7 @@ class SplashPage extends React.Component {
 
     return (
       <div className={this.state.display ? 'splash' : 'fadeOut'}>
-          <Link onClick={this.handleDisplay} className="p-0">
+          <Link to="" onClick={this.handleDisplay} className="p-0">
             <img src="close-x-blue.png" className="splash-x" alt="close"/>
           </Link>
         <div style={{ marginTop: '16vh' }}>
