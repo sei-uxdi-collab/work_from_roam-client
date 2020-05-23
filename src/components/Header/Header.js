@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 // import Nav from 'react-bootstrap/Nav'
 // import Navbar from 'react-bootstrap/Navbar'
 import './Header.scss'
@@ -9,8 +9,9 @@ import TopRated from "../TopRated/TopRated";
 import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
+import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 
-const Header = ({ user, userLocation, allData, setApp }) => {
+const Header = ({ user, userLocation, allData, setApp, google, map, history }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
@@ -30,6 +31,19 @@ const Header = ({ user, userLocation, allData, setApp }) => {
       [section]: newState
     })
 
+  }
+
+  const showWorkspace = (id, placeId) => {
+    const callback = placeData => {
+      setApp({ placeData })
+    }
+    const currentWorkspace = allData.find(workspace => workspace.id === id)
+    const { lat, lng } = currentWorkspace
+    const mapCenter = { lat, lng }
+
+    getGooglePlaceDetails(google, map, placeId, callback)
+    setApp({ currentWorkspace, mapCenter })
+    history.push('/workspace')
   }
 
   const userBanner = (
@@ -66,8 +80,7 @@ const Header = ({ user, userLocation, allData, setApp }) => {
           userLocation={userLocation}
           isExpanded={expanded.favorites}
           toggleExpand={() => toggleExpand('favorites')}
-          allData={allData}
-          setApp={setApp}
+          showWorkspace={showWorkspace}
         />
       </Row>
       <Row>
@@ -80,6 +93,7 @@ const Header = ({ user, userLocation, allData, setApp }) => {
           toggleExpand={() => toggleExpand('reviews')}
           allData={allData}
           setApp={setApp}
+          showWorkspace={showWorkspace}
         />
       </Row>
       <Row>
@@ -91,8 +105,7 @@ const Header = ({ user, userLocation, allData, setApp }) => {
           userLocation={userLocation}
           isExpanded={expanded.topRated}
           toggleExpand={() => toggleExpand('topRated')}
-          allData={allData}
-          setApp={setApp}
+          showWorkspace={showWorkspace}
         />
       </Row>
       <Row>
@@ -127,8 +140,7 @@ const Header = ({ user, userLocation, allData, setApp }) => {
           userLocation={userLocation}
           isExpanded={expanded.topRated}
           toggleExpand={() => toggleExpand('topRated')}
-          allData={allData}
-          setApp={setApp}
+          showWorkspace={showWorkspace}
         />
       </Row>
       <Row>
@@ -157,4 +169,4 @@ const Header = ({ user, userLocation, allData, setApp }) => {
     </div>
   )
 }
-export default Header
+export default withRouter(Header)
