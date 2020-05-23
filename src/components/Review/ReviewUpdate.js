@@ -59,7 +59,7 @@ import Button from 'react-bootstrap/Button'
         .then(() => {
           this.setState({ display: 'none' })
           alert({
-            heading: 'Thanks for updating your review!',
+            heading: 'Your review has been updated!',
             message: messages.reviewCreateSuccess,
             variant: 'light',
             image: 'logo-text-only.svg'

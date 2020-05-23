@@ -2,15 +2,6 @@
   float: right;
 }
 
-.heart {
-  background-color: #FFFFFF;
-  padding: 0px;
-  margin: 0px;
-  border: none;
-  height: 16px;
-  width: 16px;
-}
-
 /* Entire favorites section */
 .myfavorites-section {
   display: flex;
@@ -26,6 +17,15 @@
   border: none;
   outline: none;
   padding: 0px;
+}
+
+.myfavorites-heart {
+  background-color: #FFFFFF;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  height: 16px;
+  width: 16px;
 }
 
 /* This is the list item that the user sees in the menu, it is the text only, not the button itself */
