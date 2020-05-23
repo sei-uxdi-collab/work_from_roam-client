@@ -28,7 +28,9 @@ class App extends React.Component {
     this.state = {
       allData: [],
       poiLocation: null,
-      mapCenter: { lat: 42.3601, lng: -71.0589},
+      google: null,
+      map: null,
+      mapCenter: { lat: 42.3600, lng: -71.0589},
       bounds: null,
       placeId: null,
       placeData: null,
@@ -36,7 +38,7 @@ class App extends React.Component {
       workSpaceId: null,
       currentWorkspace: null,
       user: null,
-      userLocation: null,
+      userLocation: { lat: 42.3601, lng: -71.0589 },
       alerts: [],
       barAlerts: [],
       filteredWorkspaces: [],
@@ -155,7 +157,9 @@ class App extends React.Component {
                 user={user}
                 userLocation={this.state.userLocation}
                 allData={this.state.allData}
-                setApp={this.setState.bind(this)} />
+                setApp={this.setState.bind(this)}
+                google={this.state.google}
+                map={this.state.map} />
             )} />
 
             <Route user={user} path='/create-workspace' render={() => (
