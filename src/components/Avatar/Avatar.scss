@@ -28,7 +28,7 @@
   }
 
   .top-section {
-    margin: 22px;
+    margin: 12px 6%;
     border-bottom: solid #AAAAAA 2px;
     button {
       border-radius: 33px;
@@ -99,15 +99,23 @@
       display: flex;
       flex-wrap: wrap;
       padding: 0 5%;
+      justify-content: space-between;
+      align-items: center;
       .avatar-button {
-        height: 110px;
-        width: 110px;
-        border-color: black;
-        border-radius: 10px;
+        height: 124px;
+        width: 124px;
+        background-color: transparent;
+        border: solid transparent 3px;
         font-size: 40px;
         img {
           height: 100%;
+          padding: 4px;
         }
+      }
+      .selected {
+        border: solid #4775FF 3px;
+        border-radius: 10px;
+        outline: none;
       }
     }
 
@@ -125,7 +133,7 @@
   }
 }
 
-@media (max-width: 370px) {
+@media (max-height: 812px) {
   .avatar-container {
     overflow-y: scroll;
   }
