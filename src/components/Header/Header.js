@@ -1,11 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import { Row } from 'react-bootstrap';
-<<<<<<< HEAD
-import { Link } from 'react-router-dom'
+import { Row } from 'react-bootstrap'
 import { showUser } from '../../api/auth'
-=======
 import { Link, withRouter } from 'react-router-dom'
->>>>>>> development
 // import Nav from 'react-bootstrap/Nav'
 // import Navbar from 'react-bootstrap/Navbar'
 import './Header.scss'
@@ -16,11 +12,7 @@ import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 
-<<<<<<< HEAD
-const Header = ({ user, userLocation, allData, setApp, setUser }) => {
-=======
-const Header = ({ user, userLocation, allData, setApp, google, map, history }) => {
->>>>>>> development
+const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
