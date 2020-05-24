@@ -1,6 +1,7 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import { showUser } from '../../api/auth'
 // import Nav from 'react-bootstrap/Nav'
 // import Navbar from 'react-bootstrap/Navbar'
 import './Header.scss'
@@ -10,7 +11,7 @@ import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
 
-const Header = ({ user, userLocation, allData, setApp }) => {
+const Header = ({ user, userLocation, allData, setApp, setUser }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
@@ -18,6 +19,14 @@ const Header = ({ user, userLocation, allData, setApp }) => {
     info: false,
     settings: false,
   })
+
+  useEffect(() => {
+    if (user) {
+      showUser(user)
+      .then(res => setUser(res.data.user))
+      .catch(console.error)
+    }
+  }, [])
 
   const toggleExpand = section => {
     const newState = !expanded[section]
