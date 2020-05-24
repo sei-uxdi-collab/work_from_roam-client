@@ -59,7 +59,7 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
     <Fragment>
       <div className="d-flex mb-2" style={{ width: "100%"}}>
         <div>
-          <img src="profile-pic-placeholder.png" className="prof-pic" alt="profile pic" />
+          { user && (<img src={avatar(user.avatar)} className="prof-pic" alt="profile pic"/> || <img src="avatar--empty@1x.png" className="prof-pic" alt="profile pic" /> )}
         </div>
         <div className="ml-4">
           <Row>
