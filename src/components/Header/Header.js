@@ -36,8 +36,10 @@ const Header = ({ user, userLocation, allData, setApp }) => {
   const userBanner = (
     <Fragment>
       <div className="d-flex mb-2" style={{ width: "100%"}}>
-        <div>
-          { user && (<img src={avatar(user.avatar)} className="prof-pic" alt="profile pic"/> || <img src="avatar--empty@1x.png" className="prof-pic" alt="profile pic" /> )}
+        <div >
+          <a href="#avatar">
+            { user && (<img src={avatar(user.avatar)} className="prof-pic" alt="profile pic"/> || <img src={avatar(0)} className="prof-pic" alt="profile pic" /> )}
+          </a>
         </div>
         <div className="ml-4">
           <Row>
