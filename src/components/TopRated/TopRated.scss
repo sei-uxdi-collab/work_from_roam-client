@@ -53,19 +53,7 @@
   color: #4775FF !important;
 }
 
-@media (min-width: 768px) {
-  .toprated-title {
-    font-size: 20px;
-  }
-}
-
-@media (min-width: 350px) and (max-width: 767px) {
-  .toprated-title {
-    font-size: 18px;
-  }
-}
-
-//////////////////// STYLES FOR TOP RATED CARDS
+/// STYLES FOR TOP RATED CARDS
 
 ul {
   padding: 0px
@@ -105,7 +93,7 @@ ul {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   height: auto;
-  width: 252px;
+  max-width: 252px;
   padding: 10px 30px;
   margin: 10px;
 }
@@ -136,4 +124,72 @@ ul {
   line-height: 150%;
   text-decoration: underline;
   margin-right: 5px;
+}
+
+// MEDIA QUERIES
+
+@media (min-width: 768px) {
+  .toprated-title {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .toprated-title {
+    font-size: 18px;
+  }
+  .top-rated-card {
+    margin-right: 20px;
+  }
+}
+
+// ALL FOR CONTENT WINDOW HEIGHT
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 480px) {
+  .toprated-content {
+    max-height: 30vh;
+  }
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) {
+  .toprated-content {
+    height: 27vh;
+  }
+}
+
+/* Samsung Galaxy S3, S4, S5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) {
+  .toprated-content {
+    height: 32vh;
+  }
+}
+
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) {
+  .toprated-content {
+    height: 39vh;
+  }
+}
+
+/* iPhone 6+, 7+, 8+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) {
+  .toprated-content {
+    height: 42vh;
+  }
+}
+
+/* iPhone X ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) {
+  .toprated-content {
+    height: 45vh;
+  }
+}
+
+/* iPhone XS Max, XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) {
+  .toprated-content {
+    height: 46vh;
+  }
 }
