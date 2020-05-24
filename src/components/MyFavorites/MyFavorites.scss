@@ -75,20 +75,6 @@
   color: #4775FF !important;
 }
 
-// desktop
-@media (min-width: 768px) {
-  .myfavorites-title {
-    font-size: 20px;
-  }
-}
-
-// mobile
-@media (min-width: 350px) and (max-width: 767px) {
-  .myfavorites-title {
-    font-size: 18px;
-  }
-}
-
 ///////////// FOR MY FAVORITE CARDS
 ul {
   padding: 0px
@@ -132,9 +118,10 @@ ul {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   height: auto;
-  width: 252px;
+  max-width: 252px;
   padding: 10px 30px;
   margin: 10px;
+  margin-right: 20px;
 }
 
 .my-favorite-stars {
@@ -163,4 +150,72 @@ ul {
   line-height: 150%;
   text-decoration: underline;
   margin-right: 5px;
+}
+
+// desktop
+@media (min-width: 768px) {
+  .myfavorites-title {
+    font-size: 20px;
+  }
+}
+
+// general mobile
+@media (min-width: 320px) and (max-width: 767px) {
+  .myfavorites-title {
+    font-size: 18px;
+  }
+  .my-favorite-card {
+    margin-right: 20px;
+  }
+}
+
+////// ALL FOR CONTENT WINDOW HEIGHT
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 480px) {
+  .myfavorites-content {
+    max-height: 30vh;
+  }
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) {
+  .myfavorites-content {
+    height: 27vh;
+  }
+}
+
+/* Samsung Galaxy S3, S4, S5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) {
+  .myfavorites-content {
+    height: 32vh;
+  }
+}
+
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) {
+  .myfavorites-content {
+    height: 39vh;
+  }
+}
+
+/* iPhone 6+, 7+, 8+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) {
+  .myfavorites-content {
+    height: 42vh;
+  }
+}
+
+/* iPhone X ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) {
+  .myfavorites-content {
+    height: 45vh;
+  }
+}
+
+/* iPhone XS Max, XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) {
+  .myfavorites-content {
+    height: 46vh;
+  }
 }

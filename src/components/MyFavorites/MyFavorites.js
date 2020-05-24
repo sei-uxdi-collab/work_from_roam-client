@@ -15,9 +15,9 @@ function MyFavorites(props) {
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
   // function to change the telephone number from a string with parenthesis and dashes to ONLY numbers
-  const formatPhone = function(phone) {
-    return "tel:" + phone.replace(/[ ()\\s-]+/g, "")
-  }
+  // const formatPhone = function(phone) {
+  //   return "tel:" + phone.replace(/[ ()\\s-]+/g, "")
+  // }
 
   // used for figuring out calculated distance
   const workplaceLocation = function(workplace) {
@@ -45,9 +45,6 @@ function MyFavorites(props) {
         </Row>
         <Row>
           <span className="plain-text"> {workplace.address}</span>
-        </Row>
-        <Row>
-          <span className="plain-text"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
         </Row>
         <Row>
           <div className="my-favorite-stars">

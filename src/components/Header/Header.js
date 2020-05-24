@@ -11,6 +11,7 @@ import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
+import { avatar } from '../../helpers/avatarsArray'
 
 const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history }) => {
   const [expanded, setExpanded] = useState({
@@ -58,8 +59,10 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
   const userBanner = (
     <Fragment>
       <div className="d-flex mb-2" style={{ width: "100%"}}>
-        <div>
-          <img src="profile-pic-placeholder.png" className="prof-pic" alt="profile pic" />
+        <div >
+          <a href="#avatar">
+            { user && user.avatar ? <img src={avatar(user.avatar)} className="prof-pic" alt="profile pic"/> : <img src={avatar(25)} className="prof-pic" alt="profile pic" /> }
+          </a>
         </div>
         <div className="ml-4">
           <Row>
