@@ -41,6 +41,13 @@ class Avatar extends React.Component {
     this.setState({ selectedAvatar })
   }
 
+  onKeyDown = event => {
+    const selectedAvatar = parseInt(event.target.getAttribute('name'))
+    if (event.key === 'Enter') {
+      this.onAvatarClick(selectedAvatar)
+    } 
+  }
+
   onSave = () => {
     const { user, setUser } = this.props
     if (user) {
@@ -60,9 +67,15 @@ class Avatar extends React.Component {
   createAvatarButtons = numbers => (
     <div className="avatar-select">
       {numbers.map(number => (
-        <button className="avatar-button" onClick={() => this.onAvatarClick(number)}>
+        <div
+          tabindex={0}
+          className={`avatar-button${this.state.selectedAvatar === number ? " selected" : ''}`}
+          onClick={() => this.onAvatarClick(number)}
+          onKeyDown={this.onKeyDown}
+          name={number}
+          >
           <img src={avatar(number)} />
-        </button>
+        </div>
       ))}
     </div>
   )
