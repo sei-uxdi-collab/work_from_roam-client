@@ -1,5 +1,6 @@
-import React, { Fragment, useState } from 'react'
-import { Row } from 'react-bootstrap';
+import React, { Fragment, useState, useEffect } from 'react'
+import { Row } from 'react-bootstrap'
+import { showUser } from '../../api/auth'
 import { Link, withRouter } from 'react-router-dom'
 // import Nav from 'react-bootstrap/Nav'
 // import Navbar from 'react-bootstrap/Navbar'
@@ -11,7 +12,7 @@ import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 
-const Header = ({ user, userLocation, allData, setApp, google, map, history }) => {
+const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
@@ -19,6 +20,14 @@ const Header = ({ user, userLocation, allData, setApp, google, map, history }) =
     info: false,
     settings: false,
   })
+
+  useEffect(() => {
+    if (user) {
+      showUser(user)
+      .then(res => setUser(res.data.user))
+      .catch(console.error)
+    }
+  }, [])
 
   const toggleExpand = section => {
     const newState = !expanded[section]

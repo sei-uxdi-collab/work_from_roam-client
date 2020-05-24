@@ -159,6 +159,7 @@ class App extends React.Component {
                 user={user}
                 userLocation={this.state.userLocation}
                 allData={this.state.allData}
+                setUser={this.setUser}
                 setApp={this.setState.bind(this)}
                 google={this.state.google}
                 map={this.state.map} />
