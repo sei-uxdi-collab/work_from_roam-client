@@ -11,6 +11,7 @@ import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
+import { avatar } from '../../helpers/avatarsArray'
 
 const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history }) => {
   const [expanded, setExpanded] = useState({
