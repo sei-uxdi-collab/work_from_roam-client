@@ -52,19 +52,7 @@
   color: #4775FF !important;
 }
 
-@media (min-width: 768px) {
-  .my-reviews-title {
-    font-size: 20px;
-  }
-}
-
-@media (min-width: 350px) and (max-width: 767px) {
-  .my-reviews-title {
-    font-size: 18px;
-  }
-}
-
-//////////////////// STYLES FOR TOP RATED CARDS
+/////////////// STYLES FOR TOP RATED CARDS
 
 ul {
   padding: 0px
@@ -108,7 +96,7 @@ ul {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   height: auto;
-  width: 252px;
+  max-width: 252px;
   padding: 10px 30px;
   margin: 10px;
 }
@@ -121,15 +109,6 @@ ul {
   height: 20px;
   width: 20px;
 }
-
-// .my-reviews-options img {
-//   height: 17px;
-//   width: 17px;
-// }
-//
-// .my-reviews-options:hover {
-//   background-color: #FFFFFF;
-// }
 
 .my-reviews-right-arrow {
   fill: #222222;
@@ -239,4 +218,73 @@ ul {
 
 .line-under:hover {
   border-bottom: 1px solid #AAAAAA;
+}
+
+/// MEDIA QUERIES
+
+@media (min-width: 768px) {
+  .my-reviews-title {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .my-reviews-title {
+    font-size: 18px;
+  }
+  .my-reviews-card {
+    margin-right: 20px !important;
+  }
+}
+
+
+// ALL FOR CONTENT WINDOW HEIGHT
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 480px) {
+  .my-reviews-content {
+    max-height: 30vh;
+  }
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) {
+  .my-reviews-content {
+    height: 27vh;
+  }
+}
+
+/* Samsung Galaxy S3, S4, S5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) {
+  .my-reviews-content {
+    height: 32vh;
+  }
+}
+
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) {
+  .my-reviews-content {
+    height: 39vh;
+  }
+}
+
+/* iPhone 6+, 7+, 8+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) {
+  .my-reviews-content {
+    height: 42vh;
+  }
+}
+
+/* iPhone X ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) {
+  .my-reviews-content {
+    height: 45vh;
+  }
+}
+
+/* iPhone XS Max, XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) {
+  .my-reviews-content {
+    height: 46vh;
+  }
 }

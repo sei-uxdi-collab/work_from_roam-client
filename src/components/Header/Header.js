@@ -60,7 +60,7 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
       <div className="d-flex mb-2" style={{ width: "100%"}}>
         <div >
           <a href="#avatar">
-            { user && user.avatar ? <img src={avatar(user.avatar)} className="prof-pic" alt="profile pic"/> : <img src={avatar(0)} className="prof-pic" alt="profile pic" /> }
+            { user && user.avatar ? <img src={avatar(user.avatar)} className="prof-pic" alt="profile pic"/> : <img src={avatar(25)} className="prof-pic" alt="profile pic" /> }
           </a>
         </div>
         <div className="ml-4">
