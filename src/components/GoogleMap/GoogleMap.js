@@ -22,6 +22,7 @@ class GoogleMap extends React.Component {
 
     // Using geolocation from browser to location user location
     componentDidMount = () => {
+      this.props.setApp({ mapCenter: { lat: 42.3601, lng: -71.0589 } })
       if(navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
         // console.log('found user location')
@@ -112,6 +113,13 @@ class GoogleMap extends React.Component {
       this.props.history.push('/suggestions')
     }
 
+    updateMapState = (props, map, event) => {
+        if (!this.props.google || !this.props.map) {
+          const { google } = this.props
+          this.props.setApp({ map, google })
+        }
+    }
+
     render() {
         const { currentWorkspace } = this.props
         return (
@@ -122,6 +130,8 @@ class GoogleMap extends React.Component {
                 clickableIcons={true}
                 options={{gesturHandling: 'greedy'}}
                 onClick={this.handleClick}
+                onCenter_changed={this.updateMapState}
+                onMouseover={this.updateMapState}
                 className='google-map'
             >
 
