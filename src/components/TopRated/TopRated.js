@@ -30,9 +30,9 @@ function TopRated(props) {
 
   // takes formatted phone number and removes everything that's not a number
   // this allows us to pass it into an href and make the number "callable"
-  const formatPhone = function(phone) {
-    return "tel:" + phone.replace(/[ ()\\s-]+/g, "")
-  }
+  // const formatPhone = function(phone) {
+  //   return "tel:" + phone.replace(/[ ()\\s-]+/g, "")
+  // }
 
   // used for figuring out calculated distance
   const workplaceLocation = function(workplace) {
@@ -62,9 +62,6 @@ function TopRated(props) {
         </Row>
         <Row>
           <span className="plain-text"> {workplace.address}</span>
-        </Row>
-        <Row>
-          <span className="plain-text"> Phone: {workplace.phone ? <u><a href={formatPhone(workplace.phone)}>{workplace.phone}</a></u> : "Not Available"}</span>
         </Row>
         <Row>
           <div className="top-rated-stars">
