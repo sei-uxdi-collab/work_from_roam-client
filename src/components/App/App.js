@@ -161,8 +161,7 @@ class App extends React.Component {
                 allData={this.state.allData}
                 setApp={this.setState.bind(this)}
                 google={this.state.google}
-                map={this.state.map}
-                />
+                map={this.state.map} />
             )} />
 
             <Route user={user} path='/create-workspace' render={() => (
@@ -214,6 +213,8 @@ class App extends React.Component {
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}
               currentWorkspace={this.state.currentWorkspace}
+              google={this.state.google}
+              map={this.state.map}
             />
           <ListView
             workspaces={[this.state.filteredWorkspaces]}

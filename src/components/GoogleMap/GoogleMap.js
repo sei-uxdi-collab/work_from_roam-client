@@ -114,8 +114,10 @@ class GoogleMap extends React.Component {
     }
 
     updateMapState = (props, map, event) => {
-        const { google } = this.props
-        this.props.setApp({ map, google })
+        if (!this.props.google || !this.props.map) {
+          const { google } = this.props
+          this.props.setApp({ map, google })
+        }
     }
 
     render() {
