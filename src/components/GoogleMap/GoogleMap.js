@@ -40,7 +40,7 @@ class GoogleMap extends React.Component {
         })
     }
 
-    placeDetails = ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews', 'opening_hours']
+    placeDetails = ['name', 'website', 'formatted_phone_number', 'formatted_address', 'photo', 'reference', 'reviews', 'opening_hours', 'address_components']
 
     setPlaceData = placeData => {
         this.props.setApp({ placeData })
@@ -59,7 +59,7 @@ class GoogleMap extends React.Component {
         const placeId = marker.data.place_id
         // set App state with workspace data and location
         this.props.setApp({ placeData: null, currentWorkspace, poiLocation, mapCenter, placeId })
-        // get and set google place data 
+        // get and set google place data
         this.getPlaceDetails(props.map, placeId)
         // navigate to '/workspace' to render the component
         this.props.history.push('/workspace')
@@ -93,7 +93,7 @@ class GoogleMap extends React.Component {
         const mapCenter = poiLocation
 
         this.findExistingWorkspace(placeId)
-  
+
         this.props.setApp({ mapCenter, poiLocation, placeId })
 
         this.getPlaceDetails(map, placeId)
@@ -103,7 +103,7 @@ class GoogleMap extends React.Component {
     handleClick = (props, map, event) => {
         // if user clicks on a point of interest (poi)
         if (event.placeId) {
-            this.handlePOI(map, event)           
+            this.handlePOI(map, event)
         } else {
             this.navigateHome()
         }
@@ -141,7 +141,7 @@ class GoogleMap extends React.Component {
                 icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
             />
 
-            <Marker 
+            <Marker
                 name={'search result'}
                 position={this.props.searchLocation}
                 icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
@@ -159,7 +159,7 @@ class GoogleMap extends React.Component {
                     name={'Current location'}
                     icon={currentWorkspace && workSpace === currentWorkspace ? 'logo-bull-icon-active.svg' : 'logo-bull-icon.svg'}
                 />
-            ))}         
+            ))}
 
             </Map>
         )
