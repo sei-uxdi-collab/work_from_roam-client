@@ -23,8 +23,11 @@ const ListView = props => {
     transition: 0.5
   })
   const [width, setWidth] = useState()
-
   const workspaceArray = props.workspaces[0].slice(0, 5)
+  const placeholderText = ['No Go!']
+
+  console.log(workspaceArray)
+  console.log(workspaceArray)
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Reference and function that listens for events outside of the ListView component, and closes it
@@ -93,6 +96,31 @@ const ListView = props => {
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+  const RenderSlide = array => {
+    if (workspaceArray.length === 0) {
+      return (
+        <div css={placeholderCSS}>
+          <p>Please use the Filter button above to filter workspaces!</p>
+        </div>
+      )
+    } else {
+      return (
+        <WorkspaceSlider
+          translate={translate}
+          transition={transition}
+          width={width * workspaceArray.length}
+        >
+          {workspaceArray.map(workspace => (
+            <Slide key={workspace.id}
+              content={workspace}
+              activeIndex={activeIndex}
+              width={width} />
+          ))}
+        </WorkspaceSlider>
+      )
+    }
+  }
+
   return (
 
     <Container className='list-container' fluid id={isVisible}>
@@ -114,18 +142,7 @@ const ListView = props => {
             </Dropdown.Menu>
           </Dropdown>
           <div css={sliderCSS} ref={sliderWidth}>
-            <WorkspaceSlider
-              translate={translate}
-              transition={transition}
-              width={width * workspaceArray.length}
-            >
-              {workspaceArray.map(workspace => (
-                <Slide key={workspace.id}
-                  content={workspace}
-                  activeIndex={activeIndex}
-                  width={width} />
-              ))}
-            </WorkspaceSlider>
+            <RenderSlide array={workspaceArray} />
             <Dots slides={workspaceArray} width={width} activeIndex={activeIndex}/>
           </div>
           <Arrow direction='left' handleClick={prevSlide} />
@@ -155,7 +172,15 @@ const menuCSS = css`
   width: 324px;
 `
 
+const placeholderCSS = css`
+  color: white;
+  font-family: 'Roboto';
+  margin: auto;
+  width: 250px;
+`
+
 const sliderCSS = css`
+  display: flex;
   height: 100%;
   width: 80%;
   margin: 0 auto;
