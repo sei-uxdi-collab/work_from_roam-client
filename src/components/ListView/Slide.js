@@ -6,6 +6,8 @@ import { css, jsx } from '@emotion/core'
 import ListViewRatings from './ListViewRatings'
 
 export const Slide = ({ content, width, activeIndex }) => {
+  console.log(content)
+  console.log(width)
 
   // Will eventually be altered to toggle from open/closed states
   const openHours = () => {

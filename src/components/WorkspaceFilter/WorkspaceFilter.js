@@ -8,7 +8,6 @@ import mapValues from 'lodash/mapValues'
 // Custom component import
 import { ApplyFilter } from './ApplyFilter.js'
 // import filteredCall from '../../api/workspaceFilter.js'
-import magGlass from './SearchVector.svg'
 
 // Styling imports
 import './WorkspaceFilter.scss'
@@ -149,7 +148,7 @@ export const WorkspaceFilter = props => {
 
   return (
     <Fragment>
-      <img src={magGlass} alt='Mag Glass' onClick={toggleShow}/>
+      <Button variant='primary' size='sm' onClick={toggleShow}>Filter</Button>
 
       <Media queries={{
           small: '(max-width: 450px)',
