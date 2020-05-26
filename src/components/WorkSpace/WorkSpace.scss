@@ -187,6 +187,13 @@ p.carousel-status {
   margin: 5px 15px;
 }
 
+.favorited {
+  color: #fff;
+  background-color: #0062cc;
+  border-color: #005cbf;
+}
+
+
 .nameAndStar {
   display: -webkit-inline-box;
 }
@@ -383,11 +390,11 @@ p.carousel-status {
 // Small mobile
 @media only screen and (max-width: 320px) {
   .carousel {
-    max-width: 260px;
+    width: 280px;
     height: 160px;
     margin-top: 8%;
     margin-bottom: 5%;
-    margin-left: 5%;
+    margin-left: 1%;
   }
 
   .worspaceLink {

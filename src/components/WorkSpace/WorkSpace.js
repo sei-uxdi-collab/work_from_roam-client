@@ -147,26 +147,9 @@ class WorkSpace extends React.Component {
       }
       // Overall average rating for workSpace
       let overall = average(this.props.data.reviews.map(review => review.rating))
-      // Outlets average rating
-      // let outlet = average(this.props.data.reviews.map(review => parseInt(review.outlet)))
-      // // Coffee average Rating
-      // let coffee = average(this.props.data.reviews.map(review => parseInt(review.coffee)))
-      // // Food average rating
-      // let food = average(this.props.data.reviews.map(review => parseInt(review.food)))
 
       // Style booleans for showing filter options as being available or not
-      let alcohol = false
-      let coffee = false
-      let food = false
-      let freeParking = false
-      let goodForGroups = false
-      let petFriendly = false
-      let meetingSpace = false
-      let outlets = false
-      let outdoorSpace = false
-      let quiet = false
-
-      let wifiPassword = false
+      let {alcohol, coffee, food, freeParking, goodForGroups, petFriendly, meetingSpace, outlets, outdoorSpace, quiet, wifiPassword} = false
 
       // Conditionals for showing if filters are available
       if(this.props.data.bool_alcohol === true) {
@@ -202,9 +185,6 @@ class WorkSpace extends React.Component {
       if(this.props.data.bool_wifipass === true) {
         wifiPassword = true
       }
-
-
-
 
       // Register as favorited
       const handleFave = event => {
@@ -264,7 +244,7 @@ class WorkSpace extends React.Component {
                                                           onClick={handleFave}
                                                           ><img src='favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
                 {this.props.user && this.state.flag && <Button
-                                                          className='button'
+                                                          className='button favorited'
                                                           data={this.props.data.id}
                                                           onClick={handleUnfave}
                                                           ><img src='favoriteHeartRed.svg' alt='favorite'/>Add to Favorites</Button>}
@@ -320,7 +300,7 @@ class WorkSpace extends React.Component {
                         </div>
                       </div>}
                 </div>
-                  <div>
+                  <div style={{ marginTop: '35px' }}>
                     <span className='ratingsRow'>Wifi Quality
                     <AmenityRating
                       amenity={this.props.data.avgwifi}
