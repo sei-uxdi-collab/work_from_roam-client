@@ -15,27 +15,30 @@ import Button from 'react-bootstrap/Button'
   class ReviewUpdate extends React.Component {
     constructor(props) {
       super(props)
-      this.state = {
-        rating: this.props.currentReview.rating,
-        note: this.props.currentReview.note,
-        petfriendly: this.props.currentReview.petfriendly,
-        wifi: this.props.currentReview.wifi,
-        wifipass: this.props.currentReview.wifipass,
-        meetingspace: this.props.currentReview.meetingspace,
-        noise: this.props.currentReview.noise,
-        outdoorspace: this.props.currentReview.outdoorspace,
-        alcohol: this.props.currentReview.alcohol,
-        bathroom: this.props.currentReview.bathroom,
-        coffee: this.props.currentReview.coffee,
-        food: this.props.currentReview.food,
-        goodforgroup: this.props.currentReview.goodforgroup,
-        outlet: this.props.currentReview.outlet,
-        parking: this.props.currentReview.parking,
-        seating: this.props.currentReview.seating,
-        display: 'block',
-        redirect: false,
-        isChecked: props.isChecked || false
+      if (props.currentReview) {
+        this.state = {
+          rating: this.props.currentReview.rating,
+          note: this.props.currentReview.note,
+          petfriendly: this.props.currentReview.petfriendly,
+          wifi: this.props.currentReview.wifi,
+          wifipass: this.props.currentReview.wifipass,
+          meetingspace: this.props.currentReview.meetingspace,
+          noise: this.props.currentReview.noise,
+          outdoorspace: this.props.currentReview.outdoorspace,
+          alcohol: this.props.currentReview.alcohol,
+          bathroom: this.props.currentReview.bathroom,
+          coffee: this.props.currentReview.coffee,
+          food: this.props.currentReview.food,
+          goodforgroup: this.props.currentReview.goodforgroup,
+          outlet: this.props.currentReview.outlet,
+          parking: this.props.currentReview.parking,
+          seating: this.props.currentReview.seating,
+          display: 'block',
+          redirect: false,
+          isChecked: props.isChecked || false
+        }
       }
+      
       this.toggleChange = this.toggleChange.bind(this);
     }
 
@@ -102,7 +105,6 @@ import Button from 'react-bootstrap/Button'
       }
       console.log(this.props)
       return (
-
       <div className='review-form' style={{display: this.state.display}}>
 
         <div className="review-scroll">
@@ -138,6 +140,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="wifipass"
                   id="wifipass"
+                  checked={this.state.wifipass}
                 />
               </Form.Group>
 
@@ -149,6 +152,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="parking"
                   id="parking"
+                  checked={this.state.parking}
                 />
               </Form.Group>
 
@@ -160,6 +164,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="coffee"
                   id="coffee"
+                  checked={this.state.coffee}
                 />
               </Form.Group>
 
@@ -171,6 +176,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="food"
                   id="food"
+                  checked={this.state.food}
                 />
               </Form.Group>
 
@@ -182,6 +188,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="alcohol"
                   id="alcohol"
+                  checked={this.state.alcohol}
                 />
               </Form.Group>
 
@@ -193,6 +200,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="outlet"
                   id="outlet"
+                  checked={this.state.outlet}
                 />
               </Form.Group>
 
@@ -204,6 +212,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="goodforgroup"
                   id="goodforgroup"
+                  checked={this.state.goodforgroup}
                 />
               </Form.Group>
 
@@ -215,6 +224,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="meetingspace"
                   id="meetingspace"
+                  checked={this.state.meetingspace}
                 />
               </Form.Group>
 
@@ -226,6 +236,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="outdoorspace"
                   id="outdoorspace"
+                  checked={this.state.outdoorspace}
                 />
               </Form.Group>
 
@@ -237,6 +248,7 @@ import Button from 'react-bootstrap/Button'
                   onChange={this.toggleChange}
                   name="petfriendly"
                   id="petfriendly"
+                  checked={this.state.petfriendly}
                 />
               </Form.Group>
             </div>

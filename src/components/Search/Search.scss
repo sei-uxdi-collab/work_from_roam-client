@@ -11,12 +11,14 @@
       border-style: none;
       width: calc(100% - 50px);
       height: 36px !important;
-      padding-left: 2rem;
+      padding-left: 3.5rem;
     }
 
-    img {
+    Button {
+      background: #4775ff;
+      border-radius: 10px;
+      left: .15rem;
       position: absolute;
-      left: .5rem;
     }
 
 
