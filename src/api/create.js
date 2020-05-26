@@ -52,7 +52,7 @@ export const createReview = (params) => {
           lng: params.lng,
           name: params.name,
           address: params.address,
-          addresscomponent: JSON.stringify([params.addresscomponent]),
+          addresscomponent: JSON.stringify(params.addresscomponent),
           photo: params.photo,
           phone: params.phone,
         }
