@@ -33,22 +33,15 @@ export const createReview = (params) => {
   }
 
   export const createWorkspace = (params) => {
-    let adcomp = params.addresscomponent
-    console.log(params.addresscomponent)
-    let addressArray = []
-    // Object.values(params.addresscomponent).map((long_name) =>
-    //   addressArray.push(long_name)
-    // )
-    for(let i = 0; i < adcomp.length; i++) {
-      let a = adcomp[i]
+    // remove second index from 'types' value to prevent
+    // multidimensional array in addresscomponent column
+    for(let i = 0; i < params.addresscomponent.length; i++) {
+      let a = params.addresscomponent[i]
       if(a.types.length > 1) {
-        console.log('two indeces ' + a.types)
         a.types.splice(1)
-        console.log(adcomp)
       }
     }
-    addressArray.push(adcomp)
-    console.log(addressArray)
+
     return axios({
       method: 'post',
       url: apiUrl + '/work_spaces',
