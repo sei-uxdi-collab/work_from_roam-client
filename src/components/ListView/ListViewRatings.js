@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { css, jsx } from '@emotion/core'
 
-const ListViewRatings = props => {
+export const ListViewRatings = props => {
   const wifiCount = useState(Math.floor(props.data.avg_wifi))
   const seatingCount = useState(Math.floor(props.data.avg_seating))
   const noiseCount = useState(Math.floor(props.data.avg_noise))
@@ -78,12 +78,10 @@ const yellowBubble = css`
 
 const grayBubble = css`
   background: #C4D3FF;
-  border-radius: 20px;
-  display: inline-block;
-  height: 8px;
-  margin: 0 2px;
-  padding: 0;
-  width: 24px;
+  // border-radius: 20px;
+  // display: inline-block;
+  // height: 8px;
+  // margin: 0 2px;
+  // padding: 0;
+  // width: 24px;
 `
-
-export default ListViewRatings

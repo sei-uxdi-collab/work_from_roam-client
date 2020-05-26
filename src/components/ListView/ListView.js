@@ -6,28 +6,24 @@ import { GoogleApiWrapper } from 'google-maps-react'
 
 
 // Custom component imports
-import WorkspaceSlider from './WorkspaceSlider'
-import { Slide } from './Slide';
-import { Arrow } from './Arrow'
-import { Dots } from './Dots'
-import { ClickOutside } from '../ClickOutside/ClickOutside.js'
+import { Carousel } from './../Carousel/Carousel'
+import { Slide } from './../Carousel/Slide'
+import { Arrow } from './../Carousel/Arrow'
+import { Dots } from './../Carousel/Dots'
+import { ClickOutside } from '../ClickOutside/ClickOutside'
 
 // Styling imports
 import './ListView.scss'
 
 const ListView = props => {
   const [isListOpen, setIsListOpen] = useState(false)
-  const [slider, setSlider] = useState({
+  const [carousel, setCarousel] = useState({
     activeIndex: 0,
     translate: 0,
     transition: 0.5
   })
   const [width, setWidth] = useState()
   const workspaceArray = props.workspaces[0].slice(0, 5)
-  const placeholderText = ['No Go!']
-
-  console.log(workspaceArray)
-  console.log(workspaceArray)
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Reference and function that listens for events outside of the ListView component, and closes it
@@ -39,11 +35,11 @@ const ListView = props => {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // Gets and sets the dynamic width of the ListView component
-  const sliderWidth = useRef()
+  // Gets and sets the dynamic width of the carousel component
+  const carouselWidth = useRef()
 
   useEffect(() => {
-    setWidth(sliderWidth.current.getBoundingClientRect().width)
+    setWidth(carouselWidth.current.getBoundingClientRect().width)
   }, [])
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -61,19 +57,19 @@ const ListView = props => {
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Functions to advance/decrement the slides
-  const { translate, transition, activeIndex } = slider
+  const { translate, transition, activeIndex } = carousel
 
   const nextSlide = () => {
     if (activeIndex === workspaceArray.length - 1) {
-      return setSlider({
-        ...slider,
+      return setCarousel({
+        ...carousel,
         translate: 0,
         activeIndex: 0
       })
     }
 
-    setSlider({
-      ...slider,
+    setCarousel({
+      ...carousel,
       activeIndex: activeIndex + 1,
       translate: (activeIndex + 1) * width
     })
@@ -81,15 +77,15 @@ const ListView = props => {
 
   const prevSlide = () => {
     if (activeIndex === 0) {
-      return setSlider({
-        ...slider,
+      return setCarousel({
+        ...carousel,
         translate: (workspaceArray.length - 1) * width,
         activeIndex: workspaceArray.length - 1
       })
     }
 
-    setSlider({
-      ...slider,
+    setCarousel({
+      ...carousel,
       activeIndex: activeIndex - 1,
       translate: (activeIndex - 1) * width
     })
@@ -105,7 +101,7 @@ const ListView = props => {
       )
     } else {
       return (
-        <WorkspaceSlider
+        <Carousel
           translate={translate}
           transition={transition}
           width={width * workspaceArray.length}
@@ -116,7 +112,7 @@ const ListView = props => {
               activeIndex={activeIndex}
               width={width} />
           ))}
-        </WorkspaceSlider>
+        </Carousel>
       )
     }
   }
@@ -141,7 +137,7 @@ const ListView = props => {
               <Dropdown.Item eventKey='avg_noise'>Quietest</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <div css={sliderCSS} ref={sliderWidth}>
+          <div css={carouselCSS} ref={carouselWidth}>
             <RenderSlide array={workspaceArray} />
             <Dots slides={workspaceArray} width={width} activeIndex={activeIndex}/>
           </div>
@@ -179,7 +175,7 @@ const placeholderCSS = css`
   width: 250px;
 `
 
-const sliderCSS = css`
+const carouselCSS = css`
   display: flex;
   height: 100%;
   width: 80%;

@@ -3,7 +3,7 @@ import React from 'react'
 import { css, jsx } from '@emotion/core'
 
 // Custom component imports
-import ListViewRatings from './ListViewRatings'
+import { ListViewRatings } from './../ListView/ListViewRatings'
 
 export const Slide = ({ content, width, activeIndex }) => {
   console.log(content)
