@@ -4,8 +4,8 @@
   z-index: 120;
   width: 100vw;
   max-width: 500px;
-  height: 95vh;
-  max-height: 640px;
+  height: 90vh;
+  max-height: 660px;
   background-color: white;
   top: 50%;
   left: 50%;
@@ -28,13 +28,13 @@
   }
 
   .top-section {
-    margin: 12px 6%;
+    margin: 0 6% 18px;
     border-bottom: solid #AAAAAA 2px;
     button {
       border-radius: 33px;
       display: flex;
-      margin: 10px auto;
-      padding: 4px 26px;
+      margin: 18px auto;
+      padding: 6px 30px;
       background-color: #4775FF;
       color: #FFF;
       font-size: 13px;
@@ -53,13 +53,13 @@
 
   .bottom-section {
     display: flex;
-    justify-content: space-evenly;
     .select-group {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 20%;
-  
+      height: 90%;
+      padding: 0 0 6% 6%;
       .select-button {
         padding: 0;
         width: 32px;
@@ -95,15 +95,13 @@
   
     .avatar-select {
       width: 78%;
-      padding: 0px;
       display: flex;
       flex-wrap: wrap;
-      padding: 0 5%;
+      padding: 0 6% 25px 6%;
       justify-content: space-between;
-      align-items: center;
       .avatar-button {
-        height: 124px;
-        width: 124px;
+        height: 120px;
+        width: 120px;
         background-color: transparent;
         border: solid transparent 3px;
         font-size: 40px;
