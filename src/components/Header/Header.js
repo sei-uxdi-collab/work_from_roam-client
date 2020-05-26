@@ -13,8 +13,9 @@ import Settings from "../Settings/Settings";
 import HeaderAuthOptions from "../HeaderAuthOptions/HeaderAuthOptions";
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 import { avatar } from '../../helpers/avatarsArray'
+import { checkPropTypes } from 'prop-types'
 
-const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history }) => {
+const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history, barAlert }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
@@ -139,7 +140,7 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
         <Link to='/' className="p-0">
           <img src="close-x-white.png" className="close-x-white" alt="close"/>
         </Link>
-        <HeaderAuthOptions/>
+        <HeaderAuthOptions barAlert={barAlert} setUser={setUser} />
       </Row>
       <Row>
         <div>

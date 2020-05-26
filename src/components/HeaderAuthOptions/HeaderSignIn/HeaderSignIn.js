@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { signIn } from '../../../api/auth'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -17,8 +17,6 @@ class HeaderSignIn extends Component {
       password: '',
     }
   }
-
-  setUser = user => this.setState({ user })
 
   alert = ({ heading, message, variant, image }) => {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant, image }] })
@@ -39,11 +37,14 @@ class HeaderSignIn extends Component {
     const { alert, history, setUser } = this.props
 
     signIn(this.state)
-      .then(res => setUser(res.data.user))
-      .then(() => alert({
+      .then(res => {
+        setUser(res.data.user)
+        return res.data.user
+      })
+      .then((user) => alert({
         heading: 'You are now signed in!',
-        message: messages.signInSuccess + ', ' + (this.props.user.username ?
-          this.props.user.username : this.props.user.email),
+        message: messages.signInSuccess + ', ' + (user.username ?
+          user.username : user.email),
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
@@ -107,4 +108,4 @@ class HeaderSignIn extends Component {
   }
 }
 
-export default HeaderSignIn
+export default withRouter(HeaderSignIn)
