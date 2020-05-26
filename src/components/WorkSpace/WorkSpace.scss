@@ -119,10 +119,33 @@
     display: none;
   }
 }
-
-.workspaceImage {
+.carousel {
   width: 355px;
   height: 190px;
+  margin: 4%;
+  margin-bottom: 30px;
+  margin-top: 25px;
+  margin-left: 13px;
+  border-radius: 10px;
+}
+
+button.control-arrow {
+  visibility: hidden;
+}
+
+button.control-next {
+  visibility: hidden;
+}
+
+p.carousel-status {
+  visibility: hidden;
+}
+
+.workspaceImage {
+  // width: 355px;
+  // height: 190px;
+  max-width: 100%;
+  height: auto;
   margin-top: 8%;
   margin-bottom: 8%;
   border-radius: 10px;
@@ -160,8 +183,8 @@
 }
 
 .button img {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  display: block;
+  margin: 5px 15px;
 }
 
 .nameAndStar {
@@ -249,16 +272,6 @@
   }
 }
 
-img {
-  // max-width: 305px;
-  display: block;
-  margin: 0 auto;
-}
-
-h5 {
-  margin: 0px;
-}
-
 // Large desktop
 @media only screen and (min-width: 2560px) {
   .workspace {
@@ -275,6 +288,11 @@ h5 {
     white-space: nowrap;
     overflow: hidden;
   }
+
+  .carousel {
+    width: 447px;
+    height: 190px;
+  }
 }
 
 @media only screen and (min-width: 1440px) and (max-width: 2559px) {
@@ -290,12 +308,10 @@ h5 {
       width: 301px;
   }
 
-  .workspaceImage {
-      width: 272px;
-      height: 162px;
-      margin-top: 8%;
-      margin-bottom: 8%;
-      border-radius: 10px;
+  .carousel {
+    width: 249px;
+    height: 145px;
+    margin-left: 10px;
   }
 
   .userAlertCard {
@@ -333,9 +349,10 @@ h5 {
     z-index: 13;
   }
 
-  .workspaceImage {
+  .carousel {
     width: 355px;
     height: 185px;
+    margin-left: 19px;
   }
 }
 
@@ -348,9 +365,10 @@ h5 {
     height: 88vh;
   }
 
-  .workspaceImage {
+  .carousel {
     width: 318px;
     height: 175px;
+    margin-left: 12px;
   }
 
   .worspaceLink {
@@ -364,7 +382,7 @@ h5 {
 
 // Small mobile
 @media only screen and (max-width: 320px) {
-  .workspaceImage {
+  .carousel {
     max-width: 260px;
     height: 160px;
     margin-top: 8%;

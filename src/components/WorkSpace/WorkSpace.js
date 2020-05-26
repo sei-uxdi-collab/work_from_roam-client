@@ -2,11 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import StarRatingComponent from 'react-star-rating-component'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 import Review from '../Review/Review'
-import StarRatingComponent from 'react-star-rating-component'
 import AmenityRating from '../AmenityRating/AmenityRating.js'
 
 import './WorkSpace.scss'
@@ -72,12 +74,12 @@ class WorkSpace extends React.Component {
 
     // render information inside an infoWindow for POI
     render() {
-      // console.log(this.props.data)
+      // console.log(this.props.placeData)
       let photo = 'loading-cat.gif'
+      let photo1 = 'loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
-      } else {
-        photo = 'image_not_found.png'
+        photo1 = this.props.placeData.photos[1].getUrl()
       }
 
       // Conditionals for determining today's day and showing corresponding opening hours
@@ -235,8 +237,15 @@ class WorkSpace extends React.Component {
               <Link to='/'>
                 <img style={{ float: 'right' }} alt='close' src='close-x-white.svg' width={'12'} heigth={'12'}/>
               </Link>
-
-                <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
+                <Carousel className='carousel' showThumbs={false}>
+                  <div>
+                    <img src={photo} alt='workspace'/>
+                  </div>
+                  <div>
+                    <img src={photo1} alt='workspace'/>
+                  </div>
+                </Carousel>
+                {/* <img className='workspaceImage' alt='work_space_pic' src={photo}/> */}
                 <div className='buttonGroup'>
                 <Button
                   className='button'
