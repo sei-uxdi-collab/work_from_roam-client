@@ -1,0 +1,38 @@
+.box-controller {
+  margin-left: 20px;
+  display: flex;
+}
+
+.box-container {
+  margin-left: 20px;
+  width: 100%;
+}
+
+.controller {
+  align-items: center;
+  color: #222222;
+  display: flex;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 150%;
+  padding: 20px;
+  text-align: center;
+}
+
+.selected-controller {
+  font-weight:  600;
+  border-bottom: 2px solid #4775FF;
+}
+
+.full-width {
+  width: 80%;
+}
+
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .full-width {
+    width: 80%;
+  }
+}
