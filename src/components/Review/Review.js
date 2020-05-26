@@ -15,12 +15,15 @@ function Review (props) {
         <div className='starsReview'>
         <StarRatingComponent
           value={props.rating}
-          emptyStarColor={'#4775FF'}
           editing={false}
+          renderStarIcon={(nextValue, prevValue) =>
+            (nextValue <= prevValue) ?
+              <img src='star-icon.svg' className='star' alt='star'/> :
+              <img src='star-icon-empty.svg' className='star emptyStar' alt='star'/>}
         />
         </div>
         </div>
-        {props.note ? <p className='userNotes'>{props.note}</p>:<p className='userNotes empty'>This reviewer did not leave a comment.</p>}
+        {props.note ? <p className='userNotes'>{props.note}</p>:<p className='userNotes emptyNotes'>This reviewer did not leave a comment.</p>}
         </div>
     )
 }

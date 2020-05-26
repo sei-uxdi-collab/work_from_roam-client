@@ -130,7 +130,7 @@
 
 .worspaceLink {
   display: inline-block;
-  width: 298px;
+  width: 280px;
 
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -169,7 +169,17 @@
 }
 
 .starRating {
-  margin-left: 10px;
+  margin-top: 1px;
+}
+
+.star {
+  height: 16px;
+  width: 16px;
+  margin: 2px;
+}
+
+.emptyStar {
+  visibility: hidden;
 }
 
 .vecStyle {
@@ -249,6 +259,7 @@ h5 {
   margin: 0px;
 }
 
+// Large desktop
 @media only screen and (min-width: 2560px) {
   .workspace {
     top: 79px;
@@ -272,6 +283,7 @@ h5 {
   }
 }
 
+// Tablet
 @media only screen and (max-width: 768px) {
   .workspace {
       height: 90vh;
@@ -291,7 +303,18 @@ h5 {
   }
 }
 
+// Tablet (resizing window)
 @media only screen and (min-width: 426px) and (max-width: 768px) {
+  .starRating {
+    // margin-left: 5px;
+    margin-top: 4px;
+  }
+
+  .star {
+    width: 12px;
+    height: 12px;
+  }
+
   .worspaceLink {
     display: inline-block;
     width: 195px;
@@ -301,6 +324,7 @@ h5 {
   }
 }
 
+// Large mobile
 @media only screen and (max-width: 425px) {
   .workspace {
     width: 100vw;
@@ -315,6 +339,7 @@ h5 {
   }
 }
 
+// Medium mobile
 @media only screen and (max-width: 375px) {
   .workspace {
     width: 100vw;
@@ -330,13 +355,14 @@ h5 {
 
   .worspaceLink {
     display: inline-block;
-    width: 262px;
+    width: 253px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
 }
 
+// Small mobile
 @media only screen and (max-width: 320px) {
   .workspaceImage {
     max-width: 260px;
@@ -352,6 +378,15 @@ h5 {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+
+  .starRating {
+    margin-top: 4px;
+  }
+
+  .star {
+    width: 12px;
+    height: 12px;
   }
 
   .userAlertCard {

@@ -33,8 +33,15 @@
 }
 
 .starsReview {
-  font-size: 15px;
   margin-top: 10px;
+
+  @media only screen and (min-width: 426px) and (max-width: 768px) {
+    margin-left: -5px;
+  }
+
+  @media only screen and (max-width: 320px) {
+    margin-left: -5px;
+  }
 }
 
 
@@ -55,6 +62,6 @@
   display: none;
 }
 
-.empty {
+.emptyNotes {
   color: #C4C4C4;
 }
