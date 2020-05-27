@@ -8,16 +8,17 @@ import './Avatar.scss'
 class Avatar extends React.Component {
   constructor(props) {
     super(props)
+    const { user } = props
     this.state = {
       group: {
-        yellow: true,
-        brown: false,
-        orange: false,
-        black: false,
-        grey: false,
-        misc: false,
+        yellow: user ? user.avatar <= 4 : true,
+        brown: user ? user.avatar <= 9 && user.avatar >= 5 : false,
+        orange: user ? user.avatar <= 14 && user.avatar >= 10 : false,
+        black: user ? user.avatar <= 19 && user.avatar >= 15 : false,
+        grey: user ? user.avatar <= 25 && user.avatar >= 20 : false,
+        misc: user? user.avatar > 25 : false,
       },
-      selectedAvatar: props.user && props.user.avatar || 25,
+      selectedAvatar: user ? user.avatar : null,
     }
   }
 
@@ -52,7 +53,7 @@ class Avatar extends React.Component {
     const { user, setUser } = this.props
     if (user) {
       const { email, username } = user
-      const avatar = this.state.selectedAvatar
+      const avatar = this.state.selectedAvatar || 25
       const properties = { avatar, email, username }
       updateUser(properties, user)
         .then(() => showUser(user))
@@ -97,7 +98,7 @@ class Avatar extends React.Component {
 
         <div className="top-section">
           <div className="avatar-preview">
-            <img src={avatar(this.state.selectedAvatar)}/>
+            <img src={avatar(this.state.selectedAvatar || 25)}/>
           </div>
           <button onClick={this.onSave}>
             Save
