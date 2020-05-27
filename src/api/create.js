@@ -33,14 +33,6 @@ export const createReview = (params) => {
   }
 
   export const createWorkspace = (params) => {
-    // remove second index from 'types' value to prevent
-    // multidimensional array in addresscomponent column
-    for(let i = 0; i < params.addresscomponent.length; i++) {
-      let a = params.addresscomponent[i]
-      if(a.types.length > 1) {
-        a.types.splice(1)
-      }
-    }
 
     return axios({
       method: 'post',
