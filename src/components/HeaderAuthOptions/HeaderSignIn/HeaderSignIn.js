@@ -18,10 +18,6 @@ class HeaderSignIn extends Component {
     }
   }
 
-  alert = ({ heading, message, variant, image }) => {
-    this.setState({ alerts: [...this.state.alerts, { heading, message, variant, image }] })
-  }
-
   toggleClass() {
         const currentState = this.state.active;
         this.setState({ active: !currentState });

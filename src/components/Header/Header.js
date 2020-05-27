@@ -13,7 +13,6 @@ import Settings from "../Settings/Settings";
 import HeaderAuthOptions from "../HeaderAuthOptions/HeaderAuthOptions";
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 import { avatar } from '../../helpers/avatarsArray'
-import { checkPropTypes } from 'prop-types'
 
 const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history, barAlert }) => {
   const [expanded, setExpanded] = useState({
