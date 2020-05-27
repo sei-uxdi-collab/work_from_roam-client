@@ -1,8 +1,14 @@
-.userPic {
+.userPicContainer {
   width: 60px;
   height: 60px;
-  border-radius: 30px;
+  color: white;
+  border-radius: 10px;
   float: left;
+  margin-top: 15px;
+}
+.userPic {
+  max-width: 100%;
+  height: auto;
 }
 
 .nameStar {
@@ -10,9 +16,10 @@
 }
 
 .userName {
-  width: 170px;
+  width: 105px;
   padding-left: 20px;
   margin: 10px;
+  margin-left: 0px;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 150%;
@@ -22,18 +29,18 @@
 
 
   @media only screen and (min-width: 426px) and (max-width: 768px) {
-    width: 120px;
+    width: 95px;
   }
   @media only screen and (max-width: 425px) {
-    width: 125px;
+    width: 100px;
   }
   @media only screen and (max-width: 320px) {
-    width: 135px;
+    width: 95px;
   }
 }
 
 .starsReview {
-  margin-top: 10px;
+  margin-top: 8px;
 
   @media only screen and (min-width: 426px) and (max-width: 768px) {
     margin-left: -5px;
@@ -46,7 +53,7 @@
 
 
 .userNotes {
-  height: 42px;
+  height: 55px;
   margin-left: 80px;
   margin-top: -5px;
   font-family: 'Roboto', sans-serif;

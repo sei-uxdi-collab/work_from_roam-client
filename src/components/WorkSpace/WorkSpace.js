@@ -75,11 +75,14 @@ class WorkSpace extends React.Component {
     // render information inside an infoWindow for POI
     render() {
       // console.log(this.props.placeData)
-      let photo = 'loading-cat.gif'
-      let photo1 = 'loading-cat.gif'
+      let { photo, photo1, photo2, photo3, photo4 } = 'loading-cat.gif'
+      // let photo1 = 'loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
         photo1 = this.props.placeData.photos[1].getUrl()
+        photo2 = this.props.placeData.photos[2].getUrl()
+        photo3 = this.props.placeData.photos[3].getUrl()
+        photo4 = this.props.placeData.photos[4].getUrl()
       }
 
       // Conditionals for determining today's day and showing corresponding opening hours
@@ -219,10 +222,19 @@ class WorkSpace extends React.Component {
               </Link>
                 <Carousel className='carousel' showThumbs={false}>
                   <div>
-                    <img src={photo} alt='workspace'/>
+                    <img src={photo} alt='workspace 1'/>
                   </div>
                   <div>
-                    <img src={photo1} alt='workspace'/>
+                    <img src={photo1} alt='workspace 2'/>
+                  </div>
+                  <div>
+                    <img src={photo2} alt='workspace 3'/>
+                  </div>
+                  <div>
+                    <img src={photo3} alt='workspace 4'/>
+                  </div>
+                  <div>
+                    <img src={photo4} alt='workspace 5'/>
                   </div>
                 </Carousel>
                 {/* <img className='workspaceImage' alt='work_space_pic' src={photo}/> */}
@@ -278,8 +290,8 @@ class WorkSpace extends React.Component {
                     />
                     </div>
                 </div>
-                    <span>{this.props.placeData && this.props.placeData.formatted_address}</span>
-                    <a href={telNum} style={{ display: 'block', textDecoration: 'underline', color: '#FFF'}}>{this.props.placeData && this.props.placeData.formatted_phone_number}</a>
+                    <span style={{ display: 'block'}}>{this.props.placeData && this.props.placeData.formatted_address}</span>
+                    <a href={telNum} className='telNum' style={{ display: 'block', textDecoration: 'underline', color: '#FFF', textDecorationColor: '#cbcbcb' }}>{this.props.placeData && this.props.placeData.formatted_phone_number}</a>
                     <div>
                     {!this.state.hours && (this.props.placeData && this.props.placeData.opening_hours ? <p
                       style={{ cursor: 'pointer' }}
@@ -350,6 +362,7 @@ class WorkSpace extends React.Component {
                 {this.props.data.reviews.map(review => (
                   <Review
                     user={review.user.email}
+                    avatar={review.user.avatar}
                     key={review.id}
                     rating={review.rating}
                     wifi={review.wifi}

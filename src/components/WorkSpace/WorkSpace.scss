@@ -100,7 +100,7 @@
   box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.15);
   color: #FFFFFF;
   width: 413px;
-  height: 92vh;
+  height: 86vh;
   left: 15px;
   top: 60px;
   overflow-y: auto;
@@ -119,6 +119,7 @@
     display: none;
   }
 }
+
 .carousel {
   width: 355px;
   height: 190px;
@@ -141,20 +142,9 @@ p.carousel-status {
   visibility: hidden;
 }
 
-.workspaceImage {
-  // width: 355px;
-  // height: 190px;
-  max-width: 100%;
-  height: auto;
-  margin-top: 8%;
-  margin-bottom: 8%;
-  border-radius: 10px;
-}
-
 .worspaceLink {
   display: inline-block;
-  width: 280px;
-
+  width: 180px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -199,7 +189,7 @@ p.carousel-status {
 }
 
 .starRating {
-  margin-top: 1px;
+  margin-top: -2px;
 }
 
 .star {
@@ -288,14 +278,6 @@ p.carousel-status {
     height: 55vh;
   }
 
-  .worspaceLink {
-    display: inline-block;
-    width: 380px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
   .carousel {
     width: 447px;
     height: 190px;
@@ -311,7 +293,7 @@ p.carousel-status {
 // Tablet
 @media only screen and (max-width: 768px) {
   .workspace {
-      height: 90vh;
+      height: 84vh;
       width: 301px;
   }
 
@@ -328,22 +310,9 @@ p.carousel-status {
 
 // Tablet (resizing window)
 @media only screen and (min-width: 426px) and (max-width: 768px) {
-  .starRating {
-    // margin-left: 5px;
-    margin-top: 4px;
-  }
-
   .star {
     width: 12px;
     height: 12px;
-  }
-
-  .worspaceLink {
-    display: inline-block;
-    width: 195px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
   }
 }
 
@@ -352,8 +321,7 @@ p.carousel-status {
   .workspace {
     width: 100vw;
     left: 0;
-    height: 90vh;
-    z-index: 13;
+    height: 85vh;
   }
 
   .carousel {
@@ -369,21 +337,13 @@ p.carousel-status {
     width: 100vw;
     left: 0;
     top: 68px;
-    height: 88vh;
+    height: 84vh;
   }
 
   .carousel {
     width: 318px;
     height: 175px;
     margin-left: 12px;
-  }
-
-  .worspaceLink {
-    display: inline-block;
-    width: 253px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
   }
 }
 
@@ -397,18 +357,6 @@ p.carousel-status {
     margin-left: 1%;
   }
 
-  .worspaceLink {
-    display: inline-block;
-    width: 210px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  .starRating {
-    margin-top: 4px;
-  }
-
   .star {
     width: 12px;
     height: 12px;
@@ -417,5 +365,4 @@ p.carousel-status {
   .userAlertCard {
     left:47%;
   }
-
 }
