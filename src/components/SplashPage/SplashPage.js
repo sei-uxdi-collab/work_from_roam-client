@@ -27,6 +27,7 @@ class SplashPage extends React.Component {
         <div style={{ marginTop: '16vh' }}>
           <img
             src='splash-logo.svg'
+            className='splash-logo'
             alt='logo'
           />
         </div>
