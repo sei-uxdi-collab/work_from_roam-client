@@ -1,24 +1,26 @@
 {
   "files": {
-    "main.css": "/work_from_roam-client/static/css/main.afa7abfe.chunk.css",
-    "main.js": "/work_from_roam-client/static/js/main.f90e6203.chunk.js",
-    "main.js.map": "/work_from_roam-client/static/js/main.f90e6203.chunk.js.map",
+    "main.css": "/work_from_roam-client/static/css/main.e24bb75c.chunk.css",
+    "main.js": "/work_from_roam-client/static/js/main.938436bf.chunk.js",
+    "main.js.map": "/work_from_roam-client/static/js/main.938436bf.chunk.js.map",
     "runtime-main.js": "/work_from_roam-client/static/js/runtime-main.632891d8.js",
     "runtime-main.js.map": "/work_from_roam-client/static/js/runtime-main.632891d8.js.map",
-    "static/js/2.0017eb0a.chunk.js": "/work_from_roam-client/static/js/2.0017eb0a.chunk.js",
-    "static/js/2.0017eb0a.chunk.js.map": "/work_from_roam-client/static/js/2.0017eb0a.chunk.js.map",
+    "static/css/2.240942cf.chunk.css": "/work_from_roam-client/static/css/2.240942cf.chunk.css",
+    "static/js/2.9bec89b1.chunk.js": "/work_from_roam-client/static/js/2.9bec89b1.chunk.js",
+    "static/js/2.9bec89b1.chunk.js.map": "/work_from_roam-client/static/js/2.9bec89b1.chunk.js.map",
     "index.html": "/work_from_roam-client/index.html",
-    "precache-manifest.b54ed192e55921cabf9124478dc6cb2f.js": "/work_from_roam-client/precache-manifest.b54ed192e55921cabf9124478dc6cb2f.js",
+    "precache-manifest.65cea3b5c4fb725c21c56b3c24b6aba8.js": "/work_from_roam-client/precache-manifest.65cea3b5c4fb725c21c56b3c24b6aba8.js",
     "service-worker.js": "/work_from_roam-client/service-worker.js",
-    "static/css/main.afa7abfe.chunk.css.map": "/work_from_roam-client/static/css/main.afa7abfe.chunk.css.map",
-    "static/js/2.0017eb0a.chunk.js.LICENSE.txt": "/work_from_roam-client/static/js/2.0017eb0a.chunk.js.LICENSE.txt",
-    "static/media/SearchVector.svg": "/work_from_roam-client/static/media/SearchVector.0e7c5298.svg",
+    "static/css/2.240942cf.chunk.css.map": "/work_from_roam-client/static/css/2.240942cf.chunk.css.map",
+    "static/css/main.e24bb75c.chunk.css.map": "/work_from_roam-client/static/css/main.e24bb75c.chunk.css.map",
+    "static/js/2.9bec89b1.chunk.js.LICENSE.txt": "/work_from_roam-client/static/js/2.9bec89b1.chunk.js.LICENSE.txt",
     "static/media/Avatar.scss": "/work_from_roam-client/static/media/logo-bull-icon.78c52155.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.632891d8.js",
-    "static/js/2.0017eb0a.chunk.js",
-    "static/css/main.afa7abfe.chunk.css",
-    "static/js/main.f90e6203.chunk.js"
+    "static/css/2.240942cf.chunk.css",
+    "static/js/2.9bec89b1.chunk.js",
+    "static/css/main.e24bb75c.chunk.css",
+    "static/js/main.938436bf.chunk.js"
   ]
 }
