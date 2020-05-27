@@ -10,10 +10,11 @@ import TopRated from "../TopRated/TopRated";
 import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
+import HeaderAuthOptions from "../HeaderAuthOptions/HeaderAuthOptions";
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 import { avatar } from '../../helpers/avatarsArray'
 
-const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history }) => {
+const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history, barAlert }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
@@ -138,10 +139,7 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
         <Link to='/' className="p-0">
           <img src="close-x-white.png" className="close-x-white" alt="close"/>
         </Link>
-        <div>
-          <a className="sign-in" href="#sign-in">Log In</a>
-          <a className="sign-up" href="#sign-up">Sign Up</a>
-        </div>
+        <HeaderAuthOptions barAlert={barAlert} setUser={setUser} />
       </Row>
       <Row>
         <div>

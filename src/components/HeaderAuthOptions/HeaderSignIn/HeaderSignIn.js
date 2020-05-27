@@ -1,22 +1,27 @@
 import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router-dom'
-import { signIn } from '../../api/auth'
+import { withRouter } from 'react-router-dom'
+import { signIn } from '../../../api/auth'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import TextField from '@material-ui/core/TextField'
-import PasswordInput from '../PasswordShowHide/PasswordShowHide'
-import './SignIn.scss'
-import messages from '../AutoAlert/messages'
+import PasswordInput from '../../PasswordShowHide/PasswordShowHide'
+import './HeaderSignIn.scss'
+import messages from '../../AutoAlert/messages'
 
-class SignIn extends Component {
-  constructor () {
-    super()
+class HeaderSignIn extends Component {
+  constructor (props) {
+    super(props)
 
     this.state = {
       identifier: '',
-      password: ''
+      password: '',
     }
   }
+
+  toggleClass() {
+        const currentState = this.state.active;
+        this.setState({ active: !currentState });
+    };
 
   handleChange = event => this.setState({
     [event.target.name]: event.target.value
@@ -28,11 +33,14 @@ class SignIn extends Component {
     const { alert, history, setUser } = this.props
 
     signIn(this.state)
-      .then(res => setUser(res.data.user))
-      .then(() => alert({
+      .then(res => {
+        setUser(res.data.user)
+        return res.data.user
+      })
+      .then((user) => alert({
         heading: 'You are now signed in!',
-        message: messages.signInSuccess + ', ' + (this.props.user.username ?
-          this.props.user.username : this.props.user.email),
+        message: messages.signInSuccess + ', ' + (user.username ?
+          user.username : user.email),
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
@@ -52,15 +60,8 @@ class SignIn extends Component {
     const { identifier, password } = this.state
 
     return (
-      <div className="container popup">
-
-        <Link to='/' className="row close-window-blue" style={{ float: "right"}} onClick={this.closeWindow}>
-          <img src="close-x-blue.png" alt="close"/>
-        </Link>
-
-        <div className="mt-3 p-4">
-          <h1>Log in to post a review!</h1>
-          <h2 className="mt-3">Don't have an account? <a href="#sign-up" className="link">Sign Up</a></h2>
+      <div className="header-signin-container">
+        <div className="">
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId="identifier" className="mt-4">
               <TextField
@@ -89,9 +90,6 @@ class SignIn extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Link to='/' className="cancel-button m-3" onClick={this.closeWindow}>
-              Cancel
-            </Link>
             <Button
               variant="primary"
               type="submit"
@@ -106,4 +104,4 @@ class SignIn extends Component {
   }
 }
 
-export default withRouter(SignIn)
+export default withRouter(HeaderSignIn)

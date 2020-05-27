@@ -9,7 +9,7 @@ function MyReviews(props) {
   const { user, isExpanded, toggleExpand, allData, setApp, showWorkspace } = props
   const content = useRef(null);
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState();
 
   console.log(props)
 
@@ -55,13 +55,13 @@ function MyReviews(props) {
           </Col>
           <Col>
             <div
-              aria-expanded={open === true ? "true" : "false"}
+              aria-expanded={(open) === true ? "true" : "false"}
               className={open === true ? "active dropdown-button" : "dropdown-button"}
-              onClick={ () => setOpen(!open) }
+              onClick={ () => setOpen(review.id) }
             >
               <img src="kebab-icon-blue.svg" alt="options" className="kebab"/>
             </div>
-            <div className={open ? "show options-box d-flex flex-column justify-content-center" : "hide options-box d-flex flex-column justify-content-center"}>
+            <div className={(open === review.id) ? "show options-box d-flex flex-column justify-content-center" : "hide options-box d-flex flex-column justify-content-center"}>
                 <Button
                 href={`#reviews/${review.id}/update`}
                 onClick={() => onUpdateClick(review)}
