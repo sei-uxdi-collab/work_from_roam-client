@@ -15,12 +15,6 @@ class HeaderAuthOptions extends Component {
     };
   }
 
-  setUser = user => this.setState({ user })
-
-  alert = ({ heading, message, variant, image }) => {
-    this.setState({ alerts: [...this.state.alerts, { heading, message, variant, image }] })
-  }
-
   showSignInBox() {
     this.setState({isSignInOpen: true, isSignUpOpen: false});
   }
@@ -59,8 +53,8 @@ class HeaderAuthOptions extends Component {
 
        <Row className="m-0 p-0">
         <div className="box-container">
-          {this.state.isSignInOpen && <HeaderSignIn user={this.user} alert={this.barAlert} setUser={this.setUser}/>}
-          {this.state.isSignUpOpen && <HeaderSignUp alert={this.alert} setUser={this.setUser}/>}
+          {this.state.isSignInOpen && <HeaderSignIn user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser}/>}
+          {this.state.isSignUpOpen && <HeaderSignUp user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser}/>}
         </div>
       </Row>
     </div>
