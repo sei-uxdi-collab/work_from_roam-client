@@ -33,6 +33,7 @@ export const createReview = (params) => {
   }
 
   export const createWorkspace = (params) => {
+
     return axios({
       method: 'post',
       url: apiUrl + '/work_spaces',
@@ -43,6 +44,7 @@ export const createReview = (params) => {
           lng: params.lng,
           name: params.name,
           address: params.address,
+          addresscomponent: JSON.stringify(params.addresscomponent),
           photo: params.photo,
           phone: params.phone,
         }
