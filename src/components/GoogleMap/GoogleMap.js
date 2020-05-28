@@ -137,15 +137,14 @@ class GoogleMap extends React.Component {
 
             <Marker
                 name={'user location'}
-                position={this.userLocation}
-                icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
+                position={this.props.userLocation}
+                icon='current-location-marker.svg'
             />
 
             <Marker
                 name={'search result'}
                 position={this.props.searchLocation}
-                icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
-                onClick={this.showSuggestions}
+                onCenter_changed={this.updateMapState}
             />
 
             {/* create a marker on the map for each workspace */}
