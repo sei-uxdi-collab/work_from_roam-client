@@ -57,10 +57,8 @@ a, a:link, a:visited {
 }
 
 .prof-pic {
-  height: 35px;
-  width: 35px;
-  display: inline;
-  margin-left: 5px;
+  height: 100%;
+  width: auto;
 }
 
 .sign-in, .sign-up {
@@ -89,6 +87,13 @@ a, a:link, a:visited {
   width: 115px;
 }
 
+.user-avatar {
+  display: flex;
+  height: 40px;
+  margin-left: 5px;
+  width: 40px;
+}
+
 .welcome {
   align-items: center;
   color: #222222;
@@ -106,8 +111,8 @@ a, a:link, a:visited {
     font-size: 20px;
   }
   .prof-pic {
-    height: 50px;
-    width: 50px;
+    height: 100%;
+    width: auto;
   }
   .sign-out {
     margin-left: 240px;
@@ -132,8 +137,8 @@ a, a:link, a:visited {
     font-size: 18px;
   }
   .prof-pic {
-    height: 40px;
-    width: 40px;
+    height: 100%;
+    width: auto;
   }
   .sign-out {
     font-size: 12px;
