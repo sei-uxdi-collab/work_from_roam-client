@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, Redirect } from 'react-router-dom'
 
 import { signUp, signIn } from '../../api/auth'
 import messages from '../AutoAlert/messages'
@@ -41,7 +41,7 @@ class SignUp extends Component {
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/first-signin'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })
@@ -51,6 +51,10 @@ class SignUp extends Component {
           variant: 'danger'
         })
       })
+  }
+
+  carouselTest = () => {
+    this.history.push('/first-signin')
   }
 
   render () {
@@ -130,6 +134,14 @@ class SignUp extends Component {
               className="submit-button"
             >
               Submit
+            </Button>
+
+            <Button
+              variant="danger"
+              onClick={this.carouselTest}
+              className="submit-button"
+            >
+              Test
             </Button>
           </Form>
         </div>

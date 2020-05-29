@@ -4,7 +4,6 @@ import { Dropdown, Container, Row, Col } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
 import { GoogleApiWrapper } from 'google-maps-react'
 
-
 // Custom component imports
 import { Carousel } from './../Carousel/Carousel'
 import { Slide } from './../Carousel/Slide'
@@ -139,7 +138,9 @@ const ListView = props => {
           </Dropdown>
           <div css={carouselCSS} ref={carouselWidth}>
             <RenderSlide array={workspaceArray} />
-            <Dots slides={workspaceArray} width={width} activeIndex={activeIndex}/>
+            <Dots slides={workspaceArray}
+              activeIndex={activeIndex}
+              margin={10} />
           </div>
           <Arrow direction='left' handleClick={prevSlide} />
           <Arrow direction='right' handleClick={nextSlide} />
