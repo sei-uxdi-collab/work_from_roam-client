@@ -1,6 +1,7 @@
 .input-group {
   align-items: center;
   display: flex;
+  width: 413px;
   margin-left: .5rem;
   overflow: hidden;
   position: absolute;
@@ -9,9 +10,10 @@
     .location-search-input {
       border-radius: 12px;
       border-style: none;
-      width: calc(100% - 50px);
       height: 36px !important;
+      outline: none;
       padding-left: 3.5rem;
+      width: 363px;
     }
 
     Button {
@@ -26,14 +28,59 @@
 
 .autocomplete-dropdown-container {
   position: absolute;
-  width: calc(100vw - 200px);
+  width: 363px;
   margin-top: 20px;
   margin-left: 10px;
   text-align: left;
+  border-radius: 10px;
 }
 
-@media (min-width: 450px) {
-  .location-search-input {
-    width: 100%;
+// @media (min-width: 450px) {
+//   .location-search-input {
+//     width: 100%;
+//   }
+// }
+
+// Large desktop
+@media only screen and (min-width: 2560px) {
+  .input-group {
+    width: 505px;
+  }
+
+  .autocomplete-dropdown-container {
+    width: 505px;
+  }
+}
+
+// Tablet
+@media only screen and (max-width: 768px) {
+  .input-group {
+      width: 301px;
+  }
+
+  .autocomplete-dropdown-container {
+    width: 301px;
+  }
+}
+
+// Large mobile
+@media only screen and (max-width: 425px) {
+  .input-group {
+    width: 75vw;
+  }
+
+  .autocomplete-dropdown-container {
+    width: 75vw;
+  }
+}
+
+// Medium mobile
+@media only screen and (max-width: 375px) {
+  .input-group {
+    width: 75vw;
+  }
+
+  .autocomplete-dropdown-container {
+    width: 75vw;
   }
 }
