@@ -16,9 +16,10 @@ import SignOut from '../SignOut/SignOut'
 import Header from '../Header/Header'
 import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
-import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
+import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate'
 import ListView from '../ListView/ListView'
 import orderBy from 'lodash/orderBy'
+import SignupCarousel from './../SignupCarousel/SignupCarousel'
 
 import './App.scss'
 
@@ -191,6 +192,10 @@ class App extends React.Component {
             alert={this.alert}
           />
         )} />
+
+      <Route path='/first-signin' render={() => (
+          <SignupCarousel />
+        )}/>
 
         <Route path='/'>
           <SplashPage />

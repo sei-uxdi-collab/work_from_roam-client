@@ -3,11 +3,9 @@ import React from 'react'
 import { css, jsx } from '@emotion/core'
 
 // Custom component imports
-import ListViewRatings from './ListViewRatings'
+import { ListViewRatings } from './../ListView/ListViewRatings'
 
 export const Slide = ({ content, width, activeIndex }) => {
-  console.log(content)
-  console.log(width)
 
   // Will eventually be altered to toggle from open/closed states
   const openHours = () => {
@@ -58,11 +56,10 @@ export const Slide = ({ content, width, activeIndex }) => {
 }
 
 const cardCSS = css`
-  align-self: center;
   background-color: #fff;
   border-radius: 20px;
   height: 217px;
-  margin: 20px auto;
+  margin: 10px auto;
   width: 252px;
   box-shadow: 2px 8px 16px
     rgba(0, 0, 0, 0.25);
