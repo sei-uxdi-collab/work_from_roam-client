@@ -18,6 +18,11 @@
   z-index: 20;
 }
 
+.splash-logo {
+  display: block;
+  margin: 0 auto;
+}
+
 .splash-button {
   display: flex;
   flex-direction: row;
@@ -38,9 +43,9 @@
   font-size: 23px;
   color: #FFFFFF;
 
-  top: 90.25px;
+  top: 10vh;
   margin: auto;
-  bottom: 13.44%;
+  // bottom: 1vh;
   :hover {
     background-color: #3c63d6;
   }

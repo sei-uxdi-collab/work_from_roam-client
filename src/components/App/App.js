@@ -16,9 +16,10 @@ import SignOut from '../SignOut/SignOut'
 import Header from '../Header/Header'
 import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
-import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate.js'
+import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate'
 import ListView from '../ListView/ListView'
 import orderBy from 'lodash/orderBy'
+import SignupCarousel from './../SignupCarousel/SignupCarousel'
 
 import './App.scss'
 
@@ -29,7 +30,9 @@ class App extends React.Component {
     this.state = {
       allData: [],
       poiLocation: null,
-      mapCenter: { lat: 42.3601, lng: -71.0589},
+      google: null,
+      map: null,
+      mapCenter: { lat: 42.3600, lng: -71.0589 },
       bounds: null,
       placeId: null,
       placeData: null,
@@ -38,7 +41,7 @@ class App extends React.Component {
       currentWorkspace: null,
       currentReview: null,
       user: null,
-      userLocation: null,
+      userLocation: { lat: 42.3601, lng: -71.0589 },
       alerts: [],
       barAlerts: [],
       filteredWorkspaces: [],
@@ -157,7 +160,12 @@ class App extends React.Component {
                 user={user}
                 userLocation={this.state.userLocation}
                 allData={this.state.allData}
-                setApp={this.setState.bind(this)} />
+                setUser={this.setUser}
+                setApp={this.setState.bind(this)}
+                google={this.state.google}
+                map={this.state.map} 
+                barAlert={this.barAlert}
+                setUser={this.setUser}/>
             )} />
 
             <Route user={user} path='/create-workspace' render={() => (
@@ -185,6 +193,10 @@ class App extends React.Component {
           />
         )} />
 
+      <Route path='/first-signin' render={() => (
+          <SignupCarousel />
+        )}/>
+
         <Route path='/'>
           <SplashPage />
           <div className="App">
@@ -209,6 +221,8 @@ class App extends React.Component {
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}
               currentWorkspace={this.state.currentWorkspace}
+              google={this.state.google}
+              map={this.state.map}
             />
           <ListView
             workspaces={[this.state.filteredWorkspaces]}

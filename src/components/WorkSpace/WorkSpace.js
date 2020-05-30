@@ -2,11 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import StarRatingComponent from 'react-star-rating-component'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 import Review from '../Review/Review'
-import { StarRating } from '../Review/StarsRating'
 import AmenityRating from '../AmenityRating/AmenityRating.js'
 
 import './WorkSpace.scss'
@@ -72,12 +74,15 @@ class WorkSpace extends React.Component {
 
     // render information inside an infoWindow for POI
     render() {
-      // console.log(this.props.data)
-      let photo = 'loading-cat.gif'
+      // console.log(this.props.placeData)
+      let { photo, photo1, photo2, photo3, photo4 } = 'loading-cat.gif'
+      // let photo1 = 'loading-cat.gif'
       if (this.props.placeData && this.props.placeData.photos) {
         photo = this.props.placeData.photos[0].getUrl()
-      } else {
-        photo = 'image_not_found.png'
+        photo1 = this.props.placeData.photos[1].getUrl()
+        photo2 = this.props.placeData.photos[2].getUrl()
+        photo3 = this.props.placeData.photos[3].getUrl()
+        photo4 = this.props.placeData.photos[4].getUrl()
       }
 
       // Conditionals for determining today's day and showing corresponding opening hours
@@ -132,6 +137,8 @@ class WorkSpace extends React.Component {
             </div>)
       }
 
+      const telNum = `tel:+${this.props.placeData && this.props.placeData.formatted_phone_number}`
+
     // Function for averaging the different amenities for Review
       let average = function(array) {
         let answer = 0
@@ -143,26 +150,9 @@ class WorkSpace extends React.Component {
       }
       // Overall average rating for workSpace
       let overall = average(this.props.data.reviews.map(review => review.rating))
-      // Outlets average rating
-      // let outlet = average(this.props.data.reviews.map(review => parseInt(review.outlet)))
-      // // Coffee average Rating
-      // let coffee = average(this.props.data.reviews.map(review => parseInt(review.coffee)))
-      // // Food average rating
-      // let food = average(this.props.data.reviews.map(review => parseInt(review.food)))
 
       // Style booleans for showing filter options as being available or not
-      let alcohol = false
-      let coffee = false
-      let food = false
-      let freeParking = false
-      let goodForGroups = false
-      let petFriendly = false
-      let meetingSpace = false
-      let outlets = false
-      let outdoorSpace = false
-      let quiet = false
-
-      let wifiPassword = false
+      let {alcohol, coffee, food, freeParking, goodForGroups, petFriendly, meetingSpace, outlets, outdoorSpace, quiet, wifiPassword} = false
 
       // Conditionals for showing if filters are available
       if(this.props.data.bool_alcohol === true) {
@@ -199,9 +189,6 @@ class WorkSpace extends React.Component {
         wifiPassword = true
       }
 
-
-
-
       // Register as favorited
       const handleFave = event => {
         console.log(this.props.data)
@@ -233,8 +220,24 @@ class WorkSpace extends React.Component {
               <Link to='/'>
                 <img style={{ float: 'right' }} alt='close' src='close-x-white.svg' width={'12'} heigth={'12'}/>
               </Link>
-
-                <img className='workspaceImage' accept="*/*" alt="work_space_pic" src={photo} />
+                <Carousel className='carousel' showThumbs={false}>
+                  <div>
+                    <img src={photo} alt='workspace 1'/>
+                  </div>
+                  <div>
+                    <img src={photo1} alt='workspace 2'/>
+                  </div>
+                  <div>
+                    <img src={photo2} alt='workspace 3'/>
+                  </div>
+                  <div>
+                    <img src={photo3} alt='workspace 4'/>
+                  </div>
+                  <div>
+                    <img src={photo4} alt='workspace 5'/>
+                  </div>
+                </Carousel>
+                {/* <img className='workspaceImage' alt='work_space_pic' src={photo}/> */}
                 <div className='buttonGroup'>
                 <Button
                   className='button'
@@ -253,7 +256,7 @@ class WorkSpace extends React.Component {
                                                           onClick={handleFave}
                                                           ><img src='favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
                 {this.props.user && this.state.flag && <Button
-                                                          className='button'
+                                                          className='button favorited'
                                                           data={this.props.data.id}
                                                           onClick={handleUnfave}
                                                           ><img src='favoriteHeartRed.svg' alt='favorite'/>Add to Favorites</Button>}
@@ -277,14 +280,18 @@ class WorkSpace extends React.Component {
                     {this.props.placeData && this.props.placeData.name}
                     </a>
                     <div className='starRating'>
-                    <StarRating
+                    <StarRatingComponent
                      value={overall}
-                     emptyStarColor='#4775FF'
                      editing={false}
+                     renderStarIcon={(nextValue, prevValue) =>
+                       (nextValue <= prevValue) ?
+                         <img src='star-icon.svg' className='star' alt='star'/> :
+                         <img src='star-icon-empty.svg' className='star emptyStar' alt='star'/>}
                     />
                     </div>
                 </div>
-                    <p>{this.props.placeData && this.props.placeData.formatted_address}</p>
+                    <span style={{ display: 'block'}}>{this.props.placeData && this.props.placeData.formatted_address}</span>
+                    <a href={telNum} className='telNum' style={{ display: 'block', textDecoration: 'underline', color: '#FFF', textDecorationColor: '#cbcbcb' }}>{this.props.placeData && this.props.placeData.formatted_phone_number}</a>
                     <div>
                     {!this.state.hours && (this.props.placeData && this.props.placeData.opening_hours ? <p
                       style={{ cursor: 'pointer' }}
@@ -305,7 +312,7 @@ class WorkSpace extends React.Component {
                         </div>
                       </div>}
                 </div>
-                  <div>
+                  <div style={{ marginTop: '35px' }}>
                     <span className='ratingsRow'>Wifi Quality
                     <AmenityRating
                       amenity={this.props.data.avgwifi}
@@ -354,7 +361,8 @@ class WorkSpace extends React.Component {
                 <div>
                 {this.props.data.reviews.map(review => (
                   <Review
-                    user={review.user.email}
+                    user={review.user.username}
+                    avatar={review.user.avatar}
                     key={review.id}
                     rating={review.rating}
                     wifi={review.wifi}

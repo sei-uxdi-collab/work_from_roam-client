@@ -48,6 +48,7 @@ import Button from 'react-bootstrap/Button'
             lng: this.props.workspaceLocation.lng,
             name: this.props.placeData.name,
             address: this.props.placeData.formatted_address,
+            addresscomponent: this.props.placeData.address_components,
             photo: this.props.placeData.photos[0].getUrl(),
           }
         },
@@ -64,9 +65,9 @@ import Button from 'react-bootstrap/Button'
               this.props.setApp({ allData: data.data.work_spaces })
               this.closeWindow()
           })
-        
+
       })
-      
+
     }
 
     closeWindow = () => {
@@ -75,7 +76,7 @@ import Button from 'react-bootstrap/Button'
     }
 
     render () {
-      
+
       let placeName = ''
       // if user is not signed in, redirect to '/sign-in'
 

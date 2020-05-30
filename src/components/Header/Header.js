@@ -1,6 +1,7 @@
-import React, { Fragment, useState } from 'react'
-import { Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import React, { Fragment, useState, useEffect } from 'react'
+import { Row } from 'react-bootstrap'
+import { showUser } from '../../api/auth'
+import { Link, withRouter } from 'react-router-dom'
 // import Nav from 'react-bootstrap/Nav'
 // import Navbar from 'react-bootstrap/Navbar'
 import './Header.scss'
@@ -9,8 +10,11 @@ import TopRated from "../TopRated/TopRated";
 import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
+import HeaderAuthOptions from "../HeaderAuthOptions/HeaderAuthOptions";
+import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
+import { avatar } from '../../helpers/avatarsArray'
 
-const Header = ({ user, userLocation, allData, setApp }) => {
+const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history, barAlert }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
@@ -18,6 +22,14 @@ const Header = ({ user, userLocation, allData, setApp }) => {
     info: false,
     settings: false,
   })
+
+  useEffect(() => {
+    if (user) {
+      showUser(user)
+      .then(res => setUser(res.data.user))
+      .catch(console.error)
+    }
+  }, [])
 
   const toggleExpand = section => {
     const newState = !expanded[section]
@@ -32,11 +44,26 @@ const Header = ({ user, userLocation, allData, setApp }) => {
 
   }
 
+  const showWorkspace = (id, placeId) => {
+    const callback = placeData => {
+      setApp({ placeData })
+    }
+    const currentWorkspace = allData.find(workspace => workspace.id === id)
+    const { lat, lng } = currentWorkspace
+    const mapCenter = { lat, lng }
+
+    getGooglePlaceDetails(google, map, placeId, callback)
+    setApp({ currentWorkspace, mapCenter })
+    history.push('/workspace')
+  }
+
   const userBanner = (
     <Fragment>
       <div className="d-flex mb-2" style={{ width: "100%"}}>
-        <div>
-          <img src="profile-pic-placeholder.png" className="prof-pic" alt="profile pic" />
+        <div >
+          <a href="#avatar">
+            { user && user.avatar ? <img src={avatar(user.avatar)} className="prof-pic" alt="profile pic"/> : <img src={avatar(25)} className="prof-pic" alt="profile pic" /> }
+          </a>
         </div>
         <div className="ml-4">
           <Row>
@@ -66,8 +93,7 @@ const Header = ({ user, userLocation, allData, setApp }) => {
           userLocation={userLocation}
           isExpanded={expanded.favorites}
           toggleExpand={() => toggleExpand('favorites')}
-          allData={allData}
-          setApp={setApp}
+          showWorkspace={showWorkspace}
         />
       </Row>
       <Row>
@@ -80,6 +106,7 @@ const Header = ({ user, userLocation, allData, setApp }) => {
           toggleExpand={() => toggleExpand('reviews')}
           allData={allData}
           setApp={setApp}
+          showWorkspace={showWorkspace}
         />
       </Row>
       <Row>
@@ -91,8 +118,7 @@ const Header = ({ user, userLocation, allData, setApp }) => {
           userLocation={userLocation}
           isExpanded={expanded.topRated}
           toggleExpand={() => toggleExpand('topRated')}
-          allData={allData}
-          setApp={setApp}
+          showWorkspace={showWorkspace}
         />
       </Row>
       <Row>
@@ -113,10 +139,19 @@ const Header = ({ user, userLocation, allData, setApp }) => {
         <Link to='/' className="p-0">
           <img src="close-x-white.png" className="close-x-white" alt="close"/>
         </Link>
+        <HeaderAuthOptions barAlert={barAlert} setUser={setUser} />
+      </Row>
+      <Row>
         <div>
-          <a className="sign-in" href="#sign-in">Log In</a>
-          <a className="sign-up" href="#sign-up">Sign Up</a>
+          <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
         </div>
+        <TopRated
+          user={user}
+          userLocation={userLocation}
+          isExpanded={expanded.topRated}
+          toggleExpand={() => toggleExpand('topRated')}
+          showWorkspace={showWorkspace}
+        />
       </Row>
       <Row>
         <div>
@@ -135,7 +170,7 @@ const Header = ({ user, userLocation, allData, setApp }) => {
   )
 
   return (
-    <div className="header" collapseOnSelect fixed="top">
+    <div className="header" fixed="top">
       <div id="">
         <div>
           { user ? authenticatedOptions : unauthenticatedOptions }
@@ -144,4 +179,4 @@ const Header = ({ user, userLocation, allData, setApp }) => {
     </div>
   )
 }
-export default Header
+export default withRouter(Header)

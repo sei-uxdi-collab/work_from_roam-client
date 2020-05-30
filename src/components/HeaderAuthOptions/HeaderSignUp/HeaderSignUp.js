@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import { withRouter, Link, Redirect } from 'react-router-dom'
-
-import { signUp, signIn } from '../../api/auth'
-import messages from '../AutoAlert/messages'
+import { withRouter } from 'react-router-dom'
+import { signUp, signIn } from '../../../api/auth'
+import messages from '../../AutoAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import TextField from '@material-ui/core/TextField'
-import PasswordInput from '../PasswordShowHide/PasswordShowHide'
-import './SignUp.scss'
+import PasswordInput from '../../PasswordShowHide/PasswordShowHide'
+import './HeaderSignUp.scss'
 
-class SignUp extends Component {
+class HeaderSignUp extends Component {
   constructor () {
     super()
 
@@ -41,7 +40,7 @@ class SignUp extends Component {
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
-      .then(() => history.push('/first-signin'))
+      .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })
@@ -53,23 +52,12 @@ class SignUp extends Component {
       })
   }
 
-  carouselTest = () => {
-    this.history.push('/first-signin')
-  }
-
   render () {
     const { email, username, password, passwordConfirmation } = this.state
 
     return (
-      <div className="container popup">
-
-        <Link to='/' className="row close-window-blue" style={{ float: "right"}} onClick={this.closeWindow}>
-          <img src="close-x-blue.png" alt="close"/>
-        </Link>
-
-        <div className="mt-3 p-4">
-          <h1>Sign up to post a review!</h1>
-          <h2 className="mt-3">Already have an account? <a href="#sign-in" className="link">Sign In</a></h2>
+      <div className="header-signup-container">
+        <div className="">
           <Form onSubmit={this.onSignUp}>
           <Form.Group controlId="username" className="mt-4">
             <TextField
@@ -125,9 +113,6 @@ class SignUp extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Link to='/' className="cancel-button m-3" onClick={this.closeWindow}>
-              Cancel
-            </Link>
             <Button
               variant="primary"
               type="submit"
@@ -142,4 +127,4 @@ class SignUp extends Component {
   }
 }
 
-export default withRouter(SignUp)
+export default withRouter(HeaderSignUp)

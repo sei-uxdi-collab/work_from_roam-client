@@ -27,6 +27,7 @@ a, a:link, a:visited {
     background-color: white;
     top: 75px;
     left: 20px;
+    max-width: 508px;
     border-radius: 10px;
     padding: 10px;
 
@@ -66,7 +67,7 @@ a, a:link, a:visited {
   color: #777777;
   line-height: 150%;
   font-family: Roboto;
-  font-szie: 16px;
+  font-size: 16px;
   font-weight: 300;
   margin: 0px 33px;
   text-transform: uppercase;
@@ -118,12 +119,14 @@ a, a:link, a:visited {
   }
 }
 
-// mobile view
-@media (min-width: 350px) and (max-width: 767px) {
+// general mobile view
+@media (min-width: 320px) and (max-width: 767px) {
   .header {
-    width: 326px;
     height: auto;
-    max-height: 80vh;
+    max-height: 70vh;
+    right: 5vw;
+    left: 5vw;
+    font-size: 16px;
   }
   .list-item {
     font-size: 18px;
@@ -139,5 +142,57 @@ a, a:link, a:visited {
   .welcome {
     font-size: 18px;
     margin-top: 5px;
+  }
+}
+
+
+////// ALL FOR HEADER HEIGHT
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 480px) {
+  .header {
+    max-height: 70vh;
+  }
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) {
+  .header {
+  max-height: 75vh;
+  }
+}
+
+/* Samsung Galaxy S3, S4, S5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) {
+  .header {
+    max-height: 75vh;
+  }
+}
+
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) {
+  .header {
+    max-height: 75vh;
+  }
+}
+
+/* iPhone 6+, 7+, 8+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) {
+  .header {
+    max-height: 75vh;
+  }
+}
+
+/* iPhone X ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) {
+  .header {
+    max-height: 75vh;
+  }
+}
+
+/* iPhone XS Max, XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) {
+  .header {
+    max-height: 75vh;
   }
 }

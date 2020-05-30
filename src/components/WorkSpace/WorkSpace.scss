@@ -100,13 +100,13 @@
   box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.15);
   color: #FFFFFF;
   width: 413px;
-  height: 92vh;
+  height: 86vh;
   left: 15px;
   top: 60px;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 1rem;
-  position: absolute;
+  position: fixed;
   z-index: 12;
 
   font-family: SF Pro Display, sans-serif;
@@ -120,18 +120,31 @@
   }
 }
 
-.workspaceImage {
+.carousel {
   width: 355px;
   height: 190px;
-  margin-top: 8%;
-  margin-bottom: 8%;
+  margin: 4%;
+  margin-bottom: 30px;
+  margin-top: 25px;
+  margin-left: 13px;
   border-radius: 10px;
+}
+
+button.control-arrow {
+  visibility: hidden;
+}
+
+button.control-next {
+  visibility: hidden;
+}
+
+p.carousel-status {
+  visibility: hidden;
 }
 
 .worspaceLink {
   display: inline-block;
-  width: 298px;
-
+  width: 180px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -160,16 +173,34 @@
 }
 
 .button img {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  display: block;
+  margin: 5px 15px;
 }
+
+.favorited {
+  color: #fff;
+  background-color: #0062cc;
+  border-color: #005cbf;
+}
+
 
 .nameAndStar {
   display: -webkit-inline-box;
 }
 
 .starRating {
-  margin-left: 10px;
+  margin-top: -2px;
+  margin-left: 5px;
+}
+
+.star {
+  height: 16px;
+  width: 16px;
+  margin: 2px;
+}
+
+.emptyStar {
+  visibility: hidden;
 }
 
 .vecStyle {
@@ -239,16 +270,7 @@
   }
 }
 
-img {
-  // max-width: 305px;
-  display: block;
-  margin: 0 auto;
-}
-
-h5 {
-  margin: 0px;
-}
-
+// Large desktop
 @media only screen and (min-width: 2560px) {
   .workspace {
     top: 79px;
@@ -257,12 +279,9 @@ h5 {
     height: 55vh;
   }
 
-  .worspaceLink {
-    display: inline-block;
-    width: 380px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  .carousel {
+    width: 447px;
+    height: 190px;
   }
 }
 
@@ -272,85 +291,79 @@ h5 {
   }
 }
 
+// Tablet
 @media only screen and (max-width: 768px) {
   .workspace {
-      height: 90vh;
+      height: 84vh;
       width: 301px;
   }
 
-  .workspaceImage {
-      width: 272px;
-      height: 162px;
-      margin-top: 8%;
-      margin-bottom: 8%;
-      border-radius: 10px;
+  .carousel {
+    width: 249px;
+    height: 145px;
+    margin-left: 10px;
+  }
+
+  .userAlertCard {
+    top: 15%;
   }
 }
 
+// Tablet (resizing window)
 @media only screen and (min-width: 426px) and (max-width: 768px) {
-  .worspaceLink {
-    display: inline-block;
-    width: 195px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  .star {
+    width: 12px;
+    height: 12px;
   }
 }
 
+// Large mobile
 @media only screen and (max-width: 425px) {
   .workspace {
     width: 100vw;
     left: 0;
-    height: 90vh;
+    height: 85vh;
   }
 
-  .workspaceImage {
+  .carousel {
     width: 355px;
     height: 185px;
+    margin-left: 19px;
   }
 }
 
+// Medium mobile
 @media only screen and (max-width: 375px) {
   .workspace {
     width: 100vw;
     left: 0;
     top: 68px;
-    height: 88vh;
+    height: 84vh;
   }
 
-  .workspaceImage {
+  .carousel {
     width: 318px;
     height: 175px;
-  }
-
-  .worspaceLink {
-    display: inline-block;
-    width: 262px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    margin-left: 12px;
   }
 }
 
+// Small mobile
 @media only screen and (max-width: 320px) {
-  .workspaceImage {
-    max-width: 260px;
+  .carousel {
+    width: 280px;
     height: 160px;
     margin-top: 8%;
     margin-bottom: 5%;
-    margin-left: 5%;
+    margin-left: 1%;
   }
 
-  .worspaceLink {
-    display: inline-block;
-    width: 210px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  .star {
+    width: 12px;
+    height: 12px;
   }
 
   .userAlertCard {
     left:47%;
   }
-
 }

@@ -1,15 +1,26 @@
-.userPic {
+.userPicContainer {
   width: 60px;
   height: 60px;
-  border-radius: 30px;
+  color: white;
+  border-radius: 10px;
   float: left;
+  margin-top: 15px;
+}
+.userPic {
+  max-width: 100%;
+  height: auto;
+}
+
+.nameStar {
+   display: -webkit-box;
 }
 
 .userName {
-  width: 170px;
+  width: 105px;
   padding-left: 20px;
   margin: 10px;
-  font-family: Roboto;
+  margin-left: 0px;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 150%;
   text-overflow: ellipsis;
@@ -18,41 +29,34 @@
 
 
   @media only screen and (min-width: 426px) and (max-width: 768px) {
-    width: 120px;
+    width: 95px;
   }
   @media only screen and (max-width: 425px) {
-    width: 125px;
+    width: 100px;
   }
   @media only screen and (max-width: 320px) {
-    width: 135px;
+    width: 95px;
   }
 }
 
-.stars {
-  font-size: 15px;
-  float: right;
-  padding-right: 50px;
+.starsReview {
+  margin-top: 8px;
 
   @media only screen and (min-width: 426px) and (max-width: 768px) {
-    padding-right: 5px;
+    margin-left: -5px;
   }
-  @media only screen and (max-width: 425px) {
-    padding-right: 110px;
-  }
-  @media only screen and (max-width: 375px) {
-    padding-right: 80px;
-  }
+
   @media only screen and (max-width: 320px) {
-    padding-right: 0px;
+    margin-left: -5px;
   }
 }
 
 
 .userNotes {
-  height: 42px;
+  height: 55px;
   margin-left: 80px;
   margin-top: -5px;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 13px;
   line-height: 150%;
@@ -65,6 +69,6 @@
   display: none;
 }
 
-.empty {
+.emptyNotes {
   color: #C4C4C4;
 }

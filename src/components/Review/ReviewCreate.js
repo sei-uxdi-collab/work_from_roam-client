@@ -15,9 +15,16 @@ import Button from 'react-bootstrap/Button'
     constructor(props) {
       super(props)
       this.state = {
+        alcohol: false,
+        goodforgroup: false,
+        meetingspace: false,
+        outdoorspace: false,
+        parking: false,
+        petfriendly: false,
         rating: 3,
         note: '',
         wifi: '',
+        wifipass: false,
         noise: 3,
         bathroom: 3,
         coffee: false,
@@ -42,10 +49,14 @@ import Button from 'react-bootstrap/Button'
 
     //submit review for given workspace id
     submitReview = (id) => {
-      const { rating, noise, bathroom, seating, coffee, outlet, food, wifi, note } = this.state
+      const { rating, noise, bathroom, seating, coffee, outlet, food, wifi,
+              note, wifipass, alcohol, goodforgroup, meetingspace, outdoorspace,
+              parking, petfriendly } = this.state
       const { alert, user } = this.props
       const token = user.token
-      createReview({ id, rating, noise, bathroom, seating, coffee, outlet, food, wifi, note, token })
+      createReview({ id, rating, noise, bathroom, seating, coffee, outlet, food,
+                     wifi, note, token, wifipass, alcohol, goodforgroup,
+                     meetingspace, outdoorspace, parking, petfriendly })
         .then(() => {
           // reload all workspace data
           axios(apiUrl + '/work_spaces')
@@ -66,11 +77,11 @@ import Button from 'react-bootstrap/Button'
       const { lat, lng } = location
       const name = placeData.name
       const address = placeData.formatted_address
+      const addresscomponent = placeData.address_components
       const photo = placeData.photos && placeData.photos[0].getUrl()
       const phone = placeData.formatted_phone_number
       const token = user.token
-
-      createWorkspace({ placeId, lat, lng, name, address, photo, token, phone })
+      createWorkspace({ placeId, lat, lng, name, address, addresscomponent, photo, token, phone })
         .then(data => this.submitReview(data.data.work_space.id))
     }
 

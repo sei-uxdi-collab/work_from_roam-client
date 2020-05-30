@@ -52,19 +52,7 @@
   color: #4775FF !important;
 }
 
-@media (min-width: 768px) {
-  .my-reviews-title {
-    font-size: 20px;
-  }
-}
-
-@media (min-width: 350px) and (max-width: 767px) {
-  .my-reviews-title {
-    font-size: 18px;
-  }
-}
-
-//////////////////// STYLES FOR TOP RATED CARDS
+/////////////// STYLES FOR TOP RATED CARDS
 
 ul {
   padding: 0px
@@ -108,9 +96,18 @@ ul {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   height: auto;
-  width: 252px;
+  max-width: 252px;
   padding: 10px 30px;
   margin: 10px;
+}
+
+.my-reviews-options {
+  background-color: #FFFFFF;
+  padding: 0px;
+  margin: 3px 0px 0px 10px !important;
+  border: none;
+  height: 20px;
+  width: 20px;
 }
 
 .my-reviews-right-arrow {
@@ -139,4 +136,155 @@ ul {
   line-height: 150%;
   text-decoration: underline;
   margin-right: 5px;
+}
+
+///////////////KEBEB MENU TOGGLE
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none !important;
+}
+
+.dropdown-button {
+  background-color: #FFF;
+  border: none;
+  padding: 0px;
+  position: absolute;
+}
+
+.dropdown-button:hover {
+  pointer: cursor;
+  background-color: #FFF !important;
+  border: none !important;
+  padding: 0px;
+  position: absolute;
+}
+
+// this is the image
+.kebab {
+  height: 17px;
+  width: 17px;
+  padding: 0px;
+}
+
+//this is the box that appears with the options
+.options-box {
+  background: #FFFFFF;
+  border: 1px solid #EEEEEE;
+  box-sizing: border-box;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  height: 70px;
+  width: 85px;
+  list-style-type: none;
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  z-index: 1;
+}
+
+.option-button {
+  background-color: #FFF;
+  border: none;
+  color: #222222;
+  font-weight: 300;
+  font-family: Roboto;
+  font-size: 11px;
+  padding: 7px 0px 7px 4px !important;
+  margin: 5px;
+  text-align: left;
+}
+
+.option-button:hover {
+  background-color: #FFF;
+  color: #222222;
+}
+
+.options-icon {
+  height: 12px;
+  width: 12px;
+  display: inline;
+  margin-right: 8px;
+}
+
+.line-under {
+  border-bottom: 1px solid #AAAAAA;
+  border-radius: 0px;
+}
+
+.line-under:hover {
+  border-bottom: 1px solid #AAAAAA;
+}
+
+/// MEDIA QUERIES
+
+@media (min-width: 768px) {
+  .my-reviews-title {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .my-reviews-title {
+    font-size: 18px;
+  }
+  .my-reviews-card {
+    margin-right: 20px !important;
+  }
+}
+
+
+// ALL FOR CONTENT WINDOW HEIGHT
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 480px) {
+  .my-reviews-content {
+    max-height: 30vh;
+  }
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) {
+  .my-reviews-content {
+    height: 27vh;
+  }
+}
+
+/* Samsung Galaxy S3, S4, S5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) {
+  .my-reviews-content {
+    height: 32vh;
+  }
+}
+
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) {
+  .my-reviews-content {
+    height: 39vh;
+  }
+}
+
+/* iPhone 6+, 7+, 8+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) {
+  .my-reviews-content {
+    height: 42vh;
+  }
+}
+
+/* iPhone X ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) {
+  .my-reviews-content {
+    height: 45vh;
+  }
+}
+
+/* iPhone XS Max, XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) {
+  .my-reviews-content {
+    height: 46vh;
+  }
 }

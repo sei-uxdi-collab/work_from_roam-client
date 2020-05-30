@@ -8,12 +8,13 @@ export const Arrow = ({ direction, handleClick }) => (
   <div
     onClick={handleClick}
     css={css`
+      background: #4775FF;
       display: flex;
       position: absolute;
       top: 50%;
-      ${direction === 'right' ? `right: 0` : `left: 0`};
-      height: 50px;
-      width: 50px;
+      ${direction === 'right' ? `right: 5px` : `left: 5px`};
+      height: 20px;
+      width: 20px;
       justify-content: center;
       border-radius: 50%;
       cursor: pointer;
