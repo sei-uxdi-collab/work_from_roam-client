@@ -59,9 +59,9 @@ render() {
                 ? 'suggestion-item--active'
                 : 'suggestion-item';
               const style = suggestion.active
-                ? { backgroundColor: '#4775ff',
+                ? {
                     borderRadius: '12px',
-                    color: '#ffffff',
+                    fontSize: '20px',
                     cursor: 'pointer',
                     margin: '5px',
                     padding: '10px'

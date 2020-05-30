@@ -27,6 +27,7 @@
 }
 
 .autocomplete-dropdown-container {
+  box-shadow: 2px 16px 32px, rgba(0, 0, 0, 0.25);
   position: absolute;
   width: 363px;
   margin-top: 20px;
@@ -38,6 +39,10 @@
   background-color: #ffffff;
   padding: 5px;
   max-height: 80vh;
+  border: 1px solid #C4d3FF;
+  box-sizing: border-box;
+  z-index: 1000;
+
   &:empty {
     display: none;
   }
