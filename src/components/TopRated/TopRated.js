@@ -5,6 +5,8 @@ import "./TopRated.scss";
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
+import { getAddressLine1 } from '../../helpers/getAddressLine1.js'
+import { getAddressLine2 } from '../../helpers/getAddressLine2.js'
 
 function TopRated(props) {
   const { user, userLocation, isExpanded, toggleExpand, showWorkspace } = props
@@ -54,7 +56,10 @@ function TopRated(props) {
           <div className="workplace-title"> {workplace.name}</div>
         </Row>
         <Row>
-          <span className="plain-text"> {workplace.address}</span>
+          <span className="plain-text address-ellipsis"> {getAddressLine1(workplace.addresscomponent)}</span>
+        </Row>
+        <Row>
+          <span className="plain-text address-ellipsis"> {getAddressLine2(workplace.addresscomponent)}</span>
         </Row>
         <Row>
           <div className="top-rated-stars">

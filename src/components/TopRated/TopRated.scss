@@ -59,6 +59,12 @@ ul {
   padding: 0px
 }
 
+.address-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .col-7 {
   padding: 0px;
 }
