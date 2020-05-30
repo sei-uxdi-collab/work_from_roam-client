@@ -1,26 +1,31 @@
 {
   "files": {
-    "main.css": "/static/css/main.a2901ec4.chunk.css",
-    "main.js": "/static/js/main.4a5e135d.chunk.js",
-    "main.js.map": "/static/js/main.4a5e135d.chunk.js.map",
+    "main.css": "/static/css/main.a313d971.chunk.css",
+    "main.js": "/static/js/main.1a2e131c.chunk.js",
+    "main.js.map": "/static/js/main.1a2e131c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.cea588d5.js",
     "runtime-main.js.map": "/static/js/runtime-main.cea588d5.js.map",
     "static/css/2.240942cf.chunk.css": "/static/css/2.240942cf.chunk.css",
-    "static/js/2.9bec89b1.chunk.js": "/static/js/2.9bec89b1.chunk.js",
-    "static/js/2.9bec89b1.chunk.js.map": "/static/js/2.9bec89b1.chunk.js.map",
+    "static/js/2.6c5436c7.chunk.js": "/static/js/2.6c5436c7.chunk.js",
+    "static/js/2.6c5436c7.chunk.js.map": "/static/js/2.6c5436c7.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.9851933d7f9ca7957ecd37fa79cd86b1.js": "/precache-manifest.9851933d7f9ca7957ecd37fa79cd86b1.js",
+    "precache-manifest.a651230c644bc29eeaf3edfb3fa75f99.js": "/precache-manifest.a651230c644bc29eeaf3edfb3fa75f99.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.240942cf.chunk.css.map": "/static/css/2.240942cf.chunk.css.map",
-    "static/css/main.a2901ec4.chunk.css.map": "/static/css/main.a2901ec4.chunk.css.map",
-    "static/js/2.9bec89b1.chunk.js.LICENSE.txt": "/static/js/2.9bec89b1.chunk.js.LICENSE.txt",
-    "static/media/Avatar.scss": "/static/media/logo-bull-icon.78c52155.svg"
+    "static/css/main.a313d971.chunk.css.map": "/static/css/main.a313d971.chunk.css.map",
+    "static/js/2.6c5436c7.chunk.js.LICENSE.txt": "/static/js/2.6c5436c7.chunk.js.LICENSE.txt",
+    "static/media/Header.svg": "/static/media/Header.21d3713a.svg",
+    "static/media/img1.svg": "/static/media/img1.dff65c1b.svg",
+    "static/media/img2.svg": "/static/media/img2.c395c095.svg",
+    "static/media/img3.svg": "/static/media/img3.ada95af4.svg",
+    "static/media/img4.svg": "/static/media/img4.59b8b33e.svg",
+    "static/media/Avatar.scss": "/static/media/logo-bull-icon.9e3f3dcd.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cea588d5.js",
     "static/css/2.240942cf.chunk.css",
-    "static/js/2.9bec89b1.chunk.js",
-    "static/css/main.a2901ec4.chunk.css",
-    "static/js/main.4a5e135d.chunk.js"
+    "static/js/2.6c5436c7.chunk.js",
+    "static/css/main.a313d971.chunk.css",
+    "static/js/main.1a2e131c.chunk.js"
   ]
 }
