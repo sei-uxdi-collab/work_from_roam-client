@@ -22,6 +22,9 @@ function Settings(props) {
             <a href="#avatar" className="settings-options"><u>Update Avatar</u></a>
           </Row>
           <Row>
+            <div className="email-us settings-options"><a href = "mailto: info@workfromroam.co">Questions? Comments? Email us at <u>info@workfromroam.co</u></a></div>
+          </Row>
+          <Row>
             <div className="settings-options version-info">WorkFromRoam App V1.0</div>
           </Row>
         </div>
