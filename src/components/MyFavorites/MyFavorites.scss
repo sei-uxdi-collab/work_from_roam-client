@@ -156,6 +156,15 @@ ul {
   line-height: 150%;
   text-decoration: underline;
   margin-right: 5px;
+
+  @supports (-webkit-line-clamp: 2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 }
 
 // desktop
