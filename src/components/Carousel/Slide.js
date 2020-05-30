@@ -56,11 +56,10 @@ export const Slide = ({ content, width, activeIndex }) => {
 }
 
 const cardCSS = css`
-  align-self: center;
   background-color: #fff;
   border-radius: 20px;
   height: 217px;
-  margin: 20px auto;
+  margin: 10px auto;
   width: 252px;
   box-shadow: 2px 8px 16px
     rgba(0, 0, 0, 0.25);

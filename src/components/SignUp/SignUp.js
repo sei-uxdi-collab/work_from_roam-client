@@ -135,14 +135,6 @@ class SignUp extends Component {
             >
               Submit
             </Button>
-
-            <Button
-              variant="danger"
-              onClick={this.carouselTest}
-              className="submit-button"
-            >
-              Test
-            </Button>
           </Form>
         </div>
       </div>

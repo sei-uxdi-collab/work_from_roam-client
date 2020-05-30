@@ -1,6 +1,6 @@
 /** @jsx jsx **/
 import React, { useState, useRef, useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button, Modal } from 'react-bootstrap'
 import { Carousel } from './../Carousel/Carousel'
 import { Arrow } from './../Carousel/Arrow'
@@ -21,7 +21,6 @@ const SignupCarousel = props => {
   })
   const [width, setWidth] = useState()
   const [show, setShow] = useState(true)
-  const [redirect, setRedirect] = useState(false)
 
   const carouselWidth = useRef()
   useEffect(() => {
@@ -64,18 +63,9 @@ const SignupCarousel = props => {
     })
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  const switchRedirect = () => {
-    return setRedirect(true)
-  }
-
-  const renderRedirect = () => {
-    if (redirect === true) {
-      return <Redirect to='/avatar' />
-    }
-  }
 
   return (
-    <Modal show={show} centered>
+    <Modal show={show} centered css={modalCSS}>
       <img css={headerCSS} src={HeaderImg} />
       <div css={carouselCSS} ref={carouselWidth}>
         <Carousel
@@ -137,7 +127,9 @@ const SignupCarousel = props => {
               <p css={bigTextCSS}>Create Your Avatar</p>
               <p css={smallTextCSS}>{'Show a bit of personality with one \n of our avatar characters.'}</p>
             </div>
-            <Button css={buttonCSS} onClick={() => setShow(false)}>Let's Go!</Button>
+            <Link to='/avatar'>
+              <Button css={buttonCSS} onClick={() => setShow(false)}>Let's Go!</Button>
+            </Link>
           </div>
 
         </Carousel>
@@ -148,9 +140,21 @@ const SignupCarousel = props => {
       </div>
       <Arrow direction='left' handleClick={prevSlide} />
       <Arrow direction='right' handleClick={nextSlide} />
+      <p
+        onClick={() => setShow(false)}
+        css={skipCSS}
+      >
+        Skip
+      </p>
     </Modal>
   )
 }
+
+const modalCSS = css`
+  .modal-content {
+    border-radius: 20px;
+  }
+`
 
 const headerCSS = css`
   margin-top: 36px;
@@ -158,7 +162,7 @@ const headerCSS = css`
 
 const carouselCSS = css`
   display: flex;
-  height: 425px;
+  height: 400px;
   width: 80%;
   margin: 0 auto;
   overflow: hidden;
@@ -185,6 +189,17 @@ const buttonCSS = css`
   border-radius: 22px;
   margin-top: 90px;
   width: 114px;
+`
+
+const skipCSS = css`
+  color: #4775ff;
+  position: absolute;
+  left: 310px;
+  top: 450px;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration-line: underline;
 `
 
 export default SignupCarousel
