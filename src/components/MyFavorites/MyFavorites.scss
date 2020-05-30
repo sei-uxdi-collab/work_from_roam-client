@@ -2,6 +2,12 @@
   float: right;
 }
 
+.address-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Entire favorites section */
 .myfavorites-section {
   display: flex;

@@ -5,9 +5,12 @@ import { Row, Col } from 'react-bootstrap';
 // import Button from 'react-bootstrap/Button'
 import StarRatingComponent from "react-star-rating-component";
 import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
+import { getAddressLine1 } from '../../helpers/getAddressLine1.js'
+import { getAddressLine2 } from '../../helpers/getAddressLine2.js'
 
 
 import "./MyFavorites.scss";
+
 
 function MyFavorites(props) {
   const { user, userLocation, isExpanded, toggleExpand, showWorkspace } = props
@@ -44,7 +47,10 @@ function MyFavorites(props) {
           </Col>
         </Row>
         <Row>
-          <span className="plain-text"> {workplace.address}</span>
+          <span className="plain-text address-ellipsis"> {getAddressLine1(workplace.addresscomponent)}</span>
+        </Row>
+        <Row>
+          <span className="plain-text address-ellipsis"> {getAddressLine2(workplace.addresscomponent)}</span>
         </Row>
         <Row>
           <div className="my-favorite-stars">
