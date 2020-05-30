@@ -73,7 +73,6 @@ function TopRated(props) {
         </Row>
         <Row className="pb-2">
           <Col xs={11} className="m-0 p-0">
-            <div className="open-now">Open Now</div>
             <span className="plain-text">{userLocation && (calculateDistanceMiles( userLocation, workplaceLocation(workplace) ))} miles away</span>
           </Col>
           <Col xs={1} className="m-0 p-0" onClick={() => showWorkspace(workplace.id, workplace.place_id)} >
