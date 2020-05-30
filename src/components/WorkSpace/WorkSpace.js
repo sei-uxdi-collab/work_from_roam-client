@@ -76,12 +76,19 @@ class WorkSpace extends React.Component {
     render() {
       // console.log(this.props.placeData)
       let { photo, photo1, photo2, photo3, photo4 } = 'loading-cat.gif'
-      // let photo1 = 'loading-cat.gif'
-      if (this.props.placeData && this.props.placeData.photos) {
+      if (this.props.data && this.props.placeData && this.props.placeData.photos[0]) {
         photo = this.props.placeData.photos[0].getUrl()
+      }
+      if (this.props.data && this.props.placeData && this.props.placeData.photos[1]) {
         photo1 = this.props.placeData.photos[1].getUrl()
+      }
+      if (this.props.data && this.props.placeData && this.props.placeData.photos[2]) {
         photo2 = this.props.placeData.photos[2].getUrl()
+      }
+      if (this.props.data && this.props.placeData && this.props.placeData.photos[3]) {
         photo3 = this.props.placeData.photos[3].getUrl()
+      }
+      if (this.props.data && this.props.placeData && this.props.placeData.photos[4]) {
         photo4 = this.props.placeData.photos[4].getUrl()
       }
 
