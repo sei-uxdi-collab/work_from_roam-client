@@ -53,7 +53,6 @@ render() {
             />
           </div>
           <div className="autocomplete-dropdown-container">
-          <div style={{ borderRadius: '10px', backgroundColor: '#ffffff', padding: '5px' }}>
             {loading && <div>Loading...</div>}
             {suggestions.map(suggestion => {
               const className = suggestion.active
@@ -61,14 +60,14 @@ render() {
                 : 'suggestion-item';
               const style = suggestion.active
                 ? { backgroundColor: '#4775ff',
-                    borderRadius: '10px',
+                    borderRadius: '12px',
                     color: '#ffffff',
                     cursor: 'pointer',
                     margin: '5px',
                     padding: '10px'
                    }
                 : { backgroundColor: '#ffffff',
-                    borderRadius: '10px',
+                    borderRadius: '12px',
                     cursor: 'pointer',
                     margin: '5px',
                     padding: '10px'
@@ -86,7 +85,6 @@ render() {
                 </div>
               );
             })}
-            </div>
           </div>
         </React.Fragment>
       )}

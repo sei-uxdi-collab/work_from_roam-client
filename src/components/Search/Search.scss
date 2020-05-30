@@ -31,7 +31,19 @@
   width: 363px;
   margin-top: 20px;
   margin-left: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
   text-align: left;
+  border-radius: 12px;
+  background-color: #ffffff;
+  padding: 5px;
+  max-height: 80vh;
+  &:empty {
+    display: none;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 // Large desktop
