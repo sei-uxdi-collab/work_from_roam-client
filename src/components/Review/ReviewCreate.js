@@ -261,7 +261,7 @@ import Button from 'react-bootstrap/Button'
             </div>
 
             <Form.Group className="question mt-3" controlId="wifi">
-              <Form.Label className="question-header mb-0">How was the Wifi?*</Form.Label>
+              <Form.Label className="question-header mb-0">How was the Wifi?</Form.Label>
               <Form.Row className="slider-text d-flex justify-content-between">
                 <div className="d-inline-flex">No Wifi</div>
                 <div className="d-inline-flex">Fast</div>
@@ -281,7 +281,7 @@ import Button from 'react-bootstrap/Button'
             </Form.Group>
 
             <Form.Group className="question mt-3" controlId="noise">
-              <Form.Label className="question-header mb-0">What was the noise level?*</Form.Label>
+              <Form.Label className="question-header mb-0">What was the noise level?</Form.Label>
               <Form.Row className="slider-text d-flex justify-content-between">
                 <div className="d-inline-flex">Silent</div>
                 <div className="d-inline-flex">Loud</div>
@@ -301,7 +301,7 @@ import Button from 'react-bootstrap/Button'
             </Form.Group>
 
             <Form.Group className="question mt-3" controlId="seating">
-              <Form.Label className="question-header mb-0">How easily did you find a seat?*</Form.Label>
+              <Form.Label className="question-header mb-0">How easily did you find a seat?</Form.Label>
               <Form.Row className="slider-text d-flex justify-content-between">
                 <div className="d-inline-flex">No Seats</div>
                 <div className="d-inline-flex">Easily</div>
@@ -321,7 +321,7 @@ import Button from 'react-bootstrap/Button'
             </Form.Group>
 
             <Form.Group className="question mt-3" controlId="bathroom">
-              <Form.Label className="question-header mb-0">How was the bathroom?*</Form.Label>
+              <Form.Label className="question-header mb-0">How was the bathroom?</Form.Label>
               <Form.Row className="slider-text d-flex justify-content-between">
                 <div className="d-inline-flex">No Bathrooms</div>
                 <div className="d-inline-flex">Immaculate</div>
