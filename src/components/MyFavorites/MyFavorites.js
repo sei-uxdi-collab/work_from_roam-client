@@ -90,7 +90,7 @@ function MyFavorites(props) {
           className="myfavorites-content no-favorites"
         >
         <ul className="my-favorite-card">
-          You don't have any favorites! Select a workplace to add it as a favorite.
+          Save your favorite locations here!
         </ul>
         </div>
       </div>
