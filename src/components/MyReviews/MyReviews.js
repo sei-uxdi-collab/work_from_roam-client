@@ -81,7 +81,7 @@ function MyReviews(props) {
         <Row>
           <div className="my-reviews-stars">
             <StarRatingComponent
-             value={review.rating}
+             starCount={review.rating}
              emptyStarColor='#C4D3FF'
              editing={false}
              renderStarIcon={() => <img src="star-icon.svg" className="my-reviews-star" alt="star"/>}
@@ -107,22 +107,41 @@ function MyReviews(props) {
     </li>
   ))
 
-  return (
-    <div className="my-reviews-section">
-      <div className={`my-reviews  my-reviews-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
-        My Reviews
+  if (user.reviews.length === 0) {
+    return (
+      <div className="my-reviews-section">
+        <div className={`my-reviews  my-reviews-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
+          My Reviews
+        </div>
+        <div
+          ref={content}
+          style={{ maxHeight }}
+          className="my-reviews-content no-reviews"
+        >
+        <ul className="my-favorite-card no-reviews">
+          Write reviews for spaces you've visited!
+        </ul>
+        </div>
       </div>
-      <div
-        ref={content}
-        style={{ maxHeight }}
-        className="my-reviews-content"
-      >
-      <ul>
-        {myReviewsJsx}
-      </ul>
+    );
+  } else {
+    return (
+      <div className="my-reviews-section">
+        <div className={`my-reviews  my-reviews-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
+          My Reviews
+        </div>
+        <div
+          ref={content}
+          style={{ maxHeight }}
+          className="my-reviews-content"
+        >
+        <ul>
+          {myReviewsJsx}
+        </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default MyReviews;

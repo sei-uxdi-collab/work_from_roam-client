@@ -2,6 +2,12 @@
   float: right;
 }
 
+.address-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Entire favorites section */
 .myfavorites-section {
   display: flex;
@@ -73,6 +79,12 @@
 .myfavorites:hover,
 .active {
   color: #4775FF !important;
+}
+
+.no-favorites {
+  color: #222222;
+  font-size: 12px;
+  text-align: center;
 }
 
 ///////////// FOR MY FAVORITE CARDS
@@ -150,6 +162,15 @@ ul {
   line-height: 150%;
   text-decoration: underline;
   margin-right: 5px;
+
+  @supports (-webkit-line-clamp: 2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 }
 
 // desktop
@@ -164,9 +185,9 @@ ul {
   .myfavorites-title {
     font-size: 18px;
   }
-  .my-favorite-card {
-    margin-right: 20px;
-  }
+  // .my-favorite-card {
+  //   margin-right: 20px !important
+  // }
 }
 
 ////// ALL FOR CONTENT WINDOW HEIGHT
@@ -176,6 +197,9 @@ ul {
   .myfavorites-content {
     max-height: 30vh;
   }
+  .my-favorite-card {
+    max-width: 220px;
+  }
 }
 
 /* iPhone 5 ----------- */
@@ -183,12 +207,15 @@ ul {
   .myfavorites-content {
     height: 27vh;
   }
+  .my-favorite-card {
+    max-width: 220px;
+  }
 }
 
 /* Samsung Galaxy S3, S4, S5 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-height: 640px) {
   .myfavorites-content {
-    height: 32vh;
+    height: 30vh;
   }
 }
 
@@ -209,13 +236,13 @@ ul {
 /* iPhone X ----------- */
 @media only screen and (min-device-width: 375px) and (max-device-height: 812px) {
   .myfavorites-content {
-    height: 45vh;
+    height: 41vh;
   }
 }
 
 /* iPhone XS Max, XR ----------- */
 @media only screen and (min-device-width: 414px) and (max-device-height: 896px) {
   .myfavorites-content {
-    height: 46vh;
+    height: 42vh;
   }
 }

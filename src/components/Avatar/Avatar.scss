@@ -25,6 +25,7 @@
     padding: 6px;
     margin-left: 32px;
     font-size: 18px;
+    font-weight: 300px;
   }
 
   .top-section {
@@ -38,6 +39,7 @@
       background-color: #4775FF;
       color: #FFF;
       font-size: 13px;
+      border: none;
     }
   }
 
@@ -45,9 +47,11 @@
     width: 100px;
     height: 108px;
     margin: auto;
+    display: flex;
     img {
-      max-width: 100%;
       height: 108px;
+      max-width: 100%;
+      margin: 0 auto;
     }
   }
 
@@ -66,8 +70,9 @@
         height: 32px;
         margin: 16px 0px;
         border-radius: 3px;
+        border: none;
       }
-  
+
       .yellow {
         background-color: #FFCC47;
       }
@@ -84,15 +89,17 @@
         background-color: #BBBBBB;
       }
       .misc {
-        background-image: url("./logo-bull-icon.svg");
+        background-image: url("./glasses-icon.svg");
+        background-repeat: no-repeat;
+        background-position: center;
       }
-  
+
       .select-image {
         height: 100%;
         width: 100%;
       }
     }
-  
+
     .avatar-select {
       width: 78%;
       display: flex;
@@ -105,9 +112,11 @@
         background-color: transparent;
         border: solid transparent 3px;
         font-size: 40px;
+        display: flex;
         img {
           height: 100%;
           padding: 4px;
+          margin: 0 auto;
         }
       }
       .selected {
