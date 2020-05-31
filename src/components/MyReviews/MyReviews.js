@@ -81,7 +81,7 @@ function MyReviews(props) {
         <Row>
           <div className="my-reviews-stars">
             <StarRatingComponent
-             value={review.rating}
+             starCount={review.rating}
              emptyStarColor='#C4D3FF'
              editing={false}
              renderStarIcon={() => <img src="star-icon.svg" className="my-reviews-star" alt="star"/>}
