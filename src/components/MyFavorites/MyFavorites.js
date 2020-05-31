@@ -78,22 +78,41 @@ function MyFavorites(props) {
     </li>
   ))
 
-  return (
-    <div className="myfavorites-section">
-      <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
-        My Favorites
-      </div>
-      <div
-        ref={content}
-        style={{ maxHeight }}
-        className="myfavorites-content"
-      >
-        <ul>
-          {myFavoritesJsx}
+  if (user.find_up_voted_items.length === 0) {
+    return (
+      <div className="myfavorites-section">
+        <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
+          My Favorites
+        </div>
+        <div
+          ref={content}
+          style={{ maxHeight }}
+          className="myfavorites-content no-favorites"
+        >
+        <ul className="my-favorite-card">
+          You don't have any favorites! Select a workplace to add it as a favorite.
         </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="myfavorites-section">
+        <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
+          My Favorites
+        </div>
+        <div
+          ref={content}
+          style={{ maxHeight }}
+          className="myfavorites-content"
+        >
+          <ul>
+            {myFavoritesJsx}
+          </ul>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default MyFavorites;
