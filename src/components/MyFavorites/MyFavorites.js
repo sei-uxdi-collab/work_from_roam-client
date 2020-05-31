@@ -88,9 +88,9 @@ function MyFavorites(props) {
         style={{ maxHeight }}
         className="myfavorites-content"
       >
-      <ul>
-        {myFavoritesJsx}
-      </ul>
+        <ul>
+          {myFavoritesJsx}
+        </ul>
       </div>
     </div>
   );

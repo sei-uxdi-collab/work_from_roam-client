@@ -265,7 +265,7 @@ ul {
 /* Samsung Galaxy S3, S4, S5 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-height: 640px) {
   .my-reviews-content {
-    height: 32vh;
+    height: 30vh;
   }
 }
 
@@ -286,13 +286,13 @@ ul {
 /* iPhone X ----------- */
 @media only screen and (min-device-width: 375px) and (max-device-height: 812px) {
   .my-reviews-content {
-    height: 45vh;
+    height: 38vh;
   }
 }
 
 /* iPhone XS Max, XR ----------- */
 @media only screen and (min-device-width: 414px) and (max-device-height: 896px) {
   .my-reviews-content {
-    height: 46vh;
+    height: 42vh;
   }
 }
