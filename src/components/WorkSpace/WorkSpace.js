@@ -74,7 +74,7 @@ class WorkSpace extends React.Component {
 
     // render information inside an infoWindow for POI
     render() {
-      // console.log(this.props.placeData)
+      // console.log(this.props)
       let { photo, photo1, photo2, photo3, photo4 } = 'loading-cat.gif'
       if (this.props.data && this.props.placeData && this.props.placeData.photos[0]) {
         photo = this.props.placeData.photos[0].getUrl()
@@ -331,6 +331,10 @@ class WorkSpace extends React.Component {
                     <span className='ratingsRow'>Seating
                     <AmenityRating
                       amenity={this.props.data.avgseating}
+                    /></span>
+                    <span className='ratingsRow'>Cleanliness
+                    <AmenityRating
+                      amenity={this.props.data.avgclean}
                     /></span>
                   {!this.state.features && <p onClick={this.showFeatures} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>more<img alt='more' src='arrowDown.svg' className='vecStyle'/></p>}
                   {this.state.features &&
