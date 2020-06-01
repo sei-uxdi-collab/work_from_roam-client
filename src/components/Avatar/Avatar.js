@@ -46,7 +46,7 @@ class Avatar extends React.Component {
     const selectedAvatar = parseInt(event.target.getAttribute('name'))
     if (event.key === 'Enter') {
       this.onAvatarClick(selectedAvatar)
-    } 
+    }
   }
 
   onSave = () => {
@@ -63,7 +63,7 @@ class Avatar extends React.Component {
     this.props.history.push('/nav')
   }
 
-  
+
 
   createAvatarButtons = numbers => (
     <div className="avatar-select">
@@ -75,7 +75,7 @@ class Avatar extends React.Component {
           onKeyDown={this.onKeyDown}
           name={number}
           >
-          <img src={avatar(number)} />
+          <img src={avatar(number)} className="avatar-image" alt="avatar" />
         </div>
       ))}
     </div>
@@ -98,7 +98,7 @@ class Avatar extends React.Component {
 
         <div className="top-section">
           <div className="avatar-preview">
-            <img src={avatar(this.state.selectedAvatar || 25)}/>
+            <img src={avatar(this.state.selectedAvatar || 25)} alt="avatar preview"/>
           </div>
           <button onClick={this.onSave}>
             Save
@@ -126,9 +126,9 @@ class Avatar extends React.Component {
           { grey && this.createAvatarButtons([20,21,22,23,24,25]) }
 
           { misc && this.createAvatarButtons([26,27,28,29,30,31])}
-          
+
         </div>
-        
+
       </div>
     )
   }

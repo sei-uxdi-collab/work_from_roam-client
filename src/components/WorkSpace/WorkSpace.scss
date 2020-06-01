@@ -322,7 +322,7 @@ p.carousel-status {
   .workspace {
     width: 100vw;
     left: 0;
-    height: 85vh;
+    height: 84vh;
   }
 
   .carousel {
@@ -338,7 +338,7 @@ p.carousel-status {
     width: 100vw;
     left: 0;
     top: 68px;
-    height: 84vh;
+    height: 83vh;
   }
 
   .carousel {
@@ -365,5 +365,28 @@ p.carousel-status {
 
   .userAlertCard {
     left:47%;
+  }
+}
+
+// iPhone X
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+  .workspace {
+    top: 77px;
+    height: 85vh;
+  }
+}
+
+// iPhone 6+, 7+ and 8+
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+  .workspace {
+    top: 71px;
   }
 }

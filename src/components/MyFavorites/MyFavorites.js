@@ -5,9 +5,12 @@ import { Row, Col } from 'react-bootstrap';
 // import Button from 'react-bootstrap/Button'
 import StarRatingComponent from "react-star-rating-component";
 import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
+import { getAddressLine1 } from '../../helpers/getAddressLine1.js'
+import { getAddressLine2 } from '../../helpers/getAddressLine2.js'
 
 
 import "./MyFavorites.scss";
+
 
 function MyFavorites(props) {
   const { user, userLocation, isExpanded, toggleExpand, showWorkspace } = props
@@ -44,12 +47,15 @@ function MyFavorites(props) {
           </Col>
         </Row>
         <Row>
-          <span className="plain-text"> {workplace.address}</span>
+          <span className="plain-text address-ellipsis"> {getAddressLine1(workplace.addresscomponent)}</span>
+        </Row>
+        <Row>
+          <span className="plain-text address-ellipsis"> {getAddressLine2(workplace.addresscomponent)}</span>
         </Row>
         <Row>
           <div className="my-favorite-stars">
             <StarRatingComponent
-             value={workplace.avgrating}
+             starCount={workplace.avgrating}
              emptyStarColor='#C4D3FF'
              editing={false}
              renderStarIcon={() => <img src="star-icon.svg" className="my-favorite-star" alt="star"/>}
@@ -58,7 +64,6 @@ function MyFavorites(props) {
         </Row>
         <Row className="pb-2">
           <Col xs={11} className="m-0 p-0">
-            <div className="open-now">Open Now</div>
             <span className="plain-text">{calculateDistanceMiles( userLocation, workplaceLocation(workplace) )} miles away</span>
           </Col>
           <Col xs={1} className="m-0 p-0" onClick={() => showWorkspace(workplace.id, workplace.place_id)}>
@@ -73,22 +78,41 @@ function MyFavorites(props) {
     </li>
   ))
 
-  return (
-    <div className="myfavorites-section">
-      <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
-        My Favorites
+  if (user.find_up_voted_items.length === 0) {
+    return (
+      <div className="myfavorites-section">
+        <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
+          My Favorites
+        </div>
+        <div
+          ref={content}
+          style={{ maxHeight }}
+          className="myfavorites-content no-favorites"
+        >
+        <ul className="my-favorite-card">
+          Save your favorite locations here!
+        </ul>
+        </div>
       </div>
-      <div
-        ref={content}
-        style={{ maxHeight }}
-        className="myfavorites-content"
-      >
-      <ul>
-        {myFavoritesJsx}
-      </ul>
+    );
+  } else {
+    return (
+      <div className="myfavorites-section">
+        <div className={`myfavorites myfavorites-title ${isExpanded ? 'active' : ''}`} onClick={toggleExpand}>
+          My Favorites
+        </div>
+        <div
+          ref={content}
+          style={{ maxHeight }}
+          className="myfavorites-content"
+        >
+          <ul>
+            {myFavoritesJsx}
+          </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default MyFavorites;

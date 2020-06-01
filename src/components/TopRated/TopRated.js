@@ -5,6 +5,8 @@ import "./TopRated.scss";
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { calculateDistanceMiles } from '../../helpers/calculateDistance.js'
+import { getAddressLine1 } from '../../helpers/getAddressLine1.js'
+import { getAddressLine2 } from '../../helpers/getAddressLine2.js'
 
 function TopRated(props) {
   const { user, userLocation, isExpanded, toggleExpand, showWorkspace } = props
@@ -54,12 +56,15 @@ function TopRated(props) {
           <div className="workplace-title"> {workplace.name}</div>
         </Row>
         <Row>
-          <span className="plain-text"> {workplace.address}</span>
+          <span className="plain-text address-ellipsis"> {getAddressLine1(workplace.addresscomponent)}</span>
+        </Row>
+        <Row>
+          <span className="plain-text address-ellipsis"> {getAddressLine2(workplace.addresscomponent)}</span>
         </Row>
         <Row>
           <div className="top-rated-stars">
             <StarRatingComponent
-             value={workplace.rating}
+             starCount={workplace.rating}
              emptyStarColor='#C4D3FF'
              editing={false}
              renderStarIcon={() => <img src="star-icon.svg" className="top-rated-star" alt="star"/>}
@@ -68,7 +73,6 @@ function TopRated(props) {
         </Row>
         <Row className="pb-2">
           <Col xs={11} className="m-0 p-0">
-            <div className="open-now">Open Now</div>
             <span className="plain-text">{userLocation && (calculateDistanceMiles( userLocation, workplaceLocation(workplace) ))} miles away</span>
           </Col>
           <Col xs={1} className="m-0 p-0" onClick={() => showWorkspace(workplace.id, workplace.place_id)} >

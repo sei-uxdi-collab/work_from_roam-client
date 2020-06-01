@@ -60,7 +60,7 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
   const userBanner = (
     <Fragment>
       <div className="d-flex mb-2" style={{ width: "100%"}}>
-        <div >
+        <div className="user-avatar">
           <a href="#avatar">
             { user && user.avatar ? <img src={avatar(user.avatar)} className="prof-pic" alt="profile pic"/> : <img src={avatar(25)} className="prof-pic" alt="profile pic" /> }
           </a>
