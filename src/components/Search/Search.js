@@ -61,7 +61,7 @@ render() {
               const style = suggestion.active
                 ? {
                     borderRadius: '12px',
-                    fontSize: '20px',
+                    backgroundColor: 'rgba(71, 117, 255, 0.25)',
                     cursor: 'pointer',
                     margin: '5px',
                     padding: '10px'
