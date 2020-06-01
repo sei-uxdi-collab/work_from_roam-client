@@ -58,10 +58,20 @@ render() {
               const className = suggestion.active
                 ? 'suggestion-item--active'
                 : 'suggestion-item';
-              // inline style for demonstration purpose
               const style = suggestion.active
-                ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                ? {
+                    borderRadius: '12px',
+                    backgroundColor: 'rgba(71, 117, 255, 0.25)',
+                    cursor: 'pointer',
+                    margin: '5px',
+                    padding: '10px'
+                   }
+                : { backgroundColor: '#ffffff',
+                    borderRadius: '12px',
+                    cursor: 'pointer',
+                    margin: '5px',
+                    padding: '10px'
+                  };
               return (
                 <div
                   {...getSuggestionItemProps(suggestion, {
@@ -69,7 +79,9 @@ render() {
                     style,
                   })}
                 >
-                  <span>{suggestion.description}</span>
+                  <span style={{ fontWeight: 'bold' }}>{suggestion.formattedSuggestion.mainText}</span>
+                  <br />
+                  <span>{suggestion.formattedSuggestion.secondaryText}</span>
                 </div>
               );
             })}
