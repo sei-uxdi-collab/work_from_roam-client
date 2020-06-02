@@ -79,9 +79,9 @@ render() {
                     style,
                   })}
                 >
-                  <span style={{ fontSize: '16px', fontWeight: '500' }}>{suggestion.formattedSuggestion.mainText}</span>
+                  <span className='main-text'>{suggestion.formattedSuggestion.mainText}</span>
                   <br />
-                  <span style={{ fontSize: '14px' }}>{suggestion.formattedSuggestion.secondaryText}</span>
+                  <span className='secondary-text'>{suggestion.formattedSuggestion.secondaryText}</span>
                 </div>
               );
             })}

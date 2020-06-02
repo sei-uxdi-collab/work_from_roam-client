@@ -52,6 +52,15 @@
   }
 }
 
+.main-text {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.secondary-text {
+  font-size: 14px;
+}
+
 // Large desktop
 @media only screen and (min-width: 2560px) {
   .input-group {
@@ -93,5 +102,13 @@
 
   .autocomplete-dropdown-container {
     width: 75vw;
+  }
+
+  .main-text {
+    font-size: 14px;
+  }
+
+  .secondary-text {
+    font-size: 12px;
   }
 }
