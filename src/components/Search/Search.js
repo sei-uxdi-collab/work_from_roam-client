@@ -63,25 +63,25 @@ render() {
                     borderRadius: '12px',
                     backgroundColor: 'rgba(71, 117, 255, 0.25)',
                     cursor: 'pointer',
-                    margin: '5px',
-                    padding: '10px'
+                    margin: '2px 5px 2px 5px',
+                    padding: '8px 11px 8px 11px'
                    }
                 : { backgroundColor: '#ffffff',
                     borderRadius: '12px',
                     cursor: 'pointer',
-                    margin: '5px',
-                    padding: '10px'
+                    margin: '2px 5px 2px 5px',
+                    padding: '8px 11px 8px 11px'
                   };
               return (
-                <div
+                <div style={{ height: '44px', lineHeight: '150%' }}
                   {...getSuggestionItemProps(suggestion, {
                     className,
                     style,
                   })}
                 >
-                  <span style={{ fontWeight: 'bold' }}>{suggestion.formattedSuggestion.mainText}</span>
+                  <span className='main-text'>{suggestion.formattedSuggestion.mainText}</span>
                   <br />
-                  <span>{suggestion.formattedSuggestion.secondaryText}</span>
+                  <span className='secondary-text'>{suggestion.formattedSuggestion.secondaryText}</span>
                 </div>
               );
             })}
