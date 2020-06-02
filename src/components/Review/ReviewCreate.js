@@ -66,7 +66,7 @@ import Button from 'react-bootstrap/Button'
             heading: 'Thanks for your review!',
             message: messages.reviewCreateSuccess,
             variant: 'light',
-            image: 'logo-text-only.svg'
+            image: 'logo-bull-icon.svg'
           })
         })
         .catch(() => alert('create review failed'))

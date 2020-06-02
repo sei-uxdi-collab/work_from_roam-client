@@ -162,9 +162,8 @@ class App extends React.Component {
                 setUser={this.setUser}
                 setApp={this.setState.bind(this)}
                 google={this.state.google}
-                map={this.state.map} 
-                barAlert={this.barAlert}
-                setUser={this.setUser}/>
+                map={this.state.map}
+                barAlert={this.barAlert}/>
             )} />
 
             <Route user={user} path='/create-workspace' render={() => (
