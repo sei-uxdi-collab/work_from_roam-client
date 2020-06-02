@@ -40,7 +40,7 @@ class HeaderSignUp extends Component {
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/first-signin'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })
