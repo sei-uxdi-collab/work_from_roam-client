@@ -1,5 +1,6 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
+import { Row, Col } from 'react-bootstrap';
 
 import './AutoAlert.scss'
 
@@ -36,11 +37,15 @@ class AutoAlert extends React.Component {
         className={variant}
       >
         <div className="container">
-          <Alert.Heading style={{ textAlign: 'center', color: 'grey' }}>
-            {heading}
-          </Alert.Heading>
-          <p className="alert-body" style={{ textAlign: 'center', color: 'grey' }}>{message}</p>
-            {image ? (<img src={image} className="image" alt="alert" />) : null}
+          <Row>
+            {image ? (<Col xs={6}><img src={image} className="image" alt="alert" /></Col>) : null}
+            <Col className="alert-text">
+              <Alert.Heading className="alert-header">
+                {heading}
+              </Alert.Heading>
+              <p className="alert-body">{message}</p>
+            </Col>
+          </Row>
         </div>
       </Alert>
     )
