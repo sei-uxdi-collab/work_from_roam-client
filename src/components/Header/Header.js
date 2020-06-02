@@ -21,6 +21,8 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
     topRated: false,
     info: false,
     settings: false,
+    signIn: !user,
+    signUp: false
   })
 
   useEffect(() => {
@@ -39,6 +41,8 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
       topRated: false,
       info: false,
       settings: false,
+      signIn: false,
+      signUp: false,
       [section]: newState
     })
 
@@ -139,7 +143,14 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
         <Link to='/' className="p-0">
           <img src="close-x-white.png" className="close-x-white" alt="close"/>
         </Link>
-        <HeaderAuthOptions barAlert={barAlert} setUser={setUser} />
+        <HeaderAuthOptions
+          barAlert={barAlert}
+          setUser={setUser}
+          toggleSignIn={() => toggleExpand('signIn')}
+          toggleSignUp={() => toggleExpand('signUp')}
+          isSignInOpen={expanded.signIn}
+          isSignUpOpen={expanded.signUp}
+        />
       </Row>
       <Row>
         <div>

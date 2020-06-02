@@ -24,28 +24,24 @@ class HeaderAuthOptions extends Component {
   }
 
   render() {
-
+    const { toggleSignIn, toggleSignUp, isSignInOpen, isSignUpOpen } = this.props
 
     return (
       <div className="full-width">
         <Row className="m-0 p-0 d-flex justify-content-around">
           <div className="box-controller">
            <div
-             className={this.state.isSignInOpen
+             className={isSignInOpen
              ? " controller selected-controller"
              : "controller"}
-             onClick={this
-             .showSignInBox
-             .bind(this)}>
+             onClick={toggleSignIn}>
              Login
            </div>
            <div
-             className={this.state.isSignUpOpen
+             className={isSignUpOpen
              ? "controller selected-controller"
              : "controller"}
-             onClick={this
-             .showSignUpBox
-             .bind(this)}>
+             onClick={toggleSignUp}>
              Sign Up
            </div>
          </div>
@@ -53,8 +49,8 @@ class HeaderAuthOptions extends Component {
 
        <Row className="m-0 p-0">
         <div className="box-container">
-          {this.state.isSignInOpen && <HeaderSignIn user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser}/>}
-          {this.state.isSignUpOpen && <HeaderSignUp user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser}/>}
+          {isSignInOpen && <HeaderSignIn user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser}/>}
+          {isSignUpOpen && <HeaderSignUp user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser}/>}
         </div>
       </Row>
     </div>
