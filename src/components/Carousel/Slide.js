@@ -61,6 +61,7 @@ const cardCSS = css`
   height: 217px;
   margin: 10px auto;
   width: 252px;
+  overflow-y: auto;
   box-shadow: 2px 8px 16px
     rgba(0, 0, 0, 0.25);
 `
