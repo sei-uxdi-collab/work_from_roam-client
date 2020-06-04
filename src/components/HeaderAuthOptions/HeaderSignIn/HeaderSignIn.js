@@ -68,7 +68,6 @@ class HeaderSignIn extends Component {
                 fullWidth={true}
                 className="account-info"
                 required
-                classes={identifier}
                 type="identifier"
                 name="identifier"
                 value={identifier}
@@ -85,7 +84,6 @@ class HeaderSignIn extends Component {
                 fullWidth={true}
                 className="account-info password"
                 required
-                classes={password}
                 name="password"
                 value={password}
                 placeholder="Password"
