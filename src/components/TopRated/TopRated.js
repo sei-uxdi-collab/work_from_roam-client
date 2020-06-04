@@ -64,6 +64,7 @@ function TopRated(props) {
         <Row>
           <div className="top-rated-stars">
             <StarRatingComponent
+             name='name'
              starCount={workplace.rating}
              emptyStarColor='#C4D3FF'
              editing={false}
