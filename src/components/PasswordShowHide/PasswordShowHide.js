@@ -54,7 +54,6 @@ class PasswordInput extends Component {
 }
 
 PasswordInput.propTypes = {
-  classes: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.func.isRequired
 }
