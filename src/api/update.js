@@ -9,7 +9,7 @@ export const updateReview = (params) => {
       data: {
         review: {
           alcohol: params.alcohol ? "5" : "0",
-          bathroom: params.bathroom,
+          bathroom: params.bathroom ? "5" : "0",
           coffee: params.coffee ? "5" : "0",
           food: params.food ? "5" : "0",
           goodforgroup: params.goodforgroup ? "5" : "0",
@@ -23,7 +23,8 @@ export const updateReview = (params) => {
           rating: params.rating,
           seating: params.seating,
           wifi: params.wifi,
-          wifipass: params.wifipass ? "5" : "0"
+          wifipass: params.wifipass ? "5" : "0",
+          clean: params.clean,
         }
       },
       headers: {

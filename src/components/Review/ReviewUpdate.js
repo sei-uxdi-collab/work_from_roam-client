@@ -3,7 +3,6 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
-
 import StarRatingComponent from "react-star-rating-component";
 import { updateReview } from '../../api/update'
 import messages from '../AutoAlert/messages'
@@ -33,6 +32,7 @@ import Button from 'react-bootstrap/Button'
           outlet: this.props.currentReview.outlet,
           parking: this.props.currentReview.parking,
           seating: this.props.currentReview.seating,
+          clean: this.props.currentReview.clean,
           display: 'block',
           redirect: false,
           isChecked: props.isChecked || false
@@ -55,13 +55,13 @@ import Button from 'react-bootstrap/Button'
 
       const { rating, noise, bathroom, seating, coffee, outlet, food, wifi,
               note, petfriendly, goodforgroup, meetingspace, outdoorspace,
-              parking, alcohol, wifipass } = this.state
+              parking, alcohol, wifipass, clean } = this.state
       const { alert, user } = this.props
       const token = user.token
       const id = this.props.currentReview.id
       updateReview({ id, rating, noise, bathroom, seating, coffee, outlet,
                      food, wifi, note, petfriendly, token, goodforgroup,
-                     meetingspace, outdoorspace, parking, alcohol, wifipass })
+                     meetingspace, outdoorspace, parking, alcohol, wifipass, clean })
        .then(data => {
          axios(apiUrl + '/work_spaces')
            .then(data => {
@@ -148,11 +148,11 @@ import Button from 'react-bootstrap/Button'
                 <Form.Check
                   className="checkbox-toolbar"
                   type="checkbox"
-                  label="Free Parking"
+                  label="Available Outlets"
                   onChange={this.toggleChange}
-                  name="parking"
-                  id="parking"
-                  checked={this.state.parking}
+                  name="outlet"
+                  id="outlet"
+                  checked={this.state.outlet}
                 />
               </Form.Group>
 
@@ -196,11 +196,11 @@ import Button from 'react-bootstrap/Button'
                 <Form.Check
                   className="checkbox-toolbar"
                   type="checkbox"
-                  label="Available Outlets"
+                  label="Bathrooms"
                   onChange={this.toggleChange}
-                  name="outlet"
-                  id="outlet"
-                  checked={this.state.outlet}
+                  name="bathroom"
+                  id="bathroom"
+                  checked={this.state.bathroom}
                 />
               </Form.Group>
 
@@ -208,23 +208,11 @@ import Button from 'react-bootstrap/Button'
                 <Form.Check
                   className="checkbox-toolbar"
                   type="checkbox"
-                  label="Good for Groups"
+                  label="Free Parking"
                   onChange={this.toggleChange}
-                  name="goodforgroup"
-                  id="goodforgroup"
-                  checked={this.state.goodforgroup}
-                />
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Check
-                  className="checkbox-toolbar"
-                  type="checkbox"
-                  label="Meeting Rooms"
-                  onChange={this.toggleChange}
-                  name="meetingspace"
-                  id="meetingspace"
-                  checked={this.state.meetingspace}
+                  name="parking"
+                  id="parking"
+                  checked={this.state.parking}
                 />
               </Form.Group>
 
@@ -251,6 +239,31 @@ import Button from 'react-bootstrap/Button'
                   checked={this.state.petfriendly}
                 />
               </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Meeting Rooms"
+                  onChange={this.toggleChange}
+                  name="meetingspace"
+                  id="meetingspace"
+                  checked={this.state.meetingspace}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Good for Groups"
+                  onChange={this.toggleChange}
+                  name="goodforgroup"
+                  id="goodforgroup"
+                  checked={this.state.goodforgroup}
+                />
+              </Form.Group>
+
             </div>
 
             <Form.Group className="question mt-3" controlId="wifi">
@@ -314,9 +327,9 @@ import Button from 'react-bootstrap/Button'
             </Form.Group>
 
             <Form.Group className="question mt-3" controlId="bathroom">
-              <Form.Label className="question-header mb-0">How was the bathroom?*</Form.Label>
+              <Form.Label className="question-header mb-0">How clean was the space?*</Form.Label>
               <Form.Row className="slider-text d-flex justify-content-between">
-                <div className="d-inline-flex">No Bathrooms</div>
+                <div className="d-inline-flex">Poor</div>
                 <div className="d-inline-flex">Immaculate</div>
               </Form.Row>
               <Form.Row>
@@ -325,9 +338,9 @@ import Button from 'react-bootstrap/Button'
                   min="1"
                   max="5"
                   step="1"
-                  name="bathroom"
+                  name="clean"
                   className="slider"
-                  value={this.state.bathroom}
+                  value={this.state.clean}
                   onChange={this.handleChange}
                 />
               </Form.Row>
