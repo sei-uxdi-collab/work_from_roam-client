@@ -47,7 +47,7 @@ function TopRated(props) {
   const topRatedJsx = workplaces.map(workplace => (
     <li
       key={workplace.id}
-      action
+      action='true'
       href={`#workplace/${workplace.id}`}
     >
     <div className="top-rated-card">
