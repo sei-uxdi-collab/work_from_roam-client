@@ -21,19 +21,21 @@ import Button from 'react-bootstrap/Button'
         outdoorspace: false,
         parking: false,
         petfriendly: false,
-        rating: 3,
+        rating: 0,
         note: '',
-        wifi: '',
+        wifi: 3,
         wifipass: false,
         noise: 3,
-        bathroom: 3,
+        bathroom: false,
         coffee: false,
         food: false,
         outlet: false,
-        seating: '',
+        seating: 3,
+        clean: 3,
         display: 'block',
         redirect: false,
-        isChecked: props.isChecked || false
+        isChecked: props.isChecked || false,
+        submitError: false,
       }
       this.toggleChange = this.toggleChange.bind(this);
     }
@@ -51,12 +53,14 @@ import Button from 'react-bootstrap/Button'
     submitReview = (id) => {
       const { rating, noise, bathroom, seating, coffee, outlet, food, wifi,
               note, wifipass, alcohol, goodforgroup, meetingspace, outdoorspace,
-              parking, petfriendly } = this.state
+              parking, petfriendly, clean } = this.state
       const { alert, user } = this.props
       const token = user.token
+
+
       createReview({ id, rating, noise, bathroom, seating, coffee, outlet, food,
                      wifi, note, token, wifipass, alcohol, goodforgroup,
-                     meetingspace, outdoorspace, parking, petfriendly })
+                     meetingspace, outdoorspace, parking, petfriendly, clean })
         .then(() => {
           // reload all workspace data
           axios(apiUrl + '/work_spaces')
@@ -88,6 +92,12 @@ import Button from 'react-bootstrap/Button'
     handleSubmit = (event) => {
       event.preventDefault()
       const { currentWorkspace } = this.props
+
+      if (!this.state.rating) {
+        this.setState({ submitError: true })
+        document.getElementById('rate-your-experience').scrollIntoView()
+        return
+      }
 
       if (!currentWorkspace) {
         this.newWorkspaceReview()
@@ -131,11 +141,11 @@ import Button from 'react-bootstrap/Button'
           <h1 className="main-header ">Give {placeName} a review!</h1>
           <h2 className="sub-header ">* Required Fields</h2>
           <Form onSubmit={this.handleSubmit} className="ml-1">
-            <Form.Label className="question-header mt-3 mb-0" htmlFor="rating">Rate Your Experience*</Form.Label>
+            <Form.Label style={this.state.submitError ? {color: '#EF0909'} : {}} className="question-header mt-3 mb-0" htmlFor="rating" id="rate-your-experience" >Rate Your Experience*</Form.Label>
             <Form.Group className="stars">
               <StarRatingComponent
                 value={this.state.rating}
-                onStarClick= {(val) => this.setState({ rating: val })}
+                onStarClick= {(val) => this.setState({ rating: val, submitError: false })}
                 emptyStarColor="#FFF"
                 starColor="#000"
                 renderStarIcon={(nextValue, prevValue) =>
@@ -164,10 +174,10 @@ import Button from 'react-bootstrap/Button'
                 <Form.Check
                   className="checkbox-toolbar"
                   type="checkbox"
-                  label="Free Parking"
+                  label="Available Outlets"
                   onChange={this.toggleChange}
-                  name="parking"
-                  id="parking"
+                  name="outlet"
+                  id="outlet"
                 />
               </Form.Group>
 
@@ -208,32 +218,21 @@ import Button from 'react-bootstrap/Button'
                 <Form.Check
                   className="checkbox-toolbar"
                   type="checkbox"
-                  label="Available Outlets"
+                  label="Bathrooms"
                   onChange={this.toggleChange}
-                  name="outlet"
-                  id="outlet"
+                  name="bathroom"
+                  id="bathroom"
                 />
               </Form.Group>
-
+              
               <Form.Group>
                 <Form.Check
                   className="checkbox-toolbar"
                   type="checkbox"
-                  label="Good for Groups"
+                  label="Free Parking"
                   onChange={this.toggleChange}
-                  name="goodforgroup"
-                  id="goodforgroup"
-                />
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Check
-                  className="checkbox-toolbar"
-                  type="checkbox"
-                  label="Meeting Rooms"
-                  onChange={this.toggleChange}
-                  name="meetingspace"
-                  id="meetingspace"
+                  name="parking"
+                  id="parking"
                 />
               </Form.Group>
 
@@ -258,6 +257,29 @@ import Button from 'react-bootstrap/Button'
                   id="petfriendly"
                 />
               </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Meeting Rooms"
+                  onChange={this.toggleChange}
+                  name="meetingspace"
+                  id="meetingspace"
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Check
+                  className="checkbox-toolbar"
+                  type="checkbox"
+                  label="Good for Groups"
+                  onChange={this.toggleChange}
+                  name="goodforgroup"
+                  id="goodforgroup"
+                />
+              </Form.Group>
+
             </div>
 
             <Form.Group className="question mt-3" controlId="wifi">
@@ -321,9 +343,9 @@ import Button from 'react-bootstrap/Button'
             </Form.Group>
 
             <Form.Group className="question mt-3" controlId="bathroom">
-              <Form.Label className="question-header mb-0">How was the bathroom?</Form.Label>
+              <Form.Label className="question-header mb-0">How clean was the space?</Form.Label>
               <Form.Row className="slider-text d-flex justify-content-between">
-                <div className="d-inline-flex">No Bathrooms</div>
+                <div className="d-inline-flex">Poor</div>
                 <div className="d-inline-flex">Immaculate</div>
               </Form.Row>
               <Form.Row>
@@ -332,9 +354,9 @@ import Button from 'react-bootstrap/Button'
                   min="1"
                   max="5"
                   step="1"
-                  name="bathroom"
+                  name="clean"
                   className="slider"
-                  value={this.state.bathroom}
+                  value={this.state.clean}
                   onChange={this.handleChange}
                 />
               </Form.Row>
