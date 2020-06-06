@@ -11,7 +11,21 @@
   transform: translate(-50%, -45%);
   padding: 16px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
   border-radius: 10px;
+  border: 1px solid #C4D3FF;
+}
+
+.alert-text {
+  margin-top: 20px;
+  top: 50%;
+}
+
+.alert-header, .alert-body {
+  color: #222222;
+  font-size: 13px;
+  font-weight: 300;
+  text-align: left;
 }
 
 .container {
@@ -26,8 +40,8 @@
 }
 
 .image {
-  width: 70%;
-  padding: 10px;
+  width: 100%;
+  padding: 20px;
 }
 
 @keyframes light-bounce-in {

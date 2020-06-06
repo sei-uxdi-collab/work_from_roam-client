@@ -43,8 +43,6 @@ class App extends React.Component {
       user: null,
       userLocation: { lat: 42.3601, lng: -71.0589 },
       alerts: [],
-
-
       barAlerts: [],
       filteredWorkspaces: [],
     }
@@ -92,8 +90,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.allData)
-    console.log(this.state.placeData)
     const { alerts, barAlerts, user } = this.state
 
     return (
@@ -168,8 +164,7 @@ class App extends React.Component {
                 setApp={this.setState.bind(this)}
                 google={this.state.google}
                 map={this.state.map}
-                barAlert={this.barAlert}
-                setUser={this.setUser}/>
+                barAlert={this.barAlert}/>
             )} />
 
             <Route user={user} path='/create-workspace' render={() => (
@@ -231,7 +226,6 @@ class App extends React.Component {
           <ListView
             workspaces={[this.state.filteredWorkspaces]}
             sortWorkspaces={this.sortWorkspaces}
-            placeData={this.state.placeData}
           />
           </div>
         </Route>
