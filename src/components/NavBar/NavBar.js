@@ -15,12 +15,8 @@ class NavBar extends React.Component {
     }
 
     render() {
-      let redirect = ''
-      if (this.props.location.pathname === '/') {
-        redirect = '/nav'
-      } else {
-        redirect ='/'
-      }
+      const path = this.props.location.pathname
+      const redirect = path === '/nav' ? '/' : '/nav'
         return (
             <HashRouter>
               <Link to={redirect}>
