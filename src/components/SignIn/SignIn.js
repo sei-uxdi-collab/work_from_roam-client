@@ -36,7 +36,7 @@ class SignIn extends Component {
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/nav'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '' })
