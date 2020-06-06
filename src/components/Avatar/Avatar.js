@@ -82,9 +82,10 @@ class Avatar extends React.Component {
   )
 
   render() {
-    const { group } = this.state
+    const { group, selectedAvatar } = this.state
     const { user } = this.props
     const { yellow, brown, orange, black, grey, misc } = group
+    const avatarIndex = selectedAvatar === null ? 25 : selectedAvatar
 
     return (
       <div className="avatar-container">
@@ -98,7 +99,7 @@ class Avatar extends React.Component {
 
         <div className="top-section">
           <div className="avatar-preview">
-            <img src={avatar(this.state.selectedAvatar || 25)} alt="avatar preview"/>
+            <img src={avatar(avatarIndex)} alt="avatar preview"/>
           </div>
           <button onClick={this.onSave}>
             Save
