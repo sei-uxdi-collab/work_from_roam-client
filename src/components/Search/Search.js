@@ -23,9 +23,10 @@ setQuery = query => {
 handleAutocompleteSelect = async query => {
     const results = await geocodeByAddress(query)
     const searchLocation = await getLatLng(results[0])
+    const placeId = results[0].place_id
     this.props.setApp({ searchLocation,
-                        mapCenter: searchLocation })
-    this.props.setApp({ placeData: results[0] })
+                        mapCenter: searchLocation,
+                        placeId})
     this.setState({ query: '' })
 }
 
