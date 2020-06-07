@@ -5,8 +5,7 @@ import { css, jsx } from '@emotion/core'
 // Custom component imports
 import { ListViewRatings } from './../ListView/ListViewRatings'
 
-export const Slide = ({ content, width, activeIndex }) => {
-
+export const Slide = ({ content, width, activeIndex, placeData }) => {
   // Will eventually be altered to toggle from open/closed states
   const openHours = () => {
     return (
@@ -61,6 +60,7 @@ const cardCSS = css`
   height: 217px;
   margin: 10px auto;
   width: 252px;
+  overflow-y: auto;
   box-shadow: 2px 8px 16px
     rgba(0, 0, 0, 0.25);
 `
@@ -87,6 +87,8 @@ const infoCSS = css`
 `
 
 const hoursCSS = css`
+  // Temporarily hiding the Open Hours
+  display: none;
   background: #A4FF2E;
   border-radius: 31px;
   height: 20px;
