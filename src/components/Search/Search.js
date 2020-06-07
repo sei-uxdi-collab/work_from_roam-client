@@ -1,6 +1,7 @@
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import {GoogleApiWrapper} from 'google-maps-react'
+import { withRouter } from 'react-router-dom'
 import './Search.scss'
 import { WorkspaceFilter } from './../WorkspaceFilter/WorkspaceFilter.js'
 
@@ -23,10 +24,12 @@ setQuery = query => {
 handleAutocompleteSelect = async query => {
     const results = await geocodeByAddress(query)
     const searchLocation = await getLatLng(results[0])
+    const placeId = results[0].place_id
     this.props.setApp({ searchLocation,
-                        mapCenter: searchLocation })
-    this.props.setApp({ placeData: results[0] })
+                        mapCenter: searchLocation,
+                        placeId})
     this.setState({ query: '' })
+    this.props.history.push('/')
 }
 
 render() {
@@ -97,4 +100,4 @@ render() {
 
 export default GoogleApiWrapper({
   apiKey: (process.env.REACT_APP_GOOGLE_API_KEY)
-})(Search)
+})(withRouter(Search))
