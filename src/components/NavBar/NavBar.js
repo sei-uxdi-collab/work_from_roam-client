@@ -30,3 +30,4 @@ class NavBar extends React.Component {
 }
 
 export default withRouter(NavBar)
+
