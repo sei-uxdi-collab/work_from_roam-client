@@ -123,12 +123,11 @@ class WorkSpace extends React.Component {
                 <Row>
                   <span className='address'>{this.props.placeData && this.props.placeData.formatted_address}</span>
                 </Row>
-                <Row>
-                  {this.props.placeData && this.props.placeData.opening_hours ? <span className='hours'>{openingHrsToday}</span> : <span className='hours'>Hours unavailable</span> }
-                  <Col>
+                <div className='hrsRow'>
+                  {this.props.placeData && this.props.placeData.opening_hours ? <p className='hours'>{openingHrsToday}</p> : <p className='hours'>Hours unavailable</p> }
+
                     {this.props.placeData && this.props.placeData.opening_hours && this.props.placeData.opening_hours.isOpen() ? <span className='now open'>Open Now</span> : <span className='now close'>Closed Now</span>}
-                  </Col>
-                </Row>
+                </div>
                 <Row>
                   <span className='message'>Found a hidden gem? Share it with everyone!</span>
                 </Row>
