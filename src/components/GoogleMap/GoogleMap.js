@@ -166,12 +166,12 @@ class GoogleMap extends React.Component {
                 icon='current-location-marker.svg'
             />
 
-            <Marker
+            {this.props.searchLocation && (<Marker
                 name={'search result'}
                 position={this.props.searchLocation}
                 onClick={this.handleMarkerClick}
                 placeId={this.props.placeId}
-            />
+            />)}
 
             {/* create a marker on the map for each workspace */}
             {this.props.allData.map(workSpace => (
