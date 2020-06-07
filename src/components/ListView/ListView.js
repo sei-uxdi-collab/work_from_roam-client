@@ -109,15 +109,15 @@ const ListView = props => {
             <Slide key={workspace.id}
               content={workspace}
               activeIndex={activeIndex}
+              placeData={props.placeData}
               width={width} />
           ))}
         </Carousel>
       )
     }
   }
-
+  console.log(props.placeData)
   return (
-
     <Container className='list-container' fluid id={isVisible}>
       <Row className='list-row'>
         <Col className='list-column' sm={6} md={5} lg={4} ref={ref}>
