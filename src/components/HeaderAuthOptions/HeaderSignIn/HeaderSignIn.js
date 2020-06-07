@@ -44,7 +44,7 @@ class HeaderSignIn extends Component {
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/nav'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '' })
@@ -105,3 +105,4 @@ class HeaderSignIn extends Component {
 }
 
 export default withRouter(HeaderSignIn)
+
