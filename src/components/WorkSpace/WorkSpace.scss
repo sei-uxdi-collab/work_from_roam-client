@@ -131,6 +131,11 @@
   }
 }
 
+.closeWindowX {
+  position: fixed;
+  margin-left: 375px;
+}
+
 .carousel {
   width: 355px;
   height: 190px;
@@ -305,8 +310,13 @@ p.carousel-status {
 // Tablet
 @media only screen and (max-width: 768px) {
   .workspace {
-      height: 84vh;
-      width: 301px;
+    height: 84vh;
+    width: 301px;
+  }
+
+  .closeWindowX {
+    margin-left: 269px;
+    margin-top: -12px;
   }
 
   .carousel {
@@ -336,6 +346,10 @@ p.carousel-status {
     height: 84vh;
   }
 
+  .closeWindowX {
+    margin-left: 390px;
+  }
+
   .carousel {
     width: 355px;
     height: 185px;
@@ -352,6 +366,10 @@ p.carousel-status {
     height: 83vh;
   }
 
+  .closeWindowX {
+    margin-left: 340px;
+  }
+
   .carousel {
     width: 318px;
     height: 175px;
@@ -361,6 +379,10 @@ p.carousel-status {
 
 // Small mobile
 @media only screen and (max-width: 320px) {
+  .closeWindowX {
+    margin-left: 286px;
+  }
+
   .carousel {
     width: 280px;
     height: 160px;

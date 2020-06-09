@@ -222,9 +222,9 @@ class WorkSpace extends React.Component {
       }
 
         return (
-            <div className='workspace' style={this.state.display}>
-              <Link to='/'>
-                <img style={{ float: 'right' }} alt='close' src='close-x-white.svg' width={'12'} heigth={'12'}/>
+            <div className='workspace'>
+              <Link to='/' className='closeWindowX'>
+                <img alt='close' src='close-x-white.svg' width={'12'} heigth={'12'}/>
               </Link>
                 <Carousel className='carousel' showThumbs={false}>
                   <div>
