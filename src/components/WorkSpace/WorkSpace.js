@@ -277,7 +277,7 @@ class WorkSpace extends React.Component {
                 <div className='nameAndStar'>
 
                   <a
-                    className='worspaceLink'
+                    className='workspaceLink'
                     style={{ textDecoration: 'none', color: 'white', fontSize: '17px', fontWeight: '500', lineHeight: '150%' }}
                     href={this.props.placeData && this.props.placeData.website}
                     target='_blank'
