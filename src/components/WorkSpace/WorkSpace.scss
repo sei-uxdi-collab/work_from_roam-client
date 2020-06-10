@@ -37,9 +37,19 @@
   font-size: 11px;
 }
 
+.hrsRow {
+  display: flex;
+}
+
 .hours{
   font-weight: 300;
   font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 173px;
+  right: 6px;
+  margin-left: -14px;
 }
 
 .now {
@@ -52,6 +62,7 @@
   border-radius: 31px;
   font-weight: 300;
   font-size: 12px;
+  margin-left: 160px;
 }
 
 .open {
@@ -100,14 +111,14 @@
   box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.15);
   color: #FFFFFF;
   width: 413px;
-  height: 86vh;
+  height: 83vh;
   left: 15px;
   top: 60px;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 1rem;
   position: fixed;
-  z-index: 12;
+  z-index: 15;
 
   font-family: SF Pro Display, sans-serif;
   font-size: 15px;
@@ -118,6 +129,11 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.closeWindowX {
+  position: fixed;
+  margin-left: 375px;
 }
 
 .carousel {
@@ -142,7 +158,7 @@ p.carousel-status {
   visibility: hidden;
 }
 
-.worspaceLink {
+.workspaceLink {
   display: inline-block;
   width: 180px;
   text-overflow: ellipsis;
@@ -294,8 +310,13 @@ p.carousel-status {
 // Tablet
 @media only screen and (max-width: 768px) {
   .workspace {
-      height: 84vh;
-      width: 301px;
+    height: 81vh;
+    width: 301px;
+  }
+
+  .closeWindowX {
+    margin-left: 269px;
+    margin-top: -12px;
   }
 
   .carousel {
@@ -322,7 +343,11 @@ p.carousel-status {
   .workspace {
     width: 100vw;
     left: 0;
-    height: 84vh;
+    height: 89vh;
+  }
+
+  .closeWindowX {
+    margin-left: 390px;
   }
 
   .carousel {
@@ -338,7 +363,11 @@ p.carousel-status {
     width: 100vw;
     left: 0;
     top: 68px;
-    height: 83vh;
+    height: 88vh;
+  }
+
+  .closeWindowX {
+    margin-left: 340px;
   }
 
   .carousel {
@@ -350,6 +379,10 @@ p.carousel-status {
 
 // Small mobile
 @media only screen and (max-width: 320px) {
+  .closeWindowX {
+    margin-left: 286px;
+  }
+
   .carousel {
     width: 280px;
     height: 160px;
@@ -376,7 +409,7 @@ p.carousel-status {
   and (orientation: portrait) {
   .workspace {
     top: 77px;
-    height: 85vh;
+    height: 90vh;
   }
 }
 
@@ -388,5 +421,38 @@ p.carousel-status {
   and (orientation: portrait) {
   .workspace {
     top: 71px;
+    height: 90vh;
+  }
+
+  .closeWindowX {
+    margin-left: 381px;
+  }
+}
+
+// Galaxy S4, S5 and Note 3
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+  .workspace {
+      height: 89vh;
+  }
+
+  .closeWindowX {
+    margin-left: 328px;
+  }
+
+  .carousel {
+    width: 313px;
+    margin-left: 8px;
+  }
+
+  .yellowBubble {
+    width: 35px;
+  }
+
+  .grayBubble {
+    width: 35px;
   }
 }

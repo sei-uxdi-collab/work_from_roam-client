@@ -5,7 +5,8 @@
   border-radius: 10px;
   float: left;
   margin-top: 15px;
-  background-color: #FFF;
+  background-color: #f0f3ff;
+  border-style: none;
 }
 .userPic {
   max-width: 100%;
@@ -64,6 +65,10 @@
   overflow-y: auto;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
+
+  @media only screen and (min-width: 375px) and (max-width: 425px) {
+    margin-right: 3px;
+  }
 }
 
 .userNotes::-webkit-scrollbar {
