@@ -1,11 +1,11 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
-import PlacesDetail from '../PlacesDetail/PlacesDetail'
+// import PlacesDetail from '../PlacesDetail/PlacesDetail'
 // import SuggestionsList from './SuggestionsList/SuggestionsList.js'
 import './GoogleMap.scss'
 
@@ -109,6 +109,31 @@ class GoogleMap extends React.Component {
         }
     }
 
+    // Google marker on searched result
+    handleMarkerPOI = (props, event) => {
+        this.props.setApp({ placeData: null, currentWorkspace: null })
+        const placeId = event.placeId
+        const poiLocation = { lat: event.position.lat, lng: event.position.lng }
+        const mapCenter = poiLocation
+
+        this.findExistingWorkspace(placeId)
+
+        this.props.setApp({ mapCenter, poiLocation, placeId })
+
+        this.getPlaceDetails(props.map, placeId)
+        this.props.history.push('/workspace')
+    }
+
+    // Google marker on searched result
+    handleMarkerClick = (props, map, event) => {
+        // if user clicks on marker
+        if (props.placeId) {
+            this.handleMarkerPOI(props, map, event)
+        } else {
+            this.navigateHome()
+        }
+    }
+
     showSuggestions = () => {
       this.props.history.push('/suggestions')
     }
@@ -128,7 +153,7 @@ class GoogleMap extends React.Component {
                 initialCenter={this.props.center}
                 zoom={14}
                 clickableIcons={true}
-                options={{gesturHandling: 'greedy'}}
+                options={{gestureHandling: 'greedy'}}
                 onClick={this.handleClick}
                 onCenter_changed={this.updateMapState}
                 onMouseover={this.updateMapState}
@@ -137,16 +162,16 @@ class GoogleMap extends React.Component {
 
             <Marker
                 name={'user location'}
-                position={this.userLocation}
-                icon={{url:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}}
+                position={this.props.userLocation}
+                icon='current-location-marker.svg'
             />
 
-            <Marker
+            {this.props.searchLocation && (<Marker
                 name={'search result'}
                 position={this.props.searchLocation}
-                icon={{url:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
-                onClick={this.showSuggestions}
-            />
+                onClick={this.handleMarkerClick}
+                placeId={this.props.placeId}
+            />)}
 
             {/* create a marker on the map for each workspace */}
             {this.props.allData.map(workSpace => (

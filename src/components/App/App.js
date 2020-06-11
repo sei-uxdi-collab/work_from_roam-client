@@ -164,7 +164,8 @@ class App extends React.Component {
                 setApp={this.setState.bind(this)}
                 google={this.state.google}
                 map={this.state.map}
-                barAlert={this.barAlert}/>
+                barAlert={this.barAlert}
+                />
             )} />
 
             <Route user={user} path='/create-workspace' render={() => (
@@ -212,10 +213,10 @@ class App extends React.Component {
               center={this.state.mapCenter}
               coordinates={this.state.coordinates}
               placeData={this.state.placeData}
-              //
               setApp={this.setState.bind(this)}
               allData={this.state.allData}
               mapCenter={this.state.mapCenter}
+              placeId={this.state.placeId}
               poiLocation={this.state.poiLocation}
               searchLocation={this.state.searchLocation}
               userLocation={this.state.userLocation}

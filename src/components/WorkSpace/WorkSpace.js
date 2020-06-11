@@ -74,7 +74,7 @@ class WorkSpace extends React.Component {
 
     // render information inside an infoWindow for POI
     render() {
-      // console.log(this.props.placeData)
+      // console.log(this.props)
       let { photo, photo1, photo2, photo3, photo4 } = 'loading-cat.gif'
       if (this.props.data && this.props.placeData && this.props.placeData.photos[0]) {
         photo = this.props.placeData.photos[0].getUrl()
@@ -123,12 +123,11 @@ class WorkSpace extends React.Component {
                 <Row>
                   <span className='address'>{this.props.placeData && this.props.placeData.formatted_address}</span>
                 </Row>
-                <Row>
-                  {this.props.placeData && this.props.placeData.opening_hours ? <span className='hours'>{openingHrsToday}</span> : <span className='hours'>Hours unavailable</span> }
-                  <Col>
+                <div className='hrsRow'>
+                  {this.props.placeData && this.props.placeData.opening_hours ? <p className='hours'>{openingHrsToday}</p> : <p className='hours'>Hours unavailable</p> }
+
                     {this.props.placeData && this.props.placeData.opening_hours && this.props.placeData.opening_hours.isOpen() ? <span className='now open'>Open Now</span> : <span className='now close'>Closed Now</span>}
-                  </Col>
-                </Row>
+                </div>
                 <Row>
                   <span className='message'>Found a hidden gem? Share it with everyone!</span>
                 </Row>
@@ -223,9 +222,9 @@ class WorkSpace extends React.Component {
       }
 
         return (
-            <div className='workspace' style={this.state.display}>
-              <Link to='/'>
-                <img style={{ float: 'right' }} alt='close' src='close-x-white.svg' width={'12'} heigth={'12'}/>
+            <div className='workspace'>
+              <Link to='/' className='closeWindowX'>
+                <img alt='close' src='close-x-white.svg' width={'12'} heigth={'12'}/>
               </Link>
                 <Carousel className='carousel' showThumbs={false}>
                   <div>
@@ -278,7 +277,7 @@ class WorkSpace extends React.Component {
                 <div className='nameAndStar'>
 
                   <a
-                    className='worspaceLink'
+                    className='workspaceLink'
                     style={{ textDecoration: 'none', color: 'white', fontSize: '17px', fontWeight: '500', lineHeight: '150%' }}
                     href={this.props.placeData && this.props.placeData.website}
                     target='_blank'
@@ -331,6 +330,10 @@ class WorkSpace extends React.Component {
                     <span className='ratingsRow'>Seating
                     <AmenityRating
                       amenity={this.props.data.avgseating}
+                    /></span>
+                    <span className='ratingsRow'>Cleanliness
+                    <AmenityRating
+                      amenity={this.props.data.avgclean}
                     /></span>
                   {!this.state.features && <p onClick={this.showFeatures} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>more<img alt='more' src='arrowDown.svg' className='vecStyle'/></p>}
                   {this.state.features &&
