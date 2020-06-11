@@ -1,9 +1,13 @@
 /** @jsx jsx **/
 import React from 'react'
 import { css, jsx } from '@emotion/core'
+import { Row } from 'react-bootstrap'
 
 // Custom component imports
 import { ListViewRatings } from './../ListView/ListViewRatings'
+import { getAddressLine1 } from './../../helpers/getAddressLine1.js'
+import { getAddressLine2 } from './../../helpers/getAddressLine2.js'
+
 
 export const Slide = ({ content, width, activeIndex, placeData }) => {
   // Will eventually be altered to toggle from open/closed states
@@ -12,7 +16,7 @@ export const Slide = ({ content, width, activeIndex, placeData }) => {
       <div css={hoursCSS}><p>Open Now</p></div>
     )
   }
-
+  
   const distFromUser = () => {
     return (
       <p>{content.distance} miles away</p>
@@ -22,8 +26,8 @@ export const Slide = ({ content, width, activeIndex, placeData }) => {
   const address = () => {
     return (
       <React.Fragment>
-        <p>{content.address.slice(0, -5)}</p>
-        <p>{content.phone}</p>
+        <div css={addressCSS}>{getAddressLine1(content.addresscomponent)}</div>
+        <div css={addressCSS}>{getAddressLine2(content.addresscomponent)}</div>
       </React.Fragment>
     )
   }
@@ -45,7 +49,7 @@ export const Slide = ({ content, width, activeIndex, placeData }) => {
           {openHours()}
           {distFromUser()}
         </div>
-        <div css={addressCSS}>
+        <div>
           {address()}
         </div>
         <ListViewRatings data={content} />
@@ -89,6 +93,7 @@ const infoCSS = css`
 const hoursCSS = css`
   // Temporarily hiding the Open Hours
   display: none;
+
   background: #A4FF2E;
   border-radius: 31px;
   height: 20px;
@@ -97,13 +102,15 @@ const hoursCSS = css`
 `
 
 const addressCSS = css`
-margin: 16px;
-p {
-  color: #222;
+  color: #222222;
   font-family: Roboto;
-  font-weight: 300;
   font-size: 13px;
-  margin: 0;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%;
+  margin-left: 16px;
+  overflow: hidden;
   text-align: left;
-}
+  text-overflow: ellipsis;
+  white-space: nowrap
 `

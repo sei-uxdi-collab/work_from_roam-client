@@ -20,7 +20,7 @@ export const ListViewRatings = props => {
   }
 
   return (
-   <div>
+   <div style={{'padding-top': '5px'}}>
      <div css={ratingsRow}>
        <p>WiFi Quality</p>
        <div>
