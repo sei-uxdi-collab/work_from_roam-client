@@ -15,9 +15,6 @@ function TopRated(props) {
   const content = useRef(null);
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
-
-  console.log(props)
-
   useEffect(() => {
       axios({
         url: apiUrl + '/work_spaces/top_rated',

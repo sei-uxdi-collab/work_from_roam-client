@@ -6,7 +6,7 @@ import { GoogleApiWrapper } from 'google-maps-react'
 
 // Custom component imports
 import { Carousel } from './../Carousel/Carousel'
-import { Slide } from './../Carousel/Slide'
+import Slide from './../Carousel/Slide'
 import { Arrow } from './../Carousel/Arrow'
 import { Dots } from './../Carousel/Dots'
 import { ClickOutside } from '../ClickOutside/ClickOutside'
@@ -23,7 +23,6 @@ const ListView = props => {
   })
   const [width, setWidth] = useState()
   const workspaceArray = props.workspaces[0].slice(0, 5)
-
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Reference and function that listens for events outside of the ListView component, and closes it
   const ref = useRef()
@@ -109,14 +108,15 @@ const ListView = props => {
             <Slide key={workspace.id}
               content={workspace}
               activeIndex={activeIndex}
-              placeData={props.placeData}
+              setApp={props.setApp}
+              toggleListView={toggleListView}
               width={width} />
           ))}
         </Carousel>
       )
     }
   }
-  console.log(props.placeData)
+
   return (
     <Container className='list-container' fluid id={isVisible}>
       <Row className='list-row'>
