@@ -18,12 +18,13 @@ function Review (props) {
         <p className='userName'><span title={props.user}>{props.user}</span></p>
         <div className='starsReview'>
         <StarRatingComponent
+          name='workspace rating'
           value={props.rating}
           editing={false}
           renderStarIcon={(nextValue, prevValue) =>
             (nextValue <= prevValue) ?
               <img src='star-icon.svg' className='star' alt='star'/> :
-              <img src='star-icon-empty.svg' className='star emptyStar' alt='star'/>}
+              <img src='star-icon-empty-gray.svg' className='star' alt='star'/>}
         />
         </div>
         </div>

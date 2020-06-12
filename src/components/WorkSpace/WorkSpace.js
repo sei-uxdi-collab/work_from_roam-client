@@ -145,18 +145,6 @@ class WorkSpace extends React.Component {
 
       const telNum = `tel:+${this.props.placeData && this.props.placeData.formatted_phone_number}`
 
-    // Function for averaging the different amenities for Review
-      let average = function(array) {
-        let answer = 0
-        let length = array.length
-        for(let i = 0; i < array.length; i++) {
-          answer += array[i]
-        }
-        return Math.round(answer/length)
-      }
-      // Overall average rating for workSpace
-      let overall = average(this.props.data.reviews.map(review => review.rating))
-
       // Style booleans for showing filter options as being available or not
       let {alcohol, coffee, food, freeParking, goodForGroups, petFriendly, meetingSpace, outlets, outdoorSpace, quiet, wifiPassword} = false
 
@@ -188,7 +176,7 @@ class WorkSpace extends React.Component {
       if(this.props.data.bool_outlet === true) {
         outlets = true
       }
-      if(this.props.data.avgnoise < 2) {
+      if(this.props.data.avgnoise <= 2) {
         quiet = true
       }
       if(this.props.data.bool_wifipass === true) {
@@ -287,12 +275,13 @@ class WorkSpace extends React.Component {
                     </a>
                     <div className='starRating'>
                     <StarRatingComponent
-                     value={overall}
+                     name='average workspace rating'
+                     value={Math.floor(this.props.data.avgrating)}
                      editing={false}
                      renderStarIcon={(nextValue, prevValue) =>
                        (nextValue <= prevValue) ?
                          <img src='star-icon.svg' className='star' alt='star'/> :
-                         <img src='star-icon-empty.svg' className='star emptyStar' alt='star'/>}
+                         <img src='star-icon-empty-gray.svg' className='star' alt='star'/>}
                     />
                     </div>
                 </div>
@@ -371,8 +360,8 @@ class WorkSpace extends React.Component {
                 <div>
                 {this.props.data.reviews.map(review => (
                   <Review
-                    user={review.user.username}
-                    avatar={review.user.avatar}
+                    user={review.username}
+                    avatar={review.avatar}
                     key={review.id}
                     rating={review.rating}
                     wifi={review.wifi}
