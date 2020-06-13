@@ -99,6 +99,10 @@ a, a:link, a:visited {
   color: #222222;
   font-size: 20px;
   display: block;
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 //desktop view
@@ -162,5 +166,40 @@ a, a:link, a:visited {
   .welcome {
     font-size: 18px;
     margin-top: 5px;
+    max-width: 300px;
   }
 }
+
+// Medium mobile
+@media (min-width: 375px) and (max-width: 424px) {
+  .welcome {
+    max-width: 255px;
+  }
+}
+
+// Small mobile
+@media (min-width: 320px) and (max-width: 374px) {
+  .welcome {
+    max-width: 202px;
+  }
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+  .welcome {
+    max-width: 284px;
+  }
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .welcome {
+      max-width: 236px;
+    }
+  }
