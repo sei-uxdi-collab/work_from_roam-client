@@ -105,7 +105,15 @@ a, a:link, a:visited {
 @media (min-width: 768px) {
   .header {
     width: 528px;
-    height: auto;
+    max-height: 79vh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .list-item {
     font-size: 20px;
@@ -128,10 +136,17 @@ a, a:link, a:visited {
 // general mobile view
 @media (min-width: 320px) and (max-width: 767px) {
   .header {
-    height: auto;
+    max-height: 78vh;
     right: 5vw;
     left: 5vw;
     font-size: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .list-item {
     font-size: 18px;
@@ -147,57 +162,5 @@ a, a:link, a:visited {
   .welcome {
     font-size: 18px;
     margin-top: 5px;
-  }
-}
-
-
-////// ALL FOR HEADER HEIGHT
-
-/* iPhone 4 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 480px) {
-  .header {
-    max-height: 70vh;
-  }
-}
-
-/* iPhone 5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) {
-  .header {
-  max-height: 71vh;
-  }
-}
-
-/* Samsung Galaxy S3, S4, S5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 640px) {
-  .header {
-    max-height: 72vh;
-  }
-}
-
-/* iPhone 6, 7, 8 ----------- */
-@media only screen and (min-device-width: 375px) and (max-device-height: 667px) {
-  .header {
-    max-height: 73vh;
-  }
-}
-
-/* iPhone 6+, 7+, 8+ ----------- */
-@media only screen and (min-device-width: 414px) and (max-device-height: 736px) {
-  .header {
-    max-height: 74vh;
-  }
-}
-
-/* iPhone X ----------- */
-@media only screen and (min-device-width: 375px) and (max-device-height: 812px) {
-  .header {
-    max-height: 75vh;
-  }
-}
-
-/* iPhone XS Max, XR ----------- */
-@media only screen and (min-device-width: 414px) and (max-device-height: 896px) {
-  .header {
-    max-height: 75vh;
   }
 }
