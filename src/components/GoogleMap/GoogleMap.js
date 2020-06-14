@@ -8,6 +8,7 @@ import apiUrl from '../../apiConfig'
 // import PlacesDetail from '../PlacesDetail/PlacesDetail'
 // import SuggestionsList from './SuggestionsList/SuggestionsList.js'
 import './GoogleMap.scss'
+import { greyscale } from '../MapStyles'
 
 
 class GoogleMap extends React.Component {
@@ -158,6 +159,7 @@ class GoogleMap extends React.Component {
                 onCenter_changed={this.updateMapState}
                 onMouseover={this.updateMapState}
                 className='google-map'
+                styles={greyscale}
             >
 
             <Marker
