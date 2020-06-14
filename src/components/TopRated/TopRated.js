@@ -64,10 +64,12 @@ function TopRated(props) {
           <div className="top-rated-stars">
             <StarRatingComponent
              name='name'
-             starCount={workplace.rating}
-             emptyStarColor='#C4D3FF'
+             value={workplace.avgrating}
              editing={false}
-             renderStarIcon={() => <img src="star-icon.svg" className="top-rated-star" alt="star"/>}
+             renderStarIcon={(nextValue, prevValue) =>
+               (nextValue <= prevValue) ?
+                 <img src="star-icon.svg" className="top-rated-star" alt="star"/> :
+                 <img src="star-icon-empty-gray.svg" className="top-rated-star" alt="star"/>}
             />
           </div>
         </Row>
@@ -106,5 +108,3 @@ function TopRated(props) {
 }
 
 export default TopRated;
-
-
