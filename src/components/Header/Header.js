@@ -156,13 +156,15 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
         <div>
           <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
         </div>
-        <TopRated
-          user={user}
-          userLocation={userLocation}
-          isExpanded={expanded.topRated}
-          toggleExpand={() => toggleExpand('topRated')}
-          showWorkspace={showWorkspace}
-        />
+        <div className="list-item">
+          <TopRated
+            user={user}
+            userLocation={userLocation}
+            isExpanded={expanded.topRated}
+            toggleExpand={() => toggleExpand('topRated')}
+            showWorkspace={showWorkspace}
+          />
+        </div>
       </Row>
       <Row>
         <div>
