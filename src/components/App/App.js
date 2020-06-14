@@ -17,6 +17,7 @@ import Header from '../Header/Header'
 import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
 import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate'
+import WorkspaceFilter from './../WorkspaceFilter/WorkspaceFilter.js'
 import ListView from '../ListView/ListView'
 import orderBy from 'lodash/orderBy'
 import SignupCarousel from './../SignupCarousel/SignupCarousel'
@@ -208,6 +209,11 @@ class App extends React.Component {
                       data={this.state.allData}
                       userLocation={this.state.userLocation}
               />
+              <WorkspaceFilter
+                userLocation={this.state.userLocation}
+                filterWorkspaces={this.filtereWorkspaces}
+                data={this.state.allData}
+                />
             </div>
             <GoogleMap
               center={this.state.mapCenter}

@@ -1,10 +1,11 @@
 .input-group {
   align-items: center;
   display: flex;
-  width: 413px;
+  // width: 350px;
   margin-left: .5rem;
+  margin-right: .5rem;
   overflow: hidden;
-  position: absolute;
+  position: relative;
   top: 0; bottom: 0;
 
     .location-search-input {
@@ -13,15 +14,15 @@
       height: 36px !important;
       outline: none;
       padding-left: 3.5rem;
-      width: 363px;
+      // width: 363px;
     }
 
-    Button {
-      background: #4775ff;
-      border-radius: 10px;
-      left: .15rem;
-      position: absolute;
-    }
+    // Button {
+    //   background: #4775ff;
+    //   border-radius: 10px;
+    //   left: .15rem;
+    //   position: absolute;
+    // }
 
 
 }
@@ -97,7 +98,7 @@
 // Medium mobile
 @media only screen and (max-width: 375px) {
   .input-group {
-    width: 75vw;
+    width: 65vw;
   }
 
   .autocomplete-dropdown-container {

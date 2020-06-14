@@ -12,7 +12,7 @@ import { ApplyFilter } from './ApplyFilter.js'
 // Styling imports
 import './WorkspaceFilter.scss'
 
-export const WorkspaceFilter = props => {
+const WorkspaceFilter = props => {
   const [rejection, setRejection] = useState(false)
   const [show, setShow] = useState(false)
   const [filter, setFilter] = useState({
@@ -145,6 +145,7 @@ export const WorkspaceFilter = props => {
   const handleReject = () => {
     setRejection(true)
   }
+
 
   return (
     <Fragment>
@@ -315,3 +316,5 @@ export const WorkspaceFilter = props => {
   )
 
 }
+
+export default WorkspaceFilter
