@@ -114,7 +114,7 @@ class GoogleMap extends React.Component {
     handleMarkerPOI = (props, event) => {
         this.props.setApp({ placeData: null, currentWorkspace: null })
         const placeId = event.placeId
-        const poiLocation = { lat: event.position.lat, lng: event.position.lng }
+        const poiLocation = { lat: props.position.lat, lng: props.position.lng }
         const mapCenter = poiLocation
 
         this.findExistingWorkspace(placeId)
