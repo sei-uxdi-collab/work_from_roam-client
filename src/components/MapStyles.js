@@ -88,16 +88,16 @@ export const greyscale = [
       "elementType": "all",
       "stylers": [
           {
-              "hue": "#000000"
+              "hue": "#bbbbbb"
           },
           {
               "saturation": -100
           },
           {
-              "lightness": -100
+              "lightness": 40
           },
           {
-              "visibility": "off"
+              "visibility": "on"
           }
       ]
   },
