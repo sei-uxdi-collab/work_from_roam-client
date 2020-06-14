@@ -99,13 +99,25 @@ a, a:link, a:visited {
   color: #222222;
   font-size: 20px;
   display: block;
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 //desktop view
 @media (min-width: 768px) {
   .header {
     width: 528px;
-    height: auto;
+    max-height: 79vh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .list-item {
     font-size: 20px;
@@ -128,10 +140,17 @@ a, a:link, a:visited {
 // general mobile view
 @media (min-width: 320px) and (max-width: 767px) {
   .header {
-    height: auto;
+    max-height: 78vh;
     right: 5vw;
     left: 5vw;
     font-size: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .list-item {
     font-size: 18px;
@@ -147,57 +166,40 @@ a, a:link, a:visited {
   .welcome {
     font-size: 18px;
     margin-top: 5px;
+    max-width: 300px;
   }
 }
 
-
-////// ALL FOR HEADER HEIGHT
-
-/* iPhone 4 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 480px) {
-  .header {
-    max-height: 70vh;
+// Medium mobile
+@media (min-width: 375px) and (max-width: 424px) {
+  .welcome {
+    max-width: 255px;
   }
 }
 
-/* iPhone 5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) {
-  .header {
-  max-height: 71vh;
+// Small mobile
+@media (min-width: 320px) and (max-width: 374px) {
+  .welcome {
+    max-width: 202px;
   }
 }
 
-/* Samsung Galaxy S3, S4, S5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 640px) {
-  .header {
-    max-height: 72vh;
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+  .welcome {
+    max-width: 284px;
   }
 }
 
-/* iPhone 6, 7, 8 ----------- */
-@media only screen and (min-device-width: 375px) and (max-device-height: 667px) {
-  .header {
-    max-height: 73vh;
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .welcome {
+      max-width: 236px;
+    }
   }
-}
-
-/* iPhone 6+, 7+, 8+ ----------- */
-@media only screen and (min-device-width: 414px) and (max-device-height: 736px) {
-  .header {
-    max-height: 74vh;
-  }
-}
-
-/* iPhone X ----------- */
-@media only screen and (min-device-width: 375px) and (max-device-height: 812px) {
-  .header {
-    max-height: 75vh;
-  }
-}
-
-/* iPhone XS Max, XR ----------- */
-@media only screen and (min-device-width: 414px) and (max-device-height: 896px) {
-  .header {
-    max-height: 75vh;
-  }
-}

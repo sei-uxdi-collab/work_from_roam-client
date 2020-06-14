@@ -55,10 +55,12 @@ function MyFavorites(props) {
           <div className="my-favorite-stars">
             <StarRatingComponent
              name='name'
-             starCount={workplace.avgrating}
-             emptyStarColor='#C4D3FF'
+             value={workplace.avgrating}
              editing={false}
-             renderStarIcon={() => <img src="star-icon.svg" className="my-favorite-star" alt="star"/>}
+             renderStarIcon={(nextValue, prevValue) =>
+               (nextValue <= prevValue) ?
+                 <img src="star-icon.svg" className="my-favorite-star" alt="star"/> :
+                 <img src="star-icon-empty-gray.svg" className="my-favorite-star" alt="star"/>}
             />
           </div>
         </Row>

@@ -71,7 +71,7 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
         </div>
         <div className="ml-4">
           <Row>
-            <div className="welcome">Welcome back, {user && (user.username || user.email)}</div>
+            <div><span className="welcome" title={`Welcome back, ${user && (user.username || user.email)}`}>Welcome back, {user && (user.username || user.email)}</span></div>
           </Row>
         </div>
       </div>
@@ -156,13 +156,15 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
         <div>
           <img src="top-rated-star-icon.png" className="icon" alt="Top Rated"/>
         </div>
-        <TopRated
-          user={user}
-          userLocation={userLocation}
-          isExpanded={expanded.topRated}
-          toggleExpand={() => toggleExpand('topRated')}
-          showWorkspace={showWorkspace}
-        />
+        <div className="list-item">
+          <TopRated
+            user={user}
+            userLocation={userLocation}
+            isExpanded={expanded.topRated}
+            toggleExpand={() => toggleExpand('topRated')}
+            showWorkspace={showWorkspace}
+          />
+        </div>
       </Row>
       <Row>
         <div>
