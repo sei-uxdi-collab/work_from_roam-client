@@ -93,8 +93,8 @@ class App extends React.Component {
     const { alerts, barAlerts, user } = this.state
 
     return (
-<div>
-<Fragment>
+      <div>
+        <Fragment>
 
         {alerts.map((alert, index) => (
             <AutoAlert
@@ -227,13 +227,12 @@ class App extends React.Component {
           <ListView
             workspaces={[this.state.filteredWorkspaces]}
             sortWorkspaces={this.sortWorkspaces}
+            setApp={this.setState.bind(this)}
           />
           </div>
         </Route>
       </Fragment>
       </div>
-
-
     )
   }
 }
