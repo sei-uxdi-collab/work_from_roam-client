@@ -11,7 +11,7 @@ function MyReviews(props) {
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
   const [open, setOpen] = useState();
 
-  console.log(props)
+  // console.log(props)
 
   // function onKebabClick () {
   //   if(!open) setOpen(true);
