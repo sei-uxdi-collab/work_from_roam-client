@@ -54,3 +54,12 @@
 .secondary-text {
   font-size: 14px;
 }
+
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+  .input-group {
+    width: 198px;
+  }
+  .autocomplete-dropdown-container {
+    width: 198px;
+  }
+}
