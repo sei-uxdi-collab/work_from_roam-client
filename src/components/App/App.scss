@@ -33,7 +33,8 @@
   display: flex;
   position: fixed;
   z-index: 12;
-  left: 4%; top: 4%; right: 4%;
+  left: 20px; top: 20px;
+  width: calc(100vw - 40px)
 }
 
 @keyframes App-logo-spin {
@@ -45,17 +46,17 @@
   }
 }
 
-// Handles the width and position of the search header at different screen sizes
-@media (min-width: 420px) {
-  .search-group {
-    left: 1%; top: 2%;
-    width: 40vw;
-  }
-}
+// // Handles the width and position of the search header at different screen sizes
+// @media (min-width: 420px) {
+//   .search-group {
+//     left: 1%; top: 2%;
+//     width: 40vw;
+//   }
+// }
 
-@media (min-width: 1050px) {
-  .search-group {
-    left: 1%; top: 2%;
-    width: 20vw;
-  }
-}
+// @media (min-width: 1050px) {
+//   .search-group {
+//     left: 1%; top: 2%;
+//     width: 20vw;
+//   }
+// }
