@@ -147,10 +147,6 @@ const WorkspaceFilter = props => {
     setRejection(true)
   }
 
-  // <FilterButton onClick={toggleShow} />
-  // <Button variant='primary' size='sm' onClick={toggleShow}>Filter</Button>
-
-
   return (
     <Fragment>
       <img src={FilterButton} onClick={toggleShow} />

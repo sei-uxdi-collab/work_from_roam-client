@@ -34,12 +34,11 @@ const Slide = ( { content, width, activeIndex, placeData, setApp, history, toggl
   }
 
   const onClick = content => {
-    console.log('Button clicked!')
     const currentWorkspace = content
     const placeId = content.place_id
     setApp({ currentWorkspace, placeId })
+      .then(history.push('/workspace'))
     toggleListView()
-    history.push('/workspace')
   }
 
   return (
