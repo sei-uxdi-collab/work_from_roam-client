@@ -7,12 +7,13 @@ import mapValues from 'lodash/mapValues'
 
 // Custom component import
 import { ApplyFilter } from './ApplyFilter.js'
+import FilterButton from './filterButton.svg'
 // import filteredCall from '../../api/workspaceFilter.js'
 
 // Styling imports
 import './WorkspaceFilter.scss'
 
-export const WorkspaceFilter = props => {
+const WorkspaceFilter = props => {
   const [rejection, setRejection] = useState(false)
   const [show, setShow] = useState(false)
   const [filter, setFilter] = useState({
@@ -146,10 +147,13 @@ export const WorkspaceFilter = props => {
     setRejection(true)
   }
 
+  // <FilterButton onClick={toggleShow} />
+  // <Button variant='primary' size='sm' onClick={toggleShow}>Filter</Button>
+
+
   return (
     <Fragment>
-      <Button variant='primary' size='sm' onClick={toggleShow}>Filter</Button>
-
+      <img src={FilterButton} onClick={toggleShow} />
       <Media queries={{
           small: '(max-width: 450px)',
           large: '(min-width: 451px)'
@@ -315,3 +319,5 @@ export const WorkspaceFilter = props => {
   )
 
 }
+
+export default WorkspaceFilter
