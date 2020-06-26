@@ -42,6 +42,7 @@ render() {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <React.Fragment>
           <div className='input-group'>
+            <img src='search-magnify-glass.png'></img>
             <input
               style={{ fontSize: '16px' }}
               {...getInputProps({
