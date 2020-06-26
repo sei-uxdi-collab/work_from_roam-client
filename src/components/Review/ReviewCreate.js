@@ -224,7 +224,7 @@ import Button from 'react-bootstrap/Button'
                   id="bathroom"
                 />
               </Form.Group>
-              
+
               <Form.Group>
                 <Form.Check
                   className="checkbox-toolbar"
@@ -342,7 +342,7 @@ import Button from 'react-bootstrap/Button'
               </Form.Row>
             </Form.Group>
 
-            <Form.Group className="question mt-3" controlId="bathroom">
+            <Form.Group className="question mt-3" controlId="clean">
               <Form.Label className="question-header mb-0">How clean was the space?</Form.Label>
               <Form.Row className="slider-text d-flex justify-content-between">
                 <div className="d-inline-flex">Poor</div>

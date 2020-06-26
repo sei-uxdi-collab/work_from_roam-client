@@ -9,14 +9,14 @@ import { getAddressLine1 } from '../../helpers/getAddressLine1.js'
 import { getAddressLine2 } from '../../helpers/getAddressLine2.js'
 
 function TopRated(props) {
-  const { user, userLocation, isExpanded, toggleExpand, showWorkspace } = props
+  const { userLocation, isExpanded, toggleExpand, showWorkspace } = props
   const [workplaces, setWorkplaces] = useState([])
 
   const content = useRef(null);
   const maxHeight = isExpanded ? `${content.current.scrollHeight}px` : "0px"
 
 
-  console.log(props)
+  // console.log(props)
 
   useEffect(() => {
       axios({
