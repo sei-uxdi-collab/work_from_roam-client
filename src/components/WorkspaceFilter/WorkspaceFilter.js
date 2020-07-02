@@ -22,11 +22,11 @@ const WorkspaceFilter = props => {
     lotsOfSeats: false,
     quiet: false,
     // lively: false,
-    // outlets: false,
+    bool_outlet: false,
     // openNow: false,
     // openEarly: false,
     // openLate: false,
-    cowork: false,
+    // cowork: false,
     // library: false,
     // cafe: false,
     bool_food: false,
@@ -39,6 +39,8 @@ const WorkspaceFilter = props => {
     bool_goodforgroup: false,
     bool_outdoorSpace: false
   })
+
+  console.log(props.data)
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Functions to reset the filters and to close/show the dropdown
@@ -115,9 +117,13 @@ const WorkspaceFilter = props => {
       case 'openLate':
         setFilter(filter => ({...filter, openLate : !filter.openLate }))
         break
+      case 'parking':
+        setFilter(filter => ({...filter, bool_parking: !filter.bool_parking}))
+        break
       default:
         console.log('Failed to apply filters!')
     }
+    console.log(filter)
   }
 
   const handleSubmit = () => {
@@ -130,11 +136,12 @@ const WorkspaceFilter = props => {
 
   const doFiltering = () => {
     return new Promise((resolve, reject) => {
-      let array = ApplyFilter(filter, props.data, props.userLocation)
-      if (array.length > 0) {
-        resolve(array)
+      let filteredArray = ApplyFilter(filter, props.data, props.userLocation)
+      if (filteredArray.length > 0) {
+        resolve(filteredArray)
+        console.log('Success!')
       } else {
-        reject('No results!')
+        reject()
       }
     })
   }
@@ -166,7 +173,7 @@ const WorkspaceFilter = props => {
                         <Button className='select-button' id={filter.fastWifi ? 'clicked' : 'unclicked'} name='fastWifi' onClick={handleSelect}>Fast WiFi</Button>
                         <Button className='select-button' id={filter.lotsOfSeats ? 'clicked' : 'unclicked'} name='lotsOfSeats' onClick={handleSelect}>Lots of seats</Button >
                         <Button className='select-button' id={filter.quiet ? 'clicked' : 'unclicked'} name='quiet' onClick={handleSelect}>Quiet</Button >
-                        <Button className='select-button' id={filter.outlets ? 'clicked' : 'unclicked'} onClick={handleSelect} name='outlets'>Outlets</Button>
+                        <Button className='select-button' id={filter.bool_outlet ? 'clicked' : 'unclicked'} onClick={handleSelect} name='outlets'>Outlets</Button>
 
                         {/*// <Button className='select-button' id={filter.openNow ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openNow'>Open Now</Button>
                         // <Button className='select-button' id={filter.openLate ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openLate'>Open Late</Button>
@@ -174,16 +181,16 @@ const WorkspaceFilter = props => {
                         // <Button className='select-button' id={filter.library ? 'clicked' : 'unclicked'} onClick={handleSelect} name='library'>Library</Button>
                         // <Button className='select-button' id={filter.cafe ? 'clicked' : 'unclicked'} onClick={handleSelect} name='cafe'>Cafe</Button > */}
 
-                        <Button className='select-button' id={filter.food ? 'clicked' : 'unclicked'} onClick={handleSelect} name='food'>Food</Button>
-                        <Button className='select-button' id={filter.coffee ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='coffee'>Coffee</Button>
-                        <Button className='select-button' id={filter.alcohol ? 'clicked' : 'unclicked'} name='alcohol' onClick={handleSelect}>Alcohol</Button >
+                        <Button className='select-button' id={filter.bool_food ? 'clicked' : 'unclicked'} onClick={handleSelect} name='food'>Food</Button>
+                        <Button className='select-button' id={filter.bool_coffee ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='coffee'>Coffee</Button>
+                        <Button className='select-button' id={filter.bool_alcohol ? 'clicked' : 'unclicked'} name='alcohol' onClick={handleSelect}>Alcohol</Button >
                       </div>
                       <div className='secondary-div'>
-                        <Button className='small-button' id={filter.pets ? 'clicked' : 'unclicked'} onClick={handleSelect} name='pets'>Pet-Friendly</Button>
+                        <Button className='small-button' id={filter.bool_petfriendly ? 'clicked' : 'unclicked'} onClick={handleSelect} name='pets'>Pet-Friendly</Button>
                         <Button className='small-button' id={filter.comfiness ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='comfiness'>Comfy Chairs</Button>
-                        <Button className='small-button' id={filter.parking ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='parking'>Parking</Button>
-                        <Button className='small-button' id={filter.goodForGroups ? 'clicked' : 'unclicked'} onClick={handleSelect} name='goodForGroups'>Good for Groups</Button>
-                        <Button className='small-button' id={filter.outdoorSpace ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='outdoorSpace'>Outdoor Space</Button>
+                        <Button className='small-button' id={filter.bool_parking ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='parking'>Parking</Button>
+                        <Button className='small-button' id={filter.bool_goodforgroup ? 'clicked' : 'unclicked'} onClick={handleSelect} name='goodForGroups'>Good for Groups</Button>
+                        <Button className='small-button' id={filter.bool_outdoorspace ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='outdoorSpace'>Outdoor Space</Button>
                       </div>
                       <div className='footer-div'>
                         <div>
