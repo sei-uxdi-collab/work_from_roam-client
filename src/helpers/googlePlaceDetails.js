@@ -12,6 +12,7 @@ export const getGooglePlaceDetails = (google, map, placeId, callback) => {
     'opening_hours',
     'utc_offset_minutes',
     'address_components',
+    'type',
   ]
   const service = new google.maps.places.PlacesService(map)
   return service.getDetails({ placeId, fields }, callback)
