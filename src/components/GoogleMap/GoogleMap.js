@@ -33,7 +33,8 @@ class GoogleMap extends React.Component {
     axios(apiUrl + '/work_spaces')
       .then(data => {
         // console.log(data)
-        this.props.setApp({ allData: data.data.work_spaces })
+        const allData = data.data.work_spaces
+        this.props.setApp({ allData, filteredWorkspaces: allData })
       })
   }
 
@@ -157,7 +158,7 @@ class GoogleMap extends React.Component {
         />)}
 
         {/* create a marker on the map for each workspace */}
-        {this.props.allData.map(workSpace => (
+        {this.props.filteredWorkspaces.map(workSpace => (
           <Marker
             key={workSpace.id}
             onClick={this.onMarkerClick}

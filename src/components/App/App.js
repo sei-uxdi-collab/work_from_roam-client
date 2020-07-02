@@ -229,6 +229,7 @@ class App extends React.Component {
               currentWorkspace={this.state.currentWorkspace}
               google={this.state.google}
               map={this.state.map}
+              filteredWorkspaces={this.state.filteredWorkspaces}
             />
             <ListView
               workspaces={[this.state.filteredWorkspaces]}
