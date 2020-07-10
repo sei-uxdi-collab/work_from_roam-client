@@ -32,7 +32,6 @@ class GoogleMap extends React.Component {
     }
     axios(apiUrl + '/work_spaces')
       .then(data => {
-        // console.log(data)
         const allData = data.data.work_spaces
         this.props.setApp({ allData, filteredWorkspaces: allData })
       })
@@ -95,9 +94,6 @@ class GoogleMap extends React.Component {
 
   // Google marker on searched result
   handleMarkerPOI = (props, marker, event) => {
-    console.log(props)
-    console.log(event)
-    console.log(marker)
     this.props.setApp({ placeData: null, currentWorkspace: null })
     const placeId = marker.placeId
     const poiLocation = { lat: props.position.lat, lng: props.position.lng }
