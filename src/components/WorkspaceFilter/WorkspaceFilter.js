@@ -21,14 +21,7 @@ const WorkspaceFilter = props => {
     fastWifi: false,
     lotsOfSeats: false,
     quiet: false,
-    // lively: false,
     bool_outlet: false,
-    // openNow: false,
-    // openEarly: false,
-    // openLate: false,
-    // cowork: false,
-    // library: false,
-    // cafe: false,
     bool_food: false,
     bool_coffee: false,
     bool_alcohol: false,
@@ -39,8 +32,6 @@ const WorkspaceFilter = props => {
     bool_goodforgroup: false,
     bool_outdoorSpace: false
   })
-
-  console.log(props.data)
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Functions to reset the filters and to close/show the dropdown
@@ -139,7 +130,6 @@ const WorkspaceFilter = props => {
       let filteredArray = ApplyFilter(filter, props.data, props.userLocation)
       if (filteredArray.length > 0) {
         resolve(filteredArray)
-        console.log('Success!')
       } else {
         reject()
       }
@@ -156,7 +146,7 @@ const WorkspaceFilter = props => {
 
   return (
     <Fragment>
-      <img src={FilterButton} onClick={toggleShow} />
+      <img src={FilterButton} onClick={toggleShow} alt="Workspace Filter"/>
       <Media queries={{
           small: '(max-width: 450px)',
           large: '(min-width: 451px)'
