@@ -210,9 +210,11 @@ class App extends React.Component {
                 userLocation={this.state.userLocation}
               />
               <WorkspaceFilter
+                allData={this.state.allData}
                 userLocation={this.state.userLocation}
                 filterWorkspaces={this.filtereWorkspaces}
                 data={this.state.allData}
+                setApp={this.setState.bind(this)}
               />
             </div>
             <GoogleMap
