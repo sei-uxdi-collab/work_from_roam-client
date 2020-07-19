@@ -4,6 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 // import { StarRating } from './StarsRating'
 import StarRatingComponent from "react-star-rating-component";
+import HappySlider from '../HappySlider/HappySlider'
 import { createReview, createWorkspace } from '../../api/create'
 import messages from '../AutoAlert/messages'
 import './ReviewCreate.scss'
@@ -289,15 +290,9 @@ import Button from 'react-bootstrap/Button'
                 <div className="d-inline-flex">Fast</div>
               </Form.Row>
               <Form.Row>
-                <Form.Control
-                  type="range"
-                  min="1"
-                  max="5"
-                  step="1"
-                  name="wifi"
-                  className="slider"
+                <HappySlider
+                  name='wifi'
                   value={this.state.wifi}
-                  onChange={this.handleChange}
                 />
               </Form.Row>
             </Form.Group>
