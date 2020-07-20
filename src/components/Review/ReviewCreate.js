@@ -91,6 +91,7 @@ import Button from 'react-bootstrap/Button'
     }
 
     handleSubmit = (event) => {
+      console.log(this.state.wifi)
       event.preventDefault()
       const { currentWorkspace } = this.props
 
@@ -117,6 +118,7 @@ import Button from 'react-bootstrap/Button'
     }
 
     render () {
+      console.log(this.state.wifi)
       let placeName = ''
       if (this.props.placeData && this.props.placeData.name) {
         placeName = this.props.placeData.name
@@ -291,8 +293,14 @@ import Button from 'react-bootstrap/Button'
               </Form.Row>
               <Form.Row>
                 <HappySlider
-                  name='wifi'
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
+                  name="wifi"
+                  className="slider"
                   value={this.state.wifi}
+                  onChange={this.handleChange}
                 />
               </Form.Row>
             </Form.Group>
@@ -304,16 +312,16 @@ import Button from 'react-bootstrap/Button'
                 <div className="d-inline-flex">Loud</div>
               </Form.Row>
               <Form.Row>
-                <Form.Control
-                  type="range"
-                  min="1"
-                  max="5"
-                  step="1"
-                  name="noise"
-                  className="slider"
-                  value={this.state.noise}
-                  onChange={this.handleChange}
-                />
+              <HappySlider
+                type="range"
+                min="1"
+                max="5"
+                step="1"
+                name="noise"
+                className="slider"
+                value={this.state.noise}
+                onChange={this.handleChange}
+              />
               </Form.Row>
             </Form.Group>
 
@@ -324,16 +332,16 @@ import Button from 'react-bootstrap/Button'
                 <div className="d-inline-flex">Easily</div>
               </Form.Row>
               <Form.Row>
-                <Form.Control
-                  type="range"
-                  min="1"
-                  max="5"
-                  step="1"
-                  name="seating"
-                  className="slider"
-                  value={this.state.seating}
-                  onChange={this.handleChange}
-                />
+              <HappySlider
+                type="range"
+                min="1"
+                max="5"
+                step="1"
+                name="seating"
+                className="slider"
+                value={this.state.seating}
+                onChange={this.handleChange}
+              />
               </Form.Row>
             </Form.Group>
 

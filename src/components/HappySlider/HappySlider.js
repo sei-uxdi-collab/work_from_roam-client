@@ -13,15 +13,18 @@ class HappySlider extends Component {
     super(props)
     this.state = {
       value: props.value,
-      name: props.name
+      name: props.name,
+      id: props.id
     }
   }
 
-  handleChange = event => {
-    console.log(this.state.value)
+  handleSmiley = event => {
     this.setState({
       value: event.target.value
     })
+    console.log(this.state.value)
+    this.setState({ [event.target.name]: event.target.value })
+    console.log(this.state.name)
     const number = Math.round(event.target.value)
     console.log('rounded ' + number)
 
@@ -32,7 +35,7 @@ class HappySlider extends Component {
   }
 
   render () {
-    const { value, name } = this.state
+    const { value, id, name } = this.state
 
     const rounded = Math.round(value)
 
@@ -40,13 +43,13 @@ class HappySlider extends Component {
       <div className="slidecontainer">
         <input
           type="range"
-          onChange={this.handleChange}
-          min={1}
-          max={5}
+          onChange={this.handleSmiley}
+          min={this.props.min}
+          max={this.props.max}
+          id={id}
           name={name}
           value={value}
           className={`smiley-${rounded}`}
-          id="myRange"
           step={0.01}
         />
       </div>
