@@ -4,7 +4,6 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 // import { StarRating } from './StarsRating'
 import StarRatingComponent from "react-star-rating-component";
-import HappySlider from '../HappySlider/HappySlider'
 import { createReview, createWorkspace } from '../../api/create'
 import messages from '../AutoAlert/messages'
 import './ReviewCreate.scss'
@@ -91,7 +90,6 @@ import Button from 'react-bootstrap/Button'
     }
 
     handleSubmit = (event) => {
-      console.log('wifi: ' + this.state.wifi, 'clean: ' + this.state.clean, 'seating: ' + this.state.seating, 'noise: ' + this.state.noise)
       event.preventDefault()
       const { currentWorkspace } = this.props
 
@@ -291,11 +289,10 @@ import Button from 'react-bootstrap/Button'
                 <div className="d-inline-flex">Fast</div>
               </Form.Row>
               <Form.Row>
-                <HappySlider
+                <Form.Control
                   type="range"
                   min="1"
                   max="5"
-                  id='wifi'
                   step="1"
                   name="wifi"
                   className="slider"
@@ -312,17 +309,16 @@ import Button from 'react-bootstrap/Button'
                 <div className="d-inline-flex">Loud</div>
               </Form.Row>
               <Form.Row>
-              <HappySlider
-                type="range"
-                min="1"
-                max="5"
-                id='noise'
-                step="1"
-                name="noise"
-                className="slider"
-                value={this.state.noise}
-                onChange={this.handleChange}
-              />
+                <Form.Control
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
+                  name="noise"
+                  className="slider"
+                  value={this.state.noise}
+                  onChange={this.handleChange}
+                />
               </Form.Row>
             </Form.Group>
 
@@ -333,17 +329,16 @@ import Button from 'react-bootstrap/Button'
                 <div className="d-inline-flex">Easily</div>
               </Form.Row>
               <Form.Row>
-              <HappySlider
-                type="range"
-                min="1"
-                max="5"
-                id='seating'
-                step="1"
-                name="seating"
-                className="slider"
-                value={this.state.seating}
-                onChange={this.handleChange}
-              />
+                <Form.Control
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
+                  name="seating"
+                  className="slider"
+                  value={this.state.seating}
+                  onChange={this.handleChange}
+                />
               </Form.Row>
             </Form.Group>
 
@@ -354,11 +349,10 @@ import Button from 'react-bootstrap/Button'
                 <div className="d-inline-flex">Immaculate</div>
               </Form.Row>
               <Form.Row>
-                <HappySlider
+                <Form.Control
                   type="range"
                   min="1"
                   max="5"
-                  id='clean'
                   step="1"
                   name="clean"
                   className="slider"
