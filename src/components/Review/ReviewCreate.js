@@ -91,7 +91,7 @@ import Button from 'react-bootstrap/Button'
     }
 
     handleSubmit = (event) => {
-      console.log(this.state.wifi)
+      console.log('wifi: ' + this.state.wifi, 'clean: ' + this.state.clean, 'seating: ' + this.state.seating, 'noise: ' + this.state.noise)
       event.preventDefault()
       const { currentWorkspace } = this.props
 
@@ -118,7 +118,6 @@ import Button from 'react-bootstrap/Button'
     }
 
     render () {
-      console.log(this.state.wifi)
       let placeName = ''
       if (this.props.placeData && this.props.placeData.name) {
         placeName = this.props.placeData.name
@@ -296,6 +295,7 @@ import Button from 'react-bootstrap/Button'
                   type="range"
                   min="1"
                   max="5"
+                  id='wifi'
                   step="1"
                   name="wifi"
                   className="slider"
@@ -316,6 +316,7 @@ import Button from 'react-bootstrap/Button'
                 type="range"
                 min="1"
                 max="5"
+                id='noise'
                 step="1"
                 name="noise"
                 className="slider"
@@ -336,6 +337,7 @@ import Button from 'react-bootstrap/Button'
                 type="range"
                 min="1"
                 max="5"
+                id='seating'
                 step="1"
                 name="seating"
                 className="slider"
@@ -352,10 +354,11 @@ import Button from 'react-bootstrap/Button'
                 <div className="d-inline-flex">Immaculate</div>
               </Form.Row>
               <Form.Row>
-                <Form.Control
+                <HappySlider
                   type="range"
                   min="1"
                   max="5"
+                  id='clean'
                   step="1"
                   name="clean"
                   className="slider"

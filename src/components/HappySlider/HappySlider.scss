@@ -1,5 +1,9 @@
 :root {
-  --background-image: url('./Smileys/test.png'); /*Variable setup for switching images on slider thumb*/
+  /*Variables setup for switching images on slider thumb*/
+  --background-image-clean: url('./Smileys/smiley1.svg');
+  --background-image-noise: url('./Smileys/smiley2.svg');
+  --background-image-seating: url('./Smileys/smiley3.svg');
+  --background-image-wifi: url('./Smileys/smiley5.svg');
 }
 
 input[type=range] {
@@ -27,9 +31,25 @@ input[type=range]::-webkit-slider-thumb {
   border: 3px solid #0000FF;
   border-radius: 15px; /* Create circle for thumb image */
   background: #0000FF; /* Back-up coloring if image too small */
-  background-image: var(--background-image) !important;
   background-size: 18px; /* Size of image inside thumb */
   cursor: pointer;
+}
+
+/*Styles set by the id of input*/
+input[id='clean']::-webkit-slider-thumb {
+  background-image: var(--background-image-clean);
+}
+
+input[id='noise']::-webkit-slider-thumb {
+  background-image: var(--background-image-noise);
+}
+
+input[id='seating']::-webkit-slider-thumb {
+  background-image: var(--background-image-seating);
+}
+
+input[id='wifi']::-webkit-slider-thumb {
+  background-image: var(--background-image-wifi);
 }
 
 .slidecontainer {
