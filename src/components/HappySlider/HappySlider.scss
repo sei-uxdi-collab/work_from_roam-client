@@ -31,7 +31,7 @@ input[type=range]::-webkit-slider-thumb {
   border: 3px solid #0000FF;
   border-radius: 15px; /* Create circle for thumb image */
   background: #0000FF; /* Back-up coloring if image too small */
-  background-size: 18px; /* Size of image inside thumb */
+  background-size: contain; /* Size of image inside thumb */
   cursor: pointer;
 }
 
