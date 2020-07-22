@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import './HappySlider.scss'
 
@@ -10,12 +10,11 @@ import smiley3 from './Smileys/smiley3.svg'
 import smiley4 from './Smileys/smiley4.svg'
 import smiley5 from './Smileys/smiley5.svg'
 
-class HappySlider extends Component {
+function HappySlider(props) {
 
-  render () {
     // id used to set background-image of slider thumb
     // Set the CSS variable to match id (i.e. --background-image-id)
-    const { id, value, min, max, name, onChange } = this.props
+    const { id, value, min, max, name, onChange } = props
 
     // Create an array for images
     // Each index coinciding with image number
@@ -37,13 +36,12 @@ class HappySlider extends Component {
           min={min}
           max={max}
           name={name}
-          step={0.01}
+          step={1}
           type="range"
           value={value}
         />
       </div>
     )
-  }
 }
 
 export default HappySlider
