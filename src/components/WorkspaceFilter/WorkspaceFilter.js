@@ -60,22 +60,19 @@ const WorkspaceFilter = props => {
 
   const calculateFilters = () => {
     const keys = (Object.keys(filter)).filter(key => filter[key] === true)
-    console.log('filter keys', keys)
     let filteredWorkspaces = props.allData
-    console.log('before', filteredWorkspaces)
     keys.forEach(key => {
       filteredWorkspaces = filteredWorkspaces.filter(workspace => {
         if (key === 'fastWifi') {
           return workspace['avg_wifi'] > 3
         }
         if (key === 'lotsOfSeats') {
-          return workspace['avgseating'] > 3
+          return workspace['avg_seating'] > 3
         }
         return workspace[key] === filter[key]
       })
     })
-    console.log('after', filteredWorkspaces)
-    return filteredWorkspaces
+    return filteredWorkspaces.sort((a, b) => b.avg_rating - a.avg_rating)
   }
 
   const handleSubmit = () => {
@@ -104,7 +101,7 @@ const WorkspaceFilter = props => {
 
   return (
     <Fragment>
-      <img src={FilterButton} onClick={toggleShow} />
+      <img src={FilterButton} onClick={(toggleShow)} />
       <Media queries={{
           small: '(max-width: 450px)',
           large: '(min-width: 451px)'
