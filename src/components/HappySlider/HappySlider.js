@@ -1,24 +1,11 @@
 import React from 'react'
 
 import './HappySlider.scss'
+import { smileys } from './smileys'
 
-// Relative path does not work for css Variable
-// import images into a variable
-import smiley1 from './Smileys/smiley1.svg'
-import smiley2 from './Smileys/smiley2.svg'
-import smiley3 from './Smileys/smiley3.svg'
-import smiley4 from './Smileys/smiley4.svg'
-import smiley5 from './Smileys/smiley5.svg'
-
-function HappySlider(props) {
-
-    // id used to set background-image of slider thumb
-    // Set the CSS variable to match id (i.e. --background-image-id)
-    const { id, value, min, max, name, onChange } = props
-
-    // Create an array for images
-    // Each index coinciding with image number
-    const smileys = ['', smiley1, smiley2, smiley3, smiley4, smiley5]
+// id used to set background-image of slider thumb
+// Set the CSS variable to match id (i.e. --background-image-id)
+export const HappySlider = ({ id, value, min, max, name, onChange }) => {
 
     // Round the value of the slider
     // Unecessary if 'step' is set to '1'
@@ -43,5 +30,3 @@ function HappySlider(props) {
       </div>
     )
 }
-
-export default HappySlider
