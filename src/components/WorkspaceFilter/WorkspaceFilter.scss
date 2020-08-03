@@ -64,7 +64,7 @@ $warning: red;
         margin: 1em auto;
 
         p {
-          color: $warning;
+          color: $warning !important;
           font-size: 13px;
           font-family: 'Roboto';
           text-align: center;
@@ -110,6 +110,21 @@ $warning: red;
 
         h6 {
           margin-left: 1rem;
+        }
+
+        .rejection-message {
+          margin: 1em auto;
+  
+          p {
+            color: $warning !important;
+            font-size: 13px;
+            font-family: 'Roboto';
+            text-align: center;
+          }
+        }
+
+        #hide {
+          display: none;
         }
 
         .button-col {

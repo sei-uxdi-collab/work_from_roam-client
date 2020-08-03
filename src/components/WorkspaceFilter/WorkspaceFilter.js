@@ -251,6 +251,9 @@ const WorkspaceFilter = props => {
                         <Col sm={6} className='button-col'>
                           <Button className='submit-button' onClick={handleSubmit}>Apply Filters</Button>
                         </Col>
+                        <div className='rejection-message' id={rejection ? 'show' : 'hide'}>
+                          <p>No matches found! Please apply different filters and try again.</p>
+                        </div>
                       </Row>
                     </Container>
 
