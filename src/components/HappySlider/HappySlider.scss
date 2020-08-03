@@ -1,0 +1,50 @@
+input[type=range] {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 8px; /* Specified height */
+  background: #0000FF; /* #0000FF background */
+  border-radius: 5px;
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+input[type=range]:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px; /* width of thumb */
+  height: 24px; /* height of thumb */
+  border: 3px solid #0000FF;
+  border-radius: 15px; /* Create circle for thumb image */
+  background: #0000FF; /* Back-up coloring if image too small */
+  background-size: contain; /* Size of image inside thumb */
+  cursor: pointer;
+}
+
+/*Styles set by the id of input*/
+input[id='clean']::-webkit-slider-thumb {
+  background-image: var(--background-image-clean);
+}
+
+input[id='noise']::-webkit-slider-thumb {
+  background-image: var(--background-image-noise);
+}
+
+input[id='seating']::-webkit-slider-thumb {
+  background-image: var(--background-image-seating);
+}
+
+input[id='wifi']::-webkit-slider-thumb {
+  background-image: var(--background-image-wifi);
+}
+
+.slidecontainer {
+  width: 90%; /* Width of the outside container */
+  margin: 5%;
+}
