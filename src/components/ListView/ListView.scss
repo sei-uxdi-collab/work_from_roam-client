@@ -3,7 +3,7 @@ $wfrBlue: #4775ff;
 
 .list-container {
   bottom: 0;
-  height: 55vh;
+  height: 450px;
   position: fixed;
   z-index: 12;
   transition: transform .5s
@@ -23,7 +23,7 @@ $wfrBlue: #4775ff;
       .list-header {
         align-items: center;
         display: flex;
-        height: 8vh;
+        height: 60px;
         justify-content: center;
         position: relative;
         margin-top: 0;
@@ -41,7 +41,7 @@ $wfrBlue: #4775ff;
 
 // IDs that dictate the hiding or showing of component
 #hide {
-  transform: translateY(48vh)
+  transform: translateY(390px)
 }
 
 #show {

@@ -8,7 +8,7 @@ $warning: red;
 
     .modal-content {
       margin: 0 auto;
-      width: 75vw;
+      width: 85vw;
     }
 
     .filter-modal-body {
@@ -23,10 +23,10 @@ $warning: red;
           border: none;
           border-radius: 20px;
           font-family: 'Roboto';
-          font-size: 13px;
-          line-height: 13px;
-          height: 24px;
-          margin: .2rem;
+          font-size: 16px;
+          line-height: 150%;
+          margin: .5rem;
+          padding: 8px 16px;
         }
 
         .small-button {

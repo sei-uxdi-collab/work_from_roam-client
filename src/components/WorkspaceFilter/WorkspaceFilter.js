@@ -20,6 +20,7 @@ const WorkspaceFilter = props => {
     // Main filters
     fastWifi: false,
     lotsOfSeats: false,
+    cafe: false,
     quiet: false,
     bool_outlet: false,
     bool_food: false,
@@ -114,15 +115,14 @@ const WorkspaceFilter = props => {
       default:
         console.log('Failed to apply filters!')
     }
-    console.log(filter)
   }
 
   const handleSubmit = () => {
     doFiltering()
       .then(resolve => props.filterWorkspaces(resolve))
-      .then(resolve => handleClose())
+      .then(handleClose())
       .then(setRejection(false))
-      .catch(reject => handleReject())
+      .catch(reject => setRejection(true))
   }
 
   const doFiltering = () => {
@@ -140,9 +140,9 @@ const WorkspaceFilter = props => {
     setShow(false)
   }
 
-  const handleReject = () => {
-    setRejection(true)
-  }
+  // const handleReject = () => {
+  //   setRejection(true)
+  // }
 
   return (
     <Fragment>
@@ -161,36 +161,32 @@ const WorkspaceFilter = props => {
                     <Modal.Body className='filter-modal-body'>
                       <div className='main-div'>
                         <Button className='select-button' id={filter.fastWifi ? 'clicked' : 'unclicked'} name='fastWifi' onClick={handleSelect}>Fast WiFi</Button>
-                        <Button className='select-button' id={filter.lotsOfSeats ? 'clicked' : 'unclicked'} name='lotsOfSeats' onClick={handleSelect}>Lots of seats</Button >
                         <Button className='select-button' id={filter.quiet ? 'clicked' : 'unclicked'} name='quiet' onClick={handleSelect}>Quiet</Button >
-                        <Button className='select-button' id={filter.bool_outlet ? 'clicked' : 'unclicked'} onClick={handleSelect} name='outlets'>Outlets</Button>
-
-                        {/*// <Button className='select-button' id={filter.openNow ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openNow'>Open Now</Button>
-                        // <Button className='select-button' id={filter.openLate ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='openLate'>Open Late</Button>
-                        // <Button className='select-button' id={filter.cowork ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='cowork'>Co-work Space</Button>
-                        // <Button className='select-button' id={filter.library ? 'clicked' : 'unclicked'} onClick={handleSelect} name='library'>Library</Button>
-                        // <Button className='select-button' id={filter.cafe ? 'clicked' : 'unclicked'} onClick={handleSelect} name='cafe'>Cafe</Button > */}
-
+                        <Button className='select-button' id={filter.cafe ? 'clicked' : 'unclicked'} name='cafe' onClick={handleSelect}>Cafe</Button >
+                        <Button className='select-button' id={filter.bool_outlet ? 'clicked' : 'unclicked'} onClick={handleSelect} name='outlets'>Outlets Available</Button>
                         <Button className='select-button' id={filter.bool_food ? 'clicked' : 'unclicked'} onClick={handleSelect} name='food'>Food</Button>
+                        <Button className='select-button' id={filter.cowork ? 'clicked' : 'unclicked'} onClick={handleSelect} name='cowork'>Co-Work Space</Button>
                         <Button className='select-button' id={filter.bool_coffee ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='coffee'>Coffee</Button>
-                        <Button className='select-button' id={filter.bool_alcohol ? 'clicked' : 'unclicked'} name='alcohol' onClick={handleSelect}>Alcohol</Button >
+                        <Button className='select-button' id={filter.bool_alcohol ? 'clicked' : 'unclicked'} name='alcohol' onClick={handleSelect}>Beer + Wine</Button >
+                        <Button className='select-button' id={filter.openLate ? 'clicked' : 'unclicked'} name='openLate' onClick={handleSelect}>Open Late</Button >
+                        <Button className='select-button' id={filter.lotsOfSeats ? 'clicked' : 'unclicked'} name='lotsOfSeats' onClick={handleSelect}>Lots of seats</Button >
+                        <Button className='select-button' id={filter.library ? 'clicked' : 'unclicked'} name='library' onClick={handleSelect}>Library</Button >
+                        <Button className='select-button' id={filter.bool_petfriendly ? 'clicked' : 'unclicked'} onClick={handleSelect} name='pets'>Pet-Friendly</Button>
+                        <Button className='select-button' id={filter.bool_parking ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='parking'>Parking</Button>
+                        <Button className='select-button' id={filter.bool_goodforgroup ? 'clicked' : 'unclicked'} onClick={handleSelect} name='goodForGroups'>Good for Groups</Button>
                       </div>
-                      <div className='secondary-div'>
-                        <Button className='small-button' id={filter.bool_petfriendly ? 'clicked' : 'unclicked'} onClick={handleSelect} name='pets'>Pet-Friendly</Button>
-                        <Button className='small-button' id={filter.comfiness ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='comfiness'>Comfy Chairs</Button>
-                        <Button className='small-button' id={filter.bool_parking ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='parking'>Parking</Button>
-                        <Button className='small-button' id={filter.bool_goodforgroup ? 'clicked' : 'unclicked'} onClick={handleSelect} name='goodForGroups'>Good for Groups</Button>
-                        <Button className='small-button' id={filter.bool_outdoorspace ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='outdoorSpace'>Outdoor Space</Button>
-                      </div>
+
                       <div className='footer-div'>
                         <div>
                           <p onClick={clearFilter}>Clear Filters</p>
                         </div>
                         <Button className='submit-button' onClick={handleSubmit}>Apply Filters</Button>
                       </div>
+
                       <div className='rejection-message' id={rejection ? 'show' : 'hide'}>
                         <p>No matches found! Please apply different filters and try again.</p>
                       </div>
+
                     </Modal.Body>
                 </Modal>
               </div>
