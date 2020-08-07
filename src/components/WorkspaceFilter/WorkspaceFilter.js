@@ -22,6 +22,7 @@ const WorkspaceFilter = props => {
     fastWifi: 'off',
     lotsOfSeats: 'off',
     cafe: 'off',
+    library: 'off',
     quiet: 'off',
     bool_outlet: 'off',
     bool_food: 'off',
@@ -110,7 +111,7 @@ const WorkspaceFilter = props => {
                         <Button className='select-button' name='alcohol' id={setProp(filter.alcohol)} value={setProp(filter.alcohol)} onClick={handleSelect}>Beer + Wine</Button >
                         <Button className='select-button' name='openLate' id={setProp(filter.openLate)} value={setProp(filter.openLate)} onClick={handleSelect}>Open Late</Button >
                         <Button className='select-button' name='lotsOfSeats' id={setProp(filter.lotsOfSeats)} value={setProp(filter.lotsOfSeats)} onClick={handleSelect}>Lots of seats</Button >
-                        <Button className='select-button' name='libarary' id={setProp(filter.library)} value={setProp(filter.library)} onClick={handleSelect}>Library</Button >
+                        <Button className='select-button' name='library' id={setProp(filter.library)} value={setProp(filter.library)} onClick={handleSelect}>Library</Button >
                         <Button className='select-button' name='pets' id={setProp(filter.pets)} value={setProp(filter.pets)} onClick={handleSelect} name='pets'>Pet-Friendly</Button>
                         <Button className='select-button' name='parking' id={setProp(filter.parking)} value={setProp(filter.parking)}  onClick={handleSelect}>Parking</Button>
                         <Button className='select-button' name='goodForGroups' id={setProp(filter.goodForGroups)} value={setProp(filter.goodForGroups)} onClick={handleSelect}>Good for Groups</Button>
