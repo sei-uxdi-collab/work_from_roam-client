@@ -1,4 +1,4 @@
-import React, { Fragment, useState  } from 'react'
+import React, { Fragment, useState, useRef } from 'react'
 
 // npm package imports
 import { Button, Modal, Container, Row, Col } from 'react-bootstrap'
@@ -6,6 +6,7 @@ import Media from 'react-media'
 import mapValues from 'lodash/mapValues'
 
 // Custom component import
+import { ClickOutside} from '../ClickOutside/ClickOutside.js'
 import { ApplyFilter } from './ApplyFilter.js'
 import FilterButton from './filterButton.svg'
 // import filteredCall from '../../api/workspaceFilter.js'
@@ -18,110 +19,56 @@ const WorkspaceFilter = props => {
   const [show, setShow] = useState(false)
   const [filter, setFilter] = useState({
     // Main filters
-    fastWifi: false,
-    lotsOfSeats: false,
-    cafe: false,
-    quiet: false,
-    bool_outlet: false,
-    bool_food: false,
-    bool_coffee: false,
-    bool_alcohol: false,
+    fastWifi: 'off',
+    lotsOfSeats: 'off',
+    cafe: 'off',
+    quiet: 'off',
+    bool_outlet: 'off',
+    bool_food: 'off',
+    bool_coffee: 'off',
+    bool_alcohol: 'off',
     // Secondary filters
-    bool_petfriendly: false,
-    bool_seating: false,
-    bool_parking: false,
-    bool_goodforgroup: false,
-    bool_outdoorSpace: false
+    bool_petfriendly: 'off',
+    bool_seating: 'off',
+    bool_parking: 'off',
+    bool_goodforgroup: 'off',
+    bool_outdoorSpace: 'off'
   })
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // Functions to reset the filters and to close/show the dropdown
+  const openModal = () => {setShow(true)}
+
+  const setProp = key => {
+    return key === 'on' ? 'off' : 'on'
+  }
+
+  // Reference and function that listens for events outside of the Modal, and closes it
+  const ref = useRef()
+
+  ClickOutside(ref, () => {
+    setShow(false)
+  })
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   const clearFilter = () => {
     setFilter(filter => mapValues(filter, () => false))
     setRejection(false)
   }
 
-  const toggleShow = () => setShow(!show)
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
   const handleSelect = event => {
     event.persist()
-    switch(event.target.name) {
-      // Venue
-      case 'cafe':
-        setFilter(filter => ({...filter, cafe : !filter.cafe }))
-        break
-      case 'cowork':
-        setFilter(filter => ({...filter, cowork : !filter.cowork }))
-        break
-      case 'restaurant':
-        setFilter(filter => ({...filter, restaurant : !filter.restaurant }))
-        break
-      case 'library':
-        setFilter(filter => ({...filter, library : !filter.library }))
-        break
-      // Refreshments
-      case 'alcohol':
-        setFilter(filter => ({...filter, bool_alcohol : !filter.bool_alcohol }))
-        break
-      case 'coffee':
-        setFilter(filter => ({...filter, bool_coffee : !filter.bool_coffee }))
-        break
-      case 'food':
-        setFilter(filter => ({...filter, bool_food : !filter.bool_food }))
-        break
-      // Amenities
-      case 'fastWifi':
-        setFilter(filter => ({...filter, fastWifi : !filter.fastWifi}))
-        break
-      case 'bathrooms':
-        setFilter(filter => ({...filter, bathrooms : !filter.bathrooms }))
-        break
-      case 'comfiness':
-        setFilter(filter => ({...filter, bool_seating : !filter.bool_seating }))
-        break
-      case 'goodForGroups':
-        setFilter(filter => ({...filter, bool_goodforgroup : !filter.bool_goodforgroup }))
-      break
-      case 'lotsOfSeats':
-        setFilter(filter => ({...filter, lotsOfSeats : !filter.lotsOfSeats }))
-        break
-      case 'outdoorSpace':
-        setFilter(filter => ({...filter, bool_outdoorspace : !filter.bool_outdoorspace }))
-        break
-      case 'outlets':
-        setFilter(filter => ({...filter, bool_outlet : !filter.bool_outlet }))
-        break
-      case 'pets':
-        setFilter(filter => ({...filter, bool_petfriendly : !filter.bool_petfriendly }))
-        break
-      // Noise
-      case 'quiet':
-        setFilter(filter => ({...filter, quiet : !filter.quiet }))
-        break
-      case 'lively':
-        setFilter(filter => ({...filter, lively : !filter.lively }))
-        break
-      //Hours
-      case 'openEarly':
-        setFilter(filter => ({...filter, openEarly : !filter.openEarly }))
-        break
-      case 'openLate':
-        setFilter(filter => ({...filter, openLate : !filter.openLate }))
-        break
-      case 'parking':
-        setFilter(filter => ({...filter, bool_parking: !filter.bool_parking}))
-        break
-      default:
-        console.log('Failed to apply filters!')
-    }
+    setFilter(filter => ({...filter, [event.target.name] : event.target.value }))
   }
 
   const handleSubmit = () => {
     doFiltering()
-      .then(resolve => props.filterWorkspaces(resolve))
-      .then(handleClose())
-      .then(setRejection(false))
+      .then(resolve => {
+        props.filterWorkspaces(resolve)
+        clearFilter()
+        setShow()
+        setRejection(false)
+        }
+      )
       .catch(reject => setRejection(true))
   }
 
@@ -135,18 +82,11 @@ const WorkspaceFilter = props => {
       }
     })
   }
-
-  const handleClose = () => {
-    setShow(false)
-  }
-
-  // const handleReject = () => {
-  //   setRejection(true)
-  // }
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   return (
     <Fragment>
-      <img src={FilterButton} onClick={toggleShow} alt="Workspace Filter"/>
+      <img src={FilterButton} onClick={openModal} alt="Workspace Filter"/>
       <Media queries={{
           small: '(max-width: 450px)',
           large: '(min-width: 451px)'
@@ -157,23 +97,23 @@ const WorkspaceFilter = props => {
 
             {matches.small &&
               <div>
-                <Modal className='filter-modal' show={show} onHide={handleClose} style={{top: '10vh'}}>
-                    <Modal.Body className='filter-modal-body'>
+                <Modal className='filter-modal' show={show} onHide={clearFilter} style={{top: '10vh'}}>
+                    <Modal.Body ref={ref} className='filter-modal-body'>
                       <div className='main-div'>
-                        <Button className='select-button' id={filter.fastWifi ? 'clicked' : 'unclicked'} name='fastWifi' onClick={handleSelect}>Fast WiFi</Button>
-                        <Button className='select-button' id={filter.quiet ? 'clicked' : 'unclicked'} name='quiet' onClick={handleSelect}>Quiet</Button >
-                        <Button className='select-button' id={filter.cafe ? 'clicked' : 'unclicked'} name='cafe' onClick={handleSelect}>Cafe</Button >
-                        <Button className='select-button' id={filter.bool_outlet ? 'clicked' : 'unclicked'} onClick={handleSelect} name='outlets'>Outlets Available</Button>
-                        <Button className='select-button' id={filter.bool_food ? 'clicked' : 'unclicked'} onClick={handleSelect} name='food'>Food</Button>
-                        <Button className='select-button' id={filter.cowork ? 'clicked' : 'unclicked'} onClick={handleSelect} name='cowork'>Co-Work Space</Button>
-                        <Button className='select-button' id={filter.bool_coffee ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='coffee'>Coffee</Button>
-                        <Button className='select-button' id={filter.bool_alcohol ? 'clicked' : 'unclicked'} name='alcohol' onClick={handleSelect}>Beer + Wine</Button >
-                        <Button className='select-button' id={filter.openLate ? 'clicked' : 'unclicked'} name='openLate' onClick={handleSelect}>Open Late</Button >
-                        <Button className='select-button' id={filter.lotsOfSeats ? 'clicked' : 'unclicked'} name='lotsOfSeats' onClick={handleSelect}>Lots of seats</Button >
-                        <Button className='select-button' id={filter.library ? 'clicked' : 'unclicked'} name='library' onClick={handleSelect}>Library</Button >
-                        <Button className='select-button' id={filter.bool_petfriendly ? 'clicked' : 'unclicked'} onClick={handleSelect} name='pets'>Pet-Friendly</Button>
-                        <Button className='select-button' id={filter.bool_parking ? 'clicked' : 'unclicked'}  onClick={handleSelect} name='parking'>Parking</Button>
-                        <Button className='select-button' id={filter.bool_goodforgroup ? 'clicked' : 'unclicked'} onClick={handleSelect} name='goodForGroups'>Good for Groups</Button>
+                        <Button className='select-button' name='fastWifi' id={setProp(filter.fastWifi)} value={setProp(filter.fastWifi)} onClick={handleSelect}>Fast WiFi</Button>
+                        <Button className='select-button' name='quiet' id={setProp(filter.quiet)} value={setProp(filter.quiet)} onClick={handleSelect}>Quiet</Button >
+                        <Button className='select-button' name='cafe' id={setProp(filter.cafe)} value={setProp(filter.cafe)} onClick={handleSelect}>Cafe</Button >
+                        <Button className='select-button' name='outlets' id={setProp(filter.outlets)} value={setProp(filter.outlets)} onClick={handleSelect}>Outlets Available</Button>
+                        <Button className='select-button' name='food' id={setProp(filter.food)} value={setProp(filter.food)} onClick={handleSelect}>Food</Button>
+                        <Button className='select-button' name='cowork' id={setProp(filter.cowork)} value={setProp(filter.cowork)} onClick={handleSelect}>Co-Work Space</Button>
+                        <Button className='select-button' name='coffee' id={setProp(filter.coffee)} value={setProp(filter.coffee)} onClick={handleSelect}>Coffee</Button>
+                        <Button className='select-button' name='alcohol' id={setProp(filter.alcohol)} value={setProp(filter.alcohol)} onClick={handleSelect}>Beer + Wine</Button >
+                        <Button className='select-button' name='openLate' id={setProp(filter.openLate)} value={setProp(filter.openLate)} onClick={handleSelect}>Open Late</Button >
+                        <Button className='select-button' name='lotsOfSeats' id={setProp(filter.lotsOfSeats)} value={setProp(filter.lotsOfSeats)} onClick={handleSelect}>Lots of seats</Button >
+                        <Button className='select-button' name='libarary' id={setProp(filter.library)} value={setProp(filter.library)} onClick={handleSelect}>Library</Button >
+                        <Button className='select-button' name='pets' id={setProp(filter.pets)} value={setProp(filter.pets)} onClick={handleSelect} name='pets'>Pet-Friendly</Button>
+                        <Button className='select-button' name='parking' id={setProp(filter.parking)} value={setProp(filter.parking)}  onClick={handleSelect}>Parking</Button>
+                        <Button className='select-button' name='goodForGroups' id={setProp(filter.goodForGroups)} value={setProp(filter.goodForGroups)} onClick={handleSelect}>Good for Groups</Button>
                       </div>
 
                       <div className='footer-div'>
@@ -194,7 +134,7 @@ const WorkspaceFilter = props => {
 
             {matches.large &&
               <Fragment>
-                <Modal className='filter-modal' centered show={show} onHide={handleClose}>
+                <Modal className='filter-modal' centered show={show} onHide={clearFilter}>
                   <Modal.Body className='filter-modal-body'>
 
                     <Container className='modal-container'>

@@ -7,8 +7,7 @@ export const ApplyFilter = (filters, workspaces, userLocation) => {
 }
 
 const filterArray = (array, filters) => {
-  const filterKeys = Object.keys(filters).filter(key => filters[key] === true)
-  // For every workspace, checks whether the value of the selected filter keys is true
+  const filterKeys = Object.keys(filters).filter(key => filters[key] === 'on')
   return array.filter(item => {
     return filterKeys.every(key => {
       return item[key]

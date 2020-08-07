@@ -75,13 +75,13 @@ $warning: red;
         display: none;
       }
 
-      #unclicked {
+      #on {
         background-color: #C4D3FF;
         color: #000;
         font-weight: 300;
       }
 
-      #clicked {
+      #off {
         background-color: $wfrBlue;
         color: $white;
         font-weight: bold;
