@@ -16,10 +16,12 @@ const filterArray = (array, filters) => {
 }
 
 const cleanData = (data, userLocation) => {
-  return data.map(w => {
-    w.avgwifi >= 4 ? w.fastWifi = true : w.fastWifi = false
-    w.avgnoise <= 2 ? w.quiet = true : w.quiet = false
-    w.avgseating >= 3 ? w.lotsOfSeats = true : w.lotsOfSeats = false
-    w.distance = calculateDistanceMiles(w, userLocation, 2)
+  data.map(w => {
+    return (
+      w.avgwifi >= 4 ? w.fastWifi = true : w.fastWifi = false,
+      w.avgnoise <= 2 ? w.quiet = true : w.quiet = false,
+      w.avgseating >= 3 ? w.lotsOfSeats = true : w.lotsOfSeats = false,
+      w.distance = calculateDistanceMiles(w, userLocation, 2)
+    )
   })
 }

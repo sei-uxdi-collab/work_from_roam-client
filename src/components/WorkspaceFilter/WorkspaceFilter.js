@@ -5,54 +5,53 @@ import { Button, Modal, Container, Row, Col } from 'react-bootstrap'
 import Media from 'react-media'
 import mapValues from 'lodash/mapValues'
 
-// Custom component import
+// Component imports
 import { ClickOutside} from '../ClickOutside/ClickOutside.js'
 import { ApplyFilter } from './ApplyFilter.js'
 import FilterButton from './filterButton.svg'
-// import filteredCall from '../../api/workspaceFilter.js'
 
-// Styling imports
+// Styling import
 import './WorkspaceFilter.scss'
 
 const WorkspaceFilter = props => {
   const [rejection, setRejection] = useState(false)
   const [show, setShow] = useState(false)
   const [filter, setFilter] = useState({
-    // Main filters
     fastWifi: 'off',
     lotsOfSeats: 'off',
     cafe: 'off',
     library: 'off',
+    cowork: 'off',
     quiet: 'off',
     bool_outlet: 'off',
     bool_food: 'off',
     bool_coffee: 'off',
     bool_alcohol: 'off',
-    // Secondary filters
-    bool_petfriendly: 'off',
+    bool_petFriendly: 'off',
     bool_seating: 'off',
     bool_parking: 'off',
-    bool_goodforgroup: 'off',
-    bool_outdoorSpace: 'off'
+    bool_goodForGroup: 'off',
+    bool_outdoorSpace: 'off',
+    bool_openLate: 'off'
   })
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const openModal = () => {setShow(true)}
 
   const setProp = key => {
-    return key === 'on' ? 'off' : 'on'
+    return key === 'off' ? 'on' : 'off'
   }
 
   // Reference and function that listens for events outside of the Modal, and closes it
   const ref = useRef()
 
   ClickOutside(ref, () => {
-    setShow(false)
+    setShow()
   })
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   const clearFilter = () => {
-    setFilter(filter => mapValues(filter, () => false))
+    setFilter(filter => mapValues(filter, () => 'off'))
     setRejection(false)
   }
 
@@ -65,7 +64,6 @@ const WorkspaceFilter = props => {
     doFiltering()
       .then(resolve => {
         props.filterWorkspaces(resolve)
-        clearFilter()
         setShow()
         setRejection(false)
         }
@@ -104,17 +102,17 @@ const WorkspaceFilter = props => {
                         <Button className='select-button' name='fastWifi' id={setProp(filter.fastWifi)} value={setProp(filter.fastWifi)} onClick={handleSelect}>Fast WiFi</Button>
                         <Button className='select-button' name='quiet' id={setProp(filter.quiet)} value={setProp(filter.quiet)} onClick={handleSelect}>Quiet</Button >
                         <Button className='select-button' name='cafe' id={setProp(filter.cafe)} value={setProp(filter.cafe)} onClick={handleSelect}>Cafe</Button >
-                        <Button className='select-button' name='outlets' id={setProp(filter.outlets)} value={setProp(filter.outlets)} onClick={handleSelect}>Outlets Available</Button>
-                        <Button className='select-button' name='food' id={setProp(filter.food)} value={setProp(filter.food)} onClick={handleSelect}>Food</Button>
+                        <Button className='select-button' name='bool_outlet' id={setProp(filter.bool_outlet)} value={setProp(filter.bool_outlet)} onClick={handleSelect}>Outlets Available</Button>
+                        <Button className='select-button' name='bool_food' id={setProp(filter.bool_food)} value={setProp(filter.bool_food)} onClick={handleSelect}>Food</Button>
                         <Button className='select-button' name='cowork' id={setProp(filter.cowork)} value={setProp(filter.cowork)} onClick={handleSelect}>Co-Work Space</Button>
-                        <Button className='select-button' name='coffee' id={setProp(filter.coffee)} value={setProp(filter.coffee)} onClick={handleSelect}>Coffee</Button>
-                        <Button className='select-button' name='alcohol' id={setProp(filter.alcohol)} value={setProp(filter.alcohol)} onClick={handleSelect}>Beer + Wine</Button >
-                        <Button className='select-button' name='openLate' id={setProp(filter.openLate)} value={setProp(filter.openLate)} onClick={handleSelect}>Open Late</Button >
-                        <Button className='select-button' name='lotsOfSeats' id={setProp(filter.lotsOfSeats)} value={setProp(filter.lotsOfSeats)} onClick={handleSelect}>Lots of seats</Button >
+                        <Button className='select-button' name='bool_coffee' id={setProp(filter.bool_coffee)} value={setProp(filter.bool_coffee)} onClick={handleSelect}>Coffee</Button>
+                        <Button className='select-button' name='bool_alcohol' id={setProp(filter.bool_alcohol)} value={setProp(filter.bool_alcohol)} onClick={handleSelect}>Beer + Wine</Button >
+                        <Button className='select-button' name='bool_openLate' id={setProp(filter.bool_openLate)} value={setProp(filter.bool_openLate)} onClick={handleSelect}>Open Late</Button >
+                        <Button className='select-button' name='bool_seating' id={setProp(filter.bool_seating)} value={setProp(filter.bool_seating)} onClick={handleSelect}>Lots of seats</Button >
                         <Button className='select-button' name='library' id={setProp(filter.library)} value={setProp(filter.library)} onClick={handleSelect}>Library</Button >
-                        <Button className='select-button' name='pets' id={setProp(filter.pets)} value={setProp(filter.pets)} onClick={handleSelect} name='pets'>Pet-Friendly</Button>
-                        <Button className='select-button' name='parking' id={setProp(filter.parking)} value={setProp(filter.parking)}  onClick={handleSelect}>Parking</Button>
-                        <Button className='select-button' name='goodForGroups' id={setProp(filter.goodForGroups)} value={setProp(filter.goodForGroups)} onClick={handleSelect}>Good for Groups</Button>
+                        <Button className='select-button' name='bool_petFriendly' id={setProp(filter.bool_petFriendly)} value={setProp(filter.bool_petFriendly)} onClick={handleSelect}>Pet-Friendly</Button>
+                        <Button className='select-button' name='bool_parking' id={setProp(filter.bool_parking)} value={setProp(filter.bool_parking)}  onClick={handleSelect}>Parking</Button>
+                        <Button className='select-button' name='bool_goodForGroup' id={setProp(filter.bool_goodForGroup)} value={setProp(filter.bool_goodForGroup)} onClick={handleSelect}>Good for Groups</Button>
                       </div>
 
                       <div className='footer-div'>
