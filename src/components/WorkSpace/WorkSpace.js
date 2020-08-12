@@ -216,9 +216,6 @@ class WorkSpace extends React.Component {
 
         return (
             <div className='workspace'>
-              <Link to='/' className='closeWindowX'>
-                <img alt='close' src='close-x-white.svg' width={'12'} heigth={'12'}/>
-              </Link>
                 <Carousel className='carousel' showThumbs={false}>
                   <div>
                     <img src={photo} alt='workspace 1'/>
@@ -271,7 +268,7 @@ class WorkSpace extends React.Component {
 
                   <a
                     className='workspaceLink'
-                    style={{ textDecoration: 'none', color: 'white', fontSize: '17px', fontWeight: '500', lineHeight: '150%' }}
+                    style={{ textDecoration: 'none', color: '#000', fontSize: '17px', fontWeight: '500', lineHeight: '150%' }}
                     href={this.props.placeData && this.props.placeData.website}
                     target='_blank'
                     rel="noopener noreferrer"
@@ -291,7 +288,7 @@ class WorkSpace extends React.Component {
                     </div>
                 </div>
                     <span style={{ display: 'block'}}>{this.props.placeData && this.props.placeData.formatted_address}</span>
-                    <a href={telNum} className='telNum' style={{ display: 'block', textDecoration: 'underline', color: '#FFF', textDecorationColor: '#cbcbcb' }}>{this.props.placeData && this.props.placeData.formatted_phone_number}</a>
+                    <a href={telNum} className='telNum' style={{ display: 'block', textDecoration: 'underline', color: '#000', textDecorationColor: '#cbcbcb' }}>{this.props.placeData && this.props.placeData.formatted_phone_number}</a>
                     <div>
                     {!this.state.hours && (this.props.placeData && this.props.placeData.opening_hours ? <p
                       style={{ cursor: 'pointer' }}
@@ -335,21 +332,21 @@ class WorkSpace extends React.Component {
                     <p onClick={this.hideFeatures} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'flex-end', textDecoration: 'underline' }}>less<img alt='less' src='arrowUp.svg' className='vecStyle'/></p>
                     <div className='features' style={{ display: 'flex', justifyContent: 'space-evenly', fontSize: '14px', marginBottom: '15px' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
-                          <p style={{ color: alcohol ? '#FFFFFF' : '#C4C4C4' }}>Beer + Wine</p>
-                          <p style={{ color: coffee ? '#FFFFFF' : '#C4C4C4' }}>Coffee</p>
-                          <p style={{ color: food ? '#FFFFFF' : '#C4C4C4' }}>Food</p>
-                          <p style={{ color: freeParking ? '#FFFFFF' : '#C4C4C4' }}>Free Parking</p>
+                          <p style={{ textDecoration: alcohol ? 'none':'line-through' }}>Beer + Wine</p>
+                          <p style={{ textDecoration: coffee ? 'none':'line-through' }}>Coffee</p>
+                          <p style={{ textDecoration: food ? 'none':'line-through' }}>Food</p>
+                          <p style={{ textDecoration: freeParking ? 'none':'line-through' }}>Free Parking</p>
                         </div>
                         <div style={{ float: 'right', display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
-                          <p style={{ color: goodForGroups ? '#FFFFFF' : '#C4C4C4' }}>Good For Groups</p>
-                          <p style={{ color: meetingSpace ? '#FFFFFF' : '#C4C4C4' }}>Meeting Rooms</p>
-                          <p style={{ color: outdoorSpace ? '#FFFFFF' : '#C4C4C4' }}>Outdoor Space</p>
-                          <p style={{ color: outlets ? '#FFFFFF' : '#C4C4C4' }}>Outlets</p>
+                          <p style={{ textDecoration: goodForGroups ? 'none':'line-through' }}>Good For Groups</p>
+                          <p style={{ textDecoration: meetingSpace ? 'none':'line-through' }}>Meeting Rooms</p>
+                          <p style={{ textDecoration: outdoorSpace ? 'none':'line-through' }}>Outdoor Space</p>
+                          <p style={{ textDecoration: outlets ? 'none':'line-through' }}>Outlets</p>
                         </div>
                         <div style={{ float: 'right', display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
-                          <p style={{ color: petFriendly ? '#FFFFFF' : '#C4C4C4' }}>Pet Friendly</p>
-                          <p style={{ color: quiet ? '#FFFFFF' : '#C4C4C4' }}>Quiet</p>
-                          <p style={{ color: wifiPassword ? '#FFFFFF' : '#C4C4C4' }}>Wifi Password</p>
+                          <p style={{ textDecoration: petFriendly ? 'none':'line-through' }}>Pet Friendly</p>
+                          <p style={{ textDecoration: quiet ? 'none':'line-through' }}>Quiet</p>
+                          <p style={{ textDecoration: wifiPassword ? 'none':'line-through' }}>Wifi Password</p>
                         </div>
                         </div>
                       </div>

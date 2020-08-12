@@ -100,17 +100,17 @@
 
   font-weight: bold;
   font-size: 13px;
-  color: #FFFFFF;
+  color: #000000;
 
   left: 20%;
   bottom: 10%;
 }
 
 .workspace {
-  background-color: #4775FF;
+  background-color: #FFFFFF;
   border-radius: 10px 10px 10px 10px;
   box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.15);
-  color: #FFFFFF;
+  color: #000000;
   width: 413px;
   height: 83vh;
   left: 15px;
@@ -130,11 +130,6 @@
   &::-webkit-scrollbar {
     display: none;
   }
-}
-
-.closeWindowX {
-  position: fixed;
-  margin-left: 375px;
 }
 
 .carousel {
@@ -222,7 +217,7 @@ p.carousel-status {
 }
 
 .ratingsRow {
-  color: #FFFFFF;
+  color: #000000;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   font-weight: 300;
@@ -311,11 +306,6 @@ p.carousel-status {
     width: 301px;
   }
 
-  .closeWindowX {
-    margin-left: 269px;
-    margin-top: -12px;
-  }
-
   .carousel {
     width: 249px;
     height: 145px;
@@ -347,10 +337,6 @@ p.carousel-status {
     padding-bottom: 20px;
   }
 
-  .closeWindowX {
-    margin-left: 390px;
-  }
-
   .carousel {
     width: 355px;
     height: 185px;
@@ -367,10 +353,6 @@ p.carousel-status {
     height: 88vh;
   }
 
-  .closeWindowX {
-    margin-left: 340px;
-  }
-
   .carousel {
     width: 318px;
     height: 175px;
@@ -380,10 +362,6 @@ p.carousel-status {
 
 // Small mobile
 @media only screen and (max-width: 320px) {
-  .closeWindowX {
-    margin-left: 286px;
-  }
-
   .carousel {
     width: 280px;
     height: 160px;
@@ -424,10 +402,6 @@ p.carousel-status {
 
     height: 90vh;
   }
-
-  .closeWindowX {
-    margin-left: 381px;
-  }
 }
 
 // Galaxy S4, S5 and Note 3
@@ -438,10 +412,6 @@ p.carousel-status {
   and (orientation: portrait) {
   .workspace {
       height: 89vh;
-  }
-
-  .closeWindowX {
-    margin-left: 328px;
   }
 
   .carousel {
