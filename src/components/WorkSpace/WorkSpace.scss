@@ -142,12 +142,24 @@
   border-radius: 10px;
 }
 
-button.control-arrow {
-  visibility: hidden;
+// button.control-arrow {
+//   visibility: hidden;
+// }
+
+// button.control-next {
+//   visibility: hidden;
+// }
+
+.carousel.carousel-slider .control-arrow:hover {
+  background: none;
 }
 
-button.control-next {
-  visibility: hidden;
+.carousel .control-prev.control-arrow:before {
+  border-right: 0px;
+}
+
+.carousel .control-next.control-arrow:before {
+  border-left: 0px;
 }
 
 p.carousel-status {
