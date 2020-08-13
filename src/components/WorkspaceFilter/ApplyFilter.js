@@ -21,6 +21,7 @@ const cleanData = (data, userLocation) => {
       w.avgwifi >= 4 ? w.fastWifi = true : w.fastWifi = false,
       w.avgnoise <= 2 ? w.quiet = true : w.quiet = false,
       w.avgseating >= 3 ? w.lotsOfSeats = true : w.lotsOfSeats = false,
+      w.quiet >= 4 ? w.lively = true : w.lively = false,
       w.distance = calculateDistanceMiles(w, userLocation, 2)
     )
   })

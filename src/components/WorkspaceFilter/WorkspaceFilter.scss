@@ -143,13 +143,13 @@ $warning: red;
             text-decoration-line: underline;
           }
 
-          #unclicked {
+          #on {
             background-color: $white;
             color: #000;
             font-weight: 300;
           }
 
-          #clicked {
+          #off {
             background-color: $wfrBlue;
             color: $white;
             font-weight: bold;
