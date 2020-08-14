@@ -236,31 +236,31 @@ class WorkSpace extends React.Component {
                 {/* <img className='workspaceImage' alt='work_space_pic' src={photo}/> */}
                 <div className='buttonGroup'>
                 <Button
-                  className='button'
+                  className='button-workspace'
                   data={this.props.data && this.props.userLocation}
                   href={this.props.userLocation ? `https://www.google.com/maps/dir/?api=1&origin=${this.props.userLocation.lat}%2c${this.props.userLocation.lng}&destination=${this.props.data.lat}%2c${this.props.data.lng}` : `https://www.google.com/maps/dir/?api=1&origin=${this.props.data.lat}%2c${this.props.data.lng}&destination=${this.props.data.lat}%2c${this.props.data.lng}`}
                   target={'_blank'}
                   ><img src='getDirections.svg' alt='directions'/>Get Directions</Button>
                 <Button
-                  className='button'
+                  className='button-workspace'
                   data={this.props.data.id}
                   href={`#/create-review`}
                   ><img src='leaveReview.svg' alt='leave a review'/>Leave a Review</Button>
                 {this.props.user && !this.state.flag && <Button
-                                                          className='button'
+                                                          className='button-workspace'
                                                           data={this.props.data.id}
                                                           onClick={handleFave}
-                                                          ><img src='favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
+                                                          ><img src='heartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
                 {this.props.user && this.state.flag && <Button
-                                                          className='button favorited'
+                                                          className='button-workspace favorited'
                                                           data={this.props.data.id}
                                                           onClick={handleUnfave}
-                                                          ><img src='favoriteHeartRed.svg' alt='favorite'/>Add to Favorites</Button>}
+                                                          ><img src='heartRed.svg' alt='favorite'/>Add to Favorites</Button>}
                 {!this.props.user && <Button
-                                        className='button'
+                                        className='button-workspace'
                                         data={this.props.data.id}
                                         href={`#/sign-in`}
-                                        ><img src='favoriteHeartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
+                                        ><img src='heartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
                 </div>
                 <div className='workspaceInfo'>
                 <div>
