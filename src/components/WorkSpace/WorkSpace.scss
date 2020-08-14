@@ -133,22 +133,13 @@
 }
 
 .carousel {
-  width: 355px;
-  height: 190px;
-  margin: 4%;
-  margin-bottom: 30px;
-  margin-top: 25px;
-  margin-left: 13px;
+  width: 366px;
+  height: 243px;
+  margin-bottom: 53px;
+  margin-top: 8px;
   border-radius: 10px;
+  margin-left: 8px;
 }
-
-// button.control-arrow {
-//   visibility: hidden;
-// }
-
-// button.control-next {
-//   visibility: hidden;
-// }
 
 .carousel.carousel-slider .control-arrow:hover {
   background: none;
@@ -293,21 +284,13 @@ p.carousel-status {
 // Large desktop
 @media only screen and (min-width: 2560px) {
   .workspace {
-
     margin: 10px;
     width: 505px;
-    height: 55vh;
+    height: 78vh;
   }
 
   .carousel {
-    width: 447px;
-    height: 190px;
-  }
-}
-
-@media only screen and (min-width: 1440px) and (max-width: 2559px) {
-  .workspace {
-
+    width: 458px;
   }
 }
 
@@ -318,12 +301,6 @@ p.carousel-status {
     width: 301px;
   }
 
-  .carousel {
-    width: 249px;
-    height: 145px;
-    margin-left: 10px;
-  }
-
   .userAlertCard {
     top: 15%;
   }
@@ -331,6 +308,11 @@ p.carousel-status {
 
 // Tablet (resizing window)
 @media only screen and (min-width: 426px) and (max-width: 768px) {
+  .carousel {
+    width: 254px;
+    height: 170px;
+  }
+
   .star {
     width: 12px;
     height: 12px;
@@ -350,9 +332,7 @@ p.carousel-status {
   }
 
   .carousel {
-    width: 355px;
-    height: 185px;
-    margin-left: 19px;
+    width: calc(100vw - 47px);
   }
 }
 
@@ -366,20 +346,14 @@ p.carousel-status {
   }
 
   .carousel {
-    width: 318px;
-    height: 175px;
-    margin-left: 12px;
+    height: 218px;
   }
 }
 
 // Small mobile
 @media only screen and (max-width: 320px) {
   .carousel {
-    width: 280px;
-    height: 160px;
-    margin-top: 8%;
-    margin-bottom: 5%;
-    margin-left: 1%;
+    height: 180px;
   }
 
   .star {
@@ -398,8 +372,8 @@ p.carousel-status {
   and (max-device-width: 812px)
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: portrait) {
-  .workspace {
 
+  .workspace {
     height: 90vh;
   }
 }
@@ -410,8 +384,8 @@ p.carousel-status {
   and (max-device-width: 736px)
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: portrait) {
-  .workspace {
 
+  .workspace {
     height: 90vh;
   }
 }
@@ -422,13 +396,13 @@ p.carousel-status {
   and (device-height: 640px)
   and (-webkit-device-pixel-ratio: 3)
   and (orientation: portrait) {
+
   .workspace {
       height: 89vh;
   }
 
   .carousel {
-    width: 313px;
-    margin-left: 8px;
+    height: 206px;
   }
 
   .yellowBubble {
