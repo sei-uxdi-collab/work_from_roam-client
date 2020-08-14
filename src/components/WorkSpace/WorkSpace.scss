@@ -324,7 +324,7 @@ p.carousel-status {
   .workspace {
     width: 100vw;
     left: 0;
-    height: 89vh;
+    height: 83vh;
   }
 
   .workspaceInfo {
@@ -338,13 +338,6 @@ p.carousel-status {
 
 // Medium mobile
 @media only screen and (max-width: 375px) {
-  .workspace {
-    width: 100vw;
-    left: 0;
-
-    height: 88vh;
-  }
-
   .carousel {
     height: 218px;
   }
@@ -374,7 +367,7 @@ p.carousel-status {
   and (orientation: portrait) {
 
   .workspace {
-    height: 90vh;
+    height: 87vh;
   }
 }
 
@@ -386,7 +379,7 @@ p.carousel-status {
   and (orientation: portrait) {
 
   .workspace {
-    height: 90vh;
+    height: 85vh;
   }
 }
 
@@ -398,7 +391,7 @@ p.carousel-status {
   and (orientation: portrait) {
 
   .workspace {
-      height: 89vh;
+      height: 83vh;
   }
 
   .carousel {
