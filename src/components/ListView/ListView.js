@@ -1,5 +1,5 @@
 /** @jsx jsx **/
-import React, { useState, useRef, useEffect } from 'react'
+import React, { Fragment, useState, useRef, useEffect } from 'react'
 import { Dropdown, Container, Row, Col } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
 import { GoogleApiWrapper } from 'google-maps-react'
@@ -142,8 +142,8 @@ const ListView = props => {
               activeIndex={activeIndex}
               margin={10} />
           </div>
-          <Arrow direction='left' handleClick={prevSlide} />
-          <Arrow direction='right' handleClick={nextSlide} />
+          <Arrow direction='left' handleClick={prevSlide} length={workspaceArray.length}/>
+          <Arrow direction='right' handleClick={nextSlide} length={workspaceArray.length}/>
         </Col>
       </Row>
     </Container>

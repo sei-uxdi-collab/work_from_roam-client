@@ -4,7 +4,7 @@ import { css, jsx } from '@emotion/core'
 import leftArrow from './arrowLftVec.png'
 import rightArrow from './arrowRghtVec.png'
 
-export const Arrow = ({ direction, handleClick }) => (
+export const Arrow = ({ direction, handleClick, length }) => (
   <div
     onClick={handleClick}
     css={css`
@@ -20,9 +20,12 @@ export const Arrow = ({ direction, handleClick }) => (
       cursor: pointer;
       align-items: center;
       transition: transform ease-in 0.1s;
+      ${length > 1 ? `visibility: visible` : `visibility: hidden`};
+
       &:hover {
         transform: scale(1.1);
       }
+
       img {
         transform: translateX(${direction === 'left' ? '-2' : '2'}px);
         &:focus {
