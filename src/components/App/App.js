@@ -45,7 +45,7 @@ class App extends React.Component {
       userLocation: { lat: 42.3601, lng: -71.0589 },
       alerts: [],
       barAlerts: [],
-      filteredWorkspaces: [],
+      filteredWorkspaces: []
     }
 
     // Allows the WorkspaceFilter component to update filteredWorkspaces[]
@@ -211,7 +211,7 @@ class App extends React.Component {
               />
               <WorkspaceFilter
                 userLocation={this.state.userLocation}
-                filterWorkspaces={this.filtereWorkspaces}
+                filterWorkspaces={this.filterWorkspaces}
                 data={this.state.allData}
               />
             </div>
