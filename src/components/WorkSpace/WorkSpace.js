@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { Swipeable } from 'react-swipeable'
 import { Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { Carousel } from 'react-responsive-carousel'
@@ -214,7 +215,14 @@ class WorkSpace extends React.Component {
         })
       }
 
+      const config = {
+        onSwipedDown: () => this.props.history.push('/'),
+        preventDefaultTouchmoveEvent: true,
+        trackMouse: true
+      };
+
         return (
+          <Swipeable {...config}>
             <div className='workspace'>
                 <Carousel className='carousel' showThumbs={false}>
                   <div>
@@ -380,8 +388,9 @@ class WorkSpace extends React.Component {
               </div>
 
             </div>
+          </Swipeable>
         )
     }
 }
 
-export default WorkSpace
+export default withRouter(WorkSpace)
