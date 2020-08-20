@@ -21,6 +21,7 @@ import WorkspaceFilter from './../WorkspaceFilter/WorkspaceFilter.js'
 import ListView from '../ListView/ListView'
 import orderBy from 'lodash/orderBy'
 import SignupCarousel from './../SignupCarousel/SignupCarousel'
+import SignInAlert from '../WorkSpace/SignInAlert.js'
 
 import './App.scss'
 
@@ -136,6 +137,10 @@ class App extends React.Component {
             placeData={this.state.placeData}
             userLocation={this.state.userLocation}
           />
+         )} />
+
+         <Route path='/sign-in-alert' render={() => (
+           <SignInAlert />
          )} />
 
         <Route path='/sign-up' render={() => (

@@ -13,7 +13,6 @@ import Review from '../Review/Review'
 import AmenityRating from '../AmenityRating/AmenityRating.js'
 
 import './WorkSpace.scss'
-import SignInAlert from './SignInAlert'
 
 class WorkSpace extends React.Component {
     constructor(props) {
@@ -192,7 +191,7 @@ class WorkSpace extends React.Component {
 
       // Register as favorited
       const handleFave = event => {
-        console.log(this.props.data)
+        // console.log(this.props.data)
         this.setState({ flag: true })
         axios({
           url: `${apiUrl}/work_spaces/${this.props.data.id}/like`,
@@ -268,7 +267,7 @@ class WorkSpace extends React.Component {
                 {!this.props.user && <Button
                                         className='button-workspace'
                                         data={this.props.data.id}
-                                        onClick=''
+                                        href={'#/sign-in-alert'}
                                         ><img src='heartBlue.svg' alt='favorite'/>Add to Favorites</Button>}
                 </div>
                 <div className='workspaceInfo'>
