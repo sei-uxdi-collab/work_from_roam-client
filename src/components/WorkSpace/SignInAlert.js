@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Button from 'react-bootstrap/button'
+import Button from 'react-bootstrap/Button'
 import { Row } from 'react-bootstrap'
 import './SignInAlert.scss'
 
