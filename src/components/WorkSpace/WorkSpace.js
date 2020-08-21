@@ -217,6 +217,7 @@ class WorkSpace extends React.Component {
 
       const config = {
         onSwipedDown: () => this.props.history.push('/'),
+        delta: 450,
         preventDefaultTouchmoveEvent: true,
         trackMouse: true
       };
