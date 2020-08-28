@@ -1,8 +1,23 @@
 import React, { Component } from 'react'
 import { withRouter, Link, Redirect } from 'react-router-dom'
 
-import { signUp, signIn } from '../../api/auth'
+import { signUp, signIn, checkemail, checkname } from '../../api/auth'
 import messages from '../AutoAlert/messages'
+import signUpMessages from './signUpMessages'
+
+import {
+  emailTest,
+  emailValid,
+  usernameTest,
+  usernameLength,
+  passwordTest,
+  passwordLength,
+  passwordCapital,
+  passwordLower,
+  passwordSpecial,
+  passwordNumber,
+  passwordConfirmationTest
+} from '../../helpers/signUpValidation'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -16,16 +31,61 @@ class SignUp extends Component {
 
     this.state = {
       email: '',
+      emailAvail: false,
+      emailValid: false,
+      emailVal: false,
       username: '',
+      usernameVal: false,
+      usernameLength: false,
+      usernameTaken: false,
       identifier: '',
+      submit: false,
       password: '',
-      passwordConfirmation: ''
+      passwordVal: false,
+      passwordLength: false,
+      passwordCapital: false,
+      passwordLower: false,
+      passwordSpecial: false,
+      passwordNumber: false,
+      passwordConfirmation: '',
+      passwordConfirmationVal: false,
+      property: document.documentElement.style.setProperty('--border-show', 'none')
     }
   }
 
-  handleChange = event => this.setState({
-    [event.target.name]: event.target.value
-  })
+  checkValid = () => {
+    this.setState({ emailVal: emailTest(this.state.email, this.state.emailAvail) })
+    this.setState({ emailValid: emailValid(this.state.email) })
+    this.setState({ usernameVal: usernameTest(this.state.username, this.state.usernameTaken) })
+    this.setState({ usernameLength: usernameLength(this.state.username) })
+    this.setState({ passwordVal: passwordTest(this.state.password) })
+    this.setState({ passwordLength: passwordLength(this.state.password) })
+    this.setState({ passwordCapital: passwordCapital(this.state.password) })
+    this.setState({ passwordLower: passwordLower(this.state.password) })
+    this.setState({ passwordSpecial: passwordSpecial(this.state.password) })
+    this.setState({ passwordNumber: passwordNumber(this.state.password) })
+    this.setState({ passwordConfirmationVal: passwordConfirmationTest(this.state.password, this.state.passwordConfirmation) })
+  }
+
+  handleChange = event => {
+    if (event.target.name === 'username') {
+      this.setState({
+        [event.target.name]: event.target.value
+      }, () => checkname(this.state.username)
+        .then(res => this.setState({ usernameTaken: res.data }))
+        .then(() => { this.checkValid() }))
+    } else if (event.target.name === 'email') {
+      this.setState({
+        [event.target.name]: event.target.value
+      }, () => checkemail(this.state.email)
+        .then(res => this.setState({ emailAvail: res.data }))
+        .then(() => { this.checkValid() }))
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value
+      }, () => { this.checkValid() })
+    }
+  }
 
   onSignUp = event => {
     event.preventDefault()
