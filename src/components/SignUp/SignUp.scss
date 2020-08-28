@@ -1,3 +1,7 @@
+:root {
+  --border-show: none;
+}
+
 h1 {
   font-size: 23px;
   font-family: Roboto;
@@ -12,9 +16,9 @@ h2 {
   text-align: center;
 }
 
-.account-info {
+.account-info-signup {
   background-color: #94AFFF;
-  border: none;
+  border: var(--border-show) !important;
   border-radius: 24px;
   color: #222222;
   font-family: Roboto;
@@ -26,11 +30,52 @@ h2 {
   };
 }
 
-.account-info.password {
+// .account-info-signup.password {
+//   :focus {
+//     border-top-right-radius: 0px;
+//     border-bottom-right-radius: 0px;
+//   }
+// }
+
+.account-info-signup-red {
+  background-color: #94AFFF !important;
+  border: var(--border-show) !important;
+  border-color: red !important;
+  border-radius: 24px !important;
+  color: #000 !important;
+  font-weight: 300 !important;
+  text-decoration: none !important;
   :focus {
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
+    border-radius: 24px !important;
+    border: 1px solid #000 !important;
+  };
+}
+
+.account-info-signup-red.password {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.drop-menu {
+  font-size: 14px !important;
+  border-radius: 24px !important;
+  width: 350px !important;
+  overflow: scroll;
+}
+
+.input-email {
+  border: green;
+}
+
+.is-valid {
+  display: none;
+  color: green !important;
+  border-radius: 24px !important;
+}
+
+.is-invalid {
+  color: red !important;
+  border-radius: 24px !important;
 }
 
 .close-window-blue {

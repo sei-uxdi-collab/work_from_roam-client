@@ -21,6 +21,8 @@ import {
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Dropdown from 'react-bootstrap/Dropdown'
+import InputGroup from 'react-bootstrap/InputGroup'
 import TextField from '@material-ui/core/TextField'
 import PasswordInput from '../PasswordShowHide/PasswordShowHide'
 import './SignUp.scss'
@@ -54,6 +56,7 @@ class SignUp extends Component {
   }
 
   checkValid = () => {
+    console.log('checkValid')
     this.setState({ emailVal: emailTest(this.state.email, this.state.emailAvail) })
     this.setState({ emailValid: emailValid(this.state.email) })
     this.setState({ usernameVal: usernameTest(this.state.username, this.state.usernameTaken) })
@@ -88,8 +91,13 @@ class SignUp extends Component {
   }
 
   onSignUp = event => {
+    console.log('onSignUp')
     event.preventDefault()
-    this.setState({ identifier: this.state.email })
+    this.setState({
+      identifier: this.state.email,
+      submit: true })
+    this.checkValid()
+    this.setState({ property: document.documentElement.style.setProperty('--border-show', 'solid') })
     const { alert, history, setUser } = this.props
 
     signUp(this.state)
@@ -104,7 +112,7 @@ class SignUp extends Component {
       .then(() => history.push('/first-signin'))
       .catch(error => {
         console.error(error)
-        this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })
+        // this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })
         alert({
           heading: 'Sign Up Failed',
           message: messages.signUpFailure,
@@ -118,7 +126,21 @@ class SignUp extends Component {
   }
 
   render () {
-    const { email, username, password, passwordConfirmation } = this.state
+    const {
+      email,
+      emailAvail,
+      emailValid,
+      username,
+      usernameLength,
+      password,
+      passwordConfirmation,
+      submit,
+      emailVal,
+      usernameVal,
+      usernameTaken,
+      passwordVal,
+      passwordConfirmationVal
+    } = this.state
 
     return (
       <div className="container popup">
@@ -134,7 +156,7 @@ class SignUp extends Component {
           <Form.Group controlId="username" className="mt-4">
             <TextField
               fullWidth={true}
-              className="account-info"
+              className={!usernameVal ? 'account-info-signup-red username input' : 'account-info-signup username input'}
               required
               type="username"
               name="username"
@@ -146,11 +168,17 @@ class SignUp extends Component {
                 "aria-label": "Username",
               }}
             />
+            <Form.Text className={!usernameLength ? 'is-invalid' : 'is-valid'}>
+                {submit && !usernameVal && signUpMessages.username }
+              </Form.Text>
+              <Form.Text className={usernameTaken ? 'is-invalid' : 'is-valid'}>
+                {submit && !usernameVal && signUpMessages.usernameTaken}
+              </Form.Text>
           </Form.Group>
             <Form.Group controlId="email">
               <TextField
                 fullWidth={true}
-                className="account-info"
+                className={!emailVal ? 'account-info-signup-red email input' : 'account-info-signup email input'}
                 required
                 type="email"
                 name="email"
@@ -162,28 +190,54 @@ class SignUp extends Component {
                   "aria-label": "Email",
                 }}
               />
+              <Form.Text className={!emailValid ? 'is-invalid' : 'is-valid'}>
+                {submit && !emailVal && signUpMessages.email}
+              </Form.Text>
+              <Form.Text className={emailAvail ? 'is-invalid' : 'is-valid'}>
+                {submit && !emailVal && signUpMessages.emailAvail}
+              </Form.Text>
             </Form.Group>
             <Form.Group controlId="password">
+            <InputGroup>
               <PasswordInput
                 fullWidth={true}
-                className="account-info password"
+                className={submit && !passwordVal ? 'account-info-signup-red password input' : 'account-info-signup password input'}
                 required
                 name="password"
                 value={password}
                 placeholder="Password"
                 onChange={this.handleChange}
               />
+              <InputGroup.Append>{submit && !passwordVal &&
+                <Dropdown>
+                  <Dropdown.Toggle style={{ borderRadius: '0px 24px 24px 0px' }} variant={!passwordVal ? 'danger' : 'success'} id="dropdown-basic">
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu alignLeft className='drop-menu'>
+                    <Dropdown.Item className={!this.state.passwordLength ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordLength}</Dropdown.Item>
+                    <Dropdown.Item className={!this.state.passwordCapital ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordCapital }</Dropdown.Item>
+                    <Dropdown.Item className={!this.state.passwordSpecial ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordSpecial }</Dropdown.Item>
+                    <Dropdown.Item className={!this.state.passwordLower ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordLower}</Dropdown.Item>
+                    <Dropdown.Item className={!this.state.passwordNumber ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordNumber }</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                }
+                </InputGroup.Append>
+              </InputGroup>
             </Form.Group>
             <Form.Group controlId="passwordConfirmation">
               <PasswordInput
                 fullWidth={true}
-                className="account-info password"
+                className={!passwordConfirmationVal ? 'account-info-signup-red input' : 'account-info-signup input'}
                 required
                 name="passwordConfirmation"
                 value={passwordConfirmation}
                 placeholder="Confirm Password"
                 onChange={this.handleChange}
               />
+              <Form.Text className={!passwordConfirmationVal ? 'is-invalid' : 'is-valid'}>
+                {submit && !passwordConfirmationVal && signUpMessages.passwordConfirmation }
+              </Form.Text>
             </Form.Group>
             <Link to='/' className="cancel-button m-3" onClick={this.closeWindow}>
               Cancel

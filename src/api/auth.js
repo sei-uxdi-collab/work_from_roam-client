@@ -84,6 +84,7 @@ export const changePassword = (passwords, user) => {
 
 // Check availability of username in API
 export const checkname = (name) => {
+  console.log(name)
   return axios({
     url: apiUrl + '/checkname',
     method: 'GET',
@@ -95,6 +96,7 @@ export const checkname = (name) => {
 
 // Check availability of email in API
 export const checkemail = (email) => {
+  console.log(email)
   return axios({
     url: apiUrl + '/checkemail',
     method: 'GET',
