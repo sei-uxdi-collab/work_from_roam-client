@@ -210,10 +210,11 @@ class SignUp extends Component {
               />
               <InputGroup.Append>{submit && !passwordVal &&
                 <Dropdown>
-                  <Dropdown.Toggle style={{ borderRadius: '0px 24px 24px 0px' }} variant={!passwordVal ? 'danger' : 'success'} id="dropdown-basic">
+                  <Dropdown.Toggle style={{ borderRadius: '0px 24px 24px 0px', dislpay: 'flex' }} variant={!passwordVal ? 'danger' : 'success'} id="dropdown-basic">
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu alignLeft className='drop-menu'>
+                  <Dropdown.Item className={!this.state.passwordNumber ? 'is-invalid' : 'is-valid'}>Hello</Dropdown.Item>
                     <Dropdown.Item className={!this.state.passwordLength ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordLength}</Dropdown.Item>
                     <Dropdown.Item className={!this.state.passwordCapital ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordCapital }</Dropdown.Item>
                     <Dropdown.Item className={!this.state.passwordSpecial ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordSpecial }</Dropdown.Item>

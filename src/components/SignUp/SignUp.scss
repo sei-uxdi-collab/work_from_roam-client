@@ -19,6 +19,7 @@ h2 {
 .account-info-signup {
   background-color: #94AFFF;
   border: var(--border-show) !important;
+  border-color: green !important;
   border-radius: 24px;
   color: #222222;
   font-family: Roboto;
@@ -30,12 +31,12 @@ h2 {
   };
 }
 
-// .account-info-signup.password {
-//   :focus {
-//     border-top-right-radius: 0px;
-//     border-bottom-right-radius: 0px;
-//   }
-// }
+.account-info-signup.password {
+  :focus {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}
 
 .account-info-signup-red {
   background-color: #94AFFF !important;
@@ -59,13 +60,13 @@ h2 {
 .drop-menu {
   font-size: 14px !important;
   border-radius: 24px !important;
-  width: 350px !important;
+  // width: 350px !important;
   overflow: scroll;
 }
 
-.input-email {
-  border: green;
-}
+// .input-email {
+//   border: green;
+// }
 
 .is-valid {
   display: none;
