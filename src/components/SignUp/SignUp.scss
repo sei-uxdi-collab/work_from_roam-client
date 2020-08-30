@@ -20,7 +20,7 @@ h2 {
   background-color: #94AFFF;
   border: var(--border-show) !important;
   border-color: green !important;
-  border-radius: 24px;
+  border-radius: 24px !important;
   color: #222222;
   font-family: Roboto;
   font-weight: 300;
@@ -52,11 +52,6 @@ h2 {
   };
 }
 
-.account-info-signup-red.password {
-    border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-}
-
 .drop-menu {
   font-size: 14px !important;
   border-radius: 24px !important;
@@ -65,16 +60,7 @@ h2 {
   background-color: red;
 }
 
-// .input-email {
-//   border: green;
-// }
-
-.test-dropdown {
-  width: 100%;
-  margin: 0;
-}
 .is-valid {
-  display: none;
   color: green !important;
   border-radius: 24px !important;
 }

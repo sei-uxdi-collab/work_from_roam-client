@@ -199,8 +199,7 @@ class SignUp extends Component {
             </Form.Group>
 
             <Form.Group controlId="password">
-            <InputGroup className='test-dropdown'>
-              <Form.Control
+              <PasswordInput
                 fullWidth={true}
                 className={submit && !passwordVal ? 'account-info-signup-red password input' : 'account-info-signup password input'}
                 required
@@ -209,22 +208,6 @@ class SignUp extends Component {
                 placeholder="Password"
                 onChange={this.handleChange}
               />
-              <InputGroup.Append>{submit && !passwordVal &&
-                <Dropdown>
-                  <Dropdown.Toggle style={{ borderRadius: '0px 24px 24px 0px' }} variant={!passwordVal ? 'danger' : 'success'} id="dropdown-basic">
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu alignRight className='drop-menu'>
-                    <Dropdown.Item className={!this.state.passwordLength ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordLength}</Dropdown.Item>
-                    <Dropdown.Item className={!this.state.passwordCapital ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordCapital }</Dropdown.Item>
-                    <Dropdown.Item className={!this.state.passwordSpecial ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordSpecial }</Dropdown.Item>
-                    <Dropdown.Item className={!this.state.passwordLower ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordLower}</Dropdown.Item>
-                    <Dropdown.Item className={!this.state.passwordNumber ? 'is-invalid' : 'is-valid'}>{!passwordVal && signUpMessages.passwordNumber }</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-                }
-                </InputGroup.Append>
-              </InputGroup>
               <Form.Text className={!this.state.passwordLength ? 'is-invalid' : 'is-valid'}>
                 {submit && !passwordVal && signUpMessages.passwordLength}
               </Form.Text>
