@@ -60,14 +60,19 @@ h2 {
 .drop-menu {
   font-size: 14px !important;
   border-radius: 24px !important;
-  // width: 350px !important;
+  width: 350px !important;
   overflow: scroll;
+  background-color: red;
 }
 
 // .input-email {
 //   border: green;
 // }
 
+.test-dropdown {
+  width: 100%;
+  margin: 0;
+}
 .is-valid {
   display: none;
   color: green !important;
