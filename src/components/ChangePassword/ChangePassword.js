@@ -14,7 +14,8 @@ class ChangePassword extends Component {
 
     this.state = {
       oldPassword: '',
-      newPassword: ''
+      newPassword: '',
+      newPasswordConfirmation: ''
     }
   }
 
@@ -44,12 +45,12 @@ class ChangePassword extends Component {
           variant: 'danger'
         })
         console.error(error)
-        this.setState({ oldPassword: '', newPassword: '' })
+        this.setState({ oldPassword: '', newPassword: '', newPasswordConfirmation: '' })
       })
   }
 
   render () {
-    const { oldPassword, newPassword } = this.state
+    const { oldPassword, newPassword, newPasswordConfirmation } = this.state
 
     return (
       <div className="container popup">
@@ -80,6 +81,17 @@ class ChangePassword extends Component {
                 name="newPassword"
                 value={newPassword}
                 placeholder="New Password"
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="newPasswordConfirmation">
+              <PasswordInput
+                fullWidth={true}
+                className="account-info password"
+                required
+                name="newPasswordConfirmation"
+                value={newPasswordConfirmation}
+                placeholder="New Password Confirmation"
                 onChange={this.handleChange}
               />
             </Form.Group>

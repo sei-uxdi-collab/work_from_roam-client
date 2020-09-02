@@ -76,7 +76,8 @@ export const changePassword = (passwords, user) => {
     data: {
       passwords: {
         old: passwords.oldPassword,
-        new: passwords.newPassword
+        new: passwords.newPassword,
+        confirm: passwords.newPasswordConfirmation
       }
     }
   })
