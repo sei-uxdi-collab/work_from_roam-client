@@ -183,7 +183,7 @@ class App extends React.Component {
         )} />
 
         <Route user={user} path='/reviews/:id/update' render={() => (
-          <ReviewUpdate
+          <ReviewCreate
             user={user}
             setUser={this.setUser}
             setApp={this.setState.bind(this)}

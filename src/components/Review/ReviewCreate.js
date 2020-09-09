@@ -14,35 +14,34 @@ import Button from 'react-bootstrap/Button'
   class ReviewCreate extends React.Component {
     constructor(props) {
       super(props)
+      const defaultValues = props.currentReview || {}
       this.state = {
-        alcohol: false,
-        goodforgroup: false,
-        meetingspace: false,
-        outdoorspace: false,
-        parking: false,
-        petfriendly: false,
-        rating: 0,
-        note: '',
-        wifi: 3,
-        wifipass: false,
-        noise: 3,
-        bathroom: false,
-        coffee: false,
-        food: false,
-        outlet: false,
-        seating: 3,
-        clean: 3,
+        alcohol: defaultValues.alcohol || false,
+        goodforgroup: defaultValues.goodforgroup || false,
+        meetingspace: defaultValues.meetingspace || false,
+        outdoorspace: defaultValues.outdoorspace || false,
+        parking: defaultValues.parking || false,
+        petfriendly: defaultValues.petfriendly || false,
+        rating: defaultValues.rating || 0,
+        note: defaultValues.note || '',
+        wifi: defaultValues.wifi || 3,
+        wifipass: defaultValues.wifipass || false,
+        noise: defaultValues.noise || 3,
+        bathroom: defaultValues.bathroom || false,
+        coffee: defaultValues.coffee || false,
+        food: defaultValues.food || false,
+        outlet: defaultValues.outlet || false,
+        seating: defaultValues.seating || 3,
+        clean: defaultValues.clean || 3,
         display: 'block',
         redirect: false,
         isChecked: props.isChecked || false,
         submitError: false,
       }
-      this.toggleChange = this.toggleChange.bind(this);
     }
 
     handleChange = (event) => {
       this.setState({ [event.target.name]: event.target.value })
-      console.log(event.target.value)
     }
 
     toggleChange = (event) => {
