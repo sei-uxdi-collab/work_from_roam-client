@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Link, Redirect } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { signUp, signIn, checkemail, checkname } from '../../api/auth'
 import messages from '../AutoAlert/messages'
@@ -91,7 +91,6 @@ class SignUp extends Component {
   }
 
   onSignUp = event => {
-    console.log('onSignUp')
     event.preventDefault()
     this.setState({
       identifier: this.state.email,
@@ -125,13 +124,7 @@ class SignUp extends Component {
   }
 
   onHover = (prevState, state) => {
-    if (state === 'openEmail') {
-      this.setState({ openEmail: !prevState })
-    } else if (state === 'openPass') {
-      this.setState({ openPass: !prevState })
-    } else if (state === 'openUser') {
-      this.setState({ openUser: !prevState })
-    }
+      this.setState({ [`${state}`]: !prevState })
   }
 
   render () {

@@ -55,9 +55,8 @@ class HeaderSignUp extends Component {
       property: document.documentElement.style.setProperty('--border-show', 'none')
     }
   }
-
+  // Set state of all fields using helper functions
   checkValid = () => {
-    console.log('checkValid')
     this.setState({ emailVal: emailTest(this.state.email, this.state.emailAvail) })
     this.setState({ emailValid: emailValid(this.state.email) })
     this.setState({ usernameVal: usernameTest(this.state.username, this.state.usernameTaken) })
@@ -72,12 +71,17 @@ class HeaderSignUp extends Component {
   }
 
   handleChange = event => {
+    // Conditional to check if username is in the database
     if (event.target.name === 'username') {
       this.setState({
         [event.target.name]: event.target.value
+        // Set the state and check for username in database
       }, () => checkname(this.state.username)
+        // Data retrieved from checkname is boolean.
         .then(res => this.setState({ usernameTaken: res.data }))
+        // Check if target is valid
         .then(() => { this.checkValid() }))
+    // Check for email in the database
     } else if (event.target.name === 'email') {
       this.setState({
         [event.target.name]: event.target.value
@@ -85,6 +89,7 @@ class HeaderSignUp extends Component {
         .then(res => this.setState({ emailAvail: res.data }))
         .then(() => { this.checkValid() }))
     } else {
+      // Set and check remaining targets
       this.setState({
         [event.target.name]: event.target.value
       }, () => { this.checkValid() })
@@ -96,7 +101,9 @@ class HeaderSignUp extends Component {
     this.setState({
       identifier: this.state.email,
       submit: true })
+    // Check if fields are valid
     this.checkValid()
+    // Set border property to show red or green border
     this.setState({ property: document.documentElement.style.setProperty('--border-show', 'solid') })
     const { alert, history, setUser } = this.props
 
@@ -120,14 +127,10 @@ class HeaderSignUp extends Component {
       })
   }
 
+  // Hover effect opens error message on web browser.
+  // Needs to be tested on mobile
   onHover = (prevState, state) => {
-    if (state === 'openEmail') {
-      this.setState({ openEmail: !prevState })
-    } else if (state === 'openPass') {
-      this.setState({ openPass: !prevState })
-    } else if (state === 'openUser') {
-      this.setState({ openUser: !prevState })
-    }
+      this.setState({ [`${state}`]: !prevState })
   }
 
   render () {
