@@ -21,8 +21,6 @@ import {
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Dropdown from 'react-bootstrap/Dropdown'
-import InputGroup from 'react-bootstrap/InputGroup'
 import TextField from '@material-ui/core/TextField'
 import PasswordInput from '../../PasswordShowHide/PasswordShowHide'
 import './HeaderSignUp.scss'
@@ -33,6 +31,9 @@ class HeaderSignUp extends Component {
 
     this.state = {
       email: '',
+      openEmal: false,
+      openPass: false,
+      openUser: false,
       emailAvail: false,
       emailValid: false,
       emailVal: false,
@@ -111,7 +112,6 @@ class HeaderSignUp extends Component {
       .then(() => history.push('/first-signin'))
       .catch(error => {
         console.error(error)
-        // this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })
         alert({
           heading: 'Sign Up Failed',
           message: messages.signUpFailure,
@@ -120,9 +120,22 @@ class HeaderSignUp extends Component {
       })
   }
 
+  onHover = (prevState, state) => {
+    if (state === 'openEmail') {
+      this.setState({ openEmail: !prevState })
+    } else if (state === 'openPass') {
+      this.setState({ openPass: !prevState })
+    } else if (state === 'openUser') {
+      this.setState({ openUser: !prevState })
+    }
+  }
+
   render () {
     const {
       email,
+      openEmail,
+      openUser,
+      openPass,
       emailAvail,
       emailValid,
       username,
@@ -156,12 +169,17 @@ class HeaderSignUp extends Component {
                 "aria-label": "Username",
               }}
             />
-            <Form.Text className={!usernameLength ? 'is-invalid' : 'is-valid'}>
-                {submit && !usernameVal && signUpMessages.username }
-              </Form.Text>
-              <Form.Text className={usernameTaken ? 'is-invalid' : 'is-valid'}>
-                {submit && !usernameVal && signUpMessages.usernameTaken}
-              </Form.Text>
+            {submit && !usernameVal && <div className='image-div'><img
+                src={'red-x.svg'}
+                alt='red-x'
+                className={!usernameVal ? 'red-x' : 'green-check'}
+                onMouseEnter={!usernameVal ? () => this.onHover(this.state.openUser, 'openUser') : undefined}
+                onMouseLeave={!usernameVal ? () => this.onHover(this.state.openUser, 'openUser') : undefined}
+              /></div>}
+              {openUser && <div className='error-message-div'>
+                <div>{submit && !usernameVal && !usernameLength && signUpMessages.username}</div>
+                <div>{submit && !usernameVal && usernameTaken && signUpMessages.usernameTaken}</div>
+              </div>}
           </Form.Group>
             <Form.Group controlId="email">
               <TextField
@@ -178,12 +196,17 @@ class HeaderSignUp extends Component {
                   "aria-label": "Email",
                 }}
               />
-              <Form.Text className={!emailValid ? 'is-invalid' : 'is-valid'}>
-                {submit && !emailVal && signUpMessages.email}
-              </Form.Text>
-              <Form.Text className={emailAvail ? 'is-invalid' : 'is-valid'}>
-                {submit && !emailVal && signUpMessages.emailAvail}
-              </Form.Text>
+              {submit && !emailVal && <div className='image-div'><img
+                src='red-x.svg'
+                alt='red-x'
+                className={!emailVal ? 'red-x' : 'green-check'}
+                onMouseEnter={!emailVal ? () => this.onHover(this.state.openEmail, 'openEmail') : undefined}
+                onMouseLeave={!emailVal ? () => this.onHover(this.state.openEmail, 'openEmail') : undefined}
+              /></div>}
+              {openEmail && <div className='error-message-div'>
+                <div>{submit && !emailVal && !emailValid && signUpMessages.email}</div>
+                <div>{submit && !emailVal && emailAvail && signUpMessages.emailAvail}</div>
+              </div>}
             </Form.Group>
             <Form.Group controlId="password">
               <PasswordInput
@@ -195,21 +218,20 @@ class HeaderSignUp extends Component {
                 placeholder="Password"
                 onChange={this.handleChange}
               />
-              <Form.Text className={!this.state.passwordLength ? 'is-invalid' : 'is-valid'}>
-                {submit && !passwordVal && signUpMessages.passwordLength}
-              </Form.Text>
-              <Form.Text className={!this.state.passwordCapital ? 'is-invalid' : 'is-valid'}>
-                {submit && !passwordVal && signUpMessages.passwordCapital}
-              </Form.Text>
-              <Form.Text className={!this.state.passwordSpecial ? 'is-invalid' : 'is-valid'}>
-                {submit && !passwordVal && signUpMessages.passwordSpecial}
-              </Form.Text>
-              <Form.Text className={!this.state.passwordLower ? 'is-invalid' : 'is-valid'}>
-                {submit && !passwordVal && signUpMessages.passwordLower}
-              </Form.Text>
-              <Form.Text className={!this.state.passwordNumber ? 'is-invalid' : 'is-valid'}>
-                {submit && !passwordVal && signUpMessages.passwordNumber}
-              </Form.Text>
+              {submit && !passwordVal && <div className='image-div'><img
+                src='red-x.svg'
+                alt='red-x'
+                className={!passwordVal ? 'red-x' : 'green-check'}
+                onMouseEnter={!passwordVal ? () => this.onHover(this.state.openPass, 'openPass') : undefined}
+                onMouseLeave={!passwordVal ? () => this.onHover(this.state.openPass, 'openPass') : undefined}
+              /></div>}
+              {openPass && <div className='error-message-div'>
+                <div>{submit && !passwordVal && !this.state.passwordLength && signUpMessages.passwordLength}</div>
+                <div>{submit && !passwordVal && !this.state.passwordCapital && signUpMessages.passwordCapital}</div>
+                <div>{submit && !passwordVal && !this.state.passwordSpecial && signUpMessages.passwordSpecial}</div>
+                <div>{submit && !passwordVal && !this.state.passwordLower && signUpMessages.passwordLower}</div>
+                <div>{submit && !passwordVal && !this.state.passwordNumber && signUpMessages.passwordNumber}</div>
+              </div>}
             </Form.Group>
             <Form.Group controlId="passwordConfirmation">
               <PasswordInput
@@ -221,6 +243,11 @@ class HeaderSignUp extends Component {
                 placeholder="Confirm Password"
                 onChange={this.handleChange}
               />
+              {submit && !passwordConfirmationVal && <div className='image-div'><img
+                src={'red-x.svg'}
+                alt='red-x'
+                className={!passwordConfirmationVal ? 'red-x' : 'green-check'}
+              /></div>}
               <Form.Text className={!passwordConfirmationVal ? 'is-invalid' : 'is-valid'}>
                 {submit && !passwordConfirmationVal && signUpMessages.passwordConfirmation }
               </Form.Text>
