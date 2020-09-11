@@ -146,9 +146,9 @@ class HeaderSignUp extends Component {
               }}
             />
             {submit && !usernameVal && <div className='image-div'><img
-                src={'red-x.svg'}
+                src='red-x.svg'
                 alt='red-x'
-                className={!usernameVal ? 'red-x' : 'green-check'}
+                className='red-x'
                 onMouseEnter={!usernameVal ? () => this.onHover(this.state.openUser, 'openUser') : undefined}
                 onMouseLeave={!usernameVal ? () => this.onHover(this.state.openUser, 'openUser') : undefined}
               /></div>}
@@ -175,7 +175,7 @@ class HeaderSignUp extends Component {
               {submit && !emailVal && <div className='image-div'><img
                 src='red-x.svg'
                 alt='red-x'
-                className={!emailVal ? 'red-x' : 'green-check'}
+                className='red-x'
                 onMouseEnter={!emailVal ? () => this.onHover(this.state.openEmail, 'openEmail') : undefined}
                 onMouseLeave={!emailVal ? () => this.onHover(this.state.openEmail, 'openEmail') : undefined}
               /></div>}
@@ -197,7 +197,7 @@ class HeaderSignUp extends Component {
               {submit && !passwordVal && <div className='image-div'><img
                 src='red-x.svg'
                 alt='red-x'
-                className={!passwordVal ? 'red-x' : 'green-check'}
+                className='red-x'
                 onMouseEnter={!passwordVal ? () => this.onHover(this.state.openPass, 'openPass') : undefined}
                 onMouseLeave={!passwordVal ? () => this.onHover(this.state.openPass, 'openPass') : undefined}
               /></div>}
@@ -220,9 +220,9 @@ class HeaderSignUp extends Component {
                 onChange={this.handleChange}
               />
               {submit && !passwordConfirmationVal && <div className='image-div'><img
-                src={'red-x.svg'}
+                src='red-x.svg'
                 alt='red-x'
-                className={!passwordConfirmationVal ? 'red-x' : 'green-check'}
+                className='red-x'
               /></div>}
               <Form.Text className={!passwordConfirmationVal ? 'is-invalid' : 'is-valid'}>
                 {submit && !passwordConfirmationVal && signUpMessages.passwordConfirmation }
