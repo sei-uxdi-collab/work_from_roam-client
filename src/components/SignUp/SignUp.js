@@ -28,7 +28,7 @@ class SignUp extends Component {
       username: '',
       usernameVal: false,
       usernameLength: false,
-      usernameTaken: false,
+      usernameAvail: false,
       identifier: '',
       submit: false,
       password: '',
@@ -47,7 +47,7 @@ class SignUp extends Component {
   checkValid = () => {
     this.setState({ emailVal: validations.emailTest(this.state.email, this.state.emailAvail) })
     this.setState({ emailValid: validations.emailValid(this.state.email) })
-    this.setState({ usernameVal: validations.usernameTest(this.state.username, this.state.usernameTaken) })
+    this.setState({ usernameVal: validations.usernameTest(this.state.username, this.state.usernameAvail) })
     this.setState({ usernameLength: validations.usernameLength(this.state.username) })
     this.setState({ passwordVal: validations.passwordTest(this.state.password) })
     this.setState({ passwordLength: validations.passwordLength(this.state.password) })
@@ -59,23 +59,14 @@ class SignUp extends Component {
   }
 
   handleChange = event => {
-    if (event.target.name === 'username') {
-      this.setState({
-        [event.target.name]: event.target.value
-      }, () => checkInfo(this.state.username, 'username')
-        .then(res => this.setState({ usernameTaken: res.data }))
-        .then(() => { this.checkValid() }))
-    } else if (event.target.name === 'email') {
-      this.setState({
-        [event.target.name]: event.target.value
-      }, () => checkInfo(this.state.email, 'email')
-        .then(res => this.setState({ emailAvail: res.data }))
-        .then(() => { this.checkValid() }))
-    } else {
-      this.setState({
-        [event.target.name]: event.target.value
-      }, () => { this.checkValid() })
-    }
+    const name = event.target.name
+
+    this.setState({[event.target.name]: event.target.value},
+      (name === 'username' || name === 'email') ?
+      () => checkInfo(this.state[name], name)
+      .then(res => this.setState({ [`${name}Avail`]: res.data }))
+      .then(() => { this.checkValid() })
+      .catch(error => console.error()) : () => { this.checkValid() })
   }
 
   onSignUp = event => {
@@ -130,7 +121,7 @@ class SignUp extends Component {
       submit,
       emailVal,
       usernameVal,
-      usernameTaken,
+      usernameAvail,
       passwordVal,
       passwordConfirmationVal
     } = this.state
@@ -170,7 +161,7 @@ class SignUp extends Component {
               /></div>}
               {openUser && <div className='error-message-div'>
                 <div>{submit && !usernameVal && !usernameLength && signUpMessages.username}</div>
-                <div>{submit && !usernameVal && usernameTaken && signUpMessages.usernameTaken}</div>
+                <div>{submit && !usernameVal && usernameAvail && signUpMessages.usernameAvail}</div>
               </div>}
           </Form.Group>
             <Form.Group controlId="email">
