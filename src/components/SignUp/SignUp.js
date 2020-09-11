@@ -19,9 +19,6 @@ class SignUp extends Component {
 
     this.state = {
       email: '',
-      openEmal: false,
-      openPass: false,
-      openUser: false,
       emailAvail: false,
       emailValid: false,
       emailVal: false,
@@ -156,8 +153,8 @@ class SignUp extends Component {
                 src='red-x.svg'
                 alt='red-x'
                 className='red-x'
-                onMouseEnter={!usernameVal ? () => this.onHover(this.state.openUser, 'openUser') : undefined}
-                onMouseLeave={!usernameVal ? () => this.onHover(this.state.openUser, 'openUser') : undefined}
+                onMouseEnter={!usernameVal ? () => this.onHover(openUser, 'openUser') : undefined}
+                onMouseLeave={!usernameVal ? () => this.onHover(openUser, 'openUser') : undefined}
               /></div>}
               {openUser && <div className='error-message-div'>
                 <div>{submit && !usernameVal && !usernameLength && signUpMessages.username}</div>
@@ -183,8 +180,8 @@ class SignUp extends Component {
                 src='red-x.svg'
                 alt='red-x'
                 className='red-x'
-                onMouseEnter={!emailVal ? () => this.onHover(this.state.openEmail, 'openEmail') : undefined}
-                onMouseLeave={!emailVal ? () => this.onHover(this.state.openEmail, 'openEmail') : undefined}
+                onMouseEnter={!emailVal ? () => this.onHover(openEmail, 'openEmail') : undefined}
+                onMouseLeave={!emailVal ? () => this.onHover(openEmail, 'openEmail') : undefined}
               /></div>}
               {openEmail && <div className='error-message-div'>
                 <div>{submit && !emailVal && !emailValid && signUpMessages.email}</div>
@@ -206,8 +203,8 @@ class SignUp extends Component {
                 src='red-x.svg'
                 alt='red-x'
                 className='red-x'
-                onMouseEnter={!passwordVal ? () => this.onHover(this.state.openPass, 'openPass') : undefined}
-                onMouseLeave={!passwordVal ? () => this.onHover(this.state.openPass, 'openPass') : undefined}
+                onMouseEnter={!passwordVal ? () => this.onHover(openPass, 'openPass') : undefined}
+                onMouseLeave={!passwordVal ? () => this.onHover(openPass, 'openPass') : undefined}
               /></div>}
               {openPass && <div className='error-message-div'>
                 <div>{submit && !passwordVal && !this.state.passwordLength && signUpMessages.passwordLength}</div>
