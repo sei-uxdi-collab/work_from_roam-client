@@ -54,12 +54,12 @@ class HeaderSignUp extends Component {
     this.setState({ passwordNumber: validations.passwordNumber(this.state.password) })
     this.setState({ passwordConfirmationVal: validations.passwordConfirmationTest(this.state.password, this.state.passwordConfirmation) })
   }
-
-  checkApi = (name, avail) => {
-    this.setState({ [`${name}Val`]: validations[`${name}Test`](this.state[name], this.state[avail]) })
-    this.setState({ [`${name}Valid`]: validations[`${name}Valid`](this.state[name]) })
-    this.setState({ [`${name}Length`]: validations[`${name}Length`](this.state[name]) })
-  }
+  // Testing a refactor
+  // checkApi = (name, avail) => {
+  //   this.setState({ [`${name}Val`]: validations[`${name}Test`](this.state[name], this.state[avail]) })
+  //   this.setState({ [`${name}Valid`]: validations[`${name}Valid`](this.state[name]) })
+  //   this.setState({ [`${name}Length`]: validations[`${name}Length`](this.state[name]) })
+  // }
 
   handleChange = event => {
     const name = event.target.name
