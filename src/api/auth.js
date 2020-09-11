@@ -82,26 +82,13 @@ export const changePassword = (passwords, user) => {
   })
 }
 
-// Check availability of username in API
-export const checkname = (name) => {
-  console.log(name)
+// Check availability of email or username in API
+export const checkInfo = (data, type) => {
   return axios({
-    url: apiUrl + '/checkname',
+    url: apiUrl + `/check${type}`,
     method: 'GET',
     params: {
-      username: name
-    }
-  })
-}
-
-// Check availability of email in API
-export const checkemail = (email) => {
-  console.log(email)
-  return axios({
-    url: apiUrl + '/checkemail',
-    method: 'GET',
-    params: {
-      email: email
+      [`${type}`]: data
     }
   })
 }

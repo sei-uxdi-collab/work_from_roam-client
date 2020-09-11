@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 
-import { signUp, signIn, checkemail, checkname } from '../../api/auth'
+import { signUp, signIn, checkInfo } from '../../api/auth'
 import messages from '../AutoAlert/messages'
 import signUpMessages from './signUpMessages'
 
@@ -62,13 +62,13 @@ class SignUp extends Component {
     if (event.target.name === 'username') {
       this.setState({
         [event.target.name]: event.target.value
-      }, () => checkname(this.state.username)
+      }, () => checkInfo(this.state.username, 'username')
         .then(res => this.setState({ usernameTaken: res.data }))
         .then(() => { this.checkValid() }))
     } else if (event.target.name === 'email') {
       this.setState({
         [event.target.name]: event.target.value
-      }, () => checkemail(this.state.email)
+      }, () => checkInfo(this.state.email, 'email')
         .then(res => this.setState({ emailAvail: res.data }))
         .then(() => { this.checkValid() }))
     } else {

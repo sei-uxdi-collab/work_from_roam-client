@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { signUp, signIn, checkemail, checkname } from '../../../api/auth'
+import { signUp, signIn, checkInfo } from '../../../api/auth'
 import messages from '../../AutoAlert/messages'
 import signUpMessages from '../../SignUp/signUpMessages'
 
@@ -64,7 +64,7 @@ class HeaderSignUp extends Component {
       this.setState({
         [event.target.name]: event.target.value
         // Set the state and check for username in database
-      }, () => checkname(this.state.username)
+      }, () => checkInfo(this.state.username, 'username')
         // Data retrieved from checkname is boolean.
         .then(res => this.setState({ usernameTaken: res.data }))
         // Check if target is valid
@@ -73,7 +73,7 @@ class HeaderSignUp extends Component {
     } else if (event.target.name === 'email') {
       this.setState({
         [event.target.name]: event.target.value
-      }, () => checkemail(this.state.email)
+      }, () => checkInfo(this.state.email, 'email')
         .then(res => this.setState({ emailAvail: res.data }))
         .then(() => { this.checkValid() }))
     } else {
