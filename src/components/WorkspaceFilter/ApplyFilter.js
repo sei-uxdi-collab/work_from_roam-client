@@ -1,4 +1,3 @@
-import React from 'react'
 import { calculateDistanceMiles } from './../../helpers/calculateDistance.js'
 
 export const ApplyFilter = (filters, workspaces, userLocation) => {
@@ -7,11 +6,9 @@ export const ApplyFilter = (filters, workspaces, userLocation) => {
 }
 
 const filterArray = (array, filters) => {
-  const filterKeys = Object.keys(filters).filter(key => filters[key] === 'on')
+  const filterKeys = Object.keys(filters).filter(key => filters[key])
   return array.filter(item => {
-    return filterKeys.every(key => {
-      return item[key]
-    })
+    return filterKeys.every(key => item[key])
   })
 }
 

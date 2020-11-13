@@ -46,15 +46,6 @@ class App extends React.Component {
       barAlerts: [],
       filteredWorkspaces: []
     }
-
-    // Allows the WorkspaceFilter component to update filteredWorkspaces[]
-    this.filteredWorkspaces = this.filterWorkspaces.bind(this)
-    this.filteredWorkspaces = this.sortWorkspaces.bind(this)
-  }
-
-  // Functions bound to filteredWorkspaces state
-  filterWorkspaces = workspaces => {
-    this.setState({ filteredWorkspaces: workspaces})
   }
 
   sortWorkspaces = selection => {
@@ -186,9 +177,7 @@ class App extends React.Component {
           />
         )} />
 
-        <Route path='/first-signin' render={() => (
-          <SignupCarousel />
-        )}/>
+        <Route path='/first-signin' render={() => <SignupCarousel />} />
 
         <Route path='/'>
           <div className="App">
@@ -198,14 +187,13 @@ class App extends React.Component {
               <Search
                 setApp={this.setState.bind(this)}
                 mapCenter={this.state.mapCenter}
-                filterWorkspaces={this.filterWorkspaces}
                 data={this.state.allData}
                 userLocation={this.state.userLocation}
               />
               <WorkspaceFilter
                 userLocation={this.state.userLocation}
-                filterWorkspaces={this.filterWorkspaces}
-                data={this.state.allData}
+                allData={this.state.allData}
+                setApp={this.setState.bind(this)}
               />
             </div>
             <GoogleMap
