@@ -115,7 +115,7 @@ const WorkspaceFilter = ({
   )
 
   const createDesktopButton = (button) => (
-    <Col sm={6} className='button-col'>
+    <Col sm={6} className='button-col' key={`button-column-${button.key}`}>
       {createFilterButton(button)}
     </Col>
   )
