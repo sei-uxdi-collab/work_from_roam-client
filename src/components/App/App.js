@@ -48,28 +48,7 @@ class App extends React.Component {
     }
   }
 
-  sortWorkspaces = selection => {
-    switch (selection) {
-      case 'avg_rating':
-        this.setState({filteredWorkspaces: orderBy(this.state.filteredWorkspaces, [selection, 'distance'], ['desc', 'asc'])})
-        break
-      case 'avg_wifi':
-        this.setState({filteredWorkspaces: orderBy(this.state.filteredWorkspaces, [selection, 'avg_rating'], ['desc', 'desc'])})
-        break
-      case 'avg_noise':
-        this.setState({filteredWorkspaces: orderBy(this.state.filteredWorkspaces, [selection, 'avg_rating'], ['asc', 'desc'])})
-        break
-      case 'distance':
-        this.setState({filteredWorkspaces: orderBy(this.state.filteredWorkspaces, [selection, 'avg_rating'], ['asc', 'desc'])})
-        break
-      default:
-        console.log('Sort failed!')
-    }
-  }
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
   setUser = user => this.setState({ user })
-
   clearUser = () => this.setState({ user: null })
 
   alert = ({ heading, message, variant, image }) => {
@@ -85,7 +64,6 @@ class App extends React.Component {
 
     return (
       <Fragment>
-
         {alerts.map((alert, index) => (
             <AutoAlert
               key={index}
@@ -213,8 +191,7 @@ class App extends React.Component {
               filteredWorkspaces={this.state.filteredWorkspaces}
             />
             <ListView
-              workspaces={[this.state.filteredWorkspaces]}
-              sortWorkspaces={this.sortWorkspaces}
+              filteredWorkspaces={this.state.filteredWorkspaces}
               setApp={this.setState.bind(this)}
             />
           </div>
