@@ -17,7 +17,6 @@ import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
 import WorkspaceFilter from './../WorkspaceFilter/WorkspaceFilter.js'
 import ListView from '../ListView/ListView'
-import orderBy from 'lodash/orderBy'
 import SignupCarousel from './../SignupCarousel/SignupCarousel'
 import SignInAlert from '../WorkSpace/SignInAlert.js'
 
@@ -65,24 +64,64 @@ class App extends React.Component {
     return (
       <Fragment>
         {alerts.map((alert, index) => (
-            <AutoAlert
-              key={index}
-              heading={alert.heading}
-              variant={alert.variant}
-              message={alert.message}
-              image={alert.image}
-            />
-          ))}
+          <AutoAlert
+            key={index}
+            heading={alert.heading}
+            variant={alert.variant}
+            message={alert.message}
+            image={alert.image}
+          />
+        ))}
 
-          {barAlerts.map((barAlert, index) => (
-              <BarAlert
-                key={index}
-                heading={barAlert.heading}
-                variant={barAlert.variant}
-                message={barAlert.message}
-                image={barAlert.image}
+        {barAlerts.map((barAlert, index) => (
+          <BarAlert
+            key={index}
+            heading={barAlert.heading}
+            variant={barAlert.variant}
+            message={barAlert.message}
+            image={barAlert.image}
+          />
+        ))}
+
+        <Route path='/'>
+          <div className="App">
+            <SplashPage />
+            <div className='search-group'>
+              <NavBar />
+              <Search
+                setApp={this.setState.bind(this)}
+                mapCenter={this.state.mapCenter}
+                data={this.state.allData}
+                userLocation={this.state.userLocation}
               />
-            ))}
+              <WorkspaceFilter
+                userLocation={this.state.userLocation}
+                allData={this.state.allData}
+                setApp={this.setState.bind(this)}
+              />
+            </div>
+            <GoogleMap
+              center={this.state.mapCenter}
+              coordinates={this.state.coordinates}
+              placeData={this.state.placeData}
+              setApp={this.setState.bind(this)}
+              allData={this.state.allData}
+              mapCenter={this.state.mapCenter}
+              placeId={this.state.placeId}
+              poiLocation={this.state.poiLocation}
+              searchLocation={this.state.searchLocation}
+              userLocation={this.state.userLocation}
+              currentWorkspace={this.state.currentWorkspace}
+              google={this.state.google}
+              map={this.state.map}
+              filteredWorkspaces={this.state.filteredWorkspaces}
+            />
+            <ListView
+              filteredWorkspaces={this.state.filteredWorkspaces}
+              setApp={this.setState.bind(this)}
+            />
+          </div>
+        </Route>
 
         <Route path='/create-review'>
           <ReviewCreate
@@ -157,45 +196,6 @@ class App extends React.Component {
 
         <Route path='/first-signin' render={() => <SignupCarousel />} />
 
-        <Route path='/'>
-          <div className="App">
-            <SplashPage />
-            <div className='search-group'>
-              <NavBar />
-              <Search
-                setApp={this.setState.bind(this)}
-                mapCenter={this.state.mapCenter}
-                data={this.state.allData}
-                userLocation={this.state.userLocation}
-              />
-              <WorkspaceFilter
-                userLocation={this.state.userLocation}
-                allData={this.state.allData}
-                setApp={this.setState.bind(this)}
-              />
-            </div>
-            <GoogleMap
-              center={this.state.mapCenter}
-              coordinates={this.state.coordinates}
-              placeData={this.state.placeData}
-              setApp={this.setState.bind(this)}
-              allData={this.state.allData}
-              mapCenter={this.state.mapCenter}
-              placeId={this.state.placeId}
-              poiLocation={this.state.poiLocation}
-              searchLocation={this.state.searchLocation}
-              userLocation={this.state.userLocation}
-              currentWorkspace={this.state.currentWorkspace}
-              google={this.state.google}
-              map={this.state.map}
-              filteredWorkspaces={this.state.filteredWorkspaces}
-            />
-            <ListView
-              filteredWorkspaces={this.state.filteredWorkspaces}
-              setApp={this.setState.bind(this)}
-            />
-          </div>
-        </Route>
       </Fragment>
     )
   }

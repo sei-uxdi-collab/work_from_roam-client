@@ -51,8 +51,8 @@ const SignupCarousel = props => {
     if (activeIndex === 0) {
       return setCarousel({
         ...carousel,
-        translate: 2 * width,
-        activeIndex: 2
+        translate: 3 * width,
+        activeIndex: 3
       })
     }
 
@@ -65,7 +65,7 @@ const SignupCarousel = props => {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   return (
-    <Modal show={show} centered css={modalCSS}>
+    <Modal show={show} onHide={() => setShow(false)} centered css={modalCSS}>
       <img css={headerCSS} src={HeaderImg} />
       <div css={carouselCSS} ref={carouselWidth}>
         <Carousel
@@ -138,8 +138,8 @@ const SignupCarousel = props => {
           activeIndex={activeIndex}
           margin={50}/>
       </div>
-      <Arrow direction='left' handleClick={prevSlide} />
-      <Arrow direction='right' handleClick={nextSlide} />
+      <Arrow direction='left' handleClick={prevSlide} length={4}/>
+      <Arrow direction='right' handleClick={nextSlide} length={4}/>
       <p
         onClick={() => setShow(false)}
         css={skipCSS}
