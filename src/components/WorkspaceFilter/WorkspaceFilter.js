@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 
 // npm package imports
 import { Button, Modal, Container, Row, Col } from 'react-bootstrap'
@@ -21,6 +21,30 @@ import {
 // Styling import
 import './WorkspaceFilter.scss'
 
+const initialFilterState = {
+  fastWifi: false,
+  lotsOfSeats: false,
+  cafe: false,
+  library: false,
+  cowork: false,
+  restaurant: false,
+  quiet: false,
+  lively: false,
+  comfy: false,
+  bool_bathroom: false,
+  bool_outlet: false,
+  bool_food: false,
+  bool_coffee: false,
+  bool_alcohol: false,
+  bool_petFriendly: false,
+  bool_seating: false,
+  bool_parking: false,
+  bool_goodForGroup: false,
+  bool_outdoorSpace: false,
+  bool_openEarly: false,
+  bool_openLate: false
+}
+
 const WorkspaceFilter = ({
   allData,
   setApp,
@@ -28,47 +52,29 @@ const WorkspaceFilter = ({
 }) => {
   const [rejection, setRejection] = useState(false)
   const [show, setShow] = useState(false)
-  const [filter, setFilter] = useState({
-    fastWifi: false,
-    lotsOfSeats: false,
-    cafe: false,
-    library: false,
-    cowork: false,
-    restaurant: false,
-    quiet: false,
-    lively: false,
-    comfy: false,
-    bool_bathroom: false,
-    bool_outlet: false,
-    bool_food: false,
-    bool_coffee: false,
-    bool_alcohol: false,
-    bool_petFriendly: false,
-    bool_seating: false,
-    bool_parking: false,
-    bool_goodForGroup: false,
-    bool_outdoorSpace: false,
-    bool_openEarly: false,
-    bool_openLate: false
-  })
+  const [filter, setFilter] = useState(initialFilterState)
 
-  const toggleShow = () => {
+  useEffect(() => {
+    const allFiltersAreClear = Object.values(filter).every(filter => filter === false)
+    allFiltersAreClear && setRejection(false)
+  }, [filter])
+
+  const toggleShowModal = () => {
     setShow(prevState => !prevState)
   }
 
-  const clearFilter = () => {
+  const clearAllFilters = () => {
     setFilter(filter => mapValues(filter, () => false))
-    setRejection(false)
   }
 
-  const handleSelect = event => {
+  const toggleFilter = event => {
     event.persist()
     const { name } = event.target
     setFilter(prevState => {
-      const toggledValue = !prevState[name]
+      const newValue = !prevState[name]
       return {
         ...prevState,
-        [name]: toggledValue,
+        [name]: newValue,
       }
     })
   }
@@ -81,7 +87,7 @@ const WorkspaceFilter = ({
         setRejection(false)
         }
       )
-      .catch(reject => setRejection(true))
+      .catch(() => setRejection(true))
   }
 
   const doFiltering = () => {
@@ -96,124 +102,92 @@ const WorkspaceFilter = ({
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  const createFilterButton = (button) => {
-    return (
-      <Button
-        className={`select-button ${filter[button.name] ? 'on' : 'off'}`}
-        name={button.name}
-        id={`filter-button-${button.name}`}
-        onClick={handleSelect}
-        value={filter[button.name]}
-      >
-        {button.displayText}
-      </Button>
-    )
-  }
+  const createFilterButton = ({key, displayText}) => (
+    <Button
+      className={`select-button ${filter[key] ? 'on' : 'off'}`}
+      name={key}
+      id={`filter-button-${key}`}
+      onClick={toggleFilter}
+      value={filter[key]}
+    >
+      {displayText}
+    </Button>
+  )
 
-  const createDesktopButton = (button) => {
-    return (
-      <Col sm={6} className='button-col'>
-        {createFilterButton(button)}
-      </Col>
-    )
-  }
+  const createDesktopButton = (button) => (
+    <Col sm={6} className='button-col'>
+      {createFilterButton(button)}
+    </Col>
+  )
+
+  const createModalContainer = (buttons, displayText) => (
+    <Container className='modal-container'>
+      <h6>{displayText}</h6>
+      <Row>
+        {buttons.map(createDesktopButton)}
+      </Row>
+    </Container>
+  )
 
   return (
     <Fragment>
-      <img src={FilterButton} onClick={toggleShow} alt="Workspace Filter"/>
-      <Media queries={{
-          small: '(max-width: 450px)',
-          large: '(min-width: 451px)'
-        }}>
+      <img src={FilterButton} onClick={toggleShowModal} alt="Workspace Filter"/>
+      <Media queries={{ mobile: '(max-width: 450px)' }}>
+        {matches => matches.mobile ? (
+            <Modal className='filter-modal' onHide={toggleShowModal} show={show} style={{top: '10vh'}}>
+                <Modal.Body className='filter-modal-body'>
+                  <div className='main-div'>
+                    {mobileButtons.map(createFilterButton)}
+                  </div>
 
-        {matches => (
-          <Fragment>
+                  <div className='footer-div'>
+                    <div>
+                      <p className='select-clear-filters' onClick={clearAllFilters}>Clear Filters</p>
+                    </div>
+                    <Button className='submit-button' onClick={handleSubmit}>Apply Filters</Button>
+                  </div>
 
-            {matches.small &&
-              <div>
-                <Modal className='filter-modal' onHide={toggleShow} show={show} style={{top: '10vh'}}>
-                    <Modal.Body className='filter-modal-body'>
-                      <div className='main-div'>
-                        {mobileButtons.map(createFilterButton)}
-                      </div>
+                  <div className='rejection-message' id={rejection ? 'show' : 'hide'}>
+                    <p>No matches found! Please apply different filters and try again.</p>
+                  </div>
 
-                      <div className='footer-div'>
-                        <div>
-                          <p onClick={clearFilter}>Clear Filters</p>
-                        </div>
-                        <Button className='submit-button' onClick={handleSubmit}>Apply Filters</Button>
-                      </div>
+                </Modal.Body>
+            </Modal>
+          ) : (
+            <Modal className='filter-modal' centered show={show} onHide={toggleShowModal}>
+              <Modal.Body className='filter-modal-body'>
 
-                      <div className='rejection-message' id={rejection ? 'show' : 'hide'}>
-                        <p>No matches found! Please apply different filters and try again.</p>
-                      </div>
+                {createModalContainer(venueButtons, 'Venue')}
 
-                    </Modal.Body>
-                </Modal>
-              </div>
-            }
+                {createModalContainer(refreshmentsButtons, 'Refreshments')}
 
-            {matches.large &&
-              <Fragment>
-                <Modal className='filter-modal' centered show={show} onHide={toggleShow}>
-                  <Modal.Body className='filter-modal-body'>
+                {createModalContainer(amenitiesButtons, 'Amenities')}
 
-                    <Container className='modal-container'>
-                      <h6>Venue</h6>
-                      <Row>
-                        {venueButtons.map(createDesktopButton)}
-                      </Row>
-                    </Container>
+                {createModalContainer(noiseButtons, 'Noise')}
 
-                    <Container className='modal-container'>
-                      <h6>Refreshments</h6>
-                      <Row>
-                        {refreshmentsButtons.map(createDesktopButton)}
-                      </Row>
-                    </Container>
+                {createModalContainer(hoursButtons, 'Hours')}
 
-                    <Container className='modal-container'>
-                      <h6>Amenities</h6>
-                      <Row>
-                        {amenitiesButtons.map(createDesktopButton)}
-                      </Row>
-                    </Container>
-
-                    <Container className='modal-container'>
-                      <h6>Noise</h6>
-                      <Row>
-                        {noiseButtons.map(createDesktopButton)}
-                      </Row>
-                    </Container>
-
-                    <Container className='modal-container'>
-                      <h6>Hours</h6>
-                      <Row>
-                        {hoursButtons.map(createDesktopButton)}
-                      </Row>
-                    </Container>
-
-                    <Container className='modal-container' style={{background: 'white'}}>
-                      <Row>
-                        <Col sm={6} className='button-col'>
-                          <p onClick={clearFilter}>Clear Filters</p>
-                        </Col>
-                        <Col sm={6} className='button-col'>
-                          <Button className='submit-button' onClick={handleSubmit}>Apply Filters</Button>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Modal.Body>
-                </Modal>
-              </Fragment>
-            }
-
-          </Fragment>
-        )}
+                <Container className='modal-container' style={{background: 'white'}}>
+                  <Row>
+                    <Col sm={6} className='button-col select-clear-filters' onClick={clearAllFilters}>
+                      <p>Clear Filters</p>
+                    </Col>
+                    <Col sm={6} className='button-col'>
+                      <Button className='submit-button' onClick={handleSubmit}>Apply Filters</Button>
+                    </Col>
+                  </Row>
+                  {rejection && (
+                    <div className='rejection-message' id={rejection ? 'show' : 'hide'}>
+                      <p>No matches found! Please apply different filters and try again.</p>
+                    </div>
+                  )}
+                </Container>
+              </Modal.Body>
+            </Modal>
+          )}
       </Media>
     </Fragment>
   )
-
 }
 
 export default WorkspaceFilter

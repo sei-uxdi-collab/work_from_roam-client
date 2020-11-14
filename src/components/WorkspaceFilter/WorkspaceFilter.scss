@@ -48,6 +48,10 @@ $warning: red;
         justify-content: center;
         margin-top: .5rem;
 
+        .select-clear-filters {
+          cursor: pointer;
+        }
+
         p {
           color: #222;
           font-weight: 300;
@@ -155,6 +159,21 @@ $warning: red;
             font-weight: bold;
           }
 
+        }
+
+        .select-clear-filters {
+          cursor: pointer;
+        }
+
+        .rejection-message {
+          margin: 1em auto;
+  
+          p {
+            color: $warning;
+            font-size: 15px;
+            font-family: 'Roboto';
+            text-align: center;
+          }
         }
       }
     }

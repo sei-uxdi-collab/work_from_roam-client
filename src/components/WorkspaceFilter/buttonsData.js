@@ -1,87 +1,87 @@
 
 const filterOptions = {
   fastWifi: {
-    name: 'fastWifi',
+    key: 'fastWifi',
     displayText: 'Fast WiFi',
   },
   lotsOfSeats: {
-    name: 'bool_seating',
+    key: 'bool_seating',
     displayText: 'Lots of Seats',
   },
   cafe: {
-    name: 'cafe',
+    key: 'cafe',
     displayText: 'Cafe',
   },
   library: {
-    name: 'library',
+    key: 'library',
     displayText: 'Library',
   },
   cowork: {
-    name: 'cowork',
+    key: 'cowork',
     displayText: 'Co-Work Space',
   },
   restaurant: {
-    name: 'restaurant',
+    key: 'restaurant',
     displayText: 'Restaurant',
   },
   quiet: {
-    name: 'quiet',
+    key: 'quiet',
     displayText: 'Quiet',
   },
   lively: {
-    name: 'lively',
+    key: 'lively',
     displayText: 'Lively',
   },
   comfy: {
-    name: 'comfy',
+    key: 'comfy',
     displayText: 'Comfy Chairs',
   },
   bool_bathroom: {
-    name: 'bool_bathroom',
+    key: 'bool_bathroom',
     displayText: 'Bathrooms',
   },
   bool_outlet: {
-    name: 'bool_outlet',
+    key: 'bool_outlet',
     displayText: 'Outlets',
   },
   bool_food: {
-    name: 'bool_food',
+    key: 'bool_food',
     displayText: 'Food',
   },
   bool_coffee: {
-    name: 'bool_coffee',
+    key: 'bool_coffee',
     displayText: 'Coffee',
   },
   bool_alcohol: {
-    name: 'bool_alcohol',
+    key: 'bool_alcohol',
     displayText: 'Beer + Wine',
   },
   bool_petFriendly: {
-    name: 'bool_petFriendly',
+    key: 'bool_petFriendly',
     displayText: 'Pet Friendly',
   },
   bool_seating: {
-    name: 'bool_seating',
+    key: 'bool_seating',
     displayText: 'Lots of Seats',
   },
   bool_parking: {
-    name: 'bool_parking',
+    key: 'bool_parking',
     displayText: 'Parking',
   },
   bool_goodForGroup: {
-    name: 'bool_goodForGroup',
+    key: 'bool_goodForGroup',
     displayText: 'Good for Groups',
   },
   bool_outdoorSpace: {
-    name: 'bool_outdoorSpace',
+    key: 'bool_outdoorSpace',
     displayText: 'Outdoor Space'
   },
   bool_openEarly: {
-    name: 'bool_openEarly',
+    key: 'bool_openEarly',
     displayText: 'Open Early'
   },
   bool_openLate: {
-    name: 'bool_openLate',
+    key: 'bool_openLate',
     displayText: 'Open Late',
   }
 }
