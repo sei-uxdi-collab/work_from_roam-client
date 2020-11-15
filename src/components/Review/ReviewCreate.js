@@ -10,6 +10,7 @@ import './ReviewCreate.scss'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import SignInAlert from '../WorkSpace/SignInAlert';
 
   class ReviewCreate extends React.Component {
     constructor(props) {
@@ -123,7 +124,7 @@ import Button from 'react-bootstrap/Button'
 
       // if user is not signed in, redirect to '/sign-in'
       if (!this.props.user) {
-        return (<Redirect to='/sign-in'/>)
+        return (<SignInAlert/>)
       }
 
       if (this.state.display === 'none') {

@@ -1,0 +1,88 @@
+.sign-in-alert-container {
+    position: absolute;
+    display: block;
+    width: 285px;
+    height: 182px;
+    background: #FFFFFF;
+    box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-size: 10px;
+    left: 50%;
+    margin-left: -140px;
+    top: 25%;
+    z-index: 13;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 150%;
+    text-align: center;
+    color: #222222;
+}
+
+.close-window {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
+
+.message-container {
+    margin-top: 8%;
+}
+
+.message-greeting {
+    top: 10%;
+}
+
+.message-content {
+    font-weight: 100;
+    top: 20%;
+    width: 224px;
+    margin-left: 15%;
+}
+
+.button-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.sign-in-button {
+    position: relative;
+    width: 101px;
+    height: 36px;
+    top: 50%;
+    background: #4775FF;
+    border-radius: 22px;
+}
+
+a.sign-in-button.btn.btn-primary {
+    color: #fff;
+}
+
+.create-acct-button {
+    position: relative;
+    width: 115px;
+    height: 20px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 150%;
+    text-decoration-line: underline;
+    color: #222222;
+    background-color: transparent;
+    border: none;
+    top: 70%;
+
+    &:hover {
+        background-color: transparent;
+        color: #000;
+    }
+}
+
+a.create-acct-button.btn.btn-primary {
+    text-decoration-line: underline;
+}
