@@ -7,7 +7,6 @@ import BarAlert from '../BarAlert/BarAlert'
 import Search from '../Search/Search'
 import GoogleMap from '../GoogleMap/GoogleMap'
 import ReviewCreate from '../Review/ReviewCreate'
-import ReviewUpdate from '../Review/ReviewUpdate'
 import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SplashPage from '../SplashPage/SplashPage'
@@ -16,7 +15,6 @@ import SignOut from '../SignOut/SignOut'
 import Header from '../Header/Header'
 import NavBar from '../NavBar/NavBar'
 import WorkSpace from '../WorkSpace/WorkSpace'
-import WorkSpaceCreate from '../WorkSpace/WorkSpaceCreate'
 import WorkspaceFilter from './../WorkspaceFilter/WorkspaceFilter.js'
 import ListView from '../ListView/ListView'
 import orderBy from 'lodash/orderBy'
@@ -173,22 +171,12 @@ class App extends React.Component {
           />
           )} />
 
-        <Route user={user} path='/create-workspace' render={() => (
-          <WorkSpaceCreate
-            user={user}
-            placeId={this.state.placeId}
-            placeData={this.state.placeData}
-            workspaceLocation={this.state.poiLocation}
-            setApp={this.setState.bind(this)}
-          />
-          )} />
-
         <Route user={user} path='/avatar' render={() => (
           <Avatar user={user} setUser={this.setUser}/>
         )} />
 
         <Route user={user} path='/reviews/:id/update' render={() => (
-          <ReviewUpdate
+          <ReviewCreate
             user={user}
             setUser={this.setUser}
             setApp={this.setState.bind(this)}

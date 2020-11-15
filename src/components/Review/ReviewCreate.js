@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import { StarRating } from './StarsRating'
 import StarRatingComponent from "react-star-rating-component";
+import { updateReview } from '../../api/update'
 import { createReview, createWorkspace } from '../../api/create'
 import messages from '../AutoAlert/messages'
 import './ReviewCreate.scss'
@@ -15,39 +15,64 @@ import SignInAlert from '../WorkSpace/SignInAlert';
   class ReviewCreate extends React.Component {
     constructor(props) {
       super(props)
+      const defaultValues = props.currentReview || {}
       this.state = {
-        alcohol: false,
-        goodforgroup: false,
-        meetingspace: false,
-        outdoorspace: false,
-        parking: false,
-        petfriendly: false,
-        rating: 0,
-        note: '',
-        wifi: 3,
-        wifipass: false,
-        noise: 3,
-        bathroom: false,
-        coffee: false,
-        food: false,
-        outlet: false,
-        seating: 3,
-        clean: 3,
+        alcohol: defaultValues.alcohol || false,
+        goodforgroup: defaultValues.goodforgroup || false,
+        meetingspace: defaultValues.meetingspace || false,
+        outdoorspace: defaultValues.outdoorspace || false,
+        parking: defaultValues.parking || false,
+        petfriendly: defaultValues.petfriendly || false,
+        rating: defaultValues.rating || 0,
+        note: defaultValues.note || '',
+        wifi: defaultValues.wifi || 3,
+        wifipass: defaultValues.wifipass || false,
+        noise: defaultValues.noise || 3,
+        bathroom: defaultValues.bathroom || false,
+        coffee: defaultValues.coffee || false,
+        food: defaultValues.food || false,
+        outlet: defaultValues.outlet || false,
+        seating: defaultValues.seating || 3,
+        clean: defaultValues.clean || 3,
         display: 'block',
         redirect: false,
         isChecked: props.isChecked || false,
         submitError: false,
       }
-      this.toggleChange = this.toggleChange.bind(this);
     }
 
     handleChange = (event) => {
       this.setState({ [event.target.name]: event.target.value })
-      console.log(event.target.value)
     }
 
     toggleChange = (event) => {
       this.setState({ [event.target.name]: !this.state[event.target.name] })
+    }
+
+    submitReviewUpdate = () => {
+      const { alert, user } = this.props
+      const { id } = this.props.currentReview
+      const token = user.token
+      const { rating, noise, bathroom, seating, coffee, outlet, food, wifi,
+        note, petfriendly, goodforgroup, meetingspace, outdoorspace,
+        parking, alcohol, wifipass, clean } = this.state
+      
+      updateReview({ id, rating, noise, bathroom, seating, coffee, outlet,
+        food, wifi, note, petfriendly, token, goodforgroup,
+        meetingspace, outdoorspace, parking, alcohol, wifipass, clean })
+        .then(() => {
+          axios(apiUrl + '/work_spaces').then(data => this.props.setApp({ allData: data.data.work_spaces }))
+        })
+        .then(() => {
+          this.setState({ display: 'none' })
+          alert({
+            heading: 'Your review has been updated!',
+            message: messages.reviewCreateSuccess,
+            variant: 'light',
+            image: 'logo-text-only.svg'
+          })
+        })
+        .catch(() => alert('update review failed'))
     }
 
     //submit review for given workspace id
@@ -92,11 +117,16 @@ import SignInAlert from '../WorkSpace/SignInAlert';
 
     handleSubmit = (event) => {
       event.preventDefault()
-      const { currentWorkspace } = this.props
+      const { currentWorkspace, currentReview } = this.props
 
       if (!this.state.rating) {
         this.setState({ submitError: true })
         document.getElementById('rate-your-experience').scrollIntoView()
+        return
+      }
+
+      if (currentReview) {
+        this.submitReviewUpdate()
         return
       }
 
@@ -106,10 +136,6 @@ import SignInAlert from '../WorkSpace/SignInAlert';
         this.submitReview(currentWorkspace.id)
       }
     }
-
-    // onStarClick(value, prevValue, name) {
-    //   this.setState({rating: value});
-    // }
 
     closeWindow = () => {
       // update state which updates component's style to display: none
@@ -168,6 +194,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="wifipass"
                   id="wifipass"
+                  checked={this.state.wifipass}
                 />
               </Form.Group>
 
@@ -179,6 +206,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="outlet"
                   id="outlet"
+                  checked={this.state.outlet}
                 />
               </Form.Group>
 
@@ -190,6 +218,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="coffee"
                   id="coffee"
+                  checked={this.state.coffee}
                 />
               </Form.Group>
 
@@ -201,6 +230,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="food"
                   id="food"
+                  checked={this.state.food}
                 />
               </Form.Group>
 
@@ -212,6 +242,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="alcohol"
                   id="alcohol"
+                  checked={this.state.alcohol}
                 />
               </Form.Group>
 
@@ -223,6 +254,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="bathroom"
                   id="bathroom"
+                  checked={this.state.bathroom}
                 />
               </Form.Group>
 
@@ -234,6 +266,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="parking"
                   id="parking"
+                  checked={this.state.parking}
                 />
               </Form.Group>
 
@@ -245,6 +278,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="outdoorspace"
                   id="outdoorspace"
+                  checked={this.state.outdoorspace}
                 />
               </Form.Group>
 
@@ -256,6 +290,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="petfriendly"
                   id="petfriendly"
+                  checked={this.state.petfriendly}
                 />
               </Form.Group>
 
@@ -267,6 +302,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="meetingspace"
                   id="meetingspace"
+                  checked={this.state.meetingspace}
                 />
               </Form.Group>
 
@@ -278,6 +314,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
                   onChange={this.toggleChange}
                   name="goodforgroup"
                   id="goodforgroup"
+                  checked={this.state.goodforgroup}
                 />
               </Form.Group>
 
