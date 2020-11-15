@@ -5,6 +5,7 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
+import { calculateDistanceMiles } from '../../helpers/calculateDistance'
 
 import './GoogleMap.scss'
 import { greyscale } from '../MapStyles'
@@ -32,7 +33,11 @@ class GoogleMap extends React.Component {
     }
     axios(apiUrl + '/work_spaces')
       .then(data => {
-        const allData = data.data.work_spaces
+        const rawData = data.data.work_spaces
+        const allData = rawData.map(workplace => ({
+          ...workplace,
+          distance: calculateDistanceMiles(workplace, this.props.userLocation, 2)
+        }))
         this.props.setApp({ allData, filteredWorkspaces: allData })
       })
   }
