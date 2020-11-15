@@ -47,7 +47,7 @@ class GoogleMap extends React.Component {
     getGooglePlaceDetails(this.props.google, map, placeId, callback)
   }
 
-  onMarkerClick = (props, marker, event) => {
+  onRoamMarkerClick = (props, marker, event) => {
     const currentWorkspace = marker.data
     const poiLocation = { lat: props.data.lat, lng: props.data.lng }
     const mapCenter = poiLocation
@@ -57,7 +57,7 @@ class GoogleMap extends React.Component {
     // get and set google place data
     this.getPlaceDetails(props.map, placeId)
     // navigate to '/workspace' to render the component
-    this.props.history.push('/workspace')
+    this.props.history.push(`/workspace/${marker.data.id}`)
   }
 
   navigateHome = () => {
@@ -88,7 +88,7 @@ class GoogleMap extends React.Component {
     this.props.history.push('/workspace')
   }
 
-  handleClick = (props, map, event) => {
+  handleMapClick = (props, map, event) => {
     // if user clicks on a point of interest (poi)
     if (event.placeId) {
       this.handlePOI(map, event)
@@ -98,7 +98,7 @@ class GoogleMap extends React.Component {
   }
 
   // Google marker on searched result
-  handleMarkerPOI = (props, marker, event) => {
+  handleSearchMarkerClick = (props, marker, event) => {
     this.props.setApp({ placeData: null, currentWorkspace: null })
     const placeId = marker.placeId
     const poiLocation = { lat: props.position.lat, lng: props.position.lng }
@@ -112,21 +112,15 @@ class GoogleMap extends React.Component {
     this.props.history.push('/workspace')
   }
 
-  // Google marker on searched result
-  handleMarkerClick = (props, map, event) => {
-    // if user clicks on marker
-    if (props.placeId) {
-      this.handleMarkerPOI(props, map, event)
-    } else {
-      this.navigateHome()
-    }
-  }
-
   updateMapState = (props, map, event) => {
     if (!this.props.google || !this.props.map) {
       const { google } = this.props
       this.props.setApp({ map, google })
     }
+  }
+
+  handleUserMarkerClick = () => {
+    this.props.history.push('/nav')
   }
 
   render() {
@@ -139,7 +133,7 @@ class GoogleMap extends React.Component {
         zoom={14}
         clickableIcons={true}
         options={{ gestureHandling: 'greedy' }}
-        onClick={this.handleClick}
+        onClick={this.handleMapClick}
         onCenter_changed={this.updateMapState}
         className='google-map'
         styles={greyscale}
@@ -149,12 +143,13 @@ class GoogleMap extends React.Component {
           name={'user location'}
           position={this.props.userLocation}
           icon='current-location-marker.svg'
+          onClick={this.handleUserMarkerClick}
         />
 
         {this.props.searchLocation && (<Marker
           name={'search result'}
           position={this.props.searchLocation}
-          onClick={this.handleMarkerPOI}
+          onClick={this.handleSearchMarkerClick}
           placeId={this.props.placeId}
         />)}
 
@@ -162,7 +157,7 @@ class GoogleMap extends React.Component {
         {this.props.filteredWorkspaces.map(workSpace => (
           <Marker
             key={workSpace.id}
-            onClick={this.onMarkerClick}
+            onClick={this.onRoamMarkerClick}
             position={{ lat: workSpace.lat, lng: workSpace.lng }}
             placeId={workSpace.placeId}
             data={workSpace}
