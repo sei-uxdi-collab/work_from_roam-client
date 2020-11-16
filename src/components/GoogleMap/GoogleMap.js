@@ -53,7 +53,7 @@ class GoogleMap extends React.Component {
     const mapCenter = poiLocation
     const placeId = marker.data.place_id
     // set App state with workspace data and location
-    this.props.setApp({ placeData: null, currentWorkspace, poiLocation, mapCenter, placeId })
+    this.props.setApp({ placeData: {}, currentWorkspace, poiLocation, mapCenter, placeId })
     // get and set google place data
     this.getPlaceDetails(props.map, placeId)
     // navigate to '/workspace' to render the component
@@ -75,7 +75,7 @@ class GoogleMap extends React.Component {
   }
 
   handlePOI = (map, event) => {
-    this.props.setApp({ placeData: null, currentWorkspace: null })
+    this.props.setApp({ placeData: {}, currentWorkspace: null })
     const placeId = event.placeId
     const poiLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
     const mapCenter = poiLocation
@@ -99,7 +99,7 @@ class GoogleMap extends React.Component {
 
   // Google marker on searched result
   handleSearchMarkerClick = (props, marker, event) => {
-    this.props.setApp({ placeData: null, currentWorkspace: null })
+    this.props.setApp({ placeData: {}, currentWorkspace: null })
     const placeId = marker.placeId
     const poiLocation = { lat: props.position.lat, lng: props.position.lng }
     const mapCenter = poiLocation

@@ -34,7 +34,7 @@ class App extends React.Component {
       mapCenter: { lat: 42.3600, lng: -71.0589 },
       bounds: null,
       placeId: null,
-      placeData: null,
+      placeData: {},
       searchLocation: null,
       workSpaceId: null,
       currentWorkspace: null,
@@ -142,6 +142,7 @@ class App extends React.Component {
             data={this.state.currentWorkspace}
             placeData={this.state.placeData}
             userLocation={this.state.userLocation}
+            setUser={this.setUser}
           />
          )} />
 

@@ -56,8 +56,8 @@ const filterOptions = {
     key: 'bool_alcohol',
     displayText: 'Beer + Wine',
   },
-  bool_petFriendly: {
-    key: 'bool_petFriendly',
+  bool_petfriendly: {
+    key: 'bool_petfriendly',
     displayText: 'Pet Friendly',
   },
   bool_seating: {
@@ -68,12 +68,12 @@ const filterOptions = {
     key: 'bool_parking',
     displayText: 'Parking',
   },
-  bool_goodForGroup: {
-    key: 'bool_goodForGroup',
+  bool_goodforgroup: {
+    key: 'bool_goodforgroup',
     displayText: 'Good for Groups',
   },
-  bool_outdoorSpace: {
-    key: 'bool_outdoorSpace',
+  bool_outdoorspace: {
+    key: 'bool_outdoorspace',
     displayText: 'Outdoor Space'
   },
   bool_openEarly: {
@@ -101,11 +101,11 @@ const {
   bool_food,
   bool_coffee,
   bool_alcohol,
-  bool_petFriendly,
+  bool_petfriendly,
   bool_seating,
   bool_parking,
-  bool_goodForGroup,
-  bool_outdoorSpace,
+  bool_goodforgroup,
+  bool_outdoorspace,
   bool_openEarly,
   bool_openLate,
 } = filterOptions
@@ -122,9 +122,9 @@ export const mobileButtons = [
   bool_openLate,
   lotsOfSeats,
   library,
-  bool_petFriendly,
+  bool_petfriendly,
   bool_parking,
-  bool_goodForGroup,
+  bool_goodforgroup,
 ]
 
 export const venueButtons = [
@@ -143,11 +143,11 @@ export const refreshmentsButtons = [
 export const amenitiesButtons = [
   bool_bathroom,
   comfy,
-  bool_goodForGroup,
+  bool_goodforgroup,
   bool_seating,
-  bool_outdoorSpace,
+  bool_outdoorspace,
   bool_outlet,
-  bool_petFriendly,
+  bool_petfriendly,
   fastWifi,
 ]
 
