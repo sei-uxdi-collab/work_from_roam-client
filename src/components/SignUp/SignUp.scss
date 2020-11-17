@@ -1,3 +1,7 @@
+:root {
+  --border-show: none;
+}
+
 h1 {
   font-size: 23px;
   font-family: Roboto;
@@ -12,25 +16,78 @@ h2 {
   text-align: center;
 }
 
-.account-info {
+.account-info-signup {
   background-color: #94AFFF;
-  border: none;
-  border-radius: 24px;
+  border: var(--border-show) !important;
+  border-color: green !important;
+  border-radius: 24px !important;
   color: #222222;
   font-family: Roboto;
   font-weight: 300;
   text-decoration: none;
+  width: 90% !important;
   :focus {
     border-radius: 24px;
     border: 1px solid #4775FF;
   };
 }
 
-.account-info.password {
+.account-info-signup.password {
   :focus {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
   }
+}
+
+.account-info-signup-red {
+  background-color: #94AFFF !important;
+  border: var(--border-show) !important;
+  border-color: red !important;
+  border-radius: 24px !important;
+  color: #000 !important;
+  font-weight: 300 !important;
+  text-decoration: none !important;
+  width: 90% !important;
+  :focus {
+    border-radius: 24px !important;
+    border: 1px solid #000 !important;
+  };
+}
+
+.error-message-div {
+  align-items: center;
+  border-radius: 6px;
+  box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  color: black;
+  font-size: 9px;
+  line-height: 150%;
+  padding: 8px;
+  margin-right: 15%;
+  margin-left: 25%;
+  z-index: 20;
+  position: absolute;
+}
+
+.image-div {
+  position: relative;
+  display: inline-flex;
+  margin-left: 10px;
+}
+
+.red-x {
+  display: inline-block !important;
+  float: right;
+}
+
+.is-valid {
+  color: green !important;
+  border-radius: 24px !important;
+}
+
+.is-invalid {
+  color: red !important;
+  border-radius: 24px !important;
 }
 
 .close-window-blue {
