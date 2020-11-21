@@ -8,7 +8,7 @@ import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 import { calculateDistanceMiles } from '../../helpers/calculateDistance'
 
 import './GoogleMap.scss'
-import { greyscale } from '../MapStyles'
+import { samisel } from '../MapStyles'
 
 
 class GoogleMap extends React.Component {
@@ -136,7 +136,7 @@ class GoogleMap extends React.Component {
         onClick={this.handleMapClick}
         onCenter_changed={this.updateMapState}
         className='google-map'
-        styles={greyscale}
+        styles={samisel}
       >
 
         <Marker
