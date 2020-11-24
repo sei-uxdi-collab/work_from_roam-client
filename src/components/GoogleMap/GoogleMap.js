@@ -114,6 +114,12 @@ class GoogleMap extends React.Component {
     this.props.history.push('/nav')
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const workspacesAreUpdated = nextProps.filteredWorkspaces !== this.props.filteredWorkspaces
+    const currentWorkspaceIsUpdated = nextProps.currentWorkspace !== this.props.currentWorkspace
+    return workspacesAreUpdated || currentWorkspaceIsUpdated
+  }
+
   render() {
     const { currentWorkspace } = this.props
     return (
