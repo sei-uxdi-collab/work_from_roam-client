@@ -43,7 +43,8 @@ class App extends React.Component {
       userLocation: { lat: 42.3601, lng: -71.0589 },
       alerts: [],
       barAlerts: [],
-      filteredWorkspaces: []
+      filteredWorkspaces: [],
+      redirect: '',
     }
   }
 
@@ -80,6 +81,8 @@ class App extends React.Component {
             variant={barAlert.variant}
             message={barAlert.message}
             image={barAlert.image}
+            redirect={this.state.redirect}
+            setApp={this.setState.bind(this)}
           />
         ))}
 
@@ -136,13 +139,17 @@ class App extends React.Component {
           />
         </Route>
 
-        <Route path='/workspace' render={() => (
+        <Route path='/workspace/:id' render={() => (
           <WorkSpace
             user={user}
-            data={this.state.currentWorkspace}
+            currentWorkspace={this.state.currentWorkspace}
+            // data={this.state.currentWorkspace}
             placeData={this.state.placeData}
             userLocation={this.state.userLocation}
             setUser={this.setUser}
+            google={this.state.google}
+            map={this.state.map}
+            setApp={this.setState.bind(this)}
           />
          )} />
 
@@ -177,6 +184,7 @@ class App extends React.Component {
             google={this.state.google}
             map={this.state.map}
             barAlert={this.barAlert}
+            redirect={this.state.redirect}
           />
           )} />
 

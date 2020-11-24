@@ -24,7 +24,7 @@ class HeaderAuthOptions extends Component {
   }
 
   render() {
-    const { toggleSignIn, toggleSignUp, isSignInOpen, isSignUpOpen } = this.props
+    const { toggleSignIn, toggleSignUp, isSignInOpen, isSignUpOpen, redirect, setApp } = this.props
 
     return (
       <div className="full-width">
@@ -49,8 +49,8 @@ class HeaderAuthOptions extends Component {
 
        <Row className="m-0 p-0">
         <div className="box-container">
-          {isSignInOpen && <HeaderSignIn user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser}/>}
-          {isSignUpOpen && <HeaderSignUp user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser}/>}
+          {isSignInOpen && <HeaderSignIn user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser} setApp={setApp} redirect={redirect}/>}
+          {isSignUpOpen && <HeaderSignUp user={this.props.user} alert={this.props.barAlert} setUser={this.props.setUser} setApp={setApp} redirect={redirect}/>}
         </div>
       </Row>
     </div>

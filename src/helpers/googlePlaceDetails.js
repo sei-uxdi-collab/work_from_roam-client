@@ -1,5 +1,8 @@
 
 export const getGooglePlaceDetails = (google, map, placeId, callback) => {
+  if (!google || !map || !placeId) {
+    return {}
+  }
   // define the fields to request from the google places api
   const fields = [
     'name',

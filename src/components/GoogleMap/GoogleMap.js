@@ -48,15 +48,6 @@ class GoogleMap extends React.Component {
   }
 
   onRoamMarkerClick = (props, marker, event) => {
-    const currentWorkspace = marker.data
-    const poiLocation = { lat: props.data.lat, lng: props.data.lng }
-    const mapCenter = poiLocation
-    const placeId = marker.data.place_id
-    // set App state with workspace data and location
-    this.props.setApp({ placeData: {}, currentWorkspace, poiLocation, mapCenter, placeId })
-    // get and set google place data
-    this.getPlaceDetails(props.map, placeId)
-    // navigate to '/workspace' to render the component
     this.props.history.push(`/workspace/${marker.data.id}`)
   }
 
@@ -70,7 +61,7 @@ class GoogleMap extends React.Component {
   findExistingWorkspace = placeId => {
     const dataId = this.props.allData.findIndex(workspace => workspace.place_id === placeId)
     if (dataId >= 0) {
-      this.props.setApp({ currentWorkspace: this.props.allData[dataId] })
+      this.props.setApp({ currentWorkspace: this.props.allData[dataId].id })
     }
   }
 
@@ -85,7 +76,7 @@ class GoogleMap extends React.Component {
     this.props.setApp({ mapCenter, poiLocation, placeId })
 
     this.getPlaceDetails(map, placeId)
-    this.props.history.push('/workspace')
+    this.props.history.push('/workspace/new')
   }
 
   handleMapClick = (props, map, event) => {
@@ -162,7 +153,7 @@ class GoogleMap extends React.Component {
             placeId={workSpace.placeId}
             data={workSpace}
             name={`workspace_${workSpace.id}`}
-            icon={workSpace === currentWorkspace ? 'logo-bull-icon-active.svg' : 'logo-bull-icon.svg'}
+            icon={workSpace.id === currentWorkspace ? 'logo-bull-icon-active.svg' : 'logo-bull-icon.svg'}
           />
         ))}
 

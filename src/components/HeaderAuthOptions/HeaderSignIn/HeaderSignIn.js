@@ -27,6 +27,14 @@ class HeaderSignIn extends Component {
     [event.target.name]: event.target.value
   })
 
+  handleRedirect = () => {
+    console.log('handle redirect')
+    const { redirect, history } = this.props
+    const route = redirect || 'nav'
+    console.log(`/${route}`)
+    history.push(`/${route}`)
+  }
+
   onSignIn = event => {
     event.preventDefault()
 
@@ -44,7 +52,7 @@ class HeaderSignIn extends Component {
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
-      .then(() => history.push('/nav'))
+      .then(this.handleRedirect)
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '' })

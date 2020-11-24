@@ -12,7 +12,7 @@ import HeaderAuthOptions from "../HeaderAuthOptions/HeaderAuthOptions";
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 import { avatar } from '../../helpers/avatarsArray'
 
-const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history, barAlert }) => {
+const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history, barAlert, redirect }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,
@@ -87,6 +87,8 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
             toggleSignUp={() => toggleExpand('signUp')}
             isSignInOpen={expanded.signIn}
             isSignUpOpen={expanded.signUp}
+            redirect={redirect}
+            setApp={setApp}
           />
         )}
       </Row>
