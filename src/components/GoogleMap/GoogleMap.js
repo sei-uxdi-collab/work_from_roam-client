@@ -61,12 +61,12 @@ class GoogleMap extends React.Component {
   findExistingWorkspace = placeId => {
     const dataId = this.props.allData.findIndex(workspace => workspace.place_id === placeId)
     if (dataId >= 0) {
-      this.props.setApp({ currentWorkspace: this.props.allData[dataId].id })
+      this.props.setApp({ currentWorkspace: this.props.allData[dataId] })
     }
   }
 
   handlePOI = (map, event) => {
-    this.props.setApp({ placeData: {}, currentWorkspace: null })
+    this.props.setApp({ placeData: null, currentWorkspace: null })
     const placeId = event.placeId
     const poiLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
     const mapCenter = poiLocation
@@ -90,7 +90,7 @@ class GoogleMap extends React.Component {
 
   // Google marker on searched result
   handleSearchMarkerClick = (props, marker, event) => {
-    this.props.setApp({ placeData: {}, currentWorkspace: null })
+    this.props.setApp({ placeData: null, currentWorkspace: null })
     const placeId = marker.placeId
     const poiLocation = { lat: props.position.lat, lng: props.position.lng }
     const mapCenter = poiLocation
@@ -159,7 +159,7 @@ class GoogleMap extends React.Component {
             placeId={workSpace.placeId}
             data={workSpace}
             name={`workspace_${workSpace.id}`}
-            icon={workSpace.id === currentWorkspace ? 'logo-bull-icon-active.svg' : 'logo-bull-icon.svg'}
+            icon={workSpace === currentWorkspace ? 'logo-bull-icon-active.svg' : 'logo-bull-icon.svg'}
           />
         ))}
 

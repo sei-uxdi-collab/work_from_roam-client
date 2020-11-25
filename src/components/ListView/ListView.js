@@ -110,7 +110,6 @@ const ListView = ({ filteredWorkspaces, setApp }) => {
             <Slide key={workspace.id}
               content={workspace}
               activeIndex={activeIndex}
-              setApp={setApp}
               toggleListView={toggleListView}
               width={width} />
           ))}

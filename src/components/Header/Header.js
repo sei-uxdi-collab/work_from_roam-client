@@ -9,7 +9,6 @@ import MyFavorites from "../MyFavorites/MyFavorites";
 import MyReviews from "../MyReviews/MyReviews";
 import Settings from "../Settings/Settings";
 import HeaderAuthOptions from "../HeaderAuthOptions/HeaderAuthOptions";
-import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 import { avatar } from '../../helpers/avatarsArray'
 
 const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history, barAlert, redirect }) => {
@@ -47,17 +46,8 @@ const Header = ({ user, userLocation, allData, setApp, setUser, google, map, his
 
   const expandByKey = (key) => setExpanded(prevState => ({ ...prevState, [key]: !prevState[key] }))
 
-  const showWorkspace = (id, placeId) => {
-    const callback = placeData => {
-      setApp({ placeData })
-    }
-    const currentWorkspace = allData.find(workspace => workspace.id === id)
-    const { lat, lng } = currentWorkspace
-    const mapCenter = { lat, lng }
-
-    getGooglePlaceDetails(google, map, placeId, callback)
-    setApp({ currentWorkspace, mapCenter })
-    history.push('/workspace')
+  const showWorkspace = (id) => {
+    history.push(`/workspace/${id}`)
   }
 
   return (

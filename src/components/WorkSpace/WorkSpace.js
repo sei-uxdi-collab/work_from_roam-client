@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Swipeable } from 'react-swipeable'
-import { Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
@@ -15,11 +14,9 @@ import { showUser } from '../../api/auth'
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 
 import './WorkSpace.scss'
-import { SettingsApplications } from '@material-ui/icons'
-
 
 const WorkSpace = ({
-  currentWorkspace,
+  allData,
   history,
   match,
   setUser,
@@ -28,65 +25,41 @@ const WorkSpace = ({
   google,
   map,
   setApp,
+  data,
+  placeData
 }) => {
   const [state, setState] = useState({
-    data: {},
-    placeData: {},
-    user: user,
-    features: false,
-    hours: false,
-    flag: null
+    showFeatures: false,
+    showHours: false,
   })
-  const { data, placeData } = state
 
   const refreshWorkspaceData = async (id) => {
     console.log('refresh workspace data')
-    const response = await axios(`${apiUrl}work_spaces/${id}`)
-    const { data } = response
+    const { data } = await axios(`${apiUrl}work_spaces/${id}`)
     const { work_space } = data
     const { place_id, lat, lng } = work_space
-    const workspaceLocation = { lat, lng }
-
-    setApp({
-      currentWorkspace: Number(id),
-      mapCenter: workspaceLocation
-    })
-
-    getGooglePlaceDetails(google, map, place_id, (res) => {
-      setState(prevState => ({ ...prevState, data: work_space, placeData: res }))
-    })
+    const mapCenter = { lat, lng }
+    const currentWorkspace = allData.find(workspace => workspace.id === Number(id))
+    const setRefreshedData = (placeData) => {
+      setApp(prevState => ({ ...prevState, currentWorkspace, mapCenter, placeData }))
+    }
+    getGooglePlaceDetails(google, map, place_id, setRefreshedData)
   }
 
   useEffect(() => {
     console.log('use effect')
-    const { id: workplaceId } = match.params
-    console.log({workplaceId})
-    
-    refreshWorkspaceData(workplaceId)
+    refreshWorkspaceData(match.params.id)
   }, [match.params.id, google])
 
-  const toggleShowFeatures = () => {
-    setState(prevState => ({
-      ...prevState,
-      features: !prevState.features
-    }))
+  const toggleStateByKey = (key) => {
+    setState(prevState => ({ ...prevState, [key]: !prevState[key] }))
   }
 
-  const toggleShowHours = () => {
-    setState(prevState => ({
-      ...prevState,
-      hours: !prevState.hours
-    }))
-  }
-
-  const doesUserLike = () => {
-    const userLikes = user && user.find_up_voted_items
-    return userLikes && userLikes.find(item => item.id == data.id) ? true : false
-  }
+  const doesUserLike = user && user.find_up_voted_items && user.find_up_voted_items.find(item => item.id === data.id) ? true : false
 
   // Register as favorited
   const toggleFavorite = () => {
-    const route = doesUserLike() ? 'unlike' : 'like'
+    const route = doesUserLike ? 'unlike' : 'like'
     const { token } = user || {}
     axios({
       url: `${apiUrl}/work_spaces/${data.id}/${route}`,
@@ -99,59 +72,22 @@ const WorkSpace = ({
     .then((res) => setUser(res.data.user))
   }
 
-  // console.log({ placeData })
-  // if(placeData === {} || placeData === null) {
-  //   return(<div>Loading . . . </div>)
-  // }
-
-  if(!data.reviews) {
-    return (
-      <div className='userAlertCard'>
-        <div className='cardContent'>
-          <Row>
-            <span className='name'>{placeData && placeData.name}</span>
-          </Row>
-          <Row>
-            <span className='address'>{placeData && placeData.formatted_address}</span>
-          </Row>
-          <div className='hrsRow'>
-            {placeData && placeData.opening_hours ? <p className='hours'>{openingHrsToday}</p> : <p className='hours'>Hours unavailable</p> }
-
-              {placeData && placeData.opening_hours && placeData.opening_hours.isOpen() ? <span className='now open'>Open Now</span> : <span className='now close'>Closed Now</span>}
-          </div>
-          <Row>
-            <span className='message'>Found a hidden gem? Share it with everyone!</span>
-          </Row>
-        </div>
-        <Row>
-          <Button
-            className='review'
-            href={`#/create-review`}
-            >
-            Leave the first review
-          </Button>
-        </Row>
-      </div>
-    )
+  if (!placeData) {
+    return(<div>Loading...</div>)
   }
 
-  const loadingImage = 'loading-cat.gif'
-  const defaultImages = [loadingImage, loadingImage, loadingImage, loadingImage]
+  const { photos, opening_hours = {}, formatted_address, formatted_phone_number} = placeData
 
-  const placeDataPhotoData = placeData && placeData.photos
-  const photos = placeDataPhotoData ? placeDataPhotoData.map(photo => photo.getUrl()) : defaultImages
+  const loadingImage = 'loading-cat.gif'
+  const defaultImages = [loadingImage, loadingImage, loadingImage, loadingImage, loadingImage]
+  const displayImages = photos ? photos.map(photo => photo.getUrl()) : defaultImages
 
   const today = new Date().getDay()
   const dayKey = today ? today - 1 : 6
-
-  const weekdayText = placeData.opening_hours && placeData.opening_hours.weekday_text
-  
-  const openingHrsToday = weekdayText && weekdayText[dayKey]
-
+  const weekdayText = opening_hours.weekday_text || []
+  const openingHrsToday = weekdayText[dayKey]
+  const telNum = `tel:+${formatted_phone_number}`
   console.log({ weekdayText, today, dayKey, openingHrsToday })
-
-
-  const telNum = `tel:+${placeData && placeData.formatted_phone_number}`
 
   const alcohol = data.bool_alcohol
   const coffee = data.bool_coffee
@@ -175,22 +111,21 @@ const WorkSpace = ({
   return (
     <Swipeable {...config}>
       <div className='workspace'>
-
         <Carousel className='carousel' showThumbs={false}>
           <div>
-            <img src={photos[0]} alt='workspace 1'/>
+            <img src={displayImages[0]} alt='workspace 1'/>
           </div>
           <div>
-            <img src={photos[1]} alt='workspace 2'/>
+            <img src={displayImages[1]} alt='workspace 2'/>
           </div>
           <div>
-            <img src={photos[2]} alt='workspace 3'/>
+            <img src={displayImages[2]} alt='workspace 3'/>
           </div>
           <div>
-            <img src={photos[3]} alt='workspace 4'/>
+            <img src={displayImages[3]} alt='workspace 4'/>
           </div>
           <div>
-            <img src={photos[4]} alt='workspace 5'/>
+            <img src={displayImages[4]} alt='workspace 5'/>
           </div>
         </Carousel>
 
@@ -212,98 +147,90 @@ const WorkSpace = ({
             <img src='leaveReview.svg' alt='leave a review'/>
             Leave a Review
           </Button>
-
           <Button
-            className={`button-workspace ${doesUserLike() && 'favorited'}`}
+            className={`button-workspace ${doesUserLike && 'favorited'}`}
             data={data.id}
             onClick={toggleFavorite}
           >
-            <img src={doesUserLike() ? 'heartRed.svg' : 'heartBlue.svg'} alt='favorite'/>
+            <img src={doesUserLike ? 'heartRed.svg' : 'heartBlue.svg'} alt='favorite'/>
             Add to Favorites
           </Button>
-
         </div>
 
         <div className='workspaceInfo'>
-          <div>
-            <div className='nameAndStar'>
-              <a
-                className='workspaceLink'
-                style={{ textDecoration: 'none', color: '#000', fontSize: '17px', fontWeight: '500', lineHeight: '150%' }}
-                href={placeData && placeData.website}
-                target='_blank'
-                rel="noopener noreferrer"
-              >
-                {placeData && placeData.name}
-              </a>
-              <div className='starRating'>
-                <StarRatingComponent
-                  name='average workspace rating'
-                  value={Math.floor(data.avgrating)}
-                  editing={false}
-                  renderStarIcon={(nextValue, prevValue) =>
-                    (nextValue <= prevValue) ?
-                      <img src='star-icon.svg' className='star' alt='star'/> :
-                      <img src='star-icon-empty-gray.svg' className='star' alt='star'/>}
-                />
-              </div>
+          <div className='nameAndStar'>
+            <a
+              className='workspaceLink'
+              style={{ textDecoration: 'none', color: '#000', fontSize: '17px', fontWeight: '500', lineHeight: '150%' }}
+              href={placeData.website}
+              target='_blank'
+              rel="noopener noreferrer"
+            >
+              {placeData.name}
+            </a>
+            <div className='starRating'>
+              <StarRatingComponent
+                name='average workspace rating'
+                value={Math.floor(data.avgrating)}
+                editing={false}
+                renderStarIcon={(nextValue, prevValue) =>
+                  (nextValue <= prevValue) ?
+                    <img src='star-icon.svg' className='star' alt='star'/> :
+                    <img src='star-icon-empty-gray.svg' className='star' alt='star'/>}
+              />
             </div>
-
-            <span style={{ display: 'block'}}>{placeData && placeData.formatted_address}</span>
-            <a href={telNum} className='telNum' style={{ display: 'block', textDecoration: 'underline', color: '#000', textDecorationColor: '#cbcbcb' }}>{placeData && placeData.formatted_phone_number}</a>
-              <div onClick={toggleShowHours} style={{ cursor: 'pointer' }}>
-              {!state.hours && placeData && placeData.opening_hours ? (
-                <div
-                  
-                >
-                  {openingHrsToday}
-                  <img alt='more hours' src='arrowDown.svg' className='vecStyle'/>
-                </div>
-              ) : <p>Hide Opening Hours</p> }
-            </div>
-            {state.hours &&
-              <div>
-                <div onClick={toggleShowHours} style={{ cursor: 'pointer' }}>
-                  <img alt='less hours' src='arrowUp.svg' className='vecStyle'/>
-                </div>
-
-                <div>
-                  <p>{placeData && placeData.opening_hours.weekday_text[0]}</p>
-                  <p>{placeData && placeData.opening_hours.weekday_text[1]}</p>
-                  <p>{placeData && placeData.opening_hours.weekday_text[2]}</p>
-                  <p>{placeData && placeData.opening_hours.weekday_text[3]}</p>
-                  <p>{placeData && placeData.opening_hours.weekday_text[4]}</p>
-                  <p>{placeData && placeData.opening_hours.weekday_text[5]}</p>
-                  <p>{placeData && placeData.opening_hours.weekday_text[6]}</p>
-                </div>
-              </div>}
           </div>
 
-          <div style={{ marginTop: '35px' }}>
-            <span className='ratingsRow'>Wifi Quality
-              <AmenityRating
-                amenity={data.avgwifi}
-              />
-            </span>
-            <span className='ratingsRow'>Noise Level
-              <AmenityRating
-                amenity={data.avgnoise}
-              />
-            </span>
-            <span className='ratingsRow'>Seating
-              <AmenityRating
-                amenity={data.avgseating}
-              />
-            </span>
-            <span className='ratingsRow'>Cleanliness
-              <AmenityRating
-                amenity={data.avgclean}
-              />
-            </span>
-
-            {state.features ? (
+          <span style={{ display: 'block'}}>{formatted_address}</span>
+          <a href={telNum} className='telNum' style={{ display: 'block', textDecoration: 'underline', color: '#000', textDecorationColor: '#cbcbcb' }}>
+            {formatted_phone_number}
+          </a>
+          <div onClick={() => toggleStateByKey('showHours')} style={{ cursor: 'pointer' }}>
+            {!state.showHours && opening_hours ? (
               <div>
-                <p onClick={toggleShowFeatures} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'flex-end', textDecoration: 'underline' }}>
+                {openingHrsToday}
+                <img alt='more hours' src='arrowDown.svg' className='vecStyle'/>
+              </div>
+            ) : <div>Hide Opening Hours</div> }
+          </div>
+          {state.showHours && (
+            <>
+              <div onClick={() => toggleStateByKey('showHours')} style={{ cursor: 'pointer' }}>
+                <img alt='less hours' src='arrowUp.svg' className='vecStyle'/>
+              </div>
+              <div>
+                <p>{opening_hours.weekday_text[0]}</p>
+                <p>{opening_hours.weekday_text[1]}</p>
+                <p>{opening_hours.weekday_text[2]}</p>
+                <p>{opening_hours.weekday_text[3]}</p>
+                <p>{opening_hours.weekday_text[4]}</p>
+                <p>{opening_hours.weekday_text[5]}</p>
+                <p>{opening_hours.weekday_text[6]}</p>
+              </div>
+            </>
+          )}
+
+          <div style={{ marginTop: '35px' }}>
+            <div className='ratingsRow'>
+              Wifi Quality
+              <AmenityRating amenity={data.avgwifi} />
+            </div>
+            <div className='ratingsRow'>
+              Noise Level
+              <AmenityRating amenity={data.avgnoise} />
+            </div>
+            <div className='ratingsRow'>
+              Seating
+              <AmenityRating amenity={data.avgseating} />
+            </div>
+            <div className='ratingsRow'>
+              Cleanliness
+              <AmenityRating amenity={data.avgclean} />
+            </div>
+
+            {state.showFeatures ? (
+              <div>
+                <p onClick={() => toggleStateByKey('showFeatures')} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'flex-end', textDecoration: 'underline' }}>
                   less
                   <img alt='less' src='arrowUp.svg' className='vecStyle'/>
                 </p>
@@ -328,7 +255,7 @@ const WorkSpace = ({
                 </div>
               </div>
             ) : (
-              <div onClick={toggleShowFeatures} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>
+              <div onClick={() => toggleStateByKey('showFeatures')} style={{ float: 'right', textDecoration: 'underline', cursor: 'pointer' }}>
                 more
                 <img alt='more' src='arrowDown.svg' className='vecStyle'/>
               </div>
@@ -345,9 +272,6 @@ const WorkSpace = ({
           </div>
 
           <br />
-
-          <div>
-
           {data.reviews.map(review => (
             <Review
               user={review.username}
@@ -364,9 +288,7 @@ const WorkSpace = ({
               note={review.note}
             />
           ))}
-          </div>
         </div>
-
       </div>
     </Swipeable>
   )

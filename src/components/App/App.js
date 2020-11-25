@@ -22,7 +22,6 @@ import SignInAlert from '../WorkSpace/SignInAlert.js'
 
 import './App.scss'
 
-
 class App extends React.Component {
   constructor() {
     super()
@@ -34,7 +33,7 @@ class App extends React.Component {
       mapCenter: { lat: 42.3600, lng: -71.0589 },
       bounds: null,
       placeId: null,
-      placeData: {},
+      placeData: null,
       searchLocation: null,
       workSpaceId: null,
       currentWorkspace: null,
@@ -141,9 +140,9 @@ class App extends React.Component {
 
         <Route path='/workspace/:id' render={() => (
           <WorkSpace
+            allData={this.state.allData}
             user={user}
-            currentWorkspace={this.state.currentWorkspace}
-            // data={this.state.currentWorkspace}
+            data={this.state.currentWorkspace}
             placeData={this.state.placeData}
             userLocation={this.state.userLocation}
             setUser={this.setUser}
