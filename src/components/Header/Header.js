@@ -11,7 +11,7 @@ import Settings from "../Settings/Settings";
 import HeaderAuthOptions from "../HeaderAuthOptions/HeaderAuthOptions";
 import { avatar } from '../../helpers/avatarsArray'
 
-const Header = ({ user, userLocation, allData, setApp, setUser, google, map, history, barAlert, redirect }) => {
+const Header = ({ user, userLocation, allData, setApp, setUser, history, barAlert, redirect }) => {
   const [expanded, setExpanded] = useState({
     favorites: false,
     reviews: false,

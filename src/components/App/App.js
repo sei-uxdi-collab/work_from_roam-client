@@ -140,7 +140,6 @@ class App extends React.Component {
 
         <Route path='/workspace/:id' render={() => (
           <WorkSpace
-            allData={this.state.allData}
             user={user}
             data={this.state.currentWorkspace}
             placeData={this.state.placeData}
@@ -180,8 +179,6 @@ class App extends React.Component {
             allData={this.state.allData}
             setUser={this.setUser}
             setApp={this.setState.bind(this)}
-            google={this.state.google}
-            map={this.state.map}
             barAlert={this.barAlert}
             redirect={this.state.redirect}
           />

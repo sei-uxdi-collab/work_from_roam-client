@@ -16,7 +16,6 @@ import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 import './WorkSpace.scss'
 
 const WorkSpace = ({
-  allData,
   history,
   match,
   setUser,
@@ -37,11 +36,12 @@ const WorkSpace = ({
     console.log('refresh workspace data')
     const { data } = await axios(`${apiUrl}work_spaces/${id}`)
     const { work_space } = data
+    console.log({ data })
     const { place_id, lat, lng } = work_space
     const mapCenter = { lat, lng }
-    const currentWorkspace = allData.find(workspace => workspace.id === Number(id))
+    setApp({ mapCenter, currentWorkspace: work_space })
     const setRefreshedData = (placeData) => {
-      setApp(prevState => ({ ...prevState, currentWorkspace, mapCenter, placeData }))
+      setApp(prevState => ({ ...prevState, placeData }))
     }
     getGooglePlaceDetails(google, map, place_id, setRefreshedData)
   }
@@ -55,7 +55,11 @@ const WorkSpace = ({
     setState(prevState => ({ ...prevState, [key]: !prevState[key] }))
   }
 
-  const doesUserLike = user && user.find_up_voted_items && user.find_up_voted_items.find(item => item.id === data.id) ? true : false
+  if (!placeData) {
+    return(<div>Loading...</div>)
+  }
+
+  const doesUserLike = user && user.find_up_voted_items.find(item => item.id === data.id) ? true : false
 
   // Register as favorited
   const toggleFavorite = () => {
@@ -72,10 +76,6 @@ const WorkSpace = ({
     .then((res) => setUser(res.data.user))
   }
 
-  if (!placeData) {
-    return(<div>Loading...</div>)
-  }
-
   const { photos, opening_hours = {}, formatted_address, formatted_phone_number} = placeData
 
   const loadingImage = 'loading-cat.gif'
@@ -87,7 +87,7 @@ const WorkSpace = ({
   const weekdayText = opening_hours.weekday_text || []
   const openingHrsToday = weekdayText[dayKey]
   const telNum = `tel:+${formatted_phone_number}`
-  console.log({ weekdayText, today, dayKey, openingHrsToday })
+  console.log({ weekdayText, today, dayKey, openingHrsToday, data, placeData })
 
   const alcohol = data.bool_alcohol
   const coffee = data.bool_coffee
