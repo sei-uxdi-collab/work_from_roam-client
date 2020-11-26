@@ -59,6 +59,10 @@ const WorkspaceFilter = ({
     allFiltersAreClear && setRejection(false)
   }, [filter])
 
+  useEffect(() => {
+    handleSubmit()
+  }, [allData])
+
   const toggleShowModal = () => {
     setShow(prevState => !prevState)
   }

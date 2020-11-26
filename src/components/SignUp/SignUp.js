@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Link, Redirect } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { signUp, signIn } from '../../api/auth'
 import messages from '../AutoAlert/messages'

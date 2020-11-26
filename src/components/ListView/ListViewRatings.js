@@ -7,15 +7,15 @@ export const ListViewRatings = props => {
   const seatingCount = useState(Math.floor(props.data.avg_seating))
   const noiseCount = useState(Math.floor(props.data.avg_noise))
 
-  const yellowTick = () => {
+  const yellowTick = (index) => {
       return (
-        <div css={yellowBubble}></div>
+        <div key={index} css={yellowBubble}></div>
       )
   }
 
-  const grayTick = () => {
+  const grayTick = (index) => {
       return (
-        <div css={grayBubble}></div>
+        <div key={index} css={grayBubble}></div>
       )
   }
 
@@ -24,22 +24,22 @@ export const ListViewRatings = props => {
      <div css={ratingsRow}>
        <p>WiFi Quality</p>
        <div>
-         {Array(wifiCount[0]).fill().map(item => yellowTick())}
-         {Array(5 - wifiCount[0]).fill().map(item => grayTick())}
+         {Array(wifiCount[0]).fill().map((item, index) => yellowTick(index))}
+         {Array(5 - wifiCount[0]).fill().map((item, index) => grayTick(index))}
        </div>
      </div>
      <div css={ratingsRow}>
        <p>Seat Comfort</p>
        <div>
-         {Array(seatingCount[0]).fill().map(item => yellowTick())}
-         {Array(5 - seatingCount[0]).fill().map(item => grayTick())}
+         {Array(seatingCount[0]).fill().map((item, index) => yellowTick(index))}
+         {Array(5 - seatingCount[0]).fill().map((item, index) => grayTick(index))}
        </div>
      </div>
      <div css={ratingsRow}>
        <p>Noise Level</p>
        <div>
-         {Array(noiseCount[0]).fill().map(item => yellowTick())}
-         {Array(5 - noiseCount[0]).fill().map(item => grayTick())}
+         {Array(noiseCount[0]).fill().map((item, index) => yellowTick(index))}
+         {Array(5 - noiseCount[0]).fill().map((item, index) => grayTick(index))}
        </div>
      </div>
    </div>

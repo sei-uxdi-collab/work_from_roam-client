@@ -31,7 +31,7 @@ class HeaderSignIn extends Component {
     console.log('handle redirect')
     const { redirect, history } = this.props
     const route = redirect || 'nav'
-    console.log(`/${route}`)
+    this.props.setApp({ redirect: '' })
     history.push(`/${route}`)
   }
 

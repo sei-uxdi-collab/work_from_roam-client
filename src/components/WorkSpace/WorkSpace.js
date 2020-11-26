@@ -10,6 +10,7 @@ import apiUrl from '../../apiConfig'
 
 import Review from '../Review/Review'
 import AmenityRating from '../AmenityRating/AmenityRating.js'
+import SignInAlert from '../WorkSpace/SignInAlert';
 import { showUser } from '../../api/auth'
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 
@@ -30,6 +31,7 @@ const WorkSpace = ({
   const [state, setState] = useState({
     showFeatures: false,
     showHours: false,
+    referUserToSignIn: false,
   })
 
   const refreshWorkspaceData = async (id) => {
@@ -55,11 +57,19 @@ const WorkSpace = ({
     setState(prevState => ({ ...prevState, [key]: !prevState[key] }))
   }
 
-  if (!placeData) {
+  if (!data || !placeData) {
     return(<div>Loading...</div>)
   }
 
+  if (state.referUserToSignIn) {
+    return <SignInAlert redirect={`workspace/${match.params.id}`} setApp={setApp} />
+  }
+
   const doesUserLike = user && user.find_up_voted_items.find(item => item.id === data.id) ? true : false
+
+  const referUserToSignIn = () => {
+    setState(prevState => ({ ...prevState, referUserToSignIn: true }))
+  }
 
   // Register as favorited
   const toggleFavorite = () => {
@@ -150,7 +160,7 @@ const WorkSpace = ({
           <Button
             className={`button-workspace ${doesUserLike && 'favorited'}`}
             data={data.id}
-            onClick={toggleFavorite}
+            onClick={user ? toggleFavorite : referUserToSignIn}
           >
             <img src={doesUserLike ? 'heartRed.svg' : 'heartBlue.svg'} alt='favorite'/>
             Add to Favorites

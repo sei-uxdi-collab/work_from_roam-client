@@ -71,15 +71,15 @@ class GoogleMap extends React.Component {
   handlePOI = (map, event) => {
     this.props.setApp({ placeData: null, currentWorkspace: null })
     const placeId = event.placeId
+    const existingWorkspace = this.props.allData.find(workspace => workspace.place_id === placeId)
+    if (existingWorkspace) {
+      return this.props.history.push(`/workspace/${existingWorkspace.id}`)
+    }
     const poiLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
     const mapCenter = poiLocation
-
-    this.findExistingWorkspace(placeId)
-
     this.props.setApp({ mapCenter, poiLocation, placeId })
-
     this.getPlaceDetails(map, placeId)
-    this.props.history.push('/workspace/new')
+    this.props.history.push(`/create-workspace`)
   }
 
   handleMapClick = (props, map, event) => {
@@ -103,7 +103,7 @@ class GoogleMap extends React.Component {
     this.props.setApp({ mapCenter, poiLocation, placeId })
 
     this.getPlaceDetails(props.map, placeId)
-    this.props.history.push('/workspace')
+    this.props.history.push('/create-workspace')
   }
 
   updateMapState = (props, map, event) => {
@@ -120,7 +120,9 @@ class GoogleMap extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     const workspacesAreUpdated = nextProps.filteredWorkspaces !== this.props.filteredWorkspaces
     const currentWorkspaceIsUpdated = nextProps.currentWorkspace !== this.props.currentWorkspace
-    return workspacesAreUpdated || currentWorkspaceIsUpdated
+    const mapCenterIsUpdated = nextProps.mapCenter !== this.props.mapCenter
+    const allDataIsUpdated = nextProps.allData !== this.props.allData
+    return workspacesAreUpdated || currentWorkspaceIsUpdated || mapCenterIsUpdated || allDataIsUpdated
   }
 
   render() {

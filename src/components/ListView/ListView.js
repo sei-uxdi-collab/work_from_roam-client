@@ -2,7 +2,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react'
 import { Dropdown, Container, Row, Col } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
-import { GoogleApiWrapper } from 'google-maps-react'
 import { orderBy } from 'lodash'
 
 // Custom component imports

@@ -21,6 +21,7 @@ import SignupCarousel from './../SignupCarousel/SignupCarousel'
 import SignInAlert from '../WorkSpace/SignInAlert.js'
 
 import './App.scss'
+import CreateWorkspace from '../CreateWorkspace/CreateWorkspace'
 
 class App extends React.Component {
   constructor() {
@@ -135,6 +136,15 @@ class App extends React.Component {
             data={this.state.allData}
             currentWorkspace={this.state.currentWorkspace}
             setApp={this.setState.bind(this)}
+          />
+        </Route>
+
+        <Route path='/create-workspace'>
+          <CreateWorkspace
+            setApp={this.setState.bind(this)}
+            placeData={this.state.placeData}
+            google={this.state.google}
+            map={this.state.map}
           />
         </Route>
 

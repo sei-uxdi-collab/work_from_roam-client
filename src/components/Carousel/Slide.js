@@ -62,7 +62,7 @@ const Slide = ( { key, content, width, history, toggleListView }) => {
           <Button variant="outline-success"
             size="sm"
             onClick={onClick}
-            style={{'border-radius': '18px','margin-right': '16px'}}>
+            style={{borderRadius: '18px', marginRight: '16px'}}>
               Go!
           </Button>
         </div>
