@@ -6,6 +6,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
 import { calculateDistanceMiles } from '../../helpers/calculateDistance'
+import { calculateLngOffset } from '../../helpers/calculateLngOffset'
 
 import './GoogleMap.scss'
 import { samisel } from '../MapStyles'
@@ -42,7 +43,24 @@ class GoogleMap extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.props.map && this.props.map.panTo(this.props.mapCenter)
+    this.updateMapCenter()
+  }
+
+  updateMapCenter = () => {
+    const { mapCenter, map, location } = this.props
+    if (!map) {
+      return
+    }
+    const bounds = map.getBounds()
+    const { clientWidth } = document.documentElement
+    const shouldOffset = bounds && location.pathname.includes('/workspace/')
+    console.log({ shouldOffset, bounds })
+    const lngOffset = shouldOffset ? calculateLngOffset(bounds, clientWidth) : 0
+    const offSetMapCenter = {
+      lat: mapCenter.lat,
+      lng: mapCenter.lng - lngOffset,
+    }
+    map.panTo(offSetMapCenter)
   }
 
   getPlaceDetails = (map, placeId) => {
@@ -77,9 +95,10 @@ class GoogleMap extends React.Component {
     }
     const poiLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
     const mapCenter = poiLocation
+    
+    this.props.history.push(`/create-workspace`)
     this.props.setApp({ mapCenter, poiLocation, placeId })
     this.getPlaceDetails(map, placeId)
-    this.props.history.push(`/create-workspace`)
   }
 
   handleMapClick = (props, map, event) => {
@@ -107,10 +126,8 @@ class GoogleMap extends React.Component {
   }
 
   updateMapState = (props, map, event) => {
-    if (!this.props.google || !this.props.map) {
-      const { google } = this.props
-      this.props.setApp({ map, google })
-    }
+    const { google } = this.props
+    this.props.setApp({ map, google })
   }
 
   handleUserMarkerClick = () => {
@@ -120,9 +137,11 @@ class GoogleMap extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     const workspacesAreUpdated = nextProps.filteredWorkspaces !== this.props.filteredWorkspaces
     const currentWorkspaceIsUpdated = nextProps.currentWorkspace !== this.props.currentWorkspace
-    const mapCenterIsUpdated = nextProps.mapCenter !== this.props.mapCenter
-    const allDataIsUpdated = nextProps.allData !== this.props.allData
-    return workspacesAreUpdated || currentWorkspaceIsUpdated || mapCenterIsUpdated || allDataIsUpdated
+    const isMapCenterUpdated = nextProps.mapCenter !== this.props.mapCenter
+    const isAllDataUpdated = nextProps.allData !== this.props.allData
+    const isSearchUpdated = nextProps.searchLocation !== this.props.searchLocation
+
+    return workspacesAreUpdated || currentWorkspaceIsUpdated || isAllDataUpdated || isSearchUpdated || isMapCenterUpdated
   }
 
   render() {
