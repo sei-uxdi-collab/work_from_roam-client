@@ -2,15 +2,10 @@
 
 export const calculateLngOffset = (bounds, clientWidth) => {
   if (!bounds) {
-    return
+    return 0
   }
-  console.log({ bounds, clientWidth })
-  // const lngDiff = bounds.Sa
-  // console.log({ lngDiff })
   const ne = bounds.getNorthEast()
   const sw = bounds.getSouthWest()
-
-  console.log({ ne, sw })
 
   const minLng = sw.lng()
   const maxLng = ne.lng()
@@ -24,6 +19,5 @@ export const calculateLngOffset = (bounds, clientWidth) => {
 
   const lngOffset = lngDiff * pixelRatio
 
-  console.log({ minLng, maxLng, lngDiff, pixelRatio, lngOffset })
   return lngOffset
 }

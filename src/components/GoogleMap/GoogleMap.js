@@ -54,7 +54,6 @@ class GoogleMap extends React.Component {
     const bounds = map.getBounds()
     const { clientWidth } = document.documentElement
     const shouldOffset = bounds && location.pathname.includes('/workspace/')
-    console.log({ shouldOffset, bounds })
     const lngOffset = shouldOffset ? calculateLngOffset(bounds, clientWidth) : 0
     const offSetMapCenter = {
       lat: mapCenter.lat,

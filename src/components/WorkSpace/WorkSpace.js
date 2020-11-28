@@ -35,10 +35,8 @@ const WorkSpace = ({
   })
 
   const refreshWorkspaceData = async (id) => {
-    console.log('refresh workspace data')
     const { data } = await axios(`${apiUrl}work_spaces/${id}`)
     const { work_space } = data
-    console.log({ data })
     const { place_id, lat, lng } = work_space
     const mapCenter = { lat, lng }
     setApp({ mapCenter, currentWorkspace: work_space })
@@ -49,7 +47,6 @@ const WorkSpace = ({
   }
 
   useEffect(() => {
-    console.log('use effect')
     refreshWorkspaceData(match.params.id)
   }, [match.params.id, google])
 
@@ -97,7 +94,6 @@ const WorkSpace = ({
   const weekdayText = opening_hours.weekday_text || []
   const openingHrsToday = weekdayText[dayKey]
   const telNum = `tel:+${formatted_phone_number}`
-  console.log({ weekdayText, today, dayKey, openingHrsToday, data, placeData })
 
   const alcohol = data.bool_alcohol
   const coffee = data.bool_coffee
