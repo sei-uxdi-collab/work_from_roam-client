@@ -1,7 +1,7 @@
 export const calculateDistanceMiles = (location1, location2, decimals) => {
 
     // check locations must be in format { lat, lng }
-    if (!location1.lat || !location1.lng || !location2.lat || !location2.lng) {
+    if (!location1 || !location2 || !location1.lat || !location1.lng || !location2.lat || !location2.lng) {
         return
     }
 

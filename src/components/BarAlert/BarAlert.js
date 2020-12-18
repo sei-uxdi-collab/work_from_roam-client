@@ -66,7 +66,7 @@ class BarAlert extends React.Component {
             fontSize: '11px',
             fontFamily: 'Roboto',
             fontWeight: '500',
-            top: '2%' }}
+            top: '2%'}}
           show={this.state.show}
           variant={variant}
           onClose={this.handleClose}

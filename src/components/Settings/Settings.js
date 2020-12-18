@@ -29,7 +29,7 @@ function Settings(props) {
             <div className="email-us settings-options"><a href = "mailto: info@workfromroam.co">Questions? Comments? Email us at <u>info@workfromroam.co</u></a></div>
           </Row>
           <Row>
-            <div className="settings-options version-info">WorkFromRoam v0.1.1 alpha</div>
+            <div className="settings-options version-info">WorkFromRoam v0.1.2 alpha</div>
           </Row>
         </div>
       </div>

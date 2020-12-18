@@ -5,9 +5,11 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { getGooglePlaceDetails } from '../../helpers/googlePlaceDetails'
+import { calculateDistanceMiles } from '../../helpers/calculateDistance'
+import { calculateLngOffset } from '../../helpers/calculateLngOffset'
 
 import './GoogleMap.scss'
-import { greyscale } from '../MapStyles'
+import { samisel } from '../MapStyles'
 
 
 class GoogleMap extends React.Component {
@@ -20,7 +22,6 @@ class GoogleMap extends React.Component {
 
   // Using geolocation from browser to location user location
   componentDidMount = () => {
-    this.props.setApp({ mapCenter: { lat: 42.3601, lng: -71.0589 } })
     if (navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(pos => {
         const lat = pos.coords.latitude
@@ -32,9 +33,33 @@ class GoogleMap extends React.Component {
     }
     axios(apiUrl + '/work_spaces')
       .then(data => {
-        const allData = data.data.work_spaces
+        const rawData = data.data.work_spaces
+        const allData = rawData.map(workplace => ({
+          ...workplace,
+          distance: calculateDistanceMiles(workplace, this.props.userLocation, 2)
+        }))
         this.props.setApp({ allData, filteredWorkspaces: allData })
       })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.updateMapCenter()
+  }
+
+  updateMapCenter = () => {
+    const { mapCenter, map, location } = this.props
+    if (!map) {
+      return
+    }
+    const bounds = map.getBounds()
+    const { clientWidth } = document.documentElement
+    const shouldOffset = bounds && location.pathname.includes('/workspace/')
+    const lngOffset = shouldOffset ? calculateLngOffset(bounds, clientWidth) : 0
+    const offSetMapCenter = {
+      lat: mapCenter.lat,
+      lng: mapCenter.lng - lngOffset,
+    }
+    map.panTo(offSetMapCenter)
   }
 
   getPlaceDetails = (map, placeId) => {
@@ -42,17 +67,8 @@ class GoogleMap extends React.Component {
     getGooglePlaceDetails(this.props.google, map, placeId, callback)
   }
 
-  onMarkerClick = (props, marker, event) => {
-    const currentWorkspace = marker.data
-    const poiLocation = { lat: props.data.lat, lng: props.data.lng }
-    const mapCenter = poiLocation
-    const placeId = marker.data.place_id
-    // set App state with workspace data and location
-    this.props.setApp({ placeData: null, currentWorkspace, poiLocation, mapCenter, placeId })
-    // get and set google place data
-    this.getPlaceDetails(props.map, placeId)
-    // navigate to '/workspace' to render the component
-    this.props.history.push('/workspace')
+  onRoamMarkerClick = (props, marker, event) => {
+    this.props.history.push(`/workspace/${marker.data.id}`)
   }
 
   navigateHome = () => {
@@ -72,18 +88,19 @@ class GoogleMap extends React.Component {
   handlePOI = (map, event) => {
     this.props.setApp({ placeData: null, currentWorkspace: null })
     const placeId = event.placeId
+    const existingWorkspace = this.props.allData.find(workspace => workspace.place_id === placeId)
+    if (existingWorkspace) {
+      return this.props.history.push(`/workspace/${existingWorkspace.id}`)
+    }
     const poiLocation = { lat: event.latLng.lat(), lng: event.latLng.lng() }
     const mapCenter = poiLocation
-
-    this.findExistingWorkspace(placeId)
-
+    
+    this.props.history.push(`/create-workspace`)
     this.props.setApp({ mapCenter, poiLocation, placeId })
-
     this.getPlaceDetails(map, placeId)
-    this.props.history.push('/workspace')
   }
 
-  handleClick = (props, map, event) => {
+  handleMapClick = (props, map, event) => {
     // if user clicks on a point of interest (poi)
     if (event.placeId) {
       this.handlePOI(map, event)
@@ -93,7 +110,7 @@ class GoogleMap extends React.Component {
   }
 
   // Google marker on searched result
-  handleMarkerPOI = (props, marker, event) => {
+  handleSearchMarkerClick = (props, marker, event) => {
     this.props.setApp({ placeData: null, currentWorkspace: null })
     const placeId = marker.placeId
     const poiLocation = { lat: props.position.lat, lng: props.position.lng }
@@ -104,24 +121,26 @@ class GoogleMap extends React.Component {
     this.props.setApp({ mapCenter, poiLocation, placeId })
 
     this.getPlaceDetails(props.map, placeId)
-    this.props.history.push('/workspace')
-  }
-
-  // Google marker on searched result
-  handleMarkerClick = (props, map, event) => {
-    // if user clicks on marker
-    if (props.placeId) {
-      this.handleMarkerPOI(props, map, event)
-    } else {
-      this.navigateHome()
-    }
+    this.props.history.push('/create-workspace')
   }
 
   updateMapState = (props, map, event) => {
-    if (!this.props.google || !this.props.map) {
-      const { google } = this.props
-      this.props.setApp({ map, google })
-    }
+    const { google } = this.props
+    this.props.setApp({ map, google })
+  }
+
+  handleUserMarkerClick = () => {
+    this.props.history.push('/nav')
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const workspacesAreUpdated = nextProps.filteredWorkspaces !== this.props.filteredWorkspaces
+    const currentWorkspaceIsUpdated = nextProps.currentWorkspace !== this.props.currentWorkspace
+    const isMapCenterUpdated = nextProps.mapCenter !== this.props.mapCenter
+    const isAllDataUpdated = nextProps.allData !== this.props.allData
+    const isSearchUpdated = nextProps.searchLocation !== this.props.searchLocation
+
+    return workspacesAreUpdated || currentWorkspaceIsUpdated || isAllDataUpdated || isSearchUpdated || isMapCenterUpdated
   }
 
   render() {
@@ -129,27 +148,27 @@ class GoogleMap extends React.Component {
     return (
       <Map
         google={this.props.google}
-        center={this.props.center}
         initialCenter={this.props.center}
         zoom={14}
         clickableIcons={true}
         options={{ gestureHandling: 'greedy' }}
-        onClick={this.handleClick}
-        onCenter_changed={this.updateMapState}
+        onClick={this.handleMapClick}
+        onReady={this.updateMapState}
         className='google-map'
-        styles={greyscale}
+        styles={samisel}
       >
 
         <Marker
           name={'user location'}
           position={this.props.userLocation}
           icon='current-location-marker.svg'
+          onClick={this.handleUserMarkerClick}
         />
 
         {this.props.searchLocation && (<Marker
           name={'search result'}
           position={this.props.searchLocation}
-          onClick={this.handleMarkerPOI}
+          onClick={this.handleSearchMarkerClick}
           placeId={this.props.placeId}
         />)}
 
@@ -157,12 +176,12 @@ class GoogleMap extends React.Component {
         {this.props.filteredWorkspaces.map(workSpace => (
           <Marker
             key={workSpace.id}
-            onClick={this.onMarkerClick}
+            onClick={this.onRoamMarkerClick}
             position={{ lat: workSpace.lat, lng: workSpace.lng }}
             placeId={workSpace.placeId}
             data={workSpace}
             name={`workspace_${workSpace.id}`}
-            icon={workSpace === currentWorkspace ? 'logo-bull-icon-active.svg' : 'logo-bull-icon.svg'}
+            icon={workSpace.id === (currentWorkspace && currentWorkspace.id) ? 'logo-bull-icon-active.svg' : 'logo-bull-icon.svg'}
           />
         ))}
 

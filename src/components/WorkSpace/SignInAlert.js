@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import { Row } from 'react-bootstrap'
 import './SignInAlert.scss'
 
-const SignInAlert = () => {
-
+const SignInAlert = ({ redirect, setApp }) => {
+    useEffect(() => {
+        setApp({ redirect })
+    }, [])
 
     return (
         <div className='sign-in-alert-container'>

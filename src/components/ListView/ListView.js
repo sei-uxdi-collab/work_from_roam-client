@@ -1,8 +1,8 @@
 /** @jsx jsx **/
-import React, { Fragment, useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useMemo } from 'react'
 import { Dropdown, Container, Row, Col } from 'react-bootstrap'
 import { css, jsx } from '@emotion/core'
-import { GoogleApiWrapper } from 'google-maps-react'
+import { orderBy } from 'lodash'
 
 // Custom component imports
 import { Carousel } from './../Carousel/Carousel'
@@ -14,7 +14,7 @@ import { ClickOutside } from '../ClickOutside/ClickOutside'
 // Styling imports
 import './ListView.scss'
 
-const ListView = props => {
+const ListView = ({ filteredWorkspaces, setApp }) => {
   const [isListOpen, setIsListOpen] = useState(false)
   const [carousel, setCarousel] = useState({
     activeIndex: 0,
@@ -22,7 +22,8 @@ const ListView = props => {
     transition: 0.5
   })
   const [width, setWidth] = useState()
-  const workspaceArray = props.workspaces[0].slice(0, 5)
+
+  const workspaceArray = useMemo(() => filteredWorkspaces.slice(0, 5), [filteredWorkspaces])
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Reference and function that listens for events outside of the ListView component, and closes it
   const ref = useRef()
@@ -108,12 +109,30 @@ const ListView = props => {
             <Slide key={workspace.id}
               content={workspace}
               activeIndex={activeIndex}
-              setApp={props.setApp}
               toggleListView={toggleListView}
               width={width} />
           ))}
         </Carousel>
       )
+    }
+  }
+
+  const sortWorkspaces = selection => {
+    switch (selection) {
+      case 'avg_rating':
+        setApp({filteredWorkspaces: orderBy(filteredWorkspaces, [selection, 'distance'], ['desc', 'asc'])})
+        break
+      case 'avg_wifi':
+        setApp({filteredWorkspaces: orderBy(filteredWorkspaces, [selection, 'avg_rating'], ['desc', 'desc'])})
+        break
+      case 'avg_noise':
+        setApp({filteredWorkspaces: orderBy(filteredWorkspaces, [selection, 'avg_rating'], ['asc', 'desc'])})
+        break
+      case 'distance':
+        setApp({filteredWorkspaces: orderBy(filteredWorkspaces, [selection, 'avg_rating'], ['asc', 'desc'])})
+        break
+      default:
+        console.log('Sort failed!')
     }
   }
 
@@ -124,8 +143,7 @@ const ListView = props => {
           <div className='list-header' onClick={toggleListView} >
             <p>List View</p>
           </div>
-          <Dropdown
-            onSelect={eventKey => props.sortWorkspaces(eventKey)}>
+          <Dropdown onSelect={eventKey => sortWorkspaces(eventKey)}>
             <Dropdown.Toggle css={dropdownCSS}>
               Sort by...
             </Dropdown.Toggle>
@@ -185,6 +203,4 @@ const carouselCSS = css`
   position: relative;
 `;
 
-export default GoogleApiWrapper({
-  apiKey: (process.env.REACT_APP_GOOGLE_API_KEY)
-})(ListView)
+export default ListView

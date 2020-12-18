@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 
-const Dot = ({ active }) => (
+const Dot = ({ key, active }) => (
   <span
+    key={key}
     css={css`
       border: 1px solid white;
       padding: 5px;

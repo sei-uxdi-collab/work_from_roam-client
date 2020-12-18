@@ -1,3 +1,18 @@
+export const samisel = [
+    {
+        "featureType": "administrative.country",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "hue": "#ff0000"
+            }
+        ]
+    }
+]
+
 export const greyscale = [
   {
       "featureType": "administrative",

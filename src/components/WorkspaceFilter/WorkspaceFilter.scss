@@ -48,6 +48,10 @@ $warning: red;
         justify-content: center;
         margin-top: .5rem;
 
+        .select-clear-filters {
+          cursor: pointer;
+        }
+
         p {
           color: #222;
           font-weight: 300;
@@ -75,13 +79,13 @@ $warning: red;
         display: none;
       }
 
-      #on {
+      .off {
         background-color: #C4D3FF;
         color: #000;
         font-weight: 300;
       }
 
-      #off {
+      .on {
         background-color: $wfrBlue;
         color: $white;
         font-weight: bold;
@@ -143,18 +147,33 @@ $warning: red;
             text-decoration-line: underline;
           }
 
-          #on {
+          .off {
             background-color: $white;
             color: #000;
             font-weight: 300;
           }
 
-          #off {
+          .on {
             background-color: $wfrBlue;
             color: $white;
             font-weight: bold;
           }
 
+        }
+
+        .select-clear-filters {
+          cursor: pointer;
+        }
+
+        .rejection-message {
+          margin: 1em auto;
+  
+          p {
+            color: $warning;
+            font-size: 15px;
+            font-family: 'Roboto';
+            text-align: center;
+          }
         }
       }
     }

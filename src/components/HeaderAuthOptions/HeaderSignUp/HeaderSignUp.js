@@ -29,7 +29,7 @@ class HeaderSignUp extends Component {
   onSignUp = event => {
     event.preventDefault()
     this.setState({ identifier: this.state.email })
-    const { alert, history, setUser } = this.props
+    const { alert, history, setUser, redirect, setApp } = this.props
 
     signUp(this.state)
       .then(() => signIn(this.state))
@@ -40,7 +40,11 @@ class HeaderSignUp extends Component {
         variant: 'light',
         image: 'logo-text-only.svg'
       }))
-      .then(() => history.push('/first-signin'))
+      .then(() => {
+        const route = redirect || 'first-signin'
+        this.props.setApp({ redirect: '' })
+        history.push(`/${route}`)
+      })
       .catch(error => {
         console.error(error)
         this.setState({ email: '', username: '', password: '', passwordConfirmation: '' })

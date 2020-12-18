@@ -150,7 +150,7 @@ import SignInAlert from '../WorkSpace/SignInAlert';
 
       // if user is not signed in, redirect to '/sign-in'
       if (!this.props.user) {
-        return (<SignInAlert/>)
+        return (<SignInAlert redirect='create-review' setApp={this.props.setApp} />)
       }
 
       if (this.state.display === 'none') {

@@ -10,7 +10,7 @@ import { getAddressLine1 } from './../../helpers/getAddressLine1.js'
 import { getAddressLine2 } from './../../helpers/getAddressLine2.js'
 
 
-const Slide = ( { content, width, activeIndex, placeData, setApp, history, toggleListView }) => {
+const Slide = ( { key, content, width, history, toggleListView }) => {
   // Will eventually be altered to toggle from open/closed states
   const openHours = () => {
     return (
@@ -33,16 +33,15 @@ const Slide = ( { content, width, activeIndex, placeData, setApp, history, toggl
     )
   }
 
-  const onClick = content => {
-    const currentWorkspace = content
-    const placeId = content.place_id
-    setApp({ currentWorkspace, placeId })
-      .then(history.push('/workspace'))
+  const onClick = () => {
+    const { id } = content
+    history.push(`/workspace/${id}`)
     toggleListView()
   }
 
   return (
     <div
+      key={key}
       css={css`
         align-items: center;
         display: flex;
@@ -62,8 +61,8 @@ const Slide = ( { content, width, activeIndex, placeData, setApp, history, toggl
           <h5 css={headerCSS}>{content.name}</h5>
           <Button variant="outline-success"
             size="sm"
-            onClick={() => onClick(content)}
-            style={{'border-radius': '18px','margin-right': '16px'}}>
+            onClick={onClick}
+            style={{borderRadius: '18px', marginRight: '16px'}}>
               Go!
           </Button>
         </div>
